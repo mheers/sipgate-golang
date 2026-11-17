@@ -166,6 +166,13 @@ func wrapError(resp *http.Response, err error) error {
 	return err
 }
 
+// WrapError converts the error returned by a generated API call into an
+// *APIError, using the HTTP response for the status code and error body. Other
+// errors are returned unchanged.
+func WrapError(resp *http.Response, err error) error {
+	return wrapError(resp, err)
+}
+
 func parseRetryAfter(value string, now time.Time) (time.Duration, bool) {
 	value = strings.TrimSpace(value)
 	if value == "" {
