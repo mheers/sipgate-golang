@@ -19,7 +19,7 @@ var _ MappedNullable = &NumberResponseWithEndpoint{}
 
 // NumberResponseWithEndpoint struct for NumberResponseWithEndpoint
 type NumberResponseWithEndpoint struct {
-	AddressId *int32 `json:"addressId,omitempty"`
+	AddressId *string `json:"addressId,omitempty"`
 	BlockId *int32 `json:"blockId,omitempty"`
 	EndpointAlias *string `json:"endpointAlias,omitempty"`
 	EndpointId *string `json:"endpointId,omitempty"`
@@ -49,9 +49,9 @@ func NewNumberResponseWithEndpointWithDefaults() *NumberResponseWithEndpoint {
 }
 
 // GetAddressId returns the AddressId field value if set, zero value otherwise.
-func (o *NumberResponseWithEndpoint) GetAddressId() int32 {
+func (o *NumberResponseWithEndpoint) GetAddressId() string {
 	if o == nil || IsNil(o.AddressId) {
-		var ret int32
+		var ret string
 		return ret
 	}
 	return *o.AddressId
@@ -59,7 +59,7 @@ func (o *NumberResponseWithEndpoint) GetAddressId() int32 {
 
 // GetAddressIdOk returns a tuple with the AddressId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NumberResponseWithEndpoint) GetAddressIdOk() (*int32, bool) {
+func (o *NumberResponseWithEndpoint) GetAddressIdOk() (*string, bool) {
 	if o == nil || IsNil(o.AddressId) {
 		return nil, false
 	}
@@ -75,8 +75,8 @@ func (o *NumberResponseWithEndpoint) HasAddressId() bool {
 	return false
 }
 
-// SetAddressId gets a reference to the given int32 and assigns it to the AddressId field.
-func (o *NumberResponseWithEndpoint) SetAddressId(v int32) {
+// SetAddressId gets a reference to the given string and assigns it to the AddressId field.
+func (o *NumberResponseWithEndpoint) SetAddressId(v string) {
 	o.AddressId = &v
 }
 

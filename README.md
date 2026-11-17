@@ -378,11 +378,14 @@ make cover         # coverage summary
 make vet           # go vet ./...
 make lint          # vet + formatting check
 make build         # bin/sipgate with version ldflags
+make e2e           # read-only smoke test against the live API
 ```
+
+`make e2e` reads `SIPGATE_TOKEN_ID` and `SIPGATE_TOKEN` from the untracked `.env.dev` file (mode `0600`) and only performs read-only requests. It never sends messages, starts calls or changes account settings.
 
 ### Regenerating the client
 
-The upstream document is Swagger 2.0. `tools/specgen` downloads it, resolves two duplicate operation IDs and removes parameter fields that Swagger 2.0 does not allow. The normalized document is checked in, so `make generate` is reproducible and does not need the live sipgate API:
+The upstream document is Swagger 2.0. `tools/specgen` downloads it, resolves two duplicate operation IDs, removes parameter fields that Swagger 2.0 does not allow and corrects `addressId` in `/numbers` responses (sipgate returns a string although the spec declares an integer). The normalized document is checked in, so `make generate` is reproducible and does not need the live sipgate API:
 
 ```bash
 make generate               # spec/sipgate-v2.json -> openapi/

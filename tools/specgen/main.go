@@ -2,10 +2,11 @@
 // that it can be consumed by OpenAPI Generator without validation errors.
 //
 // The upstream document is Swagger 2.0 and contains a handful of problems that
-// are harmless in Swagger UI but break code generation:
+// are harmless in Swagger UI but break code generation or decoding:
 //
 //   - two operationIds are used twice,
-//   - parameters carry a "deprecated" field, which Swagger 2.0 does not allow.
+//   - parameters carry a "deprecated" field, which Swagger 2.0 does not allow,
+//   - /numbers returns addressId as a JSON string, but the schema says int32.
 //
 // Normalize fixes those issues deterministically. The downloaded document is
 // checked in under spec/ so that code generation does not depend on the live
@@ -54,6 +55,8 @@ func Normalize(raw []byte) ([]byte, error) {
 	if err := dec.Decode(&doc); err != nil {
 		return nil, fmt.Errorf("decode swagger document: %w", err)
 	}
+
+	normalizeKnownSchemaMismatches(doc)
 
 	paths, ok := doc["paths"].(map[string]any)
 	if !ok {
@@ -126,6 +129,31 @@ func isHTTPMethod(method string) bool {
 	default:
 		return false
 	}
+}
+
+// normalizeKnownSchemaMismatches corrects fields where the live API disagrees
+// with the published Swagger document. The /numbers endpoint returns addressId
+// as a JSON string ("2428129"), while the document declares int32, which makes
+// the generated client fail to decode real responses.
+func normalizeKnownSchemaMismatches(doc map[string]any) {
+	definitions, ok := doc["definitions"].(map[string]any)
+	if !ok {
+		return
+	}
+	schema, ok := definitions["NumberResponseWithEndpoint"].(map[string]any)
+	if !ok {
+		return
+	}
+	properties, ok := schema["properties"].(map[string]any)
+	if !ok {
+		return
+	}
+	addressID, ok := properties["addressId"].(map[string]any)
+	if !ok {
+		return
+	}
+	addressID["type"] = "string"
+	delete(addressID, "format")
 }
 
 func stripDeprecated(raw any) {

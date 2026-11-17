@@ -10378,20 +10378,19 @@ components:
       type: object
     NumberResponseWithEndpoint:
       example:
-        addressId: 0
-        blockId: 6
+        addressId: addressId
+        blockId: 0
         endpointAlias: endpointAlias
         endpointId: p0
         endpointUrl: endpointUrl
         id: id
         localized: 01579-9912345
         number: "+4915799912345"
-        prolongationId: 1
+        prolongationId: 6
         type: MOBILE
       properties:
         addressId:
-          format: int32
-          type: integer
+          type: string
         blockId:
           format: int32
           type: integer
@@ -10424,25 +10423,25 @@ components:
     NumbersResponse:
       example:
         items:
-        - addressId: 0
-          blockId: 6
+        - addressId: addressId
+          blockId: 0
           endpointAlias: endpointAlias
           endpointId: p0
           endpointUrl: endpointUrl
           id: id
           localized: 01579-9912345
           number: "+4915799912345"
-          prolongationId: 1
+          prolongationId: 6
           type: MOBILE
-        - addressId: 0
-          blockId: 6
+        - addressId: addressId
+          blockId: 0
           endpointAlias: endpointAlias
           endpointId: p0
           endpointUrl: endpointUrl
           id: id
           localized: 01579-9912345
           number: "+4915799912345"
-          prolongationId: 1
+          prolongationId: 6
           type: MOBILE
       properties:
         items:

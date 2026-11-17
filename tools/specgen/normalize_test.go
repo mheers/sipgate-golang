@@ -155,6 +155,38 @@ func TestNormalizeIsDeterministic(t *testing.T) {
 	}
 }
 
+func TestNormalizeNumberResponseAddressID(t *testing.T) {
+	raw := minimalSpec(map[string]any{})
+	var doc map[string]any
+	if err := json.Unmarshal(raw, &doc); err != nil {
+		t.Fatal(err)
+	}
+	doc["definitions"] = map[string]any{
+		"NumberResponseWithEndpoint": map[string]any{
+			"type": "object",
+			"properties": map[string]any{
+				"addressId": map[string]any{"type": "integer", "format": "int32"},
+				"number":    map[string]any{"type": "string"},
+			},
+		},
+	}
+	withDefinitions, err := json.Marshal(doc)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	normalized := mustNormalize(t, withDefinitions)
+	definitions := normalized["definitions"].(map[string]any)
+	number := definitions["NumberResponseWithEndpoint"].(map[string]any)
+	addressID := number["properties"].(map[string]any)["addressId"].(map[string]any)
+	if addressID["type"] != "string" {
+		t.Errorf("addressId type = %v, want string (sipgate returns a JSON string)", addressID["type"])
+	}
+	if _, hasFormat := addressID["format"]; hasFormat {
+		t.Errorf("addressId format = %v, want removed", addressID["format"])
+	}
+}
+
 func TestNormalizeRejectsInvalidJSON(t *testing.T) {
 	if _, err := Normalize([]byte("{")); err == nil {
 		t.Fatal("Normalize accepted invalid JSON")

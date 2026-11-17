@@ -9,7 +9,7 @@ SPEC      := spec/sipgate-v2.json
 OPENAPI   := npx -y @openapitools/openapi-generator-cli generate
 OPENAPI_PROPERTIES := packageName=openapi,isGoSubmodule=true,generateInterfaces=true,enumClassPrefix=true
 
-.PHONY: all build install test race cover vet fmt lint spec generate generate-from-upstream clean
+.PHONY: all build install test race cover vet fmt lint spec generate generate-from-upstream e2e clean
 
 all: fmt vet test
 
@@ -24,6 +24,12 @@ test:
 
 race:
 	go test -race ./...
+
+# Read-only smoke test against the live sipgate API. Credentials are read from
+# the untracked .env.dev file.
+e2e:
+	@test -f .env.dev || (echo "missing .env.dev with SIPGATE_TOKEN_ID and SIPGATE_TOKEN"; exit 1)
+	@set -a; . ./.env.dev; set +a; go test -tags=integration ./internal/cli -run TestLiveReadOnly -v
 
 cover:
 	go test -coverprofile=coverage.out ./...

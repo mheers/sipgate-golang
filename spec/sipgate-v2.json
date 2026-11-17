@@ -2905,8 +2905,7 @@
     "NumberResponseWithEndpoint": {
       "properties": {
         "addressId": {
-          "format": "int32",
-          "type": "integer"
+          "type": "string"
         },
         "blockId": {
           "format": "int32",

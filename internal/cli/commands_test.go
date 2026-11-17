@@ -83,9 +83,9 @@ func newFakeSipgate(t *testing.T) *fakeSipgate {
 		case r.URL.Path == "/w0/sms":
 			_, _ = io.WriteString(w, `{"items":[{"id":"s0","alias":"SMS"}]}`)
 		case r.URL.Path == "/numbers":
-			_, _ = io.WriteString(w, `{"items":[{"number":"+49111"}]}`)
+			_, _ = io.WriteString(w, `{"items":[{"number":"+49111","addressId":"2428129"}]}`)
 		case r.URL.Path == "/w0/numbers":
-			_, _ = io.WriteString(w, `{"items":[{"number":"+49222"}]}`)
+			_, _ = io.WriteString(w, `{"items":[{"number":"+49222","addressId":"2428129"}]}`)
 		case r.URL.Path == "/phonelines":
 			_, _ = io.WriteString(w, `{"items":[{"id":"p1"}]}`)
 		case r.URL.Path == "/w0/phonelines":
