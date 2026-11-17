@@ -33,7 +33,7 @@ vet:
 	go vet ./...
 
 fmt:
-	go fmt ./...
+	@find . -name '*.go' -not -path './openapi/*' -print0 | xargs -0 gofmt -w
 
 lint: vet
 	@test -z "$$(gofmt -l . | grep -v '^openapi/' || true)" || (echo "gofmt required for:"; gofmt -l . | grep -v '^openapi/'; exit 1)

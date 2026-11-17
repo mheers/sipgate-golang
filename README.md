@@ -382,7 +382,7 @@ make build         # bin/sipgate with version ldflags
 
 ### Regenerating the client
 
-The upstream document is Swagger 2.0. `tools/specgen` downloads it, resolves two duplicate operation IDs and removes parameter fields that Swagger 2.0 does not allow. The normalized document is checked in, so `make generate` is reproducible and works offline:
+The upstream document is Swagger 2.0. `tools/specgen` downloads it, resolves two duplicate operation IDs and removes parameter fields that Swagger 2.0 does not allow. The normalized document is checked in, so `make generate` is reproducible and does not need the live sipgate API:
 
 ```bash
 make generate               # spec/sipgate-v2.json -> openapi/
@@ -397,4 +397,4 @@ The generated client covers all 188 operations of the upstream spec. The CLI wra
 
 ## License
 
-MIT. Copyright (c) 2026 Marcel Heers.
+MIT. Copyright (c) 2026 Marcel Heers <marcel@heers.it>.

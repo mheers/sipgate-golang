@@ -260,10 +260,10 @@ func (a *App) authStatusCommand() *cobra.Command {
 			case a.AccessToken != "":
 				status["authenticated"] = true
 				status["type"] = AuthTypeOAuth
-			case cfg.Auth.Type == AuthTypePAT:
+			case cfg.Auth.Type == AuthTypePAT || (cfg.Auth.Type == "" && cfg.Auth.TokenID != ""):
 				status["authenticated"] = cfg.Auth.TokenID != "" && cfg.Auth.Token != ""
 				status["type"] = AuthTypePAT
-			case cfg.Auth.Type == AuthTypeOAuth:
+			case cfg.Auth.Type == AuthTypeOAuth || (cfg.Auth.Type == "" && cfg.Auth.AccessToken != ""):
 				status["authenticated"] = cfg.Auth.AccessToken != ""
 				status["type"] = AuthTypeOAuth
 				if cfg.Auth.Expiry != nil {

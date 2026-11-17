@@ -212,7 +212,7 @@ func (a *App) credentialOptionFromConfig(ctx context.Context, cfg *Config, path 
 		if cfg.Auth.Expiry != nil {
 			token.Expiry = *cfg.Auth.Expiry
 		}
-		if token.Valid() && a.now().Add(30*time.Second).Before(token.Expiry) {
+		if cfg.Auth.Expiry == nil || (token.Valid() && a.now().Add(30*time.Second).Before(token.Expiry)) {
 			return sipgate.WithToken(token.AccessToken), nil
 		}
 		if token.RefreshToken == "" {

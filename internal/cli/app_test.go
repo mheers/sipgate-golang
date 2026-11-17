@@ -598,6 +598,55 @@ func readAuthorizeURL(t *testing.T, r io.Reader) string {
 	return ""
 }
 
+func TestOAuthTokenWithoutExpiryIsUsed(t *testing.T) {
+	apiSrv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "application/json")
+		_, _ = io.WriteString(w, `{"company":"No expiry"}`)
+	}))
+	defer apiSrv.Close()
+
+	path := filepath.Join(t.TempDir(), "config.yaml")
+	writeConfig(t, path, &Config{
+		BaseURL: apiSrv.URL,
+		Auth: AuthConfig{
+			Type:         AuthTypeOAuth,
+			AccessToken:  "valid",
+			RefreshToken: "refresh",
+		},
+		OAuth: OAuthConfig{ClientID: "client", TokenURL: "://invalid"},
+	})
+
+	app, out, _ := testApp(t, path)
+	if err := app.Run(context.Background(), "account", "get"); err != nil {
+		t.Fatalf("Run() error = %v", err)
+	}
+	if !strings.Contains(out.String(), "No expiry") {
+		t.Errorf("output = %s", out.String())
+	}
+}
+
+func TestRawAPIYAMLOutput(t *testing.T) {
+	srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "application/json")
+		_, _ = io.WriteString(w, `{"ok":true}`)
+	}))
+	defer srv.Close()
+
+	app, out, _ := testApp(t, filepath.Join(t.TempDir(), "config.yaml"))
+	err := app.Run(context.Background(),
+		"api", "GET", "/anything",
+		"--base-url", srv.URL,
+		"--access-token", "token",
+		"-o", "yaml",
+	)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !strings.Contains(out.String(), "ok: true") {
+		t.Errorf("output = %s", out.String())
+	}
+}
+
 func TestConfigFileMode(t *testing.T) {
 	path := filepath.Join(t.TempDir(), "nested", "config.yaml")
 	writeConfig(t, path, &Config{BaseURL: "https://example.test"})

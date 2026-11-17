@@ -227,6 +227,13 @@ func (a *App) apiCommand() *cobra.Command {
 			}
 
 			if json.Valid(responseBody) {
+				if a.output() == "yaml" {
+					var decoded any
+					if err := json.Unmarshal(responseBody, &decoded); err != nil {
+						return err
+					}
+					return a.print(decoded)
+				}
 				return a.print(json.RawMessage(responseBody))
 			}
 			_, err = a.Out.Write(responseBody)
