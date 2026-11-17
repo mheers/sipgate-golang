@@ -1,0 +1,16 @@
+# Build output
+/bin/
+/dist/
+sipgate
+
+# Test and coverage output
+coverage.out
+coverage.html
+*.test
+
+# Local tooling
+.idea/
+.vscode/
+.DS_Store
+.spec/
+node_modules/
