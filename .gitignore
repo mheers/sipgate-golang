@@ -1,7 +1,7 @@
 # Build output
 /bin/
 /dist/
-sipgate
+/sipgate
 
 # Test and coverage output
 coverage.out
