@@ -19,8 +19,8 @@ var _ MappedNullable = &RegisteredDevice{}
 
 // RegisteredDevice struct for RegisteredDevice
 type RegisteredDevice struct {
-	Ip        *string `json:"ip,omitempty"`
-	Port      *string `json:"port,omitempty"`
+	Ip *string `json:"ip,omitempty"`
+	Port *string `json:"port,omitempty"`
 	UserAgent *string `json:"userAgent,omitempty"`
 }
 
@@ -138,7 +138,7 @@ func (o *RegisteredDevice) SetUserAgent(v string) {
 }
 
 func (o RegisteredDevice) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -194,3 +194,5 @@ func (v *NullableRegisteredDevice) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

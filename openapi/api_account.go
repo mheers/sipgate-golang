@@ -18,13 +18,14 @@ import (
 	"net/url"
 )
 
+
 type AccountAPI interface {
 
 	/*
-		GetAccount Get account data
+	GetAccount Get account data
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@return ApiGetAccountRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiGetAccountRequest
 	*/
 	GetAccount(ctx context.Context) ApiGetAccountRequest
 
@@ -33,10 +34,10 @@ type AccountAPI interface {
 	GetAccountExecute(r ApiGetAccountRequest) (*AccountResponse, *http.Response, error)
 
 	/*
-		GetBalance Get the account balance
+	GetBalance Get the account balance
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@return ApiGetBalanceRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiGetBalanceRequest
 	*/
 	GetBalance(ctx context.Context) ApiGetBalanceRequest
 
@@ -45,10 +46,10 @@ type AccountAPI interface {
 	GetBalanceExecute(r ApiGetBalanceRequest) (*BalanceResponse, *http.Response, error)
 
 	/*
-		Verify Verify your account
+	Verify Verify your account
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@return ApiVerifyRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiVerifyRequest
 	*/
 	Verify(ctx context.Context) ApiVerifyRequest
 
@@ -60,7 +61,7 @@ type AccountAPI interface {
 type AccountAPIService service
 
 type ApiGetAccountRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService AccountAPI
 }
 
@@ -71,25 +72,24 @@ func (r ApiGetAccountRequest) Execute() (*AccountResponse, *http.Response, error
 /*
 GetAccount Get account data
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiGetAccountRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiGetAccountRequest
 */
 func (a *AccountAPIService) GetAccount(ctx context.Context) ApiGetAccountRequest {
 	return ApiGetAccountRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//
-//	@return AccountResponse
+//  @return AccountResponse
 func (a *AccountAPIService) GetAccountExecute(r ApiGetAccountRequest) (*AccountResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *AccountResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *AccountResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AccountAPIService.GetAccount")
@@ -158,7 +158,7 @@ func (a *AccountAPIService) GetAccountExecute(r ApiGetAccountRequest) (*AccountR
 }
 
 type ApiGetBalanceRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService AccountAPI
 }
 
@@ -169,25 +169,24 @@ func (r ApiGetBalanceRequest) Execute() (*BalanceResponse, *http.Response, error
 /*
 GetBalance Get the account balance
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiGetBalanceRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiGetBalanceRequest
 */
 func (a *AccountAPIService) GetBalance(ctx context.Context) ApiGetBalanceRequest {
 	return ApiGetBalanceRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//
-//	@return BalanceResponse
+//  @return BalanceResponse
 func (a *AccountAPIService) GetBalanceExecute(r ApiGetBalanceRequest) (*BalanceResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *BalanceResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *BalanceResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AccountAPIService.GetBalance")
@@ -256,9 +255,9 @@ func (a *AccountAPIService) GetBalanceExecute(r ApiGetBalanceRequest) (*BalanceR
 }
 
 type ApiVerifyRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService AccountAPI
-	body       *AccountVerificationRequest
+	body *AccountVerificationRequest
 }
 
 func (r ApiVerifyRequest) Body(body AccountVerificationRequest) ApiVerifyRequest {
@@ -273,22 +272,22 @@ func (r ApiVerifyRequest) Execute() (*http.Response, error) {
 /*
 Verify Verify your account
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiVerifyRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiVerifyRequest
 */
 func (a *AccountAPIService) Verify(ctx context.Context) ApiVerifyRequest {
 	return ApiVerifyRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
 // Execute executes the request
 func (a *AccountAPIService) VerifyExecute(r ApiVerifyRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodPut
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod   = http.MethodPut
+		localVarPostBody     interface{}
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AccountAPIService.Verify")

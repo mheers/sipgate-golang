@@ -19,15 +19,16 @@ import (
 	"strings"
 )
 
+
 type AutorecordingsAPI interface {
 
 	/*
-		AddGreeting Save a greeting to be used for automated call recordings
+	AddGreeting Save a greeting to be used for automated call recordings
 
-		Replaces the current greeting with the provided audio file. Requires admin privileges and an activated call recording account.
+	Replaces the current greeting with the provided audio file. Requires admin privileges and an activated call recording account.
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@return ApiAddGreetingRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiAddGreetingRequest
 	*/
 	AddGreeting(ctx context.Context) ApiAddGreetingRequest
 
@@ -35,13 +36,13 @@ type AutorecordingsAPI interface {
 	AddGreetingExecute(r ApiAddGreetingRequest) (*http.Response, error)
 
 	/*
-		DeleteGreeting Delete the greeting used for automated call recordings
+	DeleteGreeting Delete the greeting used for automated call recordings
 
-		Deletes the specified greeting. Requires admin privileges and an activated call recording account.
+	Deletes the specified greeting. Requires admin privileges and an activated call recording account.
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param greetingId The unique greeting identifier
-		@return ApiDeleteGreetingRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param greetingId The unique greeting identifier
+	@return ApiDeleteGreetingRequest
 	*/
 	DeleteGreeting(ctx context.Context, greetingId string) ApiDeleteGreetingRequest
 
@@ -49,12 +50,12 @@ type AutorecordingsAPI interface {
 	DeleteGreetingExecute(r ApiDeleteGreetingRequest) (*http.Response, error)
 
 	/*
-		GetGreeting Fetch the current automated call recording greeting
+	GetGreeting Fetch the current automated call recording greeting
 
-		Returns the current greeting for automated call recordings. Requires admin privileges and an activated call recording account.
+	Returns the current greeting for automated call recordings. Requires admin privileges and an activated call recording account.
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@return ApiGetGreetingRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiGetGreetingRequest
 	*/
 	GetGreeting(ctx context.Context) ApiGetGreetingRequest
 
@@ -63,13 +64,13 @@ type AutorecordingsAPI interface {
 	GetGreetingExecute(r ApiGetGreetingRequest) (*GreetingResponse, *http.Response, error)
 
 	/*
-		GetRecordingSettingForEndpoint Get recording settings for an endpoint
+	GetRecordingSettingForEndpoint Get recording settings for an endpoint
 
-		Get recording settings for an endpoint. Currently only register endpoints are supported. The masterSipId is derived from the authenticated webuser context and doesn't need to be provided in the request. Returns 200 OK with the recording settings on success, 400 Bad Request if the request is invalid, and 404 Not Found if the extension does not exist or call recording is not activated for the account.
+	Get recording settings for an endpoint. Currently only register endpoints are supported. The masterSipId is derived from the authenticated webuser context and doesn't need to be provided in the request. Returns 200 OK with the recording settings on success, 400 Bad Request if the request is invalid, and 404 Not Found if the extension does not exist or call recording is not activated for the account.
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param extension
-		@return ApiGetRecordingSettingForEndpointRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param extension
+	@return ApiGetRecordingSettingForEndpointRequest
 	*/
 	GetRecordingSettingForEndpoint(ctx context.Context, extension string) ApiGetRecordingSettingForEndpointRequest
 
@@ -78,13 +79,13 @@ type AutorecordingsAPI interface {
 	GetRecordingSettingForEndpointExecute(r ApiGetRecordingSettingForEndpointRequest) (*ExtensionSettingsResponse, *http.Response, error)
 
 	/*
-		UpdateRecordingSettingForEndpoint Update recording settings for an endpoint
+	UpdateRecordingSettingForEndpoint Update recording settings for an endpoint
 
-		Update recording settings for an endpoint. Currently only register endpoints are supported. The masterSipId is derived from the authenticated webuser context and doesn't need to be provided in the request. Returns 204 No Content on success, 400 Bad Request if the request is invalid, and 404 Not Found if the extension does not exist or call recording is not activated for the account.
+	Update recording settings for an endpoint. Currently only register endpoints are supported. The masterSipId is derived from the authenticated webuser context and doesn't need to be provided in the request. Returns 204 No Content on success, 400 Bad Request if the request is invalid, and 404 Not Found if the extension does not exist or call recording is not activated for the account.
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param extension
-		@return ApiUpdateRecordingSettingForEndpointRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param extension
+	@return ApiUpdateRecordingSettingForEndpointRequest
 	*/
 	UpdateRecordingSettingForEndpoint(ctx context.Context, extension string) ApiUpdateRecordingSettingForEndpointRequest
 
@@ -96,9 +97,9 @@ type AutorecordingsAPI interface {
 type AutorecordingsAPIService service
 
 type ApiAddGreetingRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService AutorecordingsAPI
-	body       *AddGreetingRequest
+	body *AddGreetingRequest
 }
 
 func (r ApiAddGreetingRequest) Body(body AddGreetingRequest) ApiAddGreetingRequest {
@@ -115,22 +116,22 @@ AddGreeting Save a greeting to be used for automated call recordings
 
 Replaces the current greeting with the provided audio file. Requires admin privileges and an activated call recording account.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiAddGreetingRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiAddGreetingRequest
 */
 func (a *AutorecordingsAPIService) AddGreeting(ctx context.Context) ApiAddGreetingRequest {
 	return ApiAddGreetingRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
 // Execute executes the request
 func (a *AutorecordingsAPIService) AddGreetingExecute(r ApiAddGreetingRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodPost
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AutorecordingsAPIService.AddGreeting")
@@ -195,7 +196,7 @@ func (a *AutorecordingsAPIService) AddGreetingExecute(r ApiAddGreetingRequest) (
 }
 
 type ApiDeleteGreetingRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService AutorecordingsAPI
 	greetingId string
 }
@@ -209,14 +210,14 @@ DeleteGreeting Delete the greeting used for automated call recordings
 
 Deletes the specified greeting. Requires admin privileges and an activated call recording account.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param greetingId The unique greeting identifier
-	@return ApiDeleteGreetingRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param greetingId The unique greeting identifier
+ @return ApiDeleteGreetingRequest
 */
 func (a *AutorecordingsAPIService) DeleteGreeting(ctx context.Context, greetingId string) ApiDeleteGreetingRequest {
 	return ApiDeleteGreetingRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 		greetingId: greetingId,
 	}
 }
@@ -224,9 +225,9 @@ func (a *AutorecordingsAPIService) DeleteGreeting(ctx context.Context, greetingI
 // Execute executes the request
 func (a *AutorecordingsAPIService) DeleteGreetingExecute(r ApiDeleteGreetingRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodDelete
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AutorecordingsAPIService.DeleteGreeting")
@@ -287,7 +288,7 @@ func (a *AutorecordingsAPIService) DeleteGreetingExecute(r ApiDeleteGreetingRequ
 }
 
 type ApiGetGreetingRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService AutorecordingsAPI
 }
 
@@ -300,25 +301,24 @@ GetGreeting Fetch the current automated call recording greeting
 
 Returns the current greeting for automated call recordings. Requires admin privileges and an activated call recording account.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiGetGreetingRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiGetGreetingRequest
 */
 func (a *AutorecordingsAPIService) GetGreeting(ctx context.Context) ApiGetGreetingRequest {
 	return ApiGetGreetingRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//
-//	@return GreetingResponse
+//  @return GreetingResponse
 func (a *AutorecordingsAPIService) GetGreetingExecute(r ApiGetGreetingRequest) (*GreetingResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *GreetingResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *GreetingResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AutorecordingsAPIService.GetGreeting")
@@ -387,9 +387,9 @@ func (a *AutorecordingsAPIService) GetGreetingExecute(r ApiGetGreetingRequest) (
 }
 
 type ApiGetRecordingSettingForEndpointRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService AutorecordingsAPI
-	extension  string
+	extension string
 }
 
 func (r ApiGetRecordingSettingForEndpointRequest) Execute() (*ExtensionSettingsResponse, *http.Response, error) {
@@ -401,27 +401,26 @@ GetRecordingSettingForEndpoint Get recording settings for an endpoint
 
 Get recording settings for an endpoint. Currently only register endpoints are supported. The masterSipId is derived from the authenticated webuser context and doesn't need to be provided in the request. Returns 200 OK with the recording settings on success, 400 Bad Request if the request is invalid, and 404 Not Found if the extension does not exist or call recording is not activated for the account.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param extension
-	@return ApiGetRecordingSettingForEndpointRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param extension
+ @return ApiGetRecordingSettingForEndpointRequest
 */
 func (a *AutorecordingsAPIService) GetRecordingSettingForEndpoint(ctx context.Context, extension string) ApiGetRecordingSettingForEndpointRequest {
 	return ApiGetRecordingSettingForEndpointRequest{
 		ApiService: a,
-		ctx:        ctx,
-		extension:  extension,
+		ctx: ctx,
+		extension: extension,
 	}
 }
 
 // Execute executes the request
-//
-//	@return ExtensionSettingsResponse
+//  @return ExtensionSettingsResponse
 func (a *AutorecordingsAPIService) GetRecordingSettingForEndpointExecute(r ApiGetRecordingSettingForEndpointRequest) (*ExtensionSettingsResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *ExtensionSettingsResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ExtensionSettingsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AutorecordingsAPIService.GetRecordingSettingForEndpoint")
@@ -491,10 +490,10 @@ func (a *AutorecordingsAPIService) GetRecordingSettingForEndpointExecute(r ApiGe
 }
 
 type ApiUpdateRecordingSettingForEndpointRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService AutorecordingsAPI
-	extension  string
-	body       *UpdateExtensionSettingsRequest
+	extension string
+	body *UpdateExtensionSettingsRequest
 }
 
 func (r ApiUpdateRecordingSettingForEndpointRequest) Body(body UpdateExtensionSettingsRequest) ApiUpdateRecordingSettingForEndpointRequest {
@@ -511,24 +510,24 @@ UpdateRecordingSettingForEndpoint Update recording settings for an endpoint
 
 Update recording settings for an endpoint. Currently only register endpoints are supported. The masterSipId is derived from the authenticated webuser context and doesn't need to be provided in the request. Returns 204 No Content on success, 400 Bad Request if the request is invalid, and 404 Not Found if the extension does not exist or call recording is not activated for the account.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param extension
-	@return ApiUpdateRecordingSettingForEndpointRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param extension
+ @return ApiUpdateRecordingSettingForEndpointRequest
 */
 func (a *AutorecordingsAPIService) UpdateRecordingSettingForEndpoint(ctx context.Context, extension string) ApiUpdateRecordingSettingForEndpointRequest {
 	return ApiUpdateRecordingSettingForEndpointRequest{
 		ApiService: a,
-		ctx:        ctx,
-		extension:  extension,
+		ctx: ctx,
+		extension: extension,
 	}
 }
 
 // Execute executes the request
 func (a *AutorecordingsAPIService) UpdateRecordingSettingForEndpointExecute(r ApiUpdateRecordingSettingForEndpointRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodPut
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod   = http.MethodPut
+		localVarPostBody     interface{}
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AutorecordingsAPIService.UpdateRecordingSettingForEndpoint")

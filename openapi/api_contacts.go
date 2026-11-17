@@ -16,17 +16,18 @@ import (
 	"io"
 	"net/http"
 	"net/url"
-	"reflect"
 	"strings"
+	"reflect"
 )
+
 
 type ContactsAPI interface {
 
 	/*
-		AddOrUpdateContacts Store one or more contacts. If \"contactId\" is provided it must match an existing contact, which will be overwritten. To add contacts an empty \"contactId\" is to be provided.
+	AddOrUpdateContacts Store one or more contacts. If \"contactId\" is provided it must match an existing contact, which will be overwritten. To add contacts an empty \"contactId\" is to be provided. 
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@return ApiAddOrUpdateContactsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiAddOrUpdateContactsRequest
 	*/
 	AddOrUpdateContacts(ctx context.Context) ApiAddOrUpdateContactsRequest
 
@@ -35,10 +36,10 @@ type ContactsAPI interface {
 	AddOrUpdateContactsExecute(r ApiAddOrUpdateContactsRequest) (*PutStructuredVCardsResponse, *http.Response, error)
 
 	/*
-		CreateContact Creates a contact
+	CreateContact Creates a contact
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@return ApiCreateContactRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiCreateContactRequest
 	*/
 	CreateContact(ctx context.Context) ApiCreateContactRequest
 
@@ -46,11 +47,11 @@ type ContactsAPI interface {
 	CreateContactExecute(r ApiCreateContactRequest) (*http.Response, error)
 
 	/*
-		DeleteContact Delete a single contact
+	DeleteContact Delete a single contact
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param contactid
-		@return ApiDeleteContactRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param contactid
+	@return ApiDeleteContactRequest
 	*/
 	DeleteContact(ctx context.Context, contactid string) ApiDeleteContactRequest
 
@@ -59,10 +60,10 @@ type ContactsAPI interface {
 	DeleteContactExecute(r ApiDeleteContactRequest) (*DeleteContactResponse, *http.Response, error)
 
 	/*
-		DeleteContacts Delete all or specified contacts of specified user or shared contacts
+	DeleteContacts Delete all or specified contacts of specified user or shared contacts
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@return ApiDeleteContactsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiDeleteContactsRequest
 	*/
 	DeleteContacts(ctx context.Context) ApiDeleteContactsRequest
 
@@ -71,12 +72,12 @@ type ContactsAPI interface {
 	DeleteContactsExecute(r ApiDeleteContactsRequest) (*DeleteContactResponse, *http.Response, error)
 
 	/*
-		GetAllContacts DEPRECATED use /v2/contacts?scopes=INTERNAL
+	GetAllContacts DEPRECATED use /v2/contacts?scopes=INTERNAL
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@return ApiGetAllContactsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiGetAllContactsRequest
 
-		Deprecated
+	Deprecated
 	*/
 	GetAllContacts(ctx context.Context) ApiGetAllContactsRequest
 
@@ -86,11 +87,11 @@ type ContactsAPI interface {
 	GetAllContactsExecute(r ApiGetAllContactsRequest) (*InternalContactsResponse, *http.Response, error)
 
 	/*
-		GetContactById Get contacts by id
+	GetContactById Get contacts by id
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param contactId
-		@return ApiGetContactByIdRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param contactId
+	@return ApiGetContactByIdRequest
 	*/
 	GetContactById(ctx context.Context, contactId string) ApiGetContactByIdRequest
 
@@ -99,10 +100,10 @@ type ContactsAPI interface {
 	GetContactByIdExecute(r ApiGetContactByIdRequest) (*ContactResponse, *http.Response, error)
 
 	/*
-		GetContacts Call this to get contacts in raw vCard format.
+	GetContacts Call this to get contacts in raw vCard format. 
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@return ApiGetContactsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiGetContactsRequest
 	*/
 	GetContacts(ctx context.Context) ApiGetContactsRequest
 
@@ -111,10 +112,10 @@ type ContactsAPI interface {
 	GetContactsExecute(r ApiGetContactsRequest) (map[string]interface{}, *http.Response, error)
 
 	/*
-		GetContacts1 Get all contacts
+	GetContacts1 Get all contacts
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@return ApiGetContacts1Request
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiGetContacts1Request
 	*/
 	GetContacts1(ctx context.Context) ApiGetContacts1Request
 
@@ -123,10 +124,10 @@ type ContactsAPI interface {
 	GetContacts1Execute(r ApiGetContacts1Request) (*ContactsResponse, *http.Response, error)
 
 	/*
-		GetContactsAsCsv Call this to get contacts in csv format.
+	GetContactsAsCsv Call this to get contacts in csv format. 
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@return ApiGetContactsAsCsvRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiGetContactsAsCsvRequest
 	*/
 	GetContactsAsCsv(ctx context.Context) ApiGetContactsAsCsvRequest
 
@@ -135,17 +136,17 @@ type ContactsAPI interface {
 	GetContactsAsCsvExecute(r ApiGetContactsAsCsvRequest) (string, *http.Response, error)
 
 	/*
-			ImportFromCSV Import contacts from CSV file
+	ImportFromCSV Import contacts from CSV file
 
-			CSV files should match the following format:<br />
-		<pre>
-		firstname,lastname,number
-		Ada,Lovelace,+4915799912345
-		Alan,Turing,+4915799912345
-		</pre>
+	CSV files should match the following format:<br />
+<pre>
+firstname,lastname,number
+Ada,Lovelace,+4915799912345
+Alan,Turing,+4915799912345
+</pre>
 
-			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-			@return ApiImportFromCSVRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiImportFromCSVRequest
 	*/
 	ImportFromCSV(ctx context.Context) ApiImportFromCSVRequest
 
@@ -153,10 +154,10 @@ type ContactsAPI interface {
 	ImportFromCSVExecute(r ApiImportFromCSVRequest) (*http.Response, error)
 
 	/*
-		ImportFromGoogle Import contacts from Google
+	ImportFromGoogle Import contacts from Google
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@return ApiImportFromGoogleRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiImportFromGoogleRequest
 	*/
 	ImportFromGoogle(ctx context.Context) ApiImportFromGoogleRequest
 
@@ -165,11 +166,11 @@ type ContactsAPI interface {
 	ImportFromGoogleExecute(r ApiImportFromGoogleRequest) (*ImportGoogleResponse, *http.Response, error)
 
 	/*
-		UpdateContact Updates a contact
+	UpdateContact Updates a contact
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param contactId
-		@return ApiUpdateContactRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param contactId
+	@return ApiUpdateContactRequest
 	*/
 	UpdateContact(ctx context.Context, contactId string) ApiUpdateContactRequest
 
@@ -181,10 +182,10 @@ type ContactsAPI interface {
 type ContactsAPIService service
 
 type ApiAddOrUpdateContactsRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService ContactsAPI
-	scope      *string
-	body       *PutStructuredVCardsRequest
+	scope *string
+	body *PutStructuredVCardsRequest
 }
 
 // Scope of the request
@@ -203,27 +204,26 @@ func (r ApiAddOrUpdateContactsRequest) Execute() (*PutStructuredVCardsResponse, 
 }
 
 /*
-AddOrUpdateContacts Store one or more contacts. If \"contactId\" is provided it must match an existing contact, which will be overwritten. To add contacts an empty \"contactId\" is to be provided.
+AddOrUpdateContacts Store one or more contacts. If \"contactId\" is provided it must match an existing contact, which will be overwritten. To add contacts an empty \"contactId\" is to be provided. 
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiAddOrUpdateContactsRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiAddOrUpdateContactsRequest
 */
 func (a *ContactsAPIService) AddOrUpdateContacts(ctx context.Context) ApiAddOrUpdateContactsRequest {
 	return ApiAddOrUpdateContactsRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//
-//	@return PutStructuredVCardsResponse
+//  @return PutStructuredVCardsResponse
 func (a *ContactsAPIService) AddOrUpdateContactsExecute(r ApiAddOrUpdateContactsRequest) (*PutStructuredVCardsResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodPut
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *PutStructuredVCardsResponse
+		localVarHTTPMethod   = http.MethodPut
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *PutStructuredVCardsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContactsAPIService.AddOrUpdateContacts")
@@ -292,8 +292,8 @@ func (a *ContactsAPIService) AddOrUpdateContactsExecute(r ApiAddOrUpdateContacts
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -303,8 +303,8 @@ func (a *ContactsAPIService) AddOrUpdateContactsExecute(r ApiAddOrUpdateContacts
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -314,8 +314,8 @@ func (a *ContactsAPIService) AddOrUpdateContactsExecute(r ApiAddOrUpdateContacts
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -325,8 +325,8 @@ func (a *ContactsAPIService) AddOrUpdateContactsExecute(r ApiAddOrUpdateContacts
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -344,9 +344,9 @@ func (a *ContactsAPIService) AddOrUpdateContactsExecute(r ApiAddOrUpdateContacts
 }
 
 type ApiCreateContactRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService ContactsAPI
-	body       *CreateContactRequest
+	body *CreateContactRequest
 }
 
 func (r ApiCreateContactRequest) Body(body CreateContactRequest) ApiCreateContactRequest {
@@ -361,22 +361,22 @@ func (r ApiCreateContactRequest) Execute() (*http.Response, error) {
 /*
 CreateContact Creates a contact
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiCreateContactRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiCreateContactRequest
 */
 func (a *ContactsAPIService) CreateContact(ctx context.Context) ApiCreateContactRequest {
 	return ApiCreateContactRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
 // Execute executes the request
 func (a *ContactsAPIService) CreateContactExecute(r ApiCreateContactRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodPost
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContactsAPIService.CreateContact")
@@ -441,10 +441,10 @@ func (a *ContactsAPIService) CreateContactExecute(r ApiCreateContactRequest) (*h
 }
 
 type ApiDeleteContactRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService ContactsAPI
-	contactid  string
-	scope      *[]string
+	contactid string
+	scope *[]string
 }
 
 func (r ApiDeleteContactRequest) Scope(scope []string) ApiDeleteContactRequest {
@@ -459,27 +459,26 @@ func (r ApiDeleteContactRequest) Execute() (*DeleteContactResponse, *http.Respon
 /*
 DeleteContact Delete a single contact
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param contactid
-	@return ApiDeleteContactRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param contactid
+ @return ApiDeleteContactRequest
 */
 func (a *ContactsAPIService) DeleteContact(ctx context.Context, contactid string) ApiDeleteContactRequest {
 	return ApiDeleteContactRequest{
 		ApiService: a,
-		ctx:        ctx,
-		contactid:  contactid,
+		ctx: ctx,
+		contactid: contactid,
 	}
 }
 
 // Execute executes the request
-//
-//	@return DeleteContactResponse
+//  @return DeleteContactResponse
 func (a *ContactsAPIService) DeleteContactExecute(r ApiDeleteContactRequest) (*DeleteContactResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodDelete
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *DeleteContactResponse
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *DeleteContactResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContactsAPIService.DeleteContact")
@@ -551,8 +550,8 @@ func (a *ContactsAPIService) DeleteContactExecute(r ApiDeleteContactRequest) (*D
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -562,8 +561,8 @@ func (a *ContactsAPIService) DeleteContactExecute(r ApiDeleteContactRequest) (*D
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -573,8 +572,8 @@ func (a *ContactsAPIService) DeleteContactExecute(r ApiDeleteContactRequest) (*D
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -584,8 +583,8 @@ func (a *ContactsAPIService) DeleteContactExecute(r ApiDeleteContactRequest) (*D
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -603,9 +602,9 @@ func (a *ContactsAPIService) DeleteContactExecute(r ApiDeleteContactRequest) (*D
 }
 
 type ApiDeleteContactsRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService ContactsAPI
-	body       *DeleteRequest
+	body *DeleteRequest
 }
 
 func (r ApiDeleteContactsRequest) Body(body DeleteRequest) ApiDeleteContactsRequest {
@@ -620,25 +619,24 @@ func (r ApiDeleteContactsRequest) Execute() (*DeleteContactResponse, *http.Respo
 /*
 DeleteContacts Delete all or specified contacts of specified user or shared contacts
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiDeleteContactsRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiDeleteContactsRequest
 */
 func (a *ContactsAPIService) DeleteContacts(ctx context.Context) ApiDeleteContactsRequest {
 	return ApiDeleteContactsRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//
-//	@return DeleteContactResponse
+//  @return DeleteContactResponse
 func (a *ContactsAPIService) DeleteContactsExecute(r ApiDeleteContactsRequest) (*DeleteContactResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodDelete
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *DeleteContactResponse
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *DeleteContactResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContactsAPIService.DeleteContacts")
@@ -700,8 +698,8 @@ func (a *ContactsAPIService) DeleteContactsExecute(r ApiDeleteContactsRequest) (
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -711,8 +709,8 @@ func (a *ContactsAPIService) DeleteContactsExecute(r ApiDeleteContactsRequest) (
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -722,8 +720,8 @@ func (a *ContactsAPIService) DeleteContactsExecute(r ApiDeleteContactsRequest) (
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -733,8 +731,8 @@ func (a *ContactsAPIService) DeleteContactsExecute(r ApiDeleteContactsRequest) (
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -752,7 +750,7 @@ func (a *ContactsAPIService) DeleteContactsExecute(r ApiDeleteContactsRequest) (
 }
 
 type ApiGetAllContactsRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService ContactsAPI
 }
 
@@ -763,29 +761,27 @@ func (r ApiGetAllContactsRequest) Execute() (*InternalContactsResponse, *http.Re
 /*
 GetAllContacts DEPRECATED use /v2/contacts?scopes=INTERNAL
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiGetAllContactsRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiGetAllContactsRequest
 
 Deprecated
 */
 func (a *ContactsAPIService) GetAllContacts(ctx context.Context) ApiGetAllContactsRequest {
 	return ApiGetAllContactsRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//
-//	@return InternalContactsResponse
-//
+//  @return InternalContactsResponse
 // Deprecated
 func (a *ContactsAPIService) GetAllContactsExecute(r ApiGetAllContactsRequest) (*InternalContactsResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *InternalContactsResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *InternalContactsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContactsAPIService.GetAllContacts")
@@ -854,9 +850,9 @@ func (a *ContactsAPIService) GetAllContactsExecute(r ApiGetAllContactsRequest) (
 }
 
 type ApiGetContactByIdRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService ContactsAPI
-	contactId  string
+	contactId string
 }
 
 func (r ApiGetContactByIdRequest) Execute() (*ContactResponse, *http.Response, error) {
@@ -866,27 +862,26 @@ func (r ApiGetContactByIdRequest) Execute() (*ContactResponse, *http.Response, e
 /*
 GetContactById Get contacts by id
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param contactId
-	@return ApiGetContactByIdRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param contactId
+ @return ApiGetContactByIdRequest
 */
 func (a *ContactsAPIService) GetContactById(ctx context.Context, contactId string) ApiGetContactByIdRequest {
 	return ApiGetContactByIdRequest{
 		ApiService: a,
-		ctx:        ctx,
-		contactId:  contactId,
+		ctx: ctx,
+		contactId: contactId,
 	}
 }
 
 // Execute executes the request
-//
-//	@return ContactResponse
+//  @return ContactResponse
 func (a *ContactsAPIService) GetContactByIdExecute(r ApiGetContactByIdRequest) (*ContactResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *ContactResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ContactResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContactsAPIService.GetContactById")
@@ -947,8 +942,8 @@ func (a *ContactsAPIService) GetContactByIdExecute(r ApiGetContactByIdRequest) (
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -958,8 +953,8 @@ func (a *ContactsAPIService) GetContactByIdExecute(r ApiGetContactByIdRequest) (
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -969,8 +964,8 @@ func (a *ContactsAPIService) GetContactByIdExecute(r ApiGetContactByIdRequest) (
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -980,8 +975,8 @@ func (a *ContactsAPIService) GetContactByIdExecute(r ApiGetContactByIdRequest) (
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -999,16 +994,16 @@ func (a *ContactsAPIService) GetContactByIdExecute(r ApiGetContactByIdRequest) (
 }
 
 type ApiGetContactsRequest struct {
-	ctx          context.Context
-	ApiService   ContactsAPI
-	scope        *[]string
-	labels       *[]string
-	contactIds   *[]string
+	ctx context.Context
+	ApiService ContactsAPI
+	scope *[]string
+	labels *[]string
+	contactIds *[]string
 	wantedFields *[]string
-	filter       *string
-	limit        *int32
-	offset       *int32
-	lastId       *string
+	filter *string
+	limit *int32
+	offset *int32
+	lastId *string
 }
 
 // Scope of the request
@@ -1064,27 +1059,26 @@ func (r ApiGetContactsRequest) Execute() (map[string]interface{}, *http.Response
 }
 
 /*
-GetContacts Call this to get contacts in raw vCard format.
+GetContacts Call this to get contacts in raw vCard format. 
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiGetContactsRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiGetContactsRequest
 */
 func (a *ContactsAPIService) GetContacts(ctx context.Context) ApiGetContactsRequest {
 	return ApiGetContactsRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//
-//	@return map[string]interface{}
+//  @return map[string]interface{}
 func (a *ContactsAPIService) GetContactsExecute(r ApiGetContactsRequest) (map[string]interface{}, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue map[string]interface{}
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  map[string]interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContactsAPIService.GetContacts")
@@ -1207,8 +1201,8 @@ func (a *ContactsAPIService) GetContactsExecute(r ApiGetContactsRequest) (map[st
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -1218,8 +1212,8 @@ func (a *ContactsAPIService) GetContactsExecute(r ApiGetContactsRequest) (map[st
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -1229,8 +1223,8 @@ func (a *ContactsAPIService) GetContactsExecute(r ApiGetContactsRequest) (map[st
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -1240,8 +1234,8 @@ func (a *ContactsAPIService) GetContactsExecute(r ApiGetContactsRequest) (map[st
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1259,13 +1253,13 @@ func (a *ContactsAPIService) GetContactsExecute(r ApiGetContactsRequest) (map[st
 }
 
 type ApiGetContacts1Request struct {
-	ctx          context.Context
-	ApiService   ContactsAPI
+	ctx context.Context
+	ApiService ContactsAPI
 	phonenumbers *[]string
-	limit        *int32
-	offset       *int32
-	lastId       *string
-	scopes       *[]string
+	limit *int32
+	offset *int32
+	lastId *string
+	scopes *[]string
 }
 
 // Filter contacts by phonenumbers
@@ -1305,25 +1299,24 @@ func (r ApiGetContacts1Request) Execute() (*ContactsResponse, *http.Response, er
 /*
 GetContacts1 Get all contacts
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiGetContacts1Request
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiGetContacts1Request
 */
 func (a *ContactsAPIService) GetContacts1(ctx context.Context) ApiGetContacts1Request {
 	return ApiGetContacts1Request{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//
-//	@return ContactsResponse
+//  @return ContactsResponse
 func (a *ContactsAPIService) GetContacts1Execute(r ApiGetContacts1Request) (*ContactsResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *ContactsResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ContactsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContactsAPIService.GetContacts1")
@@ -1418,8 +1411,8 @@ func (a *ContactsAPIService) GetContacts1Execute(r ApiGetContacts1Request) (*Con
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -1429,8 +1422,8 @@ func (a *ContactsAPIService) GetContacts1Execute(r ApiGetContacts1Request) (*Con
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -1440,8 +1433,8 @@ func (a *ContactsAPIService) GetContacts1Execute(r ApiGetContacts1Request) (*Con
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -1451,8 +1444,8 @@ func (a *ContactsAPIService) GetContacts1Execute(r ApiGetContacts1Request) (*Con
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1470,9 +1463,9 @@ func (a *ContactsAPIService) GetContacts1Execute(r ApiGetContacts1Request) (*Con
 }
 
 type ApiGetContactsAsCsvRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService ContactsAPI
-	scope      *[]string
+	scope *[]string
 }
 
 // Scope of the request
@@ -1486,27 +1479,26 @@ func (r ApiGetContactsAsCsvRequest) Execute() (string, *http.Response, error) {
 }
 
 /*
-GetContactsAsCsv Call this to get contacts in csv format.
+GetContactsAsCsv Call this to get contacts in csv format. 
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiGetContactsAsCsvRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiGetContactsAsCsvRequest
 */
 func (a *ContactsAPIService) GetContactsAsCsv(ctx context.Context) ApiGetContactsAsCsvRequest {
 	return ApiGetContactsAsCsvRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//
-//	@return string
+//  @return string
 func (a *ContactsAPIService) GetContactsAsCsvExecute(r ApiGetContactsAsCsvRequest) (string, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue string
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  string
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContactsAPIService.GetContactsAsCsv")
@@ -1580,8 +1572,8 @@ func (a *ContactsAPIService) GetContactsAsCsvExecute(r ApiGetContactsAsCsvReques
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -1591,8 +1583,8 @@ func (a *ContactsAPIService) GetContactsAsCsvExecute(r ApiGetContactsAsCsvReques
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -1602,8 +1594,8 @@ func (a *ContactsAPIService) GetContactsAsCsvExecute(r ApiGetContactsAsCsvReques
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -1613,8 +1605,8 @@ func (a *ContactsAPIService) GetContactsAsCsvExecute(r ApiGetContactsAsCsvReques
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1632,9 +1624,9 @@ func (a *ContactsAPIService) GetContactsAsCsvExecute(r ApiGetContactsAsCsvReques
 }
 
 type ApiImportFromCSVRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService ContactsAPI
-	body       *ImportCSVRequest
+	body *ImportCSVRequest
 }
 
 func (r ApiImportFromCSVRequest) Body(body ImportCSVRequest) ApiImportFromCSVRequest {
@@ -1656,22 +1648,22 @@ Ada,Lovelace,+4915799912345
 Alan,Turing,+4915799912345
 </pre>
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiImportFromCSVRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiImportFromCSVRequest
 */
 func (a *ContactsAPIService) ImportFromCSV(ctx context.Context) ApiImportFromCSVRequest {
 	return ApiImportFromCSVRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
 // Execute executes the request
 func (a *ContactsAPIService) ImportFromCSVExecute(r ApiImportFromCSVRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodPost
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContactsAPIService.ImportFromCSV")
@@ -1736,9 +1728,9 @@ func (a *ContactsAPIService) ImportFromCSVExecute(r ApiImportFromCSVRequest) (*h
 }
 
 type ApiImportFromGoogleRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService ContactsAPI
-	body       *ImportGoogleRequest
+	body *ImportGoogleRequest
 }
 
 func (r ApiImportFromGoogleRequest) Body(body ImportGoogleRequest) ApiImportFromGoogleRequest {
@@ -1753,25 +1745,24 @@ func (r ApiImportFromGoogleRequest) Execute() (*ImportGoogleResponse, *http.Resp
 /*
 ImportFromGoogle Import contacts from Google
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiImportFromGoogleRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiImportFromGoogleRequest
 */
 func (a *ContactsAPIService) ImportFromGoogle(ctx context.Context) ApiImportFromGoogleRequest {
 	return ApiImportFromGoogleRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//
-//	@return ImportGoogleResponse
+//  @return ImportGoogleResponse
 func (a *ContactsAPIService) ImportFromGoogleExecute(r ApiImportFromGoogleRequest) (*ImportGoogleResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodPost
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *ImportGoogleResponse
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ImportGoogleResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContactsAPIService.ImportFromGoogle")
@@ -1836,8 +1827,8 @@ func (a *ContactsAPIService) ImportFromGoogleExecute(r ApiImportFromGoogleReques
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -1847,8 +1838,8 @@ func (a *ContactsAPIService) ImportFromGoogleExecute(r ApiImportFromGoogleReques
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -1858,8 +1849,8 @@ func (a *ContactsAPIService) ImportFromGoogleExecute(r ApiImportFromGoogleReques
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -1869,8 +1860,8 @@ func (a *ContactsAPIService) ImportFromGoogleExecute(r ApiImportFromGoogleReques
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1888,10 +1879,10 @@ func (a *ContactsAPIService) ImportFromGoogleExecute(r ApiImportFromGoogleReques
 }
 
 type ApiUpdateContactRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService ContactsAPI
-	contactId  string
-	body       *UpdateContactRequest
+	contactId string
+	body *UpdateContactRequest
 }
 
 func (r ApiUpdateContactRequest) Body(body UpdateContactRequest) ApiUpdateContactRequest {
@@ -1906,24 +1897,24 @@ func (r ApiUpdateContactRequest) Execute() (*http.Response, error) {
 /*
 UpdateContact Updates a contact
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param contactId
-	@return ApiUpdateContactRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param contactId
+ @return ApiUpdateContactRequest
 */
 func (a *ContactsAPIService) UpdateContact(ctx context.Context, contactId string) ApiUpdateContactRequest {
 	return ApiUpdateContactRequest{
 		ApiService: a,
-		ctx:        ctx,
-		contactId:  contactId,
+		ctx: ctx,
+		contactId: contactId,
 	}
 }
 
 // Execute executes the request
 func (a *ContactsAPIService) UpdateContactExecute(r ApiUpdateContactRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodPut
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod   = http.MethodPut
+		localVarPostBody     interface{}
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContactsAPIService.UpdateContact")

@@ -19,10 +19,10 @@ var _ MappedNullable = &EventResponse{}
 
 // EventResponse struct for EventResponse
 type EventResponse struct {
-	EventId   *string            `json:"eventId,omitempty"`
-	EventName *string            `json:"eventName,omitempty"`
-	EventType *string            `json:"eventType,omitempty"`
-	Payload   *map[string]string `json:"payload,omitempty"`
+	EventId *string `json:"eventId,omitempty"`
+	EventName *string `json:"eventName,omitempty"`
+	EventType *string `json:"eventType,omitempty"`
+	Payload *map[string]string `json:"payload,omitempty"`
 }
 
 // NewEventResponse instantiates a new EventResponse object
@@ -171,7 +171,7 @@ func (o *EventResponse) SetPayload(v map[string]string) {
 }
 
 func (o EventResponse) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -230,3 +230,5 @@ func (v *NullableEventResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

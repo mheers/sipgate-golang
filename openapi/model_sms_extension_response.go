@@ -19,9 +19,9 @@ var _ MappedNullable = &SmsExtensionResponse{}
 
 // SmsExtensionResponse struct for SmsExtensionResponse
 type SmsExtensionResponse struct {
-	Alias    *string `json:"alias,omitempty"`
+	Alias *string `json:"alias,omitempty"`
 	CallerId *string `json:"callerId,omitempty"`
-	Id       *string `json:"id,omitempty"`
+	Id *string `json:"id,omitempty"`
 }
 
 // NewSmsExtensionResponse instantiates a new SmsExtensionResponse object
@@ -138,7 +138,7 @@ func (o *SmsExtensionResponse) SetId(v string) {
 }
 
 func (o SmsExtensionResponse) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -194,3 +194,5 @@ func (v *NullableSmsExtensionResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

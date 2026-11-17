@@ -18,13 +18,14 @@ import (
 	"net/url"
 )
 
+
 type UrlsAPI interface {
 
 	/*
-		GetUrls Get all top level API URLs
+	GetUrls Get all top level API URLs
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@return ApiGetUrlsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiGetUrlsRequest
 	*/
 	GetUrls(ctx context.Context) ApiGetUrlsRequest
 
@@ -37,7 +38,7 @@ type UrlsAPI interface {
 type UrlsAPIService service
 
 type ApiGetUrlsRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService UrlsAPI
 }
 
@@ -48,25 +49,24 @@ func (r ApiGetUrlsRequest) Execute() (*ApiUrlsResponse, *http.Response, error) {
 /*
 GetUrls Get all top level API URLs
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiGetUrlsRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiGetUrlsRequest
 */
 func (a *UrlsAPIService) GetUrls(ctx context.Context) ApiGetUrlsRequest {
 	return ApiGetUrlsRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//
-//	@return ApiUrlsResponse
+//  @return ApiUrlsResponse
 func (a *UrlsAPIService) GetUrlsExecute(r ApiGetUrlsRequest) (*ApiUrlsResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *ApiUrlsResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ApiUrlsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UrlsAPIService.GetUrls")

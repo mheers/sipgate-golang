@@ -19,10 +19,10 @@ var _ MappedNullable = &RestrictionItem{}
 
 // RestrictionItem struct for RestrictionItem
 type RestrictionItem struct {
-	Reason      *string                `json:"reason,omitempty"`
-	Restriction *string                `json:"restriction,omitempty"`
-	Target      *string                `json:"target,omitempty"`
-	Value       map[string]interface{} `json:"value,omitempty"`
+	Reason *string `json:"reason,omitempty"`
+	Restriction *string `json:"restriction,omitempty"`
+	Target *string `json:"target,omitempty"`
+	Value map[string]interface{} `json:"value,omitempty"`
 }
 
 // NewRestrictionItem instantiates a new RestrictionItem object
@@ -171,7 +171,7 @@ func (o *RestrictionItem) SetValue(v map[string]interface{}) {
 }
 
 func (o RestrictionItem) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -230,3 +230,5 @@ func (v *NullableRestrictionItem) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

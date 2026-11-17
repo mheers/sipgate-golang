@@ -19,17 +19,17 @@ var _ MappedNullable = &CreateContactRequest{}
 
 // CreateContactRequest struct for CreateContactRequest
 type CreateContactRequest struct {
-	Addresses    []AddressRequest `json:"addresses,omitempty"`
-	Emails       []EmailRequest   `json:"emails,omitempty"`
-	Family       *string          `json:"family,omitempty"`
-	Given        *string          `json:"given,omitempty"`
-	Name         *string          `json:"name,omitempty"`
-	Note         *string          `json:"note,omitempty"`
-	Numbers      []NumberRequest  `json:"numbers,omitempty"`
-	Organization [][]string       `json:"organization,omitempty"`
-	Picture      *string          `json:"picture,omitempty" validate:"regexp=^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$"`
-	Scope        *string          `json:"scope,omitempty"`
-	Websites     []WebsiteRequest `json:"websites,omitempty"`
+	Addresses []AddressRequest `json:"addresses,omitempty"`
+	Emails []EmailRequest `json:"emails,omitempty"`
+	Family *string `json:"family,omitempty"`
+	Given *string `json:"given,omitempty"`
+	Name *string `json:"name,omitempty"`
+	Note *string `json:"note,omitempty"`
+	Numbers []NumberRequest `json:"numbers,omitempty"`
+	Organization [][]string `json:"organization,omitempty"`
+	Picture *string `json:"picture,omitempty" validate:"regexp=^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$"`
+	Scope *string `json:"scope,omitempty"`
+	Websites []WebsiteRequest `json:"websites,omitempty"`
 }
 
 // NewCreateContactRequest instantiates a new CreateContactRequest object
@@ -402,7 +402,7 @@ func (o *CreateContactRequest) SetWebsites(v []WebsiteRequest) {
 }
 
 func (o CreateContactRequest) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -482,3 +482,5 @@ func (v *NullableCreateContactRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

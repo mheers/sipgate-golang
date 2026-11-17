@@ -19,10 +19,10 @@ var _ MappedNullable = &ParallelForwardingResponse{}
 
 // ParallelForwardingResponse struct for ParallelForwardingResponse
 type ParallelForwardingResponse struct {
-	Active      *bool   `json:"active,omitempty"`
-	Alias       *string `json:"alias,omitempty"`
+	Active *bool `json:"active,omitempty"`
+	Alias *string `json:"alias,omitempty"`
 	Destination *string `json:"destination,omitempty"`
-	Id          *string `json:"id,omitempty"`
+	Id *string `json:"id,omitempty"`
 }
 
 // NewParallelForwardingResponse instantiates a new ParallelForwardingResponse object
@@ -175,7 +175,7 @@ func (o *ParallelForwardingResponse) SetId(v string) {
 }
 
 func (o ParallelForwardingResponse) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -234,3 +234,5 @@ func (v *NullableParallelForwardingResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

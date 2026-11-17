@@ -19,17 +19,17 @@ var _ MappedNullable = &PhonelineVoicemailResponse{}
 
 // PhonelineVoicemailResponse struct for PhonelineVoicemailResponse
 type PhonelineVoicemailResponse struct {
-	AccessNumber        *string `json:"accessNumber,omitempty"`
-	Active              *bool   `json:"active,omitempty"`
+	AccessNumber *string `json:"accessNumber,omitempty"`
+	Active *bool `json:"active,omitempty"`
 	ActiveGreetingAlias *string `json:"activeGreetingAlias,omitempty"`
-	ActiveGreetingId    *string `json:"activeGreetingId,omitempty"`
-	Alias               *string `json:"alias,omitempty"`
-	CanTranscribe       *bool   `json:"canTranscribe,omitempty"`
-	GreetingsUrl        *string `json:"greetingsUrl,omitempty"`
-	Id                  *string `json:"id,omitempty"`
-	Timeout             *int32  `json:"timeout,omitempty"`
-	Transcription       *bool   `json:"transcription,omitempty"`
-	TranscriptionsUrl   *string `json:"transcriptionsUrl,omitempty"`
+	ActiveGreetingId *string `json:"activeGreetingId,omitempty"`
+	Alias *string `json:"alias,omitempty"`
+	CanTranscribe *bool `json:"canTranscribe,omitempty"`
+	GreetingsUrl *string `json:"greetingsUrl,omitempty"`
+	Id *string `json:"id,omitempty"`
+	Timeout *int32 `json:"timeout,omitempty"`
+	Transcription *bool `json:"transcription,omitempty"`
+	TranscriptionsUrl *string `json:"transcriptionsUrl,omitempty"`
 }
 
 // NewPhonelineVoicemailResponse instantiates a new PhonelineVoicemailResponse object
@@ -414,7 +414,7 @@ func (o *PhonelineVoicemailResponse) SetTranscriptionsUrl(v string) {
 }
 
 func (o PhonelineVoicemailResponse) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -494,3 +494,5 @@ func (v *NullablePhonelineVoicemailResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

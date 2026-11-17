@@ -19,14 +19,15 @@ import (
 	"strings"
 )
 
+
 type ChannelsAPI interface {
 
 	/*
-		DeleteChannel Delete a channel
+	DeleteChannel Delete a channel
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param channelId
-		@return ApiDeleteChannelRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param channelId
+	@return ApiDeleteChannelRequest
 	*/
 	DeleteChannel(ctx context.Context, channelId string) ApiDeleteChannelRequest
 
@@ -34,11 +35,11 @@ type ChannelsAPI interface {
 	DeleteChannelExecute(r ApiDeleteChannelRequest) (*http.Response, error)
 
 	/*
-		GetChannelEvents Get channel inbox events for a specific channel
+	GetChannelEvents Get channel inbox events for a specific channel
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param channelId
-		@return ApiGetChannelEventsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param channelId
+	@return ApiGetChannelEventsRequest
 	*/
 	GetChannelEvents(ctx context.Context, channelId string) ApiGetChannelEventsRequest
 
@@ -47,10 +48,10 @@ type ChannelsAPI interface {
 	GetChannelEventsExecute(r ApiGetChannelEventsRequest) (*ChannelInbox, *http.Response, error)
 
 	/*
-		ListChannels List channels
+	ListChannels List channels
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@return ApiListChannelsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiListChannelsRequest
 	*/
 	ListChannels(ctx context.Context) ApiListChannelsRequest
 
@@ -59,11 +60,11 @@ type ChannelsAPI interface {
 	ListChannelsExecute(r ApiListChannelsRequest) (*ChannelListResponse, *http.Response, error)
 
 	/*
-		SetChannelName Set the name of a channel
+	SetChannelName Set the name of a channel
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param channelId
-		@return ApiSetChannelNameRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param channelId
+	@return ApiSetChannelNameRequest
 	*/
 	SetChannelName(ctx context.Context, channelId string) ApiSetChannelNameRequest
 
@@ -71,12 +72,12 @@ type ChannelsAPI interface {
 	SetChannelNameExecute(r ApiSetChannelNameRequest) (*http.Response, error)
 
 	/*
-		SetUserDevices Set the list of devices for a user.
+	SetUserDevices Set the list of devices for a user.
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param channelId
-		@param userId
-		@return ApiSetUserDevicesRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param channelId
+	@param userId
+	@return ApiSetUserDevicesRequest
 	*/
 	SetUserDevices(ctx context.Context, channelId string, userId string) ApiSetUserDevicesRequest
 
@@ -84,11 +85,11 @@ type ChannelsAPI interface {
 	SetUserDevicesExecute(r ApiSetUserDevicesRequest) (*http.Response, error)
 
 	/*
-		SetUsers Set users of the channel
+	SetUsers Set users of the channel
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param channelId
-		@return ApiSetUsersRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param channelId
+	@return ApiSetUsersRequest
 	*/
 	SetUsers(ctx context.Context, channelId string) ApiSetUsersRequest
 
@@ -101,9 +102,9 @@ type ChannelsAPI interface {
 type ChannelsAPIService service
 
 type ApiDeleteChannelRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService ChannelsAPI
-	channelId  string
+	channelId string
 }
 
 func (r ApiDeleteChannelRequest) Execute() (*http.Response, error) {
@@ -113,24 +114,24 @@ func (r ApiDeleteChannelRequest) Execute() (*http.Response, error) {
 /*
 DeleteChannel Delete a channel
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param channelId
-	@return ApiDeleteChannelRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param channelId
+ @return ApiDeleteChannelRequest
 */
 func (a *ChannelsAPIService) DeleteChannel(ctx context.Context, channelId string) ApiDeleteChannelRequest {
 	return ApiDeleteChannelRequest{
 		ApiService: a,
-		ctx:        ctx,
-		channelId:  channelId,
+		ctx: ctx,
+		channelId: channelId,
 	}
 }
 
 // Execute executes the request
 func (a *ChannelsAPIService) DeleteChannelExecute(r ApiDeleteChannelRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodDelete
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelsAPIService.DeleteChannel")
@@ -191,11 +192,11 @@ func (a *ChannelsAPIService) DeleteChannelExecute(r ApiDeleteChannelRequest) (*h
 }
 
 type ApiGetChannelEventsRequest struct {
-	ctx             context.Context
-	ApiService      ChannelsAPI
-	channelId       string
-	position        *string
-	limit           *int32
+	ctx context.Context
+	ApiService ChannelsAPI
+	channelId string
+	position *string
+	limit *int32
 	includeAllUsers *bool
 }
 
@@ -222,27 +223,26 @@ func (r ApiGetChannelEventsRequest) Execute() (*ChannelInbox, *http.Response, er
 /*
 GetChannelEvents Get channel inbox events for a specific channel
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param channelId
-	@return ApiGetChannelEventsRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param channelId
+ @return ApiGetChannelEventsRequest
 */
 func (a *ChannelsAPIService) GetChannelEvents(ctx context.Context, channelId string) ApiGetChannelEventsRequest {
 	return ApiGetChannelEventsRequest{
 		ApiService: a,
-		ctx:        ctx,
-		channelId:  channelId,
+		ctx: ctx,
+		channelId: channelId,
 	}
 }
 
 // Execute executes the request
-//
-//	@return ChannelInbox
+//  @return ChannelInbox
 func (a *ChannelsAPIService) GetChannelEventsExecute(r ApiGetChannelEventsRequest) (*ChannelInbox, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *ChannelInbox
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ChannelInbox
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelsAPIService.GetChannelEvents")
@@ -329,7 +329,7 @@ func (a *ChannelsAPIService) GetChannelEventsExecute(r ApiGetChannelEventsReques
 }
 
 type ApiListChannelsRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService ChannelsAPI
 }
 
@@ -340,25 +340,24 @@ func (r ApiListChannelsRequest) Execute() (*ChannelListResponse, *http.Response,
 /*
 ListChannels List channels
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiListChannelsRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiListChannelsRequest
 */
 func (a *ChannelsAPIService) ListChannels(ctx context.Context) ApiListChannelsRequest {
 	return ApiListChannelsRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//
-//	@return ChannelListResponse
+//  @return ChannelListResponse
 func (a *ChannelsAPIService) ListChannelsExecute(r ApiListChannelsRequest) (*ChannelListResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *ChannelListResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ChannelListResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelsAPIService.ListChannels")
@@ -427,10 +426,10 @@ func (a *ChannelsAPIService) ListChannelsExecute(r ApiListChannelsRequest) (*Cha
 }
 
 type ApiSetChannelNameRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService ChannelsAPI
-	channelId  string
-	body       *SetNameRequest
+	channelId string
+	body *SetNameRequest
 }
 
 func (r ApiSetChannelNameRequest) Body(body SetNameRequest) ApiSetChannelNameRequest {
@@ -445,24 +444,24 @@ func (r ApiSetChannelNameRequest) Execute() (*http.Response, error) {
 /*
 SetChannelName Set the name of a channel
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param channelId
-	@return ApiSetChannelNameRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param channelId
+ @return ApiSetChannelNameRequest
 */
 func (a *ChannelsAPIService) SetChannelName(ctx context.Context, channelId string) ApiSetChannelNameRequest {
 	return ApiSetChannelNameRequest{
 		ApiService: a,
-		ctx:        ctx,
-		channelId:  channelId,
+		ctx: ctx,
+		channelId: channelId,
 	}
 }
 
 // Execute executes the request
 func (a *ChannelsAPIService) SetChannelNameExecute(r ApiSetChannelNameRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodPut
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod   = http.MethodPut
+		localVarPostBody     interface{}
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelsAPIService.SetChannelName")
@@ -528,11 +527,11 @@ func (a *ChannelsAPIService) SetChannelNameExecute(r ApiSetChannelNameRequest) (
 }
 
 type ApiSetUserDevicesRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService ChannelsAPI
-	channelId  string
-	userId     string
-	body       *SetDevicesRequest
+	channelId string
+	userId string
+	body *SetDevicesRequest
 }
 
 func (r ApiSetUserDevicesRequest) Body(body SetDevicesRequest) ApiSetUserDevicesRequest {
@@ -547,26 +546,26 @@ func (r ApiSetUserDevicesRequest) Execute() (*http.Response, error) {
 /*
 SetUserDevices Set the list of devices for a user.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param channelId
-	@param userId
-	@return ApiSetUserDevicesRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param channelId
+ @param userId
+ @return ApiSetUserDevicesRequest
 */
 func (a *ChannelsAPIService) SetUserDevices(ctx context.Context, channelId string, userId string) ApiSetUserDevicesRequest {
 	return ApiSetUserDevicesRequest{
 		ApiService: a,
-		ctx:        ctx,
-		channelId:  channelId,
-		userId:     userId,
+		ctx: ctx,
+		channelId: channelId,
+		userId: userId,
 	}
 }
 
 // Execute executes the request
 func (a *ChannelsAPIService) SetUserDevicesExecute(r ApiSetUserDevicesRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodPut
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod   = http.MethodPut
+		localVarPostBody     interface{}
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelsAPIService.SetUserDevices")
@@ -633,10 +632,10 @@ func (a *ChannelsAPIService) SetUserDevicesExecute(r ApiSetUserDevicesRequest) (
 }
 
 type ApiSetUsersRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService ChannelsAPI
-	channelId  string
-	body       *SetUsersRequest
+	channelId string
+	body *SetUsersRequest
 }
 
 func (r ApiSetUsersRequest) Body(body SetUsersRequest) ApiSetUsersRequest {
@@ -651,27 +650,26 @@ func (r ApiSetUsersRequest) Execute() (*ChannelUsersResponse, *http.Response, er
 /*
 SetUsers Set users of the channel
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param channelId
-	@return ApiSetUsersRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param channelId
+ @return ApiSetUsersRequest
 */
 func (a *ChannelsAPIService) SetUsers(ctx context.Context, channelId string) ApiSetUsersRequest {
 	return ApiSetUsersRequest{
 		ApiService: a,
-		ctx:        ctx,
-		channelId:  channelId,
+		ctx: ctx,
+		channelId: channelId,
 	}
 }
 
 // Execute executes the request
-//
-//	@return ChannelUsersResponse
+//  @return ChannelUsersResponse
 func (a *ChannelsAPIService) SetUsersExecute(r ApiSetUsersRequest) (*ChannelUsersResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodPut
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *ChannelUsersResponse
+		localVarHTTPMethod   = http.MethodPut
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ChannelUsersResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelsAPIService.SetUsers")

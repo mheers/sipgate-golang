@@ -19,10 +19,10 @@ var _ MappedNullable = &LegacyForwardingSetResponse{}
 
 // LegacyForwardingSetResponse struct for LegacyForwardingSetResponse
 type LegacyForwardingSetResponse struct {
-	Active      *bool   `json:"active,omitempty"`
-	Alias       *string `json:"alias,omitempty"`
+	Active *bool `json:"active,omitempty"`
+	Alias *string `json:"alias,omitempty"`
 	Destination *string `json:"destination,omitempty"`
-	Timeout     *int32  `json:"timeout,omitempty"`
+	Timeout *int32 `json:"timeout,omitempty"`
 }
 
 // NewLegacyForwardingSetResponse instantiates a new LegacyForwardingSetResponse object
@@ -171,7 +171,7 @@ func (o *LegacyForwardingSetResponse) SetTimeout(v int32) {
 }
 
 func (o LegacyForwardingSetResponse) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -230,3 +230,5 @@ func (v *NullableLegacyForwardingSetResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

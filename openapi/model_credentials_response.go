@@ -19,11 +19,11 @@ var _ MappedNullable = &CredentialsResponse{}
 
 // CredentialsResponse struct for CredentialsResponse
 type CredentialsResponse struct {
-	OutboundProxy         *string `json:"outboundProxy,omitempty"`
-	Password              *string `json:"password,omitempty"`
-	SipServer             *string `json:"sipServer,omitempty"`
+	OutboundProxy *string `json:"outboundProxy,omitempty"`
+	Password *string `json:"password,omitempty"`
+	SipServer *string `json:"sipServer,omitempty"`
 	SipServerWebsocketUrl *string `json:"sipServerWebsocketUrl,omitempty"`
-	Username              *string `json:"username,omitempty"`
+	Username *string `json:"username,omitempty"`
 }
 
 // NewCredentialsResponse instantiates a new CredentialsResponse object
@@ -204,7 +204,7 @@ func (o *CredentialsResponse) SetUsername(v string) {
 }
 
 func (o CredentialsResponse) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -266,3 +266,5 @@ func (v *NullableCredentialsResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

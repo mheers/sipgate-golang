@@ -19,16 +19,16 @@ var _ MappedNullable = &MobileDeviceResponse{}
 
 // MobileDeviceResponse struct for MobileDeviceResponse
 type MobileDeviceResponse struct {
-	ActiveGroups     []ActiveRouting            `json:"activeGroups,omitempty"`
-	ActivePhonelines []ActiveRouting            `json:"activePhonelines,omitempty"`
-	Alias            *string                    `json:"alias,omitempty"`
-	Credentials      *MobileCredentialsResponse `json:"credentials,omitempty"`
-	Dnd              *bool                      `json:"dnd,omitempty"`
-	Esim             *bool                      `json:"esim,omitempty"`
-	Id               *string                    `json:"id,omitempty"`
-	Online           *bool                      `json:"online,omitempty"`
-	SimState         *string                    `json:"simState,omitempty"`
-	Type             *string                    `json:"type,omitempty"`
+	ActiveGroups []ActiveRouting `json:"activeGroups,omitempty"`
+	ActivePhonelines []ActiveRouting `json:"activePhonelines,omitempty"`
+	Alias *string `json:"alias,omitempty"`
+	Credentials *MobileCredentialsResponse `json:"credentials,omitempty"`
+	Dnd *bool `json:"dnd,omitempty"`
+	Esim *bool `json:"esim,omitempty"`
+	Id *string `json:"id,omitempty"`
+	Online *bool `json:"online,omitempty"`
+	SimState *string `json:"simState,omitempty"`
+	Type *string `json:"type,omitempty"`
 }
 
 // NewMobileDeviceResponse instantiates a new MobileDeviceResponse object
@@ -381,7 +381,7 @@ func (o *MobileDeviceResponse) SetType(v string) {
 }
 
 func (o MobileDeviceResponse) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -458,3 +458,5 @@ func (v *NullableMobileDeviceResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

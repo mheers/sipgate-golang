@@ -19,14 +19,14 @@ var _ MappedNullable = &AccountResponse{}
 
 // AccountResponse struct for AccountResponse
 type AccountResponse struct {
-	Company         *string `json:"company,omitempty"`
-	Email           *string `json:"email,omitempty"`
-	FirstName       *string `json:"firstName,omitempty"`
+	Company *string `json:"company,omitempty"`
+	Email *string `json:"email,omitempty"`
+	FirstName *string `json:"firstName,omitempty"`
 	HistoryLifeTime *string `json:"historyLifeTime,omitempty"`
-	LastName        *string `json:"lastName,omitempty"`
-	LogoUrl         *string `json:"logoUrl,omitempty"`
+	LastName *string `json:"lastName,omitempty"`
+	LogoUrl *string `json:"logoUrl,omitempty"`
 	MainProductType *string `json:"mainProductType,omitempty"`
-	Verified        *bool   `json:"verified,omitempty"`
+	Verified *bool `json:"verified,omitempty"`
 }
 
 // NewAccountResponse instantiates a new AccountResponse object
@@ -307,7 +307,7 @@ func (o *AccountResponse) SetVerified(v bool) {
 }
 
 func (o AccountResponse) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -378,3 +378,5 @@ func (v *NullableAccountResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

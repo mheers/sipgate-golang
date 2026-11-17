@@ -19,8 +19,8 @@ var _ MappedNullable = &HistoryResponse{}
 
 // HistoryResponse struct for HistoryResponse
 type HistoryResponse struct {
-	Items      []HistoryEntryResponse `json:"items,omitempty"`
-	TotalCount *int32                 `json:"totalCount,omitempty"`
+	Items []HistoryEntryResponse `json:"items,omitempty"`
+	TotalCount *int32 `json:"totalCount,omitempty"`
 }
 
 // NewHistoryResponse instantiates a new HistoryResponse object
@@ -105,7 +105,7 @@ func (o *HistoryResponse) SetTotalCount(v int32) {
 }
 
 func (o HistoryResponse) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -158,3 +158,5 @@ func (v *NullableHistoryResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

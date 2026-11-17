@@ -18,13 +18,14 @@ import (
 	"net/url"
 )
 
+
 type SettingsAPI interface {
 
 	/*
-		GetSipgateIoUrls List sipgate.io global settings
+	GetSipgateIoUrls List sipgate.io global settings
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@return ApiGetSipgateIoUrlsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiGetSipgateIoUrlsRequest
 	*/
 	GetSipgateIoUrls(ctx context.Context) ApiGetSipgateIoUrlsRequest
 
@@ -33,10 +34,10 @@ type SettingsAPI interface {
 	GetSipgateIoUrlsExecute(r ApiGetSipgateIoUrlsRequest) (*SipgateIoUrlResponse, *http.Response, error)
 
 	/*
-		SetSipgateIoUrls Update sipgate.io global settings
+	SetSipgateIoUrls Update sipgate.io global settings
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@return ApiSetSipgateIoUrlsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiSetSipgateIoUrlsRequest
 	*/
 	SetSipgateIoUrls(ctx context.Context) ApiSetSipgateIoUrlsRequest
 
@@ -49,7 +50,7 @@ type SettingsAPI interface {
 type SettingsAPIService service
 
 type ApiGetSipgateIoUrlsRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService SettingsAPI
 }
 
@@ -60,25 +61,24 @@ func (r ApiGetSipgateIoUrlsRequest) Execute() (*SipgateIoUrlResponse, *http.Resp
 /*
 GetSipgateIoUrls List sipgate.io global settings
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiGetSipgateIoUrlsRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiGetSipgateIoUrlsRequest
 */
 func (a *SettingsAPIService) GetSipgateIoUrls(ctx context.Context) ApiGetSipgateIoUrlsRequest {
 	return ApiGetSipgateIoUrlsRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//
-//	@return SipgateIoUrlResponse
+//  @return SipgateIoUrlResponse
 func (a *SettingsAPIService) GetSipgateIoUrlsExecute(r ApiGetSipgateIoUrlsRequest) (*SipgateIoUrlResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *SipgateIoUrlResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *SipgateIoUrlResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SettingsAPIService.GetSipgateIoUrls")
@@ -147,9 +147,9 @@ func (a *SettingsAPIService) GetSipgateIoUrlsExecute(r ApiGetSipgateIoUrlsReques
 }
 
 type ApiSetSipgateIoUrlsRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService SettingsAPI
-	body       *SetSipgateIoAccountSettingsRequest
+	body *SetSipgateIoAccountSettingsRequest
 }
 
 func (r ApiSetSipgateIoUrlsRequest) Body(body SetSipgateIoAccountSettingsRequest) ApiSetSipgateIoUrlsRequest {
@@ -164,25 +164,24 @@ func (r ApiSetSipgateIoUrlsRequest) Execute() (*SipgateIoUrlResponse, *http.Resp
 /*
 SetSipgateIoUrls Update sipgate.io global settings
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiSetSipgateIoUrlsRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiSetSipgateIoUrlsRequest
 */
 func (a *SettingsAPIService) SetSipgateIoUrls(ctx context.Context) ApiSetSipgateIoUrlsRequest {
 	return ApiSetSipgateIoUrlsRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//
-//	@return SipgateIoUrlResponse
+//  @return SipgateIoUrlResponse
 func (a *SettingsAPIService) SetSipgateIoUrlsExecute(r ApiSetSipgateIoUrlsRequest) (*SipgateIoUrlResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodPut
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *SipgateIoUrlResponse
+		localVarHTTPMethod   = http.MethodPut
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *SipgateIoUrlResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SettingsAPIService.SetSipgateIoUrls")

@@ -19,15 +19,16 @@ import (
 	"strings"
 )
 
+
 type DevicesAPI interface {
 
 	/*
-		ActivateSim Activate a SIM card for a specific device
+	ActivateSim Activate a SIM card for a specific device
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param userId The unique user identifier
-		@param deviceId The unique mobile device identifier
-		@return ApiActivateSimRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userId The unique user identifier
+	@param deviceId The unique mobile device identifier
+	@return ApiActivateSimRequest
 	*/
 	ActivateSim(ctx context.Context, userId string, deviceId string) ApiActivateSimRequest
 
@@ -35,11 +36,11 @@ type DevicesAPI interface {
 	ActivateSimExecute(r ApiActivateSimRequest) (*http.Response, error)
 
 	/*
-		ChangeCallerDisplayOfDevice Update the incoming call display for an existing external device
+	ChangeCallerDisplayOfDevice Update the incoming call display for an existing external device
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param deviceId The unique external device identifier
-		@return ApiChangeCallerDisplayOfDeviceRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param deviceId The unique external device identifier
+	@return ApiChangeCallerDisplayOfDeviceRequest
 	*/
 	ChangeCallerDisplayOfDevice(ctx context.Context, deviceId string) ApiChangeCallerDisplayOfDeviceRequest
 
@@ -47,11 +48,11 @@ type DevicesAPI interface {
 	ChangeCallerDisplayOfDeviceExecute(r ApiChangeCallerDisplayOfDeviceRequest) (*http.Response, error)
 
 	/*
-		ChangeCallerIdSettings Update the caller ID for an existing device
+	ChangeCallerIdSettings Update the caller ID for an existing device
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param deviceId The unique device identifier
-		@return ApiChangeCallerIdSettingsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param deviceId The unique device identifier
+	@return ApiChangeCallerIdSettingsRequest
 	*/
 	ChangeCallerIdSettings(ctx context.Context, deviceId string) ApiChangeCallerIdSettingsRequest
 
@@ -59,11 +60,11 @@ type DevicesAPI interface {
 	ChangeCallerIdSettingsExecute(r ApiChangeCallerIdSettingsRequest) (*http.Response, error)
 
 	/*
-		ChangeDeviceAlias Update alias for an existing device
+	ChangeDeviceAlias Update alias for an existing device
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param deviceId The unique device identifier
-		@return ApiChangeDeviceAliasRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param deviceId The unique device identifier
+	@return ApiChangeDeviceAliasRequest
 	*/
 	ChangeDeviceAlias(ctx context.Context, deviceId string) ApiChangeDeviceAliasRequest
 
@@ -71,11 +72,11 @@ type DevicesAPI interface {
 	ChangeDeviceAliasExecute(r ApiChangeDeviceAliasRequest) (*http.Response, error)
 
 	/*
-		ChangeDevicePassword Change password for an existing device
+	ChangeDevicePassword Change password for an existing device
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param deviceId The unique device identifier
-		@return ApiChangeDevicePasswordRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param deviceId The unique device identifier
+	@return ApiChangeDevicePasswordRequest
 	*/
 	ChangeDevicePassword(ctx context.Context, deviceId string) ApiChangeDevicePasswordRequest
 
@@ -84,11 +85,11 @@ type DevicesAPI interface {
 	ChangeDevicePasswordExecute(r ApiChangeDevicePasswordRequest) (*PasswordResponse, *http.Response, error)
 
 	/*
-		ChangeDeviceSettings Update settings for an existing device
+	ChangeDeviceSettings Update settings for an existing device
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param deviceId The unique device identifier
-		@return ApiChangeDeviceSettingsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param deviceId The unique device identifier
+	@return ApiChangeDeviceSettingsRequest
 	*/
 	ChangeDeviceSettings(ctx context.Context, deviceId string) ApiChangeDeviceSettingsRequest
 
@@ -96,11 +97,11 @@ type DevicesAPI interface {
 	ChangeDeviceSettingsExecute(r ApiChangeDeviceSettingsRequest) (*http.Response, error)
 
 	/*
-		ChangeLocalprefixSettings Update the local prefix setting for an existing device
+	ChangeLocalprefixSettings Update the local prefix setting for an existing device
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param deviceId The unique device identifier
-		@return ApiChangeLocalprefixSettingsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param deviceId The unique device identifier
+	@return ApiChangeLocalprefixSettingsRequest
 	*/
 	ChangeLocalprefixSettings(ctx context.Context, deviceId string) ApiChangeLocalprefixSettingsRequest
 
@@ -108,11 +109,11 @@ type DevicesAPI interface {
 	ChangeLocalprefixSettingsExecute(r ApiChangeLocalprefixSettingsRequest) (*http.Response, error)
 
 	/*
-		ChangeSingleRowDisplay Update single row display setting for an existing device
+	ChangeSingleRowDisplay Update single row display setting for an existing device
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param deviceId The unique device identifier
-		@return ApiChangeSingleRowDisplayRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param deviceId The unique device identifier
+	@return ApiChangeSingleRowDisplayRequest
 	*/
 	ChangeSingleRowDisplay(ctx context.Context, deviceId string) ApiChangeSingleRowDisplayRequest
 
@@ -120,11 +121,11 @@ type DevicesAPI interface {
 	ChangeSingleRowDisplayExecute(r ApiChangeSingleRowDisplayRequest) (*http.Response, error)
 
 	/*
-		ChangeTargetNumberOfDevice Update the target phone number for an existing external device
+	ChangeTargetNumberOfDevice Update the target phone number for an existing external device
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param deviceId The unique external device identifier
-		@return ApiChangeTargetNumberOfDeviceRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param deviceId The unique external device identifier
+	@return ApiChangeTargetNumberOfDeviceRequest
 	*/
 	ChangeTargetNumberOfDevice(ctx context.Context, deviceId string) ApiChangeTargetNumberOfDeviceRequest
 
@@ -132,11 +133,11 @@ type DevicesAPI interface {
 	ChangeTargetNumberOfDeviceExecute(r ApiChangeTargetNumberOfDeviceRequest) (*http.Response, error)
 
 	/*
-		ChangeTariffAnnouncement Update tariff announcement setting for an existing device
+	ChangeTariffAnnouncement Update tariff announcement setting for an existing device
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param deviceId The unique device identifier
-		@return ApiChangeTariffAnnouncementRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param deviceId The unique device identifier
+	@return ApiChangeTariffAnnouncementRequest
 	*/
 	ChangeTariffAnnouncement(ctx context.Context, deviceId string) ApiChangeTariffAnnouncementRequest
 
@@ -144,13 +145,13 @@ type DevicesAPI interface {
 	ChangeTariffAnnouncementExecute(r ApiChangeTariffAnnouncementRequest) (*http.Response, error)
 
 	/*
-		CreateDevice Create a new device
+	CreateDevice Create a new device
 
-		If you want to create a new register device the Restriction CAN_CREATE_REGISTER_DEVICE needs to be true for the specified userId.
+	If you want to create a new register device the Restriction CAN_CREATE_REGISTER_DEVICE needs to be true for the specified userId.
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param userId The unique user identifier
-		@return ApiCreateDeviceRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userId The unique user identifier
+	@return ApiCreateDeviceRequest
 	*/
 	CreateDevice(ctx context.Context, userId string) ApiCreateDeviceRequest
 
@@ -159,13 +160,13 @@ type DevicesAPI interface {
 	CreateDeviceExecute(r ApiCreateDeviceRequest) (*DeviceResponse, *http.Response, error)
 
 	/*
-		CreateExternalDevice Create a new external device
+	CreateExternalDevice Create a new external device
 
-		If you want to create a new external device the Restriction CAN_CREATE_EXTERNAL_DEVICE needs to be true for the specified userId.
+	If you want to create a new external device the Restriction CAN_CREATE_EXTERNAL_DEVICE needs to be true for the specified userId.
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param userId The unique user identifier
-		@return ApiCreateExternalDeviceRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userId The unique user identifier
+	@return ApiCreateExternalDeviceRequest
 	*/
 	CreateExternalDevice(ctx context.Context, userId string) ApiCreateExternalDeviceRequest
 
@@ -174,13 +175,13 @@ type DevicesAPI interface {
 	CreateExternalDeviceExecute(r ApiCreateExternalDeviceRequest) (*ExternalDeviceResponse, *http.Response, error)
 
 	/*
-		CreateMobileDevice Create a new mobile device
+	CreateMobileDevice Create a new mobile device
 
-		If you want to create a new mobile device the Restriction CAN_CREATE_MOBILE_DEVICE needs to be true for the specified userId.
+	If you want to create a new mobile device the Restriction CAN_CREATE_MOBILE_DEVICE needs to be true for the specified userId.
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param userId The unique user identifier
-		@return ApiCreateMobileDeviceRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userId The unique user identifier
+	@return ApiCreateMobileDeviceRequest
 	*/
 	CreateMobileDevice(ctx context.Context, userId string) ApiCreateMobileDeviceRequest
 
@@ -189,13 +190,13 @@ type DevicesAPI interface {
 	CreateMobileDeviceExecute(r ApiCreateMobileDeviceRequest) (*MobileDeviceResponse, *http.Response, error)
 
 	/*
-		CreateRegisterDevice Create a new register device
+	CreateRegisterDevice Create a new register device
 
-		If you want to create a new register device the Restriction CAN_CREATE_REGISTER_DEVICE needs to be true for the specified userId.
+	If you want to create a new register device the Restriction CAN_CREATE_REGISTER_DEVICE needs to be true for the specified userId.
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param userId The unique user identifier
-		@return ApiCreateRegisterDeviceRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userId The unique user identifier
+	@return ApiCreateRegisterDeviceRequest
 	*/
 	CreateRegisterDevice(ctx context.Context, userId string) ApiCreateRegisterDeviceRequest
 
@@ -204,12 +205,12 @@ type DevicesAPI interface {
 	CreateRegisterDeviceExecute(r ApiCreateRegisterDeviceRequest) (*RegisterDeviceResponse, *http.Response, error)
 
 	/*
-		DeactivateSim Deactivate the SIM card for a specific device
+	DeactivateSim Deactivate the SIM card for a specific device
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param userId The unique user identifier
-		@param deviceId The unique mobile device identifier
-		@return ApiDeactivateSimRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userId The unique user identifier
+	@param deviceId The unique mobile device identifier
+	@return ApiDeactivateSimRequest
 	*/
 	DeactivateSim(ctx context.Context, userId string, deviceId string) ApiDeactivateSimRequest
 
@@ -217,11 +218,11 @@ type DevicesAPI interface {
 	DeactivateSimExecute(r ApiDeactivateSimRequest) (*http.Response, error)
 
 	/*
-		DeleteDevice Delete an existing device
+	DeleteDevice Delete an existing device
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param deviceId The unique device identifier
-		@return ApiDeleteDeviceRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param deviceId The unique device identifier
+	@return ApiDeleteDeviceRequest
 	*/
 	DeleteDevice(ctx context.Context, deviceId string) ApiDeleteDeviceRequest
 
@@ -229,11 +230,11 @@ type DevicesAPI interface {
 	DeleteDeviceExecute(r ApiDeleteDeviceRequest) (*http.Response, error)
 
 	/*
-		GetCallerId Get the caller ID of a specific device
+	GetCallerId Get the caller ID of a specific device
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param deviceId The unique device identifier
-		@return ApiGetCallerIdRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param deviceId The unique device identifier
+	@return ApiGetCallerIdRequest
 	*/
 	GetCallerId(ctx context.Context, deviceId string) ApiGetCallerIdRequest
 
@@ -242,11 +243,11 @@ type DevicesAPI interface {
 	GetCallerIdExecute(r ApiGetCallerIdRequest) (*CallerIdResponse, *http.Response, error)
 
 	/*
-		GetDevice Get a specific device
+	GetDevice Get a specific device
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param deviceId The unique device identifier
-		@return ApiGetDeviceRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param deviceId The unique device identifier
+	@return ApiGetDeviceRequest
 	*/
 	GetDevice(ctx context.Context, deviceId string) ApiGetDeviceRequest
 
@@ -255,12 +256,12 @@ type DevicesAPI interface {
 	GetDeviceExecute(r ApiGetDeviceRequest) (*DeviceResponse, *http.Response, error)
 
 	/*
-		GetDeviceContingents List all device contingents
+	GetDeviceContingents List all device contingents
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param userId The unique user identifier
-		@param deviceId The unique device identifier
-		@return ApiGetDeviceContingentsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userId The unique user identifier
+	@param deviceId The unique device identifier
+	@return ApiGetDeviceContingentsRequest
 	*/
 	GetDeviceContingents(ctx context.Context, userId string, deviceId string) ApiGetDeviceContingentsRequest
 
@@ -269,11 +270,11 @@ type DevicesAPI interface {
 	GetDeviceContingentsExecute(r ApiGetDeviceContingentsRequest) (*DeviceContingentsResponse, *http.Response, error)
 
 	/*
-		GetDevices List all devices
+	GetDevices List all devices
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param userId The unique user identifier
-		@return ApiGetDevicesRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userId The unique user identifier
+	@return ApiGetDevicesRequest
 	*/
 	GetDevices(ctx context.Context, userId string) ApiGetDevicesRequest
 
@@ -282,11 +283,11 @@ type DevicesAPI interface {
 	GetDevicesExecute(r ApiGetDevicesRequest) (*DevicesResponse, *http.Response, error)
 
 	/*
-		GetLocalprefix Get the local prefix setting of a specific device
+	GetLocalprefix Get the local prefix setting of a specific device
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param deviceId The unique device identifier
-		@return ApiGetLocalprefixRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param deviceId The unique device identifier
+	@return ApiGetLocalprefixRequest
 	*/
 	GetLocalprefix(ctx context.Context, deviceId string) ApiGetLocalprefixRequest
 
@@ -295,11 +296,11 @@ type DevicesAPI interface {
 	GetLocalprefixExecute(r ApiGetLocalprefixRequest) (*LocalprefixResponse, *http.Response, error)
 
 	/*
-		GetSingleRowDisplay Get single row display setting of a specific device
+	GetSingleRowDisplay Get single row display setting of a specific device
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param deviceId The unique device identifier
-		@return ApiGetSingleRowDisplayRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param deviceId The unique device identifier
+	@return ApiGetSingleRowDisplayRequest
 	*/
 	GetSingleRowDisplay(ctx context.Context, deviceId string) ApiGetSingleRowDisplayRequest
 
@@ -308,11 +309,11 @@ type DevicesAPI interface {
 	GetSingleRowDisplayExecute(r ApiGetSingleRowDisplayRequest) (*SingleRowDisplayResponse, *http.Response, error)
 
 	/*
-		GetTariffAnnouncement Get tariff announcement setting of a specific device
+	GetTariffAnnouncement Get tariff announcement setting of a specific device
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param deviceId The unique device identifier
-		@return ApiGetTariffAnnouncementRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param deviceId The unique device identifier
+	@return ApiGetTariffAnnouncementRequest
 	*/
 	GetTariffAnnouncement(ctx context.Context, deviceId string) ApiGetTariffAnnouncementRequest
 
@@ -321,12 +322,12 @@ type DevicesAPI interface {
 	GetTariffAnnouncementExecute(r ApiGetTariffAnnouncementRequest) (*TariffAnnouncementResponse, *http.Response, error)
 
 	/*
-		OrderSim Order a new SIM card for a specific device
+	OrderSim Order a new SIM card for a specific device
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param userId The unique user identifier
-		@param deviceId The unique mobile device identifier
-		@return ApiOrderSimRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userId The unique user identifier
+	@param deviceId The unique mobile device identifier
+	@return ApiOrderSimRequest
 	*/
 	OrderSim(ctx context.Context, userId string, deviceId string) ApiOrderSimRequest
 
@@ -338,11 +339,11 @@ type DevicesAPI interface {
 type DevicesAPIService service
 
 type ApiActivateSimRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService DevicesAPI
-	userId     string
-	deviceId   string
-	body       *ActivateSimRequest
+	userId string
+	deviceId string
+	body *ActivateSimRequest
 }
 
 func (r ApiActivateSimRequest) Body(body ActivateSimRequest) ApiActivateSimRequest {
@@ -357,26 +358,26 @@ func (r ApiActivateSimRequest) Execute() (*http.Response, error) {
 /*
 ActivateSim Activate a SIM card for a specific device
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param userId The unique user identifier
-	@param deviceId The unique mobile device identifier
-	@return ApiActivateSimRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param userId The unique user identifier
+ @param deviceId The unique mobile device identifier
+ @return ApiActivateSimRequest
 */
 func (a *DevicesAPIService) ActivateSim(ctx context.Context, userId string, deviceId string) ApiActivateSimRequest {
 	return ApiActivateSimRequest{
 		ApiService: a,
-		ctx:        ctx,
-		userId:     userId,
-		deviceId:   deviceId,
+		ctx: ctx,
+		userId: userId,
+		deviceId: deviceId,
 	}
 }
 
 // Execute executes the request
 func (a *DevicesAPIService) ActivateSimExecute(r ApiActivateSimRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodPost
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesAPIService.ActivateSim")
@@ -440,10 +441,10 @@ func (a *DevicesAPIService) ActivateSimExecute(r ApiActivateSimRequest) (*http.R
 }
 
 type ApiChangeCallerDisplayOfDeviceRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService DevicesAPI
-	deviceId   string
-	body       *ChangeExternalDeviceIncomingCallDisplayRequest
+	deviceId string
+	body *ChangeExternalDeviceIncomingCallDisplayRequest
 }
 
 func (r ApiChangeCallerDisplayOfDeviceRequest) Body(body ChangeExternalDeviceIncomingCallDisplayRequest) ApiChangeCallerDisplayOfDeviceRequest {
@@ -458,24 +459,24 @@ func (r ApiChangeCallerDisplayOfDeviceRequest) Execute() (*http.Response, error)
 /*
 ChangeCallerDisplayOfDevice Update the incoming call display for an existing external device
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param deviceId The unique external device identifier
-	@return ApiChangeCallerDisplayOfDeviceRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param deviceId The unique external device identifier
+ @return ApiChangeCallerDisplayOfDeviceRequest
 */
 func (a *DevicesAPIService) ChangeCallerDisplayOfDevice(ctx context.Context, deviceId string) ApiChangeCallerDisplayOfDeviceRequest {
 	return ApiChangeCallerDisplayOfDeviceRequest{
 		ApiService: a,
-		ctx:        ctx,
-		deviceId:   deviceId,
+		ctx: ctx,
+		deviceId: deviceId,
 	}
 }
 
 // Execute executes the request
 func (a *DevicesAPIService) ChangeCallerDisplayOfDeviceExecute(r ApiChangeCallerDisplayOfDeviceRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodPut
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod   = http.MethodPut
+		localVarPostBody     interface{}
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesAPIService.ChangeCallerDisplayOfDevice")
@@ -538,10 +539,10 @@ func (a *DevicesAPIService) ChangeCallerDisplayOfDeviceExecute(r ApiChangeCaller
 }
 
 type ApiChangeCallerIdSettingsRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService DevicesAPI
-	deviceId   string
-	body       *CallerIdRequest
+	deviceId string
+	body *CallerIdRequest
 }
 
 func (r ApiChangeCallerIdSettingsRequest) Body(body CallerIdRequest) ApiChangeCallerIdSettingsRequest {
@@ -556,24 +557,24 @@ func (r ApiChangeCallerIdSettingsRequest) Execute() (*http.Response, error) {
 /*
 ChangeCallerIdSettings Update the caller ID for an existing device
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param deviceId The unique device identifier
-	@return ApiChangeCallerIdSettingsRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param deviceId The unique device identifier
+ @return ApiChangeCallerIdSettingsRequest
 */
 func (a *DevicesAPIService) ChangeCallerIdSettings(ctx context.Context, deviceId string) ApiChangeCallerIdSettingsRequest {
 	return ApiChangeCallerIdSettingsRequest{
 		ApiService: a,
-		ctx:        ctx,
-		deviceId:   deviceId,
+		ctx: ctx,
+		deviceId: deviceId,
 	}
 }
 
 // Execute executes the request
 func (a *DevicesAPIService) ChangeCallerIdSettingsExecute(r ApiChangeCallerIdSettingsRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodPut
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod   = http.MethodPut
+		localVarPostBody     interface{}
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesAPIService.ChangeCallerIdSettings")
@@ -636,10 +637,10 @@ func (a *DevicesAPIService) ChangeCallerIdSettingsExecute(r ApiChangeCallerIdSet
 }
 
 type ApiChangeDeviceAliasRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService DevicesAPI
-	deviceId   string
-	body       *SetDeviceAliasRequest
+	deviceId string
+	body *SetDeviceAliasRequest
 }
 
 func (r ApiChangeDeviceAliasRequest) Body(body SetDeviceAliasRequest) ApiChangeDeviceAliasRequest {
@@ -654,24 +655,24 @@ func (r ApiChangeDeviceAliasRequest) Execute() (*http.Response, error) {
 /*
 ChangeDeviceAlias Update alias for an existing device
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param deviceId The unique device identifier
-	@return ApiChangeDeviceAliasRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param deviceId The unique device identifier
+ @return ApiChangeDeviceAliasRequest
 */
 func (a *DevicesAPIService) ChangeDeviceAlias(ctx context.Context, deviceId string) ApiChangeDeviceAliasRequest {
 	return ApiChangeDeviceAliasRequest{
 		ApiService: a,
-		ctx:        ctx,
-		deviceId:   deviceId,
+		ctx: ctx,
+		deviceId: deviceId,
 	}
 }
 
 // Execute executes the request
 func (a *DevicesAPIService) ChangeDeviceAliasExecute(r ApiChangeDeviceAliasRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodPut
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod   = http.MethodPut
+		localVarPostBody     interface{}
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesAPIService.ChangeDeviceAlias")
@@ -734,9 +735,9 @@ func (a *DevicesAPIService) ChangeDeviceAliasExecute(r ApiChangeDeviceAliasReque
 }
 
 type ApiChangeDevicePasswordRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService DevicesAPI
-	deviceId   string
+	deviceId string
 }
 
 func (r ApiChangeDevicePasswordRequest) Execute() (*PasswordResponse, *http.Response, error) {
@@ -746,27 +747,26 @@ func (r ApiChangeDevicePasswordRequest) Execute() (*PasswordResponse, *http.Resp
 /*
 ChangeDevicePassword Change password for an existing device
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param deviceId The unique device identifier
-	@return ApiChangeDevicePasswordRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param deviceId The unique device identifier
+ @return ApiChangeDevicePasswordRequest
 */
 func (a *DevicesAPIService) ChangeDevicePassword(ctx context.Context, deviceId string) ApiChangeDevicePasswordRequest {
 	return ApiChangeDevicePasswordRequest{
 		ApiService: a,
-		ctx:        ctx,
-		deviceId:   deviceId,
+		ctx: ctx,
+		deviceId: deviceId,
 	}
 }
 
 // Execute executes the request
-//
-//	@return PasswordResponse
+//  @return PasswordResponse
 func (a *DevicesAPIService) ChangeDevicePasswordExecute(r ApiChangeDevicePasswordRequest) (*PasswordResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodPost
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *PasswordResponse
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *PasswordResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesAPIService.ChangeDevicePassword")
@@ -836,10 +836,10 @@ func (a *DevicesAPIService) ChangeDevicePasswordExecute(r ApiChangeDevicePasswor
 }
 
 type ApiChangeDeviceSettingsRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService DevicesAPI
-	deviceId   string
-	body       *ChangeDeviceRequest
+	deviceId string
+	body *ChangeDeviceRequest
 }
 
 func (r ApiChangeDeviceSettingsRequest) Body(body ChangeDeviceRequest) ApiChangeDeviceSettingsRequest {
@@ -854,24 +854,24 @@ func (r ApiChangeDeviceSettingsRequest) Execute() (*http.Response, error) {
 /*
 ChangeDeviceSettings Update settings for an existing device
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param deviceId The unique device identifier
-	@return ApiChangeDeviceSettingsRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param deviceId The unique device identifier
+ @return ApiChangeDeviceSettingsRequest
 */
 func (a *DevicesAPIService) ChangeDeviceSettings(ctx context.Context, deviceId string) ApiChangeDeviceSettingsRequest {
 	return ApiChangeDeviceSettingsRequest{
 		ApiService: a,
-		ctx:        ctx,
-		deviceId:   deviceId,
+		ctx: ctx,
+		deviceId: deviceId,
 	}
 }
 
 // Execute executes the request
 func (a *DevicesAPIService) ChangeDeviceSettingsExecute(r ApiChangeDeviceSettingsRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodPut
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod   = http.MethodPut
+		localVarPostBody     interface{}
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesAPIService.ChangeDeviceSettings")
@@ -934,10 +934,10 @@ func (a *DevicesAPIService) ChangeDeviceSettingsExecute(r ApiChangeDeviceSetting
 }
 
 type ApiChangeLocalprefixSettingsRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService DevicesAPI
-	deviceId   string
-	body       *LocalprefixRequest
+	deviceId string
+	body *LocalprefixRequest
 }
 
 func (r ApiChangeLocalprefixSettingsRequest) Body(body LocalprefixRequest) ApiChangeLocalprefixSettingsRequest {
@@ -952,24 +952,24 @@ func (r ApiChangeLocalprefixSettingsRequest) Execute() (*http.Response, error) {
 /*
 ChangeLocalprefixSettings Update the local prefix setting for an existing device
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param deviceId The unique device identifier
-	@return ApiChangeLocalprefixSettingsRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param deviceId The unique device identifier
+ @return ApiChangeLocalprefixSettingsRequest
 */
 func (a *DevicesAPIService) ChangeLocalprefixSettings(ctx context.Context, deviceId string) ApiChangeLocalprefixSettingsRequest {
 	return ApiChangeLocalprefixSettingsRequest{
 		ApiService: a,
-		ctx:        ctx,
-		deviceId:   deviceId,
+		ctx: ctx,
+		deviceId: deviceId,
 	}
 }
 
 // Execute executes the request
 func (a *DevicesAPIService) ChangeLocalprefixSettingsExecute(r ApiChangeLocalprefixSettingsRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodPut
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod   = http.MethodPut
+		localVarPostBody     interface{}
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesAPIService.ChangeLocalprefixSettings")
@@ -1032,10 +1032,10 @@ func (a *DevicesAPIService) ChangeLocalprefixSettingsExecute(r ApiChangeLocalpre
 }
 
 type ApiChangeSingleRowDisplayRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService DevicesAPI
-	deviceId   string
-	body       *SingleRowDisplayRequest
+	deviceId string
+	body *SingleRowDisplayRequest
 }
 
 func (r ApiChangeSingleRowDisplayRequest) Body(body SingleRowDisplayRequest) ApiChangeSingleRowDisplayRequest {
@@ -1050,24 +1050,24 @@ func (r ApiChangeSingleRowDisplayRequest) Execute() (*http.Response, error) {
 /*
 ChangeSingleRowDisplay Update single row display setting for an existing device
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param deviceId The unique device identifier
-	@return ApiChangeSingleRowDisplayRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param deviceId The unique device identifier
+ @return ApiChangeSingleRowDisplayRequest
 */
 func (a *DevicesAPIService) ChangeSingleRowDisplay(ctx context.Context, deviceId string) ApiChangeSingleRowDisplayRequest {
 	return ApiChangeSingleRowDisplayRequest{
 		ApiService: a,
-		ctx:        ctx,
-		deviceId:   deviceId,
+		ctx: ctx,
+		deviceId: deviceId,
 	}
 }
 
 // Execute executes the request
 func (a *DevicesAPIService) ChangeSingleRowDisplayExecute(r ApiChangeSingleRowDisplayRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodPut
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod   = http.MethodPut
+		localVarPostBody     interface{}
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesAPIService.ChangeSingleRowDisplay")
@@ -1130,10 +1130,10 @@ func (a *DevicesAPIService) ChangeSingleRowDisplayExecute(r ApiChangeSingleRowDi
 }
 
 type ApiChangeTargetNumberOfDeviceRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService DevicesAPI
-	deviceId   string
-	body       *ChangeExternalDeviceTargetNumberRequest
+	deviceId string
+	body *ChangeExternalDeviceTargetNumberRequest
 }
 
 func (r ApiChangeTargetNumberOfDeviceRequest) Body(body ChangeExternalDeviceTargetNumberRequest) ApiChangeTargetNumberOfDeviceRequest {
@@ -1148,24 +1148,24 @@ func (r ApiChangeTargetNumberOfDeviceRequest) Execute() (*http.Response, error) 
 /*
 ChangeTargetNumberOfDevice Update the target phone number for an existing external device
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param deviceId The unique external device identifier
-	@return ApiChangeTargetNumberOfDeviceRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param deviceId The unique external device identifier
+ @return ApiChangeTargetNumberOfDeviceRequest
 */
 func (a *DevicesAPIService) ChangeTargetNumberOfDevice(ctx context.Context, deviceId string) ApiChangeTargetNumberOfDeviceRequest {
 	return ApiChangeTargetNumberOfDeviceRequest{
 		ApiService: a,
-		ctx:        ctx,
-		deviceId:   deviceId,
+		ctx: ctx,
+		deviceId: deviceId,
 	}
 }
 
 // Execute executes the request
 func (a *DevicesAPIService) ChangeTargetNumberOfDeviceExecute(r ApiChangeTargetNumberOfDeviceRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodPut
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod   = http.MethodPut
+		localVarPostBody     interface{}
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesAPIService.ChangeTargetNumberOfDevice")
@@ -1228,10 +1228,10 @@ func (a *DevicesAPIService) ChangeTargetNumberOfDeviceExecute(r ApiChangeTargetN
 }
 
 type ApiChangeTariffAnnouncementRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService DevicesAPI
-	deviceId   string
-	body       *TariffAnnouncementRequest
+	deviceId string
+	body *TariffAnnouncementRequest
 }
 
 func (r ApiChangeTariffAnnouncementRequest) Body(body TariffAnnouncementRequest) ApiChangeTariffAnnouncementRequest {
@@ -1246,24 +1246,24 @@ func (r ApiChangeTariffAnnouncementRequest) Execute() (*http.Response, error) {
 /*
 ChangeTariffAnnouncement Update tariff announcement setting for an existing device
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param deviceId The unique device identifier
-	@return ApiChangeTariffAnnouncementRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param deviceId The unique device identifier
+ @return ApiChangeTariffAnnouncementRequest
 */
 func (a *DevicesAPIService) ChangeTariffAnnouncement(ctx context.Context, deviceId string) ApiChangeTariffAnnouncementRequest {
 	return ApiChangeTariffAnnouncementRequest{
 		ApiService: a,
-		ctx:        ctx,
-		deviceId:   deviceId,
+		ctx: ctx,
+		deviceId: deviceId,
 	}
 }
 
 // Execute executes the request
 func (a *DevicesAPIService) ChangeTariffAnnouncementExecute(r ApiChangeTariffAnnouncementRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodPut
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod   = http.MethodPut
+		localVarPostBody     interface{}
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesAPIService.ChangeTariffAnnouncement")
@@ -1326,10 +1326,10 @@ func (a *DevicesAPIService) ChangeTariffAnnouncementExecute(r ApiChangeTariffAnn
 }
 
 type ApiCreateDeviceRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService DevicesAPI
-	userId     string
-	body       *CreateDeviceRequest
+	userId string
+	body *CreateDeviceRequest
 }
 
 func (r ApiCreateDeviceRequest) Body(body CreateDeviceRequest) ApiCreateDeviceRequest {
@@ -1346,27 +1346,26 @@ CreateDevice Create a new device
 
 If you want to create a new register device the Restriction CAN_CREATE_REGISTER_DEVICE needs to be true for the specified userId.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param userId The unique user identifier
-	@return ApiCreateDeviceRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param userId The unique user identifier
+ @return ApiCreateDeviceRequest
 */
 func (a *DevicesAPIService) CreateDevice(ctx context.Context, userId string) ApiCreateDeviceRequest {
 	return ApiCreateDeviceRequest{
 		ApiService: a,
-		ctx:        ctx,
-		userId:     userId,
+		ctx: ctx,
+		userId: userId,
 	}
 }
 
 // Execute executes the request
-//
-//	@return DeviceResponse
+//  @return DeviceResponse
 func (a *DevicesAPIService) CreateDeviceExecute(r ApiCreateDeviceRequest) (*DeviceResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodPost
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *DeviceResponse
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *DeviceResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesAPIService.CreateDevice")
@@ -1438,10 +1437,10 @@ func (a *DevicesAPIService) CreateDeviceExecute(r ApiCreateDeviceRequest) (*Devi
 }
 
 type ApiCreateExternalDeviceRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService DevicesAPI
-	userId     string
-	body       *CreateExternalDeviceRequest
+	userId string
+	body *CreateExternalDeviceRequest
 }
 
 func (r ApiCreateExternalDeviceRequest) Body(body CreateExternalDeviceRequest) ApiCreateExternalDeviceRequest {
@@ -1458,27 +1457,26 @@ CreateExternalDevice Create a new external device
 
 If you want to create a new external device the Restriction CAN_CREATE_EXTERNAL_DEVICE needs to be true for the specified userId.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param userId The unique user identifier
-	@return ApiCreateExternalDeviceRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param userId The unique user identifier
+ @return ApiCreateExternalDeviceRequest
 */
 func (a *DevicesAPIService) CreateExternalDevice(ctx context.Context, userId string) ApiCreateExternalDeviceRequest {
 	return ApiCreateExternalDeviceRequest{
 		ApiService: a,
-		ctx:        ctx,
-		userId:     userId,
+		ctx: ctx,
+		userId: userId,
 	}
 }
 
 // Execute executes the request
-//
-//	@return ExternalDeviceResponse
+//  @return ExternalDeviceResponse
 func (a *DevicesAPIService) CreateExternalDeviceExecute(r ApiCreateExternalDeviceRequest) (*ExternalDeviceResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodPost
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *ExternalDeviceResponse
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ExternalDeviceResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesAPIService.CreateExternalDevice")
@@ -1550,10 +1548,10 @@ func (a *DevicesAPIService) CreateExternalDeviceExecute(r ApiCreateExternalDevic
 }
 
 type ApiCreateMobileDeviceRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService DevicesAPI
-	userId     string
-	body       *CreateMobileDeviceRequest
+	userId string
+	body *CreateMobileDeviceRequest
 }
 
 func (r ApiCreateMobileDeviceRequest) Body(body CreateMobileDeviceRequest) ApiCreateMobileDeviceRequest {
@@ -1570,27 +1568,26 @@ CreateMobileDevice Create a new mobile device
 
 If you want to create a new mobile device the Restriction CAN_CREATE_MOBILE_DEVICE needs to be true for the specified userId.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param userId The unique user identifier
-	@return ApiCreateMobileDeviceRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param userId The unique user identifier
+ @return ApiCreateMobileDeviceRequest
 */
 func (a *DevicesAPIService) CreateMobileDevice(ctx context.Context, userId string) ApiCreateMobileDeviceRequest {
 	return ApiCreateMobileDeviceRequest{
 		ApiService: a,
-		ctx:        ctx,
-		userId:     userId,
+		ctx: ctx,
+		userId: userId,
 	}
 }
 
 // Execute executes the request
-//
-//	@return MobileDeviceResponse
+//  @return MobileDeviceResponse
 func (a *DevicesAPIService) CreateMobileDeviceExecute(r ApiCreateMobileDeviceRequest) (*MobileDeviceResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodPost
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *MobileDeviceResponse
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *MobileDeviceResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesAPIService.CreateMobileDevice")
@@ -1662,10 +1659,10 @@ func (a *DevicesAPIService) CreateMobileDeviceExecute(r ApiCreateMobileDeviceReq
 }
 
 type ApiCreateRegisterDeviceRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService DevicesAPI
-	userId     string
-	body       *CreateRegisterDeviceRequest
+	userId string
+	body *CreateRegisterDeviceRequest
 }
 
 func (r ApiCreateRegisterDeviceRequest) Body(body CreateRegisterDeviceRequest) ApiCreateRegisterDeviceRequest {
@@ -1682,27 +1679,26 @@ CreateRegisterDevice Create a new register device
 
 If you want to create a new register device the Restriction CAN_CREATE_REGISTER_DEVICE needs to be true for the specified userId.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param userId The unique user identifier
-	@return ApiCreateRegisterDeviceRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param userId The unique user identifier
+ @return ApiCreateRegisterDeviceRequest
 */
 func (a *DevicesAPIService) CreateRegisterDevice(ctx context.Context, userId string) ApiCreateRegisterDeviceRequest {
 	return ApiCreateRegisterDeviceRequest{
 		ApiService: a,
-		ctx:        ctx,
-		userId:     userId,
+		ctx: ctx,
+		userId: userId,
 	}
 }
 
 // Execute executes the request
-//
-//	@return RegisterDeviceResponse
+//  @return RegisterDeviceResponse
 func (a *DevicesAPIService) CreateRegisterDeviceExecute(r ApiCreateRegisterDeviceRequest) (*RegisterDeviceResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodPost
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *RegisterDeviceResponse
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *RegisterDeviceResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesAPIService.CreateRegisterDevice")
@@ -1774,10 +1770,10 @@ func (a *DevicesAPIService) CreateRegisterDeviceExecute(r ApiCreateRegisterDevic
 }
 
 type ApiDeactivateSimRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService DevicesAPI
-	userId     string
-	deviceId   string
+	userId string
+	deviceId string
 }
 
 func (r ApiDeactivateSimRequest) Execute() (*http.Response, error) {
@@ -1787,26 +1783,26 @@ func (r ApiDeactivateSimRequest) Execute() (*http.Response, error) {
 /*
 DeactivateSim Deactivate the SIM card for a specific device
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param userId The unique user identifier
-	@param deviceId The unique mobile device identifier
-	@return ApiDeactivateSimRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param userId The unique user identifier
+ @param deviceId The unique mobile device identifier
+ @return ApiDeactivateSimRequest
 */
 func (a *DevicesAPIService) DeactivateSim(ctx context.Context, userId string, deviceId string) ApiDeactivateSimRequest {
 	return ApiDeactivateSimRequest{
 		ApiService: a,
-		ctx:        ctx,
-		userId:     userId,
-		deviceId:   deviceId,
+		ctx: ctx,
+		userId: userId,
+		deviceId: deviceId,
 	}
 }
 
 // Execute executes the request
 func (a *DevicesAPIService) DeactivateSimExecute(r ApiDeactivateSimRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodDelete
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesAPIService.DeactivateSim")
@@ -1868,9 +1864,9 @@ func (a *DevicesAPIService) DeactivateSimExecute(r ApiDeactivateSimRequest) (*ht
 }
 
 type ApiDeleteDeviceRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService DevicesAPI
-	deviceId   string
+	deviceId string
 }
 
 func (r ApiDeleteDeviceRequest) Execute() (*http.Response, error) {
@@ -1880,24 +1876,24 @@ func (r ApiDeleteDeviceRequest) Execute() (*http.Response, error) {
 /*
 DeleteDevice Delete an existing device
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param deviceId The unique device identifier
-	@return ApiDeleteDeviceRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param deviceId The unique device identifier
+ @return ApiDeleteDeviceRequest
 */
 func (a *DevicesAPIService) DeleteDevice(ctx context.Context, deviceId string) ApiDeleteDeviceRequest {
 	return ApiDeleteDeviceRequest{
 		ApiService: a,
-		ctx:        ctx,
-		deviceId:   deviceId,
+		ctx: ctx,
+		deviceId: deviceId,
 	}
 }
 
 // Execute executes the request
 func (a *DevicesAPIService) DeleteDeviceExecute(r ApiDeleteDeviceRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodDelete
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesAPIService.DeleteDevice")
@@ -1958,9 +1954,9 @@ func (a *DevicesAPIService) DeleteDeviceExecute(r ApiDeleteDeviceRequest) (*http
 }
 
 type ApiGetCallerIdRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService DevicesAPI
-	deviceId   string
+	deviceId string
 }
 
 func (r ApiGetCallerIdRequest) Execute() (*CallerIdResponse, *http.Response, error) {
@@ -1970,27 +1966,26 @@ func (r ApiGetCallerIdRequest) Execute() (*CallerIdResponse, *http.Response, err
 /*
 GetCallerId Get the caller ID of a specific device
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param deviceId The unique device identifier
-	@return ApiGetCallerIdRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param deviceId The unique device identifier
+ @return ApiGetCallerIdRequest
 */
 func (a *DevicesAPIService) GetCallerId(ctx context.Context, deviceId string) ApiGetCallerIdRequest {
 	return ApiGetCallerIdRequest{
 		ApiService: a,
-		ctx:        ctx,
-		deviceId:   deviceId,
+		ctx: ctx,
+		deviceId: deviceId,
 	}
 }
 
 // Execute executes the request
-//
-//	@return CallerIdResponse
+//  @return CallerIdResponse
 func (a *DevicesAPIService) GetCallerIdExecute(r ApiGetCallerIdRequest) (*CallerIdResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *CallerIdResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *CallerIdResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesAPIService.GetCallerId")
@@ -2060,9 +2055,9 @@ func (a *DevicesAPIService) GetCallerIdExecute(r ApiGetCallerIdRequest) (*Caller
 }
 
 type ApiGetDeviceRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService DevicesAPI
-	deviceId   string
+	deviceId string
 }
 
 func (r ApiGetDeviceRequest) Execute() (*DeviceResponse, *http.Response, error) {
@@ -2072,27 +2067,26 @@ func (r ApiGetDeviceRequest) Execute() (*DeviceResponse, *http.Response, error) 
 /*
 GetDevice Get a specific device
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param deviceId The unique device identifier
-	@return ApiGetDeviceRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param deviceId The unique device identifier
+ @return ApiGetDeviceRequest
 */
 func (a *DevicesAPIService) GetDevice(ctx context.Context, deviceId string) ApiGetDeviceRequest {
 	return ApiGetDeviceRequest{
 		ApiService: a,
-		ctx:        ctx,
-		deviceId:   deviceId,
+		ctx: ctx,
+		deviceId: deviceId,
 	}
 }
 
 // Execute executes the request
-//
-//	@return DeviceResponse
+//  @return DeviceResponse
 func (a *DevicesAPIService) GetDeviceExecute(r ApiGetDeviceRequest) (*DeviceResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *DeviceResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *DeviceResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesAPIService.GetDevice")
@@ -2162,10 +2156,10 @@ func (a *DevicesAPIService) GetDeviceExecute(r ApiGetDeviceRequest) (*DeviceResp
 }
 
 type ApiGetDeviceContingentsRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService DevicesAPI
-	userId     string
-	deviceId   string
+	userId string
+	deviceId string
 }
 
 func (r ApiGetDeviceContingentsRequest) Execute() (*DeviceContingentsResponse, *http.Response, error) {
@@ -2175,29 +2169,28 @@ func (r ApiGetDeviceContingentsRequest) Execute() (*DeviceContingentsResponse, *
 /*
 GetDeviceContingents List all device contingents
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param userId The unique user identifier
-	@param deviceId The unique device identifier
-	@return ApiGetDeviceContingentsRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param userId The unique user identifier
+ @param deviceId The unique device identifier
+ @return ApiGetDeviceContingentsRequest
 */
 func (a *DevicesAPIService) GetDeviceContingents(ctx context.Context, userId string, deviceId string) ApiGetDeviceContingentsRequest {
 	return ApiGetDeviceContingentsRequest{
 		ApiService: a,
-		ctx:        ctx,
-		userId:     userId,
-		deviceId:   deviceId,
+		ctx: ctx,
+		userId: userId,
+		deviceId: deviceId,
 	}
 }
 
 // Execute executes the request
-//
-//	@return DeviceContingentsResponse
+//  @return DeviceContingentsResponse
 func (a *DevicesAPIService) GetDeviceContingentsExecute(r ApiGetDeviceContingentsRequest) (*DeviceContingentsResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *DeviceContingentsResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *DeviceContingentsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesAPIService.GetDeviceContingents")
@@ -2268,10 +2261,10 @@ func (a *DevicesAPIService) GetDeviceContingentsExecute(r ApiGetDeviceContingent
 }
 
 type ApiGetDevicesRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService DevicesAPI
-	userId     string
-	type_      *string
+	userId string
+	type_ *string
 }
 
 // Comma-separated list of device types to filter. Allowed values: all, app, register, mobile, external
@@ -2287,27 +2280,26 @@ func (r ApiGetDevicesRequest) Execute() (*DevicesResponse, *http.Response, error
 /*
 GetDevices List all devices
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param userId The unique user identifier
-	@return ApiGetDevicesRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param userId The unique user identifier
+ @return ApiGetDevicesRequest
 */
 func (a *DevicesAPIService) GetDevices(ctx context.Context, userId string) ApiGetDevicesRequest {
 	return ApiGetDevicesRequest{
 		ApiService: a,
-		ctx:        ctx,
-		userId:     userId,
+		ctx: ctx,
+		userId: userId,
 	}
 }
 
 // Execute executes the request
-//
-//	@return DevicesResponse
+//  @return DevicesResponse
 func (a *DevicesAPIService) GetDevicesExecute(r ApiGetDevicesRequest) (*DevicesResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *DevicesResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *DevicesResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesAPIService.GetDevices")
@@ -2380,9 +2372,9 @@ func (a *DevicesAPIService) GetDevicesExecute(r ApiGetDevicesRequest) (*DevicesR
 }
 
 type ApiGetLocalprefixRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService DevicesAPI
-	deviceId   string
+	deviceId string
 }
 
 func (r ApiGetLocalprefixRequest) Execute() (*LocalprefixResponse, *http.Response, error) {
@@ -2392,27 +2384,26 @@ func (r ApiGetLocalprefixRequest) Execute() (*LocalprefixResponse, *http.Respons
 /*
 GetLocalprefix Get the local prefix setting of a specific device
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param deviceId The unique device identifier
-	@return ApiGetLocalprefixRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param deviceId The unique device identifier
+ @return ApiGetLocalprefixRequest
 */
 func (a *DevicesAPIService) GetLocalprefix(ctx context.Context, deviceId string) ApiGetLocalprefixRequest {
 	return ApiGetLocalprefixRequest{
 		ApiService: a,
-		ctx:        ctx,
-		deviceId:   deviceId,
+		ctx: ctx,
+		deviceId: deviceId,
 	}
 }
 
 // Execute executes the request
-//
-//	@return LocalprefixResponse
+//  @return LocalprefixResponse
 func (a *DevicesAPIService) GetLocalprefixExecute(r ApiGetLocalprefixRequest) (*LocalprefixResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *LocalprefixResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *LocalprefixResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesAPIService.GetLocalprefix")
@@ -2482,9 +2473,9 @@ func (a *DevicesAPIService) GetLocalprefixExecute(r ApiGetLocalprefixRequest) (*
 }
 
 type ApiGetSingleRowDisplayRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService DevicesAPI
-	deviceId   string
+	deviceId string
 }
 
 func (r ApiGetSingleRowDisplayRequest) Execute() (*SingleRowDisplayResponse, *http.Response, error) {
@@ -2494,27 +2485,26 @@ func (r ApiGetSingleRowDisplayRequest) Execute() (*SingleRowDisplayResponse, *ht
 /*
 GetSingleRowDisplay Get single row display setting of a specific device
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param deviceId The unique device identifier
-	@return ApiGetSingleRowDisplayRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param deviceId The unique device identifier
+ @return ApiGetSingleRowDisplayRequest
 */
 func (a *DevicesAPIService) GetSingleRowDisplay(ctx context.Context, deviceId string) ApiGetSingleRowDisplayRequest {
 	return ApiGetSingleRowDisplayRequest{
 		ApiService: a,
-		ctx:        ctx,
-		deviceId:   deviceId,
+		ctx: ctx,
+		deviceId: deviceId,
 	}
 }
 
 // Execute executes the request
-//
-//	@return SingleRowDisplayResponse
+//  @return SingleRowDisplayResponse
 func (a *DevicesAPIService) GetSingleRowDisplayExecute(r ApiGetSingleRowDisplayRequest) (*SingleRowDisplayResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *SingleRowDisplayResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *SingleRowDisplayResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesAPIService.GetSingleRowDisplay")
@@ -2584,9 +2574,9 @@ func (a *DevicesAPIService) GetSingleRowDisplayExecute(r ApiGetSingleRowDisplayR
 }
 
 type ApiGetTariffAnnouncementRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService DevicesAPI
-	deviceId   string
+	deviceId string
 }
 
 func (r ApiGetTariffAnnouncementRequest) Execute() (*TariffAnnouncementResponse, *http.Response, error) {
@@ -2596,27 +2586,26 @@ func (r ApiGetTariffAnnouncementRequest) Execute() (*TariffAnnouncementResponse,
 /*
 GetTariffAnnouncement Get tariff announcement setting of a specific device
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param deviceId The unique device identifier
-	@return ApiGetTariffAnnouncementRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param deviceId The unique device identifier
+ @return ApiGetTariffAnnouncementRequest
 */
 func (a *DevicesAPIService) GetTariffAnnouncement(ctx context.Context, deviceId string) ApiGetTariffAnnouncementRequest {
 	return ApiGetTariffAnnouncementRequest{
 		ApiService: a,
-		ctx:        ctx,
-		deviceId:   deviceId,
+		ctx: ctx,
+		deviceId: deviceId,
 	}
 }
 
 // Execute executes the request
-//
-//	@return TariffAnnouncementResponse
+//  @return TariffAnnouncementResponse
 func (a *DevicesAPIService) GetTariffAnnouncementExecute(r ApiGetTariffAnnouncementRequest) (*TariffAnnouncementResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *TariffAnnouncementResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *TariffAnnouncementResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesAPIService.GetTariffAnnouncement")
@@ -2686,11 +2675,11 @@ func (a *DevicesAPIService) GetTariffAnnouncementExecute(r ApiGetTariffAnnouncem
 }
 
 type ApiOrderSimRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService DevicesAPI
-	userId     string
-	deviceId   string
-	body       *OrderSimRequest
+	userId string
+	deviceId string
+	body *OrderSimRequest
 }
 
 func (r ApiOrderSimRequest) Body(body OrderSimRequest) ApiOrderSimRequest {
@@ -2705,26 +2694,26 @@ func (r ApiOrderSimRequest) Execute() (*http.Response, error) {
 /*
 OrderSim Order a new SIM card for a specific device
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param userId The unique user identifier
-	@param deviceId The unique mobile device identifier
-	@return ApiOrderSimRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param userId The unique user identifier
+ @param deviceId The unique mobile device identifier
+ @return ApiOrderSimRequest
 */
 func (a *DevicesAPIService) OrderSim(ctx context.Context, userId string, deviceId string) ApiOrderSimRequest {
 	return ApiOrderSimRequest{
 		ApiService: a,
-		ctx:        ctx,
-		userId:     userId,
-		deviceId:   deviceId,
+		ctx: ctx,
+		userId: userId,
+		deviceId: deviceId,
 	}
 }
 
 // Execute executes the request
 func (a *DevicesAPIService) OrderSimExecute(r ApiOrderSimRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodPost
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesAPIService.OrderSim")

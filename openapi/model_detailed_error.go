@@ -20,7 +20,7 @@ var _ MappedNullable = &DetailedError{}
 // DetailedError struct for DetailedError
 type DetailedError struct {
 	// The detailed description of the error
-	Detail *string      `json:"detail,omitempty"`
+	Detail *string `json:"detail,omitempty"`
 	Source *ErrorSource `json:"source,omitempty"`
 	// The status code
 	Status *int32 `json:"status,omitempty"`
@@ -174,7 +174,7 @@ func (o *DetailedError) SetTitle(v string) {
 }
 
 func (o DetailedError) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -233,3 +233,5 @@ func (v *NullableDetailedError) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

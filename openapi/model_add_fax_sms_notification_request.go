@@ -11,8 +11,8 @@ API version: 2.0.0
 package openapi
 
 import (
-	"bytes"
 	"encoding/json"
+	"bytes"
 	"fmt"
 )
 
@@ -23,7 +23,7 @@ var _ MappedNullable = &AddFaxSmsNotificationRequest{}
 type AddFaxSmsNotificationRequest struct {
 	Direction string `json:"direction"`
 	FaxlineId string `json:"faxlineId"`
-	Number    string `json:"number"`
+	Number string `json:"number"`
 }
 
 type _AddFaxSmsNotificationRequest AddFaxSmsNotificationRequest
@@ -121,7 +121,7 @@ func (o *AddFaxSmsNotificationRequest) SetNumber(v string) {
 }
 
 func (o AddFaxSmsNotificationRequest) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -151,10 +151,10 @@ func (o *AddFaxSmsNotificationRequest) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err
+		return err;
 	}
 
-	for _, requiredProperty := range requiredProperties {
+	for _, requiredProperty := range(requiredProperties) {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -210,3 +210,5 @@ func (v *NullableAddFaxSmsNotificationRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

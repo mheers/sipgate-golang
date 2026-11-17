@@ -19,15 +19,15 @@ var _ MappedNullable = &ExternalDeviceResponse{}
 
 // ExternalDeviceResponse struct for ExternalDeviceResponse
 type ExternalDeviceResponse struct {
-	ActiveGroups             []ActiveRouting `json:"activeGroups,omitempty"`
-	ActivePhonelines         []ActiveRouting `json:"activePhonelines,omitempty"`
-	Alias                    *string         `json:"alias,omitempty"`
-	Dnd                      *bool           `json:"dnd,omitempty"`
-	Id                       *string         `json:"id,omitempty"`
-	IncomingCallDisplayState *string         `json:"incomingCallDisplayState,omitempty"`
-	Number                   *string         `json:"number,omitempty"`
-	Online                   *bool           `json:"online,omitempty"`
-	Type                     *string         `json:"type,omitempty"`
+	ActiveGroups []ActiveRouting `json:"activeGroups,omitempty"`
+	ActivePhonelines []ActiveRouting `json:"activePhonelines,omitempty"`
+	Alias *string `json:"alias,omitempty"`
+	Dnd *bool `json:"dnd,omitempty"`
+	Id *string `json:"id,omitempty"`
+	IncomingCallDisplayState *string `json:"incomingCallDisplayState,omitempty"`
+	Number *string `json:"number,omitempty"`
+	Online *bool `json:"online,omitempty"`
+	Type *string `json:"type,omitempty"`
 }
 
 // NewExternalDeviceResponse instantiates a new ExternalDeviceResponse object
@@ -344,7 +344,7 @@ func (o *ExternalDeviceResponse) SetType(v string) {
 }
 
 func (o ExternalDeviceResponse) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -418,3 +418,5 @@ func (v *NullableExternalDeviceResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

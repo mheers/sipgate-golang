@@ -19,7 +19,7 @@ var _ MappedNullable = &SmsTarget{}
 
 // SmsTarget struct for SmsTarget
 type SmsTarget struct {
-	Id     *string `json:"id,omitempty"`
+	Id *string `json:"id,omitempty"`
 	Number *string `json:"number,omitempty"`
 }
 
@@ -105,7 +105,7 @@ func (o *SmsTarget) SetNumber(v string) {
 }
 
 func (o SmsTarget) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -158,3 +158,5 @@ func (v *NullableSmsTarget) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

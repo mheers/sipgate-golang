@@ -19,8 +19,8 @@ var _ MappedNullable = &StructuredVCardMeta{}
 
 // StructuredVCardMeta struct for StructuredVCardMeta
 type StructuredVCardMeta struct {
-	UUID      *string `json:"UUID,omitempty"`
-	Owner     *string `json:"owner,omitempty"`
+	UUID *string `json:"UUID,omitempty"`
+	Owner *string `json:"owner,omitempty"`
 	ValidFrom *string `json:"valid_from,omitempty"`
 	ValidThru *string `json:"valid_thru,omitempty"`
 }
@@ -171,7 +171,7 @@ func (o *StructuredVCardMeta) SetValidThru(v string) {
 }
 
 func (o StructuredVCardMeta) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -230,3 +230,5 @@ func (v *NullableStructuredVCardMeta) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

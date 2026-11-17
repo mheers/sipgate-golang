@@ -19,8 +19,8 @@ var _ MappedNullable = &PhonelineResponse{}
 
 // PhonelineResponse struct for PhonelineResponse
 type PhonelineResponse struct {
-	Alias      *string                     `json:"alias,omitempty"`
-	Id         *string                     `json:"id,omitempty"`
+	Alias *string `json:"alias,omitempty"`
+	Id *string `json:"id,omitempty"`
 	Voicemails []VoicemailSettingsResponse `json:"voicemails,omitempty"`
 }
 
@@ -138,7 +138,7 @@ func (o *PhonelineResponse) SetVoicemails(v []VoicemailSettingsResponse) {
 }
 
 func (o PhonelineResponse) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -194,3 +194,5 @@ func (v *NullablePhonelineResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

@@ -19,9 +19,9 @@ var _ MappedNullable = &ChangeNumberSettingsRequest{}
 
 // ChangeNumberSettingsRequest struct for ChangeNumberSettingsRequest
 type ChangeNumberSettingsRequest struct {
-	EndpointId    *string `json:"endpointId,omitempty"`
-	QuickDial     *bool   `json:"quickDial,omitempty"`
-	ReleaseForMnp *bool   `json:"releaseForMnp,omitempty"`
+	EndpointId *string `json:"endpointId,omitempty"`
+	QuickDial *bool `json:"quickDial,omitempty"`
+	ReleaseForMnp *bool `json:"releaseForMnp,omitempty"`
 }
 
 // NewChangeNumberSettingsRequest instantiates a new ChangeNumberSettingsRequest object
@@ -146,7 +146,7 @@ func (o *ChangeNumberSettingsRequest) SetReleaseForMnp(v bool) {
 }
 
 func (o ChangeNumberSettingsRequest) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -202,3 +202,5 @@ func (v *NullableChangeNumberSettingsRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

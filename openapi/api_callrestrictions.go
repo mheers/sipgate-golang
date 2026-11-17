@@ -16,17 +16,18 @@ import (
 	"io"
 	"net/http"
 	"net/url"
-	"reflect"
 	"strings"
+	"reflect"
 )
+
 
 type CallrestrictionsAPI interface {
 
 	/*
-		GetCallRestrictions Get call restrictions data
+	GetCallRestrictions Get call restrictions data
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@return ApiGetCallRestrictionsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiGetCallRestrictionsRequest
 	*/
 	GetCallRestrictions(ctx context.Context) ApiGetCallRestrictionsRequest
 
@@ -35,12 +36,12 @@ type CallrestrictionsAPI interface {
 	GetCallRestrictionsExecute(r ApiGetCallRestrictionsRequest) (*CallRestrictionResponse, *http.Response, error)
 
 	/*
-		SetCallRestriction Enable/disable restriction
+	SetCallRestriction Enable/disable restriction
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param userId The unique user identifier
-		@param restriction The name of the call restriction
-		@return ApiSetCallRestrictionRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userId The unique user identifier
+	@param restriction The name of the call restriction
+	@return ApiSetCallRestrictionRequest
 	*/
 	SetCallRestriction(ctx context.Context, userId string, restriction string) ApiSetCallRestrictionRequest
 
@@ -52,9 +53,9 @@ type CallrestrictionsAPI interface {
 type CallrestrictionsAPIService service
 
 type ApiGetCallRestrictionsRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService CallrestrictionsAPI
-	userIds    *[]string
+	userIds *[]string
 }
 
 // List of extensions
@@ -70,25 +71,24 @@ func (r ApiGetCallRestrictionsRequest) Execute() (*CallRestrictionResponse, *htt
 /*
 GetCallRestrictions Get call restrictions data
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiGetCallRestrictionsRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiGetCallRestrictionsRequest
 */
 func (a *CallrestrictionsAPIService) GetCallRestrictions(ctx context.Context) ApiGetCallRestrictionsRequest {
 	return ApiGetCallRestrictionsRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//
-//	@return CallRestrictionResponse
+//  @return CallRestrictionResponse
 func (a *CallrestrictionsAPIService) GetCallRestrictionsExecute(r ApiGetCallRestrictionsRequest) (*CallRestrictionResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *CallRestrictionResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *CallRestrictionResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CallrestrictionsAPIService.GetCallRestrictions")
@@ -168,11 +168,11 @@ func (a *CallrestrictionsAPIService) GetCallRestrictionsExecute(r ApiGetCallRest
 }
 
 type ApiSetCallRestrictionRequest struct {
-	ctx         context.Context
-	ApiService  CallrestrictionsAPI
-	userId      string
+	ctx context.Context
+	ApiService CallrestrictionsAPI
+	userId string
 	restriction string
-	body        *SetCallRestrictionRequest
+	body *SetCallRestrictionRequest
 }
 
 func (r ApiSetCallRestrictionRequest) Body(body SetCallRestrictionRequest) ApiSetCallRestrictionRequest {
@@ -187,16 +187,16 @@ func (r ApiSetCallRestrictionRequest) Execute() (*http.Response, error) {
 /*
 SetCallRestriction Enable/disable restriction
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param userId The unique user identifier
-	@param restriction The name of the call restriction
-	@return ApiSetCallRestrictionRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param userId The unique user identifier
+ @param restriction The name of the call restriction
+ @return ApiSetCallRestrictionRequest
 */
 func (a *CallrestrictionsAPIService) SetCallRestriction(ctx context.Context, userId string, restriction string) ApiSetCallRestrictionRequest {
 	return ApiSetCallRestrictionRequest{
-		ApiService:  a,
-		ctx:         ctx,
-		userId:      userId,
+		ApiService: a,
+		ctx: ctx,
+		userId: userId,
 		restriction: restriction,
 	}
 }
@@ -204,9 +204,9 @@ func (a *CallrestrictionsAPIService) SetCallRestriction(ctx context.Context, use
 // Execute executes the request
 func (a *CallrestrictionsAPIService) SetCallRestrictionExecute(r ApiSetCallRestrictionRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodPost
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CallrestrictionsAPIService.SetCallRestriction")

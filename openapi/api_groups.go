@@ -19,14 +19,15 @@ import (
 	"strings"
 )
 
+
 type GroupsAPI interface {
 
 	/*
-		AddDeviceToGroup Add device to group
+	AddDeviceToGroup Add device to group
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param groupId The unique group identifier
-		@return ApiAddDeviceToGroupRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param groupId The unique group identifier
+	@return ApiAddDeviceToGroupRequest
 	*/
 	AddDeviceToGroup(ctx context.Context, groupId string) ApiAddDeviceToGroupRequest
 
@@ -34,11 +35,11 @@ type GroupsAPI interface {
 	AddDeviceToGroupExecute(r ApiAddDeviceToGroupRequest) (*http.Response, error)
 
 	/*
-		GetGroup Get a single groups details
+	GetGroup Get a single groups details
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param groupId The unique group identifier
-		@return ApiGetGroupRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param groupId The unique group identifier
+	@return ApiGetGroupRequest
 	*/
 	GetGroup(ctx context.Context, groupId string) ApiGetGroupRequest
 
@@ -47,11 +48,11 @@ type GroupsAPI interface {
 	GetGroupExecute(r ApiGetGroupRequest) (*GroupResponse, *http.Response, error)
 
 	/*
-		GetGroupFaxlineCallerId Get the caller ID of a specific group fax
+	GetGroupFaxlineCallerId Get the caller ID of a specific group fax
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param faxlineId The unique fax line identifier
-		@return ApiGetGroupFaxlineCallerIdRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param faxlineId The unique fax line identifier
+	@return ApiGetGroupFaxlineCallerIdRequest
 	*/
 	GetGroupFaxlineCallerId(ctx context.Context, faxlineId string) ApiGetGroupFaxlineCallerIdRequest
 
@@ -60,11 +61,11 @@ type GroupsAPI interface {
 	GetGroupFaxlineCallerIdExecute(r ApiGetGroupFaxlineCallerIdRequest) (*FaxlineCallerIdResponse, *http.Response, error)
 
 	/*
-		GetGroupFaxlineNumbers List all phone numbers routed to group fax line
+	GetGroupFaxlineNumbers List all phone numbers routed to group fax line
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param faxlineId The unique fax line identifier
-		@return ApiGetGroupFaxlineNumbersRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param faxlineId The unique fax line identifier
+	@return ApiGetGroupFaxlineNumbersRequest
 	*/
 	GetGroupFaxlineNumbers(ctx context.Context, faxlineId string) ApiGetGroupFaxlineNumbersRequest
 
@@ -73,11 +74,11 @@ type GroupsAPI interface {
 	GetGroupFaxlineNumbersExecute(r ApiGetGroupFaxlineNumbersRequest) (*EndpointNumbersResponse, *http.Response, error)
 
 	/*
-		GetGroupFaxlines List all fax lines for a specific group
+	GetGroupFaxlines List all fax lines for a specific group
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param groupId The unique group identifier
-		@return ApiGetGroupFaxlinesRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param groupId The unique group identifier
+	@return ApiGetGroupFaxlinesRequest
 	*/
 	GetGroupFaxlines(ctx context.Context, groupId string) ApiGetGroupFaxlinesRequest
 
@@ -86,10 +87,10 @@ type GroupsAPI interface {
 	GetGroupFaxlinesExecute(r ApiGetGroupFaxlinesRequest) (*GroupFaxlinesResponse, *http.Response, error)
 
 	/*
-		GetGroupFaxlinesForUser List all group fax lines
+	GetGroupFaxlinesForUser List all group fax lines
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@return ApiGetGroupFaxlinesForUserRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiGetGroupFaxlinesForUserRequest
 	*/
 	GetGroupFaxlinesForUser(ctx context.Context) ApiGetGroupFaxlinesForUserRequest
 
@@ -98,11 +99,11 @@ type GroupsAPI interface {
 	GetGroupFaxlinesForUserExecute(r ApiGetGroupFaxlinesForUserRequest) (*GroupFaxlinesResponse, *http.Response, error)
 
 	/*
-		GetGroupNumbers List all phone numbers routed to group
+	GetGroupNumbers List all phone numbers routed to group
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param groupId The unique group identifier
-		@return ApiGetGroupNumbersRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param groupId The unique group identifier
+	@return ApiGetGroupNumbersRequest
 	*/
 	GetGroupNumbers(ctx context.Context, groupId string) ApiGetGroupNumbersRequest
 
@@ -111,11 +112,11 @@ type GroupsAPI interface {
 	GetGroupNumbersExecute(r ApiGetGroupNumbersRequest) (*GroupNumbersResponse, *http.Response, error)
 
 	/*
-		GetGroupUsers List all group members
+	GetGroupUsers List all group members
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param groupId The unique group identifier
-		@return ApiGetGroupUsersRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param groupId The unique group identifier
+	@return ApiGetGroupUsersRequest
 	*/
 	GetGroupUsers(ctx context.Context, groupId string) ApiGetGroupUsersRequest
 
@@ -124,13 +125,13 @@ type GroupsAPI interface {
 	GetGroupUsersExecute(r ApiGetGroupUsersRequest) (*GroupUsersResponse, *http.Response, error)
 
 	/*
-		GetGroupVoicemail List all voicemails for a specific group
+	GetGroupVoicemail List all voicemails for a specific group
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param groupId The unique group identifier
-		@return ApiGetGroupVoicemailRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param groupId The unique group identifier
+	@return ApiGetGroupVoicemailRequest
 
-		Deprecated
+	Deprecated
 	*/
 	GetGroupVoicemail(ctx context.Context, groupId string) ApiGetGroupVoicemailRequest
 
@@ -140,10 +141,10 @@ type GroupsAPI interface {
 	GetGroupVoicemailExecute(r ApiGetGroupVoicemailRequest) (*PhonelineVoicemailsResponse, *http.Response, error)
 
 	/*
-		GetGroups List all groups
+	GetGroups List all groups
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@return ApiGetGroupsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiGetGroupsRequest
 	*/
 	GetGroups(ctx context.Context) ApiGetGroupsRequest
 
@@ -152,12 +153,12 @@ type GroupsAPI interface {
 	GetGroupsExecute(r ApiGetGroupsRequest) (*SimpleGroupsResponse, *http.Response, error)
 
 	/*
-		RemoveDeviceFromGroup Remove device from group
+	RemoveDeviceFromGroup Remove device from group
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param groupId The unique group identifier
-		@param deviceId The unique device identifier
-		@return ApiRemoveDeviceFromGroupRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param groupId The unique group identifier
+	@param deviceId The unique device identifier
+	@return ApiRemoveDeviceFromGroupRequest
 	*/
 	RemoveDeviceFromGroup(ctx context.Context, groupId string, deviceId string) ApiRemoveDeviceFromGroupRequest
 
@@ -169,10 +170,10 @@ type GroupsAPI interface {
 type GroupsAPIService service
 
 type ApiAddDeviceToGroupRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService GroupsAPI
-	groupId    string
-	body       *RouteDeviceRequest
+	groupId string
+	body *RouteDeviceRequest
 }
 
 func (r ApiAddDeviceToGroupRequest) Body(body RouteDeviceRequest) ApiAddDeviceToGroupRequest {
@@ -187,24 +188,24 @@ func (r ApiAddDeviceToGroupRequest) Execute() (*http.Response, error) {
 /*
 AddDeviceToGroup Add device to group
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId The unique group identifier
-	@return ApiAddDeviceToGroupRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param groupId The unique group identifier
+ @return ApiAddDeviceToGroupRequest
 */
 func (a *GroupsAPIService) AddDeviceToGroup(ctx context.Context, groupId string) ApiAddDeviceToGroupRequest {
 	return ApiAddDeviceToGroupRequest{
 		ApiService: a,
-		ctx:        ctx,
-		groupId:    groupId,
+		ctx: ctx,
+		groupId: groupId,
 	}
 }
 
 // Execute executes the request
 func (a *GroupsAPIService) AddDeviceToGroupExecute(r ApiAddDeviceToGroupRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodPost
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "GroupsAPIService.AddDeviceToGroup")
@@ -267,9 +268,9 @@ func (a *GroupsAPIService) AddDeviceToGroupExecute(r ApiAddDeviceToGroupRequest)
 }
 
 type ApiGetGroupRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService GroupsAPI
-	groupId    string
+	groupId string
 }
 
 func (r ApiGetGroupRequest) Execute() (*GroupResponse, *http.Response, error) {
@@ -279,27 +280,26 @@ func (r ApiGetGroupRequest) Execute() (*GroupResponse, *http.Response, error) {
 /*
 GetGroup Get a single groups details
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId The unique group identifier
-	@return ApiGetGroupRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param groupId The unique group identifier
+ @return ApiGetGroupRequest
 */
 func (a *GroupsAPIService) GetGroup(ctx context.Context, groupId string) ApiGetGroupRequest {
 	return ApiGetGroupRequest{
 		ApiService: a,
-		ctx:        ctx,
-		groupId:    groupId,
+		ctx: ctx,
+		groupId: groupId,
 	}
 }
 
 // Execute executes the request
-//
-//	@return GroupResponse
+//  @return GroupResponse
 func (a *GroupsAPIService) GetGroupExecute(r ApiGetGroupRequest) (*GroupResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *GroupResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *GroupResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "GroupsAPIService.GetGroup")
@@ -369,9 +369,9 @@ func (a *GroupsAPIService) GetGroupExecute(r ApiGetGroupRequest) (*GroupResponse
 }
 
 type ApiGetGroupFaxlineCallerIdRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService GroupsAPI
-	faxlineId  string
+	faxlineId string
 }
 
 func (r ApiGetGroupFaxlineCallerIdRequest) Execute() (*FaxlineCallerIdResponse, *http.Response, error) {
@@ -381,27 +381,26 @@ func (r ApiGetGroupFaxlineCallerIdRequest) Execute() (*FaxlineCallerIdResponse, 
 /*
 GetGroupFaxlineCallerId Get the caller ID of a specific group fax
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param faxlineId The unique fax line identifier
-	@return ApiGetGroupFaxlineCallerIdRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param faxlineId The unique fax line identifier
+ @return ApiGetGroupFaxlineCallerIdRequest
 */
 func (a *GroupsAPIService) GetGroupFaxlineCallerId(ctx context.Context, faxlineId string) ApiGetGroupFaxlineCallerIdRequest {
 	return ApiGetGroupFaxlineCallerIdRequest{
 		ApiService: a,
-		ctx:        ctx,
-		faxlineId:  faxlineId,
+		ctx: ctx,
+		faxlineId: faxlineId,
 	}
 }
 
 // Execute executes the request
-//
-//	@return FaxlineCallerIdResponse
+//  @return FaxlineCallerIdResponse
 func (a *GroupsAPIService) GetGroupFaxlineCallerIdExecute(r ApiGetGroupFaxlineCallerIdRequest) (*FaxlineCallerIdResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *FaxlineCallerIdResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *FaxlineCallerIdResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "GroupsAPIService.GetGroupFaxlineCallerId")
@@ -471,9 +470,9 @@ func (a *GroupsAPIService) GetGroupFaxlineCallerIdExecute(r ApiGetGroupFaxlineCa
 }
 
 type ApiGetGroupFaxlineNumbersRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService GroupsAPI
-	faxlineId  string
+	faxlineId string
 }
 
 func (r ApiGetGroupFaxlineNumbersRequest) Execute() (*EndpointNumbersResponse, *http.Response, error) {
@@ -483,27 +482,26 @@ func (r ApiGetGroupFaxlineNumbersRequest) Execute() (*EndpointNumbersResponse, *
 /*
 GetGroupFaxlineNumbers List all phone numbers routed to group fax line
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param faxlineId The unique fax line identifier
-	@return ApiGetGroupFaxlineNumbersRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param faxlineId The unique fax line identifier
+ @return ApiGetGroupFaxlineNumbersRequest
 */
 func (a *GroupsAPIService) GetGroupFaxlineNumbers(ctx context.Context, faxlineId string) ApiGetGroupFaxlineNumbersRequest {
 	return ApiGetGroupFaxlineNumbersRequest{
 		ApiService: a,
-		ctx:        ctx,
-		faxlineId:  faxlineId,
+		ctx: ctx,
+		faxlineId: faxlineId,
 	}
 }
 
 // Execute executes the request
-//
-//	@return EndpointNumbersResponse
+//  @return EndpointNumbersResponse
 func (a *GroupsAPIService) GetGroupFaxlineNumbersExecute(r ApiGetGroupFaxlineNumbersRequest) (*EndpointNumbersResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *EndpointNumbersResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *EndpointNumbersResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "GroupsAPIService.GetGroupFaxlineNumbers")
@@ -573,9 +571,9 @@ func (a *GroupsAPIService) GetGroupFaxlineNumbersExecute(r ApiGetGroupFaxlineNum
 }
 
 type ApiGetGroupFaxlinesRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService GroupsAPI
-	groupId    string
+	groupId string
 }
 
 func (r ApiGetGroupFaxlinesRequest) Execute() (*GroupFaxlinesResponse, *http.Response, error) {
@@ -585,27 +583,26 @@ func (r ApiGetGroupFaxlinesRequest) Execute() (*GroupFaxlinesResponse, *http.Res
 /*
 GetGroupFaxlines List all fax lines for a specific group
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId The unique group identifier
-	@return ApiGetGroupFaxlinesRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param groupId The unique group identifier
+ @return ApiGetGroupFaxlinesRequest
 */
 func (a *GroupsAPIService) GetGroupFaxlines(ctx context.Context, groupId string) ApiGetGroupFaxlinesRequest {
 	return ApiGetGroupFaxlinesRequest{
 		ApiService: a,
-		ctx:        ctx,
-		groupId:    groupId,
+		ctx: ctx,
+		groupId: groupId,
 	}
 }
 
 // Execute executes the request
-//
-//	@return GroupFaxlinesResponse
+//  @return GroupFaxlinesResponse
 func (a *GroupsAPIService) GetGroupFaxlinesExecute(r ApiGetGroupFaxlinesRequest) (*GroupFaxlinesResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *GroupFaxlinesResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *GroupFaxlinesResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "GroupsAPIService.GetGroupFaxlines")
@@ -675,9 +672,9 @@ func (a *GroupsAPIService) GetGroupFaxlinesExecute(r ApiGetGroupFaxlinesRequest)
 }
 
 type ApiGetGroupFaxlinesForUserRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService GroupsAPI
-	userId     *string
+	userId *string
 }
 
 // The unique user identifier
@@ -693,25 +690,24 @@ func (r ApiGetGroupFaxlinesForUserRequest) Execute() (*GroupFaxlinesResponse, *h
 /*
 GetGroupFaxlinesForUser List all group fax lines
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiGetGroupFaxlinesForUserRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiGetGroupFaxlinesForUserRequest
 */
 func (a *GroupsAPIService) GetGroupFaxlinesForUser(ctx context.Context) ApiGetGroupFaxlinesForUserRequest {
 	return ApiGetGroupFaxlinesForUserRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//
-//	@return GroupFaxlinesResponse
+//  @return GroupFaxlinesResponse
 func (a *GroupsAPIService) GetGroupFaxlinesForUserExecute(r ApiGetGroupFaxlinesForUserRequest) (*GroupFaxlinesResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *GroupFaxlinesResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *GroupFaxlinesResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "GroupsAPIService.GetGroupFaxlinesForUser")
@@ -783,9 +779,9 @@ func (a *GroupsAPIService) GetGroupFaxlinesForUserExecute(r ApiGetGroupFaxlinesF
 }
 
 type ApiGetGroupNumbersRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService GroupsAPI
-	groupId    string
+	groupId string
 }
 
 func (r ApiGetGroupNumbersRequest) Execute() (*GroupNumbersResponse, *http.Response, error) {
@@ -795,27 +791,26 @@ func (r ApiGetGroupNumbersRequest) Execute() (*GroupNumbersResponse, *http.Respo
 /*
 GetGroupNumbers List all phone numbers routed to group
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId The unique group identifier
-	@return ApiGetGroupNumbersRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param groupId The unique group identifier
+ @return ApiGetGroupNumbersRequest
 */
 func (a *GroupsAPIService) GetGroupNumbers(ctx context.Context, groupId string) ApiGetGroupNumbersRequest {
 	return ApiGetGroupNumbersRequest{
 		ApiService: a,
-		ctx:        ctx,
-		groupId:    groupId,
+		ctx: ctx,
+		groupId: groupId,
 	}
 }
 
 // Execute executes the request
-//
-//	@return GroupNumbersResponse
+//  @return GroupNumbersResponse
 func (a *GroupsAPIService) GetGroupNumbersExecute(r ApiGetGroupNumbersRequest) (*GroupNumbersResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *GroupNumbersResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *GroupNumbersResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "GroupsAPIService.GetGroupNumbers")
@@ -885,9 +880,9 @@ func (a *GroupsAPIService) GetGroupNumbersExecute(r ApiGetGroupNumbersRequest) (
 }
 
 type ApiGetGroupUsersRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService GroupsAPI
-	groupId    string
+	groupId string
 }
 
 func (r ApiGetGroupUsersRequest) Execute() (*GroupUsersResponse, *http.Response, error) {
@@ -897,27 +892,26 @@ func (r ApiGetGroupUsersRequest) Execute() (*GroupUsersResponse, *http.Response,
 /*
 GetGroupUsers List all group members
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId The unique group identifier
-	@return ApiGetGroupUsersRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param groupId The unique group identifier
+ @return ApiGetGroupUsersRequest
 */
 func (a *GroupsAPIService) GetGroupUsers(ctx context.Context, groupId string) ApiGetGroupUsersRequest {
 	return ApiGetGroupUsersRequest{
 		ApiService: a,
-		ctx:        ctx,
-		groupId:    groupId,
+		ctx: ctx,
+		groupId: groupId,
 	}
 }
 
 // Execute executes the request
-//
-//	@return GroupUsersResponse
+//  @return GroupUsersResponse
 func (a *GroupsAPIService) GetGroupUsersExecute(r ApiGetGroupUsersRequest) (*GroupUsersResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *GroupUsersResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *GroupUsersResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "GroupsAPIService.GetGroupUsers")
@@ -987,9 +981,9 @@ func (a *GroupsAPIService) GetGroupUsersExecute(r ApiGetGroupUsersRequest) (*Gro
 }
 
 type ApiGetGroupVoicemailRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService GroupsAPI
-	groupId    string
+	groupId string
 }
 
 func (r ApiGetGroupVoicemailRequest) Execute() (*PhonelineVoicemailsResponse, *http.Response, error) {
@@ -999,31 +993,29 @@ func (r ApiGetGroupVoicemailRequest) Execute() (*PhonelineVoicemailsResponse, *h
 /*
 GetGroupVoicemail List all voicemails for a specific group
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId The unique group identifier
-	@return ApiGetGroupVoicemailRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param groupId The unique group identifier
+ @return ApiGetGroupVoicemailRequest
 
 Deprecated
 */
 func (a *GroupsAPIService) GetGroupVoicemail(ctx context.Context, groupId string) ApiGetGroupVoicemailRequest {
 	return ApiGetGroupVoicemailRequest{
 		ApiService: a,
-		ctx:        ctx,
-		groupId:    groupId,
+		ctx: ctx,
+		groupId: groupId,
 	}
 }
 
 // Execute executes the request
-//
-//	@return PhonelineVoicemailsResponse
-//
+//  @return PhonelineVoicemailsResponse
 // Deprecated
 func (a *GroupsAPIService) GetGroupVoicemailExecute(r ApiGetGroupVoicemailRequest) (*PhonelineVoicemailsResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *PhonelineVoicemailsResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *PhonelineVoicemailsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "GroupsAPIService.GetGroupVoicemail")
@@ -1093,9 +1085,9 @@ func (a *GroupsAPIService) GetGroupVoicemailExecute(r ApiGetGroupVoicemailReques
 }
 
 type ApiGetGroupsRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService GroupsAPI
-	userId     *string
+	userId *string
 }
 
 // The unique user identifier
@@ -1111,25 +1103,24 @@ func (r ApiGetGroupsRequest) Execute() (*SimpleGroupsResponse, *http.Response, e
 /*
 GetGroups List all groups
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiGetGroupsRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiGetGroupsRequest
 */
 func (a *GroupsAPIService) GetGroups(ctx context.Context) ApiGetGroupsRequest {
 	return ApiGetGroupsRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//
-//	@return SimpleGroupsResponse
+//  @return SimpleGroupsResponse
 func (a *GroupsAPIService) GetGroupsExecute(r ApiGetGroupsRequest) (*SimpleGroupsResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *SimpleGroupsResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *SimpleGroupsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "GroupsAPIService.GetGroups")
@@ -1201,10 +1192,10 @@ func (a *GroupsAPIService) GetGroupsExecute(r ApiGetGroupsRequest) (*SimpleGroup
 }
 
 type ApiRemoveDeviceFromGroupRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService GroupsAPI
-	groupId    string
-	deviceId   string
+	groupId string
+	deviceId string
 }
 
 func (r ApiRemoveDeviceFromGroupRequest) Execute() (*http.Response, error) {
@@ -1214,26 +1205,26 @@ func (r ApiRemoveDeviceFromGroupRequest) Execute() (*http.Response, error) {
 /*
 RemoveDeviceFromGroup Remove device from group
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupId The unique group identifier
-	@param deviceId The unique device identifier
-	@return ApiRemoveDeviceFromGroupRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param groupId The unique group identifier
+ @param deviceId The unique device identifier
+ @return ApiRemoveDeviceFromGroupRequest
 */
 func (a *GroupsAPIService) RemoveDeviceFromGroup(ctx context.Context, groupId string, deviceId string) ApiRemoveDeviceFromGroupRequest {
 	return ApiRemoveDeviceFromGroupRequest{
 		ApiService: a,
-		ctx:        ctx,
-		groupId:    groupId,
-		deviceId:   deviceId,
+		ctx: ctx,
+		groupId: groupId,
+		deviceId: deviceId,
 	}
 }
 
 // Execute executes the request
 func (a *GroupsAPIService) RemoveDeviceFromGroupExecute(r ApiRemoveDeviceFromGroupRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodDelete
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "GroupsAPIService.RemoveDeviceFromGroup")

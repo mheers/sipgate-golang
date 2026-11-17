@@ -16,17 +16,18 @@ import (
 	"io"
 	"net/http"
 	"net/url"
-	"reflect"
 	"strings"
+	"reflect"
 )
+
 
 type HistoryAPI interface {
 
 	/*
-		DeleteHistoryEntries Delete multiple calls, faxes, SMS or voicemails
+	DeleteHistoryEntries Delete multiple calls, faxes, SMS or voicemails
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@return ApiDeleteHistoryEntriesRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiDeleteHistoryEntriesRequest
 	*/
 	DeleteHistoryEntries(ctx context.Context) ApiDeleteHistoryEntriesRequest
 
@@ -34,11 +35,11 @@ type HistoryAPI interface {
 	DeleteHistoryEntriesExecute(r ApiDeleteHistoryEntriesRequest) (*http.Response, error)
 
 	/*
-		DeleteHistoryEntry Delete a call, fax, SMS or voicemail
+	DeleteHistoryEntry Delete a call, fax, SMS or voicemail
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param entryId The unique call, fax, sms or voicemail identifier
-		@return ApiDeleteHistoryEntryRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param entryId The unique call, fax, sms or voicemail identifier
+	@return ApiDeleteHistoryEntryRequest
 	*/
 	DeleteHistoryEntry(ctx context.Context, entryId string) ApiDeleteHistoryEntryRequest
 
@@ -46,10 +47,10 @@ type HistoryAPI interface {
 	DeleteHistoryEntryExecute(r ApiDeleteHistoryEntryRequest) (*http.Response, error)
 
 	/*
-		GetHistory List all calls, faxes, SMS and voicemails
+	GetHistory List all calls, faxes, SMS and voicemails
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@return ApiGetHistoryRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiGetHistoryRequest
 	*/
 	GetHistory(ctx context.Context) ApiGetHistoryRequest
 
@@ -58,11 +59,11 @@ type HistoryAPI interface {
 	GetHistoryExecute(r ApiGetHistoryRequest) (*HistoryResponse, *http.Response, error)
 
 	/*
-		GetHistoryById Get a specific call, fax, SMS or voicemail
+	GetHistoryById Get a specific call, fax, SMS or voicemail
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param entryId The unique call, fax, sms or voicemail identifier
-		@return ApiGetHistoryByIdRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param entryId The unique call, fax, sms or voicemail identifier
+	@return ApiGetHistoryByIdRequest
 	*/
 	GetHistoryById(ctx context.Context, entryId string) ApiGetHistoryByIdRequest
 
@@ -71,10 +72,10 @@ type HistoryAPI interface {
 	GetHistoryByIdExecute(r ApiGetHistoryByIdRequest) (*HistoryEntryResponse, *http.Response, error)
 
 	/*
-		GetHistoryCSV List all calls, faxes, SMS and voicemails as csv
+	GetHistoryCSV List all calls, faxes, SMS and voicemails as csv
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@return ApiGetHistoryCSVRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiGetHistoryCSVRequest
 	*/
 	GetHistoryCSV(ctx context.Context) ApiGetHistoryCSVRequest
 
@@ -83,13 +84,13 @@ type HistoryAPI interface {
 	GetHistoryCSVExecute(r ApiGetHistoryCSVRequest) (*HistoryResponse, *http.Response, error)
 
 	/*
-		SetArchive Archive a specific entry.
+	SetArchive Archive a specific entry.
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param entryId The unique call, fax, sms or voicemail identifier
-		@return ApiSetArchiveRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param entryId The unique call, fax, sms or voicemail identifier
+	@return ApiSetArchiveRequest
 
-		Deprecated
+	Deprecated
 	*/
 	SetArchive(ctx context.Context, entryId string) ApiSetArchiveRequest
 
@@ -98,13 +99,13 @@ type HistoryAPI interface {
 	SetArchiveExecute(r ApiSetArchiveRequest) (*http.Response, error)
 
 	/*
-		SetHistoryEntryNote Set the note of a specific call, fax, SMS or voicemail
+	SetHistoryEntryNote Set the note of a specific call, fax, SMS or voicemail
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param entryId The unique call, fax, sms or voicemail identifier
-		@return ApiSetHistoryEntryNoteRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param entryId The unique call, fax, sms or voicemail identifier
+	@return ApiSetHistoryEntryNoteRequest
 
-		Deprecated
+	Deprecated
 	*/
 	SetHistoryEntryNote(ctx context.Context, entryId string) ApiSetHistoryEntryNoteRequest
 
@@ -113,13 +114,13 @@ type HistoryAPI interface {
 	SetHistoryEntryNoteExecute(r ApiSetHistoryEntryNoteRequest) (*http.Response, error)
 
 	/*
-		SetReadProperty Mark an specific entry as read or unread
+	SetReadProperty Mark an specific entry as read or unread
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param entryId The unique call, fax, sms or voicemail identifier
-		@return ApiSetReadPropertyRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param entryId The unique call, fax, sms or voicemail identifier
+	@return ApiSetReadPropertyRequest
 
-		Deprecated
+	Deprecated
 	*/
 	SetReadProperty(ctx context.Context, entryId string) ApiSetReadPropertyRequest
 
@@ -128,10 +129,10 @@ type HistoryAPI interface {
 	SetReadPropertyExecute(r ApiSetReadPropertyRequest) (*http.Response, error)
 
 	/*
-		UpdateHistoryEntries Update multiple calls, faxes, SMS or voicemails
+	UpdateHistoryEntries Update multiple calls, faxes, SMS or voicemails
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@return ApiUpdateHistoryEntriesRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiUpdateHistoryEntriesRequest
 	*/
 	UpdateHistoryEntries(ctx context.Context) ApiUpdateHistoryEntriesRequest
 
@@ -139,11 +140,11 @@ type HistoryAPI interface {
 	UpdateHistoryEntriesExecute(r ApiUpdateHistoryEntriesRequest) (*http.Response, error)
 
 	/*
-		UpdateHistoryEntry Update a specific call, fax, SMS or voicemail
+	UpdateHistoryEntry Update a specific call, fax, SMS or voicemail
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param entryId The unique call, fax, sms or voicemail identifier
-		@return ApiUpdateHistoryEntryRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param entryId The unique call, fax, sms or voicemail identifier
+	@return ApiUpdateHistoryEntryRequest
 	*/
 	UpdateHistoryEntry(ctx context.Context, entryId string) ApiUpdateHistoryEntryRequest
 
@@ -155,9 +156,9 @@ type HistoryAPI interface {
 type HistoryAPIService service
 
 type ApiDeleteHistoryEntriesRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService HistoryAPI
-	id         *[]string
+	id *[]string
 }
 
 // List of entry ids to delete
@@ -173,22 +174,22 @@ func (r ApiDeleteHistoryEntriesRequest) Execute() (*http.Response, error) {
 /*
 DeleteHistoryEntries Delete multiple calls, faxes, SMS or voicemails
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiDeleteHistoryEntriesRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiDeleteHistoryEntriesRequest
 */
 func (a *HistoryAPIService) DeleteHistoryEntries(ctx context.Context) ApiDeleteHistoryEntriesRequest {
 	return ApiDeleteHistoryEntriesRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
 // Execute executes the request
 func (a *HistoryAPIService) DeleteHistoryEntriesExecute(r ApiDeleteHistoryEntriesRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodDelete
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HistoryAPIService.DeleteHistoryEntries")
@@ -259,9 +260,9 @@ func (a *HistoryAPIService) DeleteHistoryEntriesExecute(r ApiDeleteHistoryEntrie
 }
 
 type ApiDeleteHistoryEntryRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService HistoryAPI
-	entryId    string
+	entryId string
 }
 
 func (r ApiDeleteHistoryEntryRequest) Execute() (*http.Response, error) {
@@ -271,24 +272,24 @@ func (r ApiDeleteHistoryEntryRequest) Execute() (*http.Response, error) {
 /*
 DeleteHistoryEntry Delete a call, fax, SMS or voicemail
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param entryId The unique call, fax, sms or voicemail identifier
-	@return ApiDeleteHistoryEntryRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param entryId The unique call, fax, sms or voicemail identifier
+ @return ApiDeleteHistoryEntryRequest
 */
 func (a *HistoryAPIService) DeleteHistoryEntry(ctx context.Context, entryId string) ApiDeleteHistoryEntryRequest {
 	return ApiDeleteHistoryEntryRequest{
 		ApiService: a,
-		ctx:        ctx,
-		entryId:    entryId,
+		ctx: ctx,
+		entryId: entryId,
 	}
 }
 
 // Execute executes the request
 func (a *HistoryAPIService) DeleteHistoryEntryExecute(r ApiDeleteHistoryEntryRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodDelete
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HistoryAPIService.DeleteHistoryEntry")
@@ -349,19 +350,19 @@ func (a *HistoryAPIService) DeleteHistoryEntryExecute(r ApiDeleteHistoryEntryReq
 }
 
 type ApiGetHistoryRequest struct {
-	ctx             context.Context
-	ApiService      HistoryAPI
-	types           *[]string
-	directions      *[]string
-	offset          *int32
-	limit           *int32
-	archived        *bool
-	starred         *[]string
-	from            *string
-	to              *string
-	phonenumber     *string
+	ctx context.Context
+	ApiService HistoryAPI
+	types *[]string
+	directions *[]string
+	offset *int32
+	limit *int32
+	archived *bool
+	starred *[]string
+	from *string
+	to *string
+	phonenumber *string
 	includeAllUsers *bool
-	connectionIds   *[]string
+	connectionIds *[]string
 }
 
 // Filter by type
@@ -437,25 +438,24 @@ func (r ApiGetHistoryRequest) Execute() (*HistoryResponse, *http.Response, error
 /*
 GetHistory List all calls, faxes, SMS and voicemails
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiGetHistoryRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiGetHistoryRequest
 */
 func (a *HistoryAPIService) GetHistory(ctx context.Context) ApiGetHistoryRequest {
 	return ApiGetHistoryRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//
-//	@return HistoryResponse
+//  @return HistoryResponse
 func (a *HistoryAPIService) GetHistoryExecute(r ApiGetHistoryRequest) (*HistoryResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *HistoryResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *HistoryResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HistoryAPIService.GetHistory")
@@ -605,9 +605,9 @@ func (a *HistoryAPIService) GetHistoryExecute(r ApiGetHistoryRequest) (*HistoryR
 }
 
 type ApiGetHistoryByIdRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService HistoryAPI
-	entryId    string
+	entryId string
 }
 
 func (r ApiGetHistoryByIdRequest) Execute() (*HistoryEntryResponse, *http.Response, error) {
@@ -617,27 +617,26 @@ func (r ApiGetHistoryByIdRequest) Execute() (*HistoryEntryResponse, *http.Respon
 /*
 GetHistoryById Get a specific call, fax, SMS or voicemail
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param entryId The unique call, fax, sms or voicemail identifier
-	@return ApiGetHistoryByIdRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param entryId The unique call, fax, sms or voicemail identifier
+ @return ApiGetHistoryByIdRequest
 */
 func (a *HistoryAPIService) GetHistoryById(ctx context.Context, entryId string) ApiGetHistoryByIdRequest {
 	return ApiGetHistoryByIdRequest{
 		ApiService: a,
-		ctx:        ctx,
-		entryId:    entryId,
+		ctx: ctx,
+		entryId: entryId,
 	}
 }
 
 // Execute executes the request
-//
-//	@return HistoryEntryResponse
+//  @return HistoryEntryResponse
 func (a *HistoryAPIService) GetHistoryByIdExecute(r ApiGetHistoryByIdRequest) (*HistoryEntryResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *HistoryEntryResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *HistoryEntryResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HistoryAPIService.GetHistoryById")
@@ -707,18 +706,18 @@ func (a *HistoryAPIService) GetHistoryByIdExecute(r ApiGetHistoryByIdRequest) (*
 }
 
 type ApiGetHistoryCSVRequest struct {
-	ctx             context.Context
-	ApiService      HistoryAPI
-	types           *[]string
-	directions      *[]string
-	offset          *int32
-	limit           *int32
-	archived        *bool
-	starred         *[]string
-	from            *string
-	to              *string
+	ctx context.Context
+	ApiService HistoryAPI
+	types *[]string
+	directions *[]string
+	offset *int32
+	limit *int32
+	archived *bool
+	starred *[]string
+	from *string
+	to *string
 	includeAllUsers *bool
-	connectionIds   *[]string
+	connectionIds *[]string
 }
 
 // Filter by type
@@ -788,25 +787,24 @@ func (r ApiGetHistoryCSVRequest) Execute() (*HistoryResponse, *http.Response, er
 /*
 GetHistoryCSV List all calls, faxes, SMS and voicemails as csv
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiGetHistoryCSVRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiGetHistoryCSVRequest
 */
 func (a *HistoryAPIService) GetHistoryCSV(ctx context.Context) ApiGetHistoryCSVRequest {
 	return ApiGetHistoryCSVRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//
-//	@return HistoryResponse
+//  @return HistoryResponse
 func (a *HistoryAPIService) GetHistoryCSVExecute(r ApiGetHistoryCSVRequest) (*HistoryResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *HistoryResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *HistoryResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HistoryAPIService.GetHistoryCSV")
@@ -953,10 +951,10 @@ func (a *HistoryAPIService) GetHistoryCSVExecute(r ApiGetHistoryCSVRequest) (*Hi
 }
 
 type ApiSetArchiveRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService HistoryAPI
-	entryId    string
-	body       *SetHistoryEntryArchiveRequest
+	entryId string
+	body *SetHistoryEntryArchiveRequest
 }
 
 func (r ApiSetArchiveRequest) Body(body SetHistoryEntryArchiveRequest) ApiSetArchiveRequest {
@@ -971,17 +969,17 @@ func (r ApiSetArchiveRequest) Execute() (*http.Response, error) {
 /*
 SetArchive Archive a specific entry.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param entryId The unique call, fax, sms or voicemail identifier
-	@return ApiSetArchiveRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param entryId The unique call, fax, sms or voicemail identifier
+ @return ApiSetArchiveRequest
 
 Deprecated
 */
 func (a *HistoryAPIService) SetArchive(ctx context.Context, entryId string) ApiSetArchiveRequest {
 	return ApiSetArchiveRequest{
 		ApiService: a,
-		ctx:        ctx,
-		entryId:    entryId,
+		ctx: ctx,
+		entryId: entryId,
 	}
 }
 
@@ -989,9 +987,9 @@ func (a *HistoryAPIService) SetArchive(ctx context.Context, entryId string) ApiS
 // Deprecated
 func (a *HistoryAPIService) SetArchiveExecute(r ApiSetArchiveRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodPut
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod   = http.MethodPut
+		localVarPostBody     interface{}
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HistoryAPIService.SetArchive")
@@ -1054,10 +1052,10 @@ func (a *HistoryAPIService) SetArchiveExecute(r ApiSetArchiveRequest) (*http.Res
 }
 
 type ApiSetHistoryEntryNoteRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService HistoryAPI
-	entryId    string
-	body       *SetHistoryEntryNoteRequest
+	entryId string
+	body *SetHistoryEntryNoteRequest
 }
 
 func (r ApiSetHistoryEntryNoteRequest) Body(body SetHistoryEntryNoteRequest) ApiSetHistoryEntryNoteRequest {
@@ -1072,17 +1070,17 @@ func (r ApiSetHistoryEntryNoteRequest) Execute() (*http.Response, error) {
 /*
 SetHistoryEntryNote Set the note of a specific call, fax, SMS or voicemail
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param entryId The unique call, fax, sms or voicemail identifier
-	@return ApiSetHistoryEntryNoteRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param entryId The unique call, fax, sms or voicemail identifier
+ @return ApiSetHistoryEntryNoteRequest
 
 Deprecated
 */
 func (a *HistoryAPIService) SetHistoryEntryNote(ctx context.Context, entryId string) ApiSetHistoryEntryNoteRequest {
 	return ApiSetHistoryEntryNoteRequest{
 		ApiService: a,
-		ctx:        ctx,
-		entryId:    entryId,
+		ctx: ctx,
+		entryId: entryId,
 	}
 }
 
@@ -1090,9 +1088,9 @@ func (a *HistoryAPIService) SetHistoryEntryNote(ctx context.Context, entryId str
 // Deprecated
 func (a *HistoryAPIService) SetHistoryEntryNoteExecute(r ApiSetHistoryEntryNoteRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodPut
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod   = http.MethodPut
+		localVarPostBody     interface{}
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HistoryAPIService.SetHistoryEntryNote")
@@ -1155,10 +1153,10 @@ func (a *HistoryAPIService) SetHistoryEntryNoteExecute(r ApiSetHistoryEntryNoteR
 }
 
 type ApiSetReadPropertyRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService HistoryAPI
-	entryId    string
-	body       *SetHistoryEntryReadRequest
+	entryId string
+	body *SetHistoryEntryReadRequest
 }
 
 func (r ApiSetReadPropertyRequest) Body(body SetHistoryEntryReadRequest) ApiSetReadPropertyRequest {
@@ -1173,17 +1171,17 @@ func (r ApiSetReadPropertyRequest) Execute() (*http.Response, error) {
 /*
 SetReadProperty Mark an specific entry as read or unread
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param entryId The unique call, fax, sms or voicemail identifier
-	@return ApiSetReadPropertyRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param entryId The unique call, fax, sms or voicemail identifier
+ @return ApiSetReadPropertyRequest
 
 Deprecated
 */
 func (a *HistoryAPIService) SetReadProperty(ctx context.Context, entryId string) ApiSetReadPropertyRequest {
 	return ApiSetReadPropertyRequest{
 		ApiService: a,
-		ctx:        ctx,
-		entryId:    entryId,
+		ctx: ctx,
+		entryId: entryId,
 	}
 }
 
@@ -1191,9 +1189,9 @@ func (a *HistoryAPIService) SetReadProperty(ctx context.Context, entryId string)
 // Deprecated
 func (a *HistoryAPIService) SetReadPropertyExecute(r ApiSetReadPropertyRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodPut
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod   = http.MethodPut
+		localVarPostBody     interface{}
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HistoryAPIService.SetReadProperty")
@@ -1256,9 +1254,9 @@ func (a *HistoryAPIService) SetReadPropertyExecute(r ApiSetReadPropertyRequest) 
 }
 
 type ApiUpdateHistoryEntriesRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService HistoryAPI
-	body       *[]UpdateHistoryEntriesRequest
+	body *[]UpdateHistoryEntriesRequest
 }
 
 // A list of events which should be updated. Must be less than 150
@@ -1274,22 +1272,22 @@ func (r ApiUpdateHistoryEntriesRequest) Execute() (*http.Response, error) {
 /*
 UpdateHistoryEntries Update multiple calls, faxes, SMS or voicemails
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiUpdateHistoryEntriesRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiUpdateHistoryEntriesRequest
 */
 func (a *HistoryAPIService) UpdateHistoryEntries(ctx context.Context) ApiUpdateHistoryEntriesRequest {
 	return ApiUpdateHistoryEntriesRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
 // Execute executes the request
 func (a *HistoryAPIService) UpdateHistoryEntriesExecute(r ApiUpdateHistoryEntriesRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodPut
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod   = http.MethodPut
+		localVarPostBody     interface{}
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HistoryAPIService.UpdateHistoryEntries")
@@ -1351,10 +1349,10 @@ func (a *HistoryAPIService) UpdateHistoryEntriesExecute(r ApiUpdateHistoryEntrie
 }
 
 type ApiUpdateHistoryEntryRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService HistoryAPI
-	entryId    string
-	body       *UpdateHistoryEntryRequest
+	entryId string
+	body *UpdateHistoryEntryRequest
 }
 
 func (r ApiUpdateHistoryEntryRequest) Body(body UpdateHistoryEntryRequest) ApiUpdateHistoryEntryRequest {
@@ -1369,24 +1367,24 @@ func (r ApiUpdateHistoryEntryRequest) Execute() (*http.Response, error) {
 /*
 UpdateHistoryEntry Update a specific call, fax, SMS or voicemail
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param entryId The unique call, fax, sms or voicemail identifier
-	@return ApiUpdateHistoryEntryRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param entryId The unique call, fax, sms or voicemail identifier
+ @return ApiUpdateHistoryEntryRequest
 */
 func (a *HistoryAPIService) UpdateHistoryEntry(ctx context.Context, entryId string) ApiUpdateHistoryEntryRequest {
 	return ApiUpdateHistoryEntryRequest{
 		ApiService: a,
-		ctx:        ctx,
-		entryId:    entryId,
+		ctx: ctx,
+		entryId: entryId,
 	}
 }
 
 // Execute executes the request
 func (a *HistoryAPIService) UpdateHistoryEntryExecute(r ApiUpdateHistoryEntryRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodPut
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod   = http.MethodPut
+		localVarPostBody     interface{}
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HistoryAPIService.UpdateHistoryEntry")

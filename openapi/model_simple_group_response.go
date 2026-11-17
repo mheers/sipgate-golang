@@ -19,11 +19,11 @@ var _ MappedNullable = &SimpleGroupResponse{}
 
 // SimpleGroupResponse struct for SimpleGroupResponse
 type SimpleGroupResponse struct {
-	Alias           *string `json:"alias,omitempty"`
-	DepartmentId    *int64  `json:"departmentId,omitempty"`
+	Alias *string `json:"alias,omitempty"`
+	DepartmentId *int64 `json:"departmentId,omitempty"`
 	GroupNumbersUrl *string `json:"groupNumbersUrl,omitempty"`
-	GroupUsersUrl   *string `json:"groupUsersUrl,omitempty"`
-	Id              *string `json:"id,omitempty"`
+	GroupUsersUrl *string `json:"groupUsersUrl,omitempty"`
+	Id *string `json:"id,omitempty"`
 }
 
 // NewSimpleGroupResponse instantiates a new SimpleGroupResponse object
@@ -204,7 +204,7 @@ func (o *SimpleGroupResponse) SetId(v string) {
 }
 
 func (o SimpleGroupResponse) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -266,3 +266,5 @@ func (v *NullableSimpleGroupResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

@@ -19,14 +19,14 @@ var _ MappedNullable = &VoicemailResponse{}
 
 // VoicemailResponse struct for VoicemailResponse
 type VoicemailResponse struct {
-	AccessNumber        *string           `json:"accessNumber,omitempty"`
-	ActiveGreetingAlias *string           `json:"activeGreetingAlias,omitempty"`
-	ActiveGreetingId    *string           `json:"activeGreetingId,omitempty"`
-	Alias               *string           `json:"alias,omitempty"`
-	BelongsToEndpoint   *EndpointResponse `json:"belongsToEndpoint,omitempty"`
-	CanTranscribe       *bool             `json:"canTranscribe,omitempty"`
-	Id                  *string           `json:"id,omitempty"`
-	Transcription       *bool             `json:"transcription,omitempty"`
+	AccessNumber *string `json:"accessNumber,omitempty"`
+	ActiveGreetingAlias *string `json:"activeGreetingAlias,omitempty"`
+	ActiveGreetingId *string `json:"activeGreetingId,omitempty"`
+	Alias *string `json:"alias,omitempty"`
+	BelongsToEndpoint *EndpointResponse `json:"belongsToEndpoint,omitempty"`
+	CanTranscribe *bool `json:"canTranscribe,omitempty"`
+	Id *string `json:"id,omitempty"`
+	Transcription *bool `json:"transcription,omitempty"`
 }
 
 // NewVoicemailResponse instantiates a new VoicemailResponse object
@@ -311,7 +311,7 @@ func (o *VoicemailResponse) SetTranscription(v bool) {
 }
 
 func (o VoicemailResponse) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -382,3 +382,5 @@ func (v *NullableVoicemailResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

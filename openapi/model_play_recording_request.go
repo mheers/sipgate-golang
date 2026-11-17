@@ -19,7 +19,7 @@ var _ MappedNullable = &PlayRecordingRequest{}
 
 // PlayRecordingRequest struct for PlayRecordingRequest
 type PlayRecordingRequest struct {
-	DatadId  *string `json:"datadId,omitempty"`
+	DatadId *string `json:"datadId,omitempty"`
 	DeviceId *string `json:"deviceId,omitempty"`
 }
 
@@ -105,7 +105,7 @@ func (o *PlayRecordingRequest) SetDeviceId(v string) {
 }
 
 func (o PlayRecordingRequest) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -158,3 +158,5 @@ func (v *NullablePlayRecordingRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

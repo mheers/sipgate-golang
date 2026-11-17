@@ -20,7 +20,7 @@ var _ MappedNullable = &AddGreetingRequest{}
 // AddGreetingRequest struct for AddGreetingRequest
 type AddGreetingRequest struct {
 	Base64Content *string `json:"base64Content,omitempty"`
-	Filename      *string `json:"filename,omitempty"`
+	Filename *string `json:"filename,omitempty"`
 }
 
 // NewAddGreetingRequest instantiates a new AddGreetingRequest object
@@ -105,7 +105,7 @@ func (o *AddGreetingRequest) SetFilename(v string) {
 }
 
 func (o AddGreetingRequest) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -158,3 +158,5 @@ func (v *NullableAddGreetingRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

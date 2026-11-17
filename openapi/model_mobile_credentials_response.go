@@ -19,8 +19,8 @@ var _ MappedNullable = &MobileCredentialsResponse{}
 
 // MobileCredentialsResponse struct for MobileCredentialsResponse
 type MobileCredentialsResponse struct {
-	Puk1  *string `json:"puk1,omitempty"`
-	Puk2  *string `json:"puk2,omitempty"`
+	Puk1 *string `json:"puk1,omitempty"`
+	Puk2 *string `json:"puk2,omitempty"`
 	SimId *string `json:"simId,omitempty"`
 }
 
@@ -138,7 +138,7 @@ func (o *MobileCredentialsResponse) SetSimId(v string) {
 }
 
 func (o MobileCredentialsResponse) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -194,3 +194,5 @@ func (v *NullableMobileCredentialsResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

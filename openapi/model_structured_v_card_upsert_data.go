@@ -19,8 +19,8 @@ var _ MappedNullable = &StructuredVCardUpsertData{}
 
 // StructuredVCardUpsertData struct for StructuredVCardUpsertData
 type StructuredVCardUpsertData struct {
-	ContactId *string                           `json:"contactId,omitempty"`
-	Item      *map[string][]StructuredVCardItem `json:"item,omitempty"`
+	ContactId *string `json:"contactId,omitempty"`
+	Item *map[string][]StructuredVCardItem `json:"item,omitempty"`
 }
 
 // NewStructuredVCardUpsertData instantiates a new StructuredVCardUpsertData object
@@ -105,7 +105,7 @@ func (o *StructuredVCardUpsertData) SetItem(v map[string][]StructuredVCardItem) 
 }
 
 func (o StructuredVCardUpsertData) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -158,3 +158,5 @@ func (v *NullableStructuredVCardUpsertData) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

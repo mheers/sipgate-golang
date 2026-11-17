@@ -19,7 +19,7 @@ var _ MappedNullable = &CreateExternalDeviceRequest{}
 
 // CreateExternalDeviceRequest struct for CreateExternalDeviceRequest
 type CreateExternalDeviceRequest struct {
-	Alias  *string `json:"alias,omitempty"`
+	Alias *string `json:"alias,omitempty"`
 	Number *string `json:"number,omitempty"`
 }
 
@@ -105,7 +105,7 @@ func (o *CreateExternalDeviceRequest) SetNumber(v string) {
 }
 
 func (o CreateExternalDeviceRequest) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -158,3 +158,5 @@ func (v *NullableCreateExternalDeviceRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

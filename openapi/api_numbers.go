@@ -19,13 +19,14 @@ import (
 	"strings"
 )
 
+
 type NumbersAPI interface {
 
 	/*
-		AddQuickDialNumber Add a new quick dial number
+	AddQuickDialNumber Add a new quick dial number
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@return ApiAddQuickDialNumberRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiAddQuickDialNumberRequest
 	*/
 	AddQuickDialNumber(ctx context.Context) ApiAddQuickDialNumberRequest
 
@@ -34,11 +35,11 @@ type NumbersAPI interface {
 	AddQuickDialNumberExecute(r ApiAddQuickDialNumberRequest) (*NumberResponseWithEndpoint, *http.Response, error)
 
 	/*
-		ChangeNumberSettings Change phone number settings, e.g. route to endpoint
+	ChangeNumberSettings Change phone number settings, e.g. route to endpoint
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param numberId The unique phone number identifier
-		@return ApiChangeNumberSettingsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param numberId The unique phone number identifier
+	@return ApiChangeNumberSettingsRequest
 	*/
 	ChangeNumberSettings(ctx context.Context, numberId string) ApiChangeNumberSettingsRequest
 
@@ -46,11 +47,11 @@ type NumbersAPI interface {
 	ChangeNumberSettingsExecute(r ApiChangeNumberSettingsRequest) (*http.Response, error)
 
 	/*
-		ChangeQuickDialNumber Update an existing quick dial number
+	ChangeQuickDialNumber Update an existing quick dial number
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param quickdialId
-		@return ApiChangeQuickDialNumberRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param quickdialId
+	@return ApiChangeQuickDialNumberRequest
 	*/
 	ChangeQuickDialNumber(ctx context.Context, quickdialId string) ApiChangeQuickDialNumberRequest
 
@@ -58,11 +59,11 @@ type NumbersAPI interface {
 	ChangeQuickDialNumberExecute(r ApiChangeQuickDialNumberRequest) (*http.Response, error)
 
 	/*
-		DeleteQuickDialNumber Delete an existing quick dial number
+	DeleteQuickDialNumber Delete an existing quick dial number
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param numberId The unique quick dial number identifier
-		@return ApiDeleteQuickDialNumberRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param numberId The unique quick dial number identifier
+	@return ApiDeleteQuickDialNumberRequest
 	*/
 	DeleteQuickDialNumber(ctx context.Context, numberId string) ApiDeleteQuickDialNumberRequest
 
@@ -70,25 +71,25 @@ type NumbersAPI interface {
 	DeleteQuickDialNumberExecute(r ApiDeleteQuickDialNumberRequest) (*http.Response, error)
 
 	/*
-			GetNumbers List all phone numbers
+	GetNumbers List all phone numbers
 
-			Possible portState->status codes:<br /><pre>100: Waiting for user fax
-		150: WBCI waiting for mail opt-in
-		160: WBCI opt-in hash generated
-		170: WBCI opt-in link clicked
-		200: Waiting for fax from current network operator
-		250: WBCI send
-		251: WBCI network error
-		252: WBCI EKP rejected
-		400: Porting accepted
-		450: Waiting for data exchange
-		451: Data exchange error
-		500: Porting complete
-		600: Porting cancelled
-		</pre>
+	Possible portState->status codes:<br /><pre>100: Waiting for user fax
+150: WBCI waiting for mail opt-in
+160: WBCI opt-in hash generated
+170: WBCI opt-in link clicked
+200: Waiting for fax from current network operator
+250: WBCI send
+251: WBCI network error
+252: WBCI EKP rejected
+400: Porting accepted
+450: Waiting for data exchange
+451: Data exchange error
+500: Porting complete
+600: Porting cancelled
+</pre>
 
-			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-			@return ApiGetNumbersRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiGetNumbersRequest
 	*/
 	GetNumbers(ctx context.Context) ApiGetNumbersRequest
 
@@ -97,26 +98,26 @@ type NumbersAPI interface {
 	GetNumbersExecute(r ApiGetNumbersRequest) (*NumbersResponse, *http.Response, error)
 
 	/*
-			GetUserNumbers List all user phone numbers of a specific user
+	GetUserNumbers List all user phone numbers of a specific user
 
-			Possible portState->status codes:<br /><pre>100: Waiting for user fax
-		150: WBCI waiting for mail opt-in
-		160: WBCI opt-in hash generated
-		170: WBCI opt-in link clicked
-		200: Waiting for fax from current network operator
-		250: WBCI send
-		251: WBCI network error
-		252: WBCI EKP rejected
-		400: Porting accepted
-		450: Waiting for data exchange
-		451: Data exchange error
-		500: Porting complete
-		600: Porting cancelled
-		</pre>
+	Possible portState->status codes:<br /><pre>100: Waiting for user fax
+150: WBCI waiting for mail opt-in
+160: WBCI opt-in hash generated
+170: WBCI opt-in link clicked
+200: Waiting for fax from current network operator
+250: WBCI send
+251: WBCI network error
+252: WBCI EKP rejected
+400: Porting accepted
+450: Waiting for data exchange
+451: Data exchange error
+500: Porting complete
+600: Porting cancelled
+</pre>
 
-			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-			@param userId The unique user identifier
-			@return ApiGetUserNumbersRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userId The unique user identifier
+	@return ApiGetUserNumbersRequest
 	*/
 	GetUserNumbers(ctx context.Context, userId string) ApiGetUserNumbersRequest
 
@@ -125,11 +126,11 @@ type NumbersAPI interface {
 	GetUserNumbersExecute(r ApiGetUserNumbersRequest) (*NumbersResponse, *http.Response, error)
 
 	/*
-		ValidateQuickDialNumber Check if quick dial number is already taken
+	ValidateQuickDialNumber Check if quick dial number is already taken
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param quickDialNumber The quick dial number
-		@return ApiValidateQuickDialNumberRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param quickDialNumber The quick dial number
+	@return ApiValidateQuickDialNumberRequest
 	*/
 	ValidateQuickDialNumber(ctx context.Context, quickDialNumber string) ApiValidateQuickDialNumberRequest
 
@@ -141,9 +142,9 @@ type NumbersAPI interface {
 type NumbersAPIService service
 
 type ApiAddQuickDialNumberRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService NumbersAPI
-	body       *AddDirectDialRequest
+	body *AddDirectDialRequest
 }
 
 func (r ApiAddQuickDialNumberRequest) Body(body AddDirectDialRequest) ApiAddQuickDialNumberRequest {
@@ -158,25 +159,24 @@ func (r ApiAddQuickDialNumberRequest) Execute() (*NumberResponseWithEndpoint, *h
 /*
 AddQuickDialNumber Add a new quick dial number
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiAddQuickDialNumberRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiAddQuickDialNumberRequest
 */
 func (a *NumbersAPIService) AddQuickDialNumber(ctx context.Context) ApiAddQuickDialNumberRequest {
 	return ApiAddQuickDialNumberRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//
-//	@return NumberResponseWithEndpoint
+//  @return NumberResponseWithEndpoint
 func (a *NumbersAPIService) AddQuickDialNumberExecute(r ApiAddQuickDialNumberRequest) (*NumberResponseWithEndpoint, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodPost
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *NumberResponseWithEndpoint
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *NumberResponseWithEndpoint
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NumbersAPIService.AddQuickDialNumber")
@@ -247,10 +247,10 @@ func (a *NumbersAPIService) AddQuickDialNumberExecute(r ApiAddQuickDialNumberReq
 }
 
 type ApiChangeNumberSettingsRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService NumbersAPI
-	numberId   string
-	body       *ChangeNumberSettingsRequest
+	numberId string
+	body *ChangeNumberSettingsRequest
 }
 
 func (r ApiChangeNumberSettingsRequest) Body(body ChangeNumberSettingsRequest) ApiChangeNumberSettingsRequest {
@@ -265,24 +265,24 @@ func (r ApiChangeNumberSettingsRequest) Execute() (*http.Response, error) {
 /*
 ChangeNumberSettings Change phone number settings, e.g. route to endpoint
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param numberId The unique phone number identifier
-	@return ApiChangeNumberSettingsRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param numberId The unique phone number identifier
+ @return ApiChangeNumberSettingsRequest
 */
 func (a *NumbersAPIService) ChangeNumberSettings(ctx context.Context, numberId string) ApiChangeNumberSettingsRequest {
 	return ApiChangeNumberSettingsRequest{
 		ApiService: a,
-		ctx:        ctx,
-		numberId:   numberId,
+		ctx: ctx,
+		numberId: numberId,
 	}
 }
 
 // Execute executes the request
 func (a *NumbersAPIService) ChangeNumberSettingsExecute(r ApiChangeNumberSettingsRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodPut
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod   = http.MethodPut
+		localVarPostBody     interface{}
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NumbersAPIService.ChangeNumberSettings")
@@ -345,10 +345,10 @@ func (a *NumbersAPIService) ChangeNumberSettingsExecute(r ApiChangeNumberSetting
 }
 
 type ApiChangeQuickDialNumberRequest struct {
-	ctx         context.Context
-	ApiService  NumbersAPI
+	ctx context.Context
+	ApiService NumbersAPI
 	quickdialId string
-	body        *ChangeDirectDialRequest
+	body *ChangeDirectDialRequest
 }
 
 func (r ApiChangeQuickDialNumberRequest) Body(body ChangeDirectDialRequest) ApiChangeQuickDialNumberRequest {
@@ -363,14 +363,14 @@ func (r ApiChangeQuickDialNumberRequest) Execute() (*http.Response, error) {
 /*
 ChangeQuickDialNumber Update an existing quick dial number
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param quickdialId
-	@return ApiChangeQuickDialNumberRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param quickdialId
+ @return ApiChangeQuickDialNumberRequest
 */
 func (a *NumbersAPIService) ChangeQuickDialNumber(ctx context.Context, quickdialId string) ApiChangeQuickDialNumberRequest {
 	return ApiChangeQuickDialNumberRequest{
-		ApiService:  a,
-		ctx:         ctx,
+		ApiService: a,
+		ctx: ctx,
 		quickdialId: quickdialId,
 	}
 }
@@ -378,9 +378,9 @@ func (a *NumbersAPIService) ChangeQuickDialNumber(ctx context.Context, quickdial
 // Execute executes the request
 func (a *NumbersAPIService) ChangeQuickDialNumberExecute(r ApiChangeQuickDialNumberRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodPut
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod   = http.MethodPut
+		localVarPostBody     interface{}
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NumbersAPIService.ChangeQuickDialNumber")
@@ -443,9 +443,9 @@ func (a *NumbersAPIService) ChangeQuickDialNumberExecute(r ApiChangeQuickDialNum
 }
 
 type ApiDeleteQuickDialNumberRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService NumbersAPI
-	numberId   string
+	numberId string
 }
 
 func (r ApiDeleteQuickDialNumberRequest) Execute() (*http.Response, error) {
@@ -455,24 +455,24 @@ func (r ApiDeleteQuickDialNumberRequest) Execute() (*http.Response, error) {
 /*
 DeleteQuickDialNumber Delete an existing quick dial number
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param numberId The unique quick dial number identifier
-	@return ApiDeleteQuickDialNumberRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param numberId The unique quick dial number identifier
+ @return ApiDeleteQuickDialNumberRequest
 */
 func (a *NumbersAPIService) DeleteQuickDialNumber(ctx context.Context, numberId string) ApiDeleteQuickDialNumberRequest {
 	return ApiDeleteQuickDialNumberRequest{
 		ApiService: a,
-		ctx:        ctx,
-		numberId:   numberId,
+		ctx: ctx,
+		numberId: numberId,
 	}
 }
 
 // Execute executes the request
 func (a *NumbersAPIService) DeleteQuickDialNumberExecute(r ApiDeleteQuickDialNumberRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodDelete
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NumbersAPIService.DeleteQuickDialNumber")
@@ -533,10 +533,10 @@ func (a *NumbersAPIService) DeleteQuickDialNumberExecute(r ApiDeleteQuickDialNum
 }
 
 type ApiGetNumbersRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService NumbersAPI
-	offset     *int32
-	limit      *int32
+	offset *int32
+	limit *int32
 }
 
 func (r ApiGetNumbersRequest) Offset(offset int32) ApiGetNumbersRequest {
@@ -571,25 +571,24 @@ Possible portState->status codes:<br /><pre>100: Waiting for user fax
 600: Porting cancelled
 </pre>
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiGetNumbersRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiGetNumbersRequest
 */
 func (a *NumbersAPIService) GetNumbers(ctx context.Context) ApiGetNumbersRequest {
 	return ApiGetNumbersRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//
-//	@return NumbersResponse
+//  @return NumbersResponse
 func (a *NumbersAPIService) GetNumbersExecute(r ApiGetNumbersRequest) (*NumbersResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *NumbersResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *NumbersResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NumbersAPIService.GetNumbers")
@@ -664,9 +663,9 @@ func (a *NumbersAPIService) GetNumbersExecute(r ApiGetNumbersRequest) (*NumbersR
 }
 
 type ApiGetUserNumbersRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService NumbersAPI
-	userId     string
+	userId string
 }
 
 func (r ApiGetUserNumbersRequest) Execute() (*NumbersResponse, *http.Response, error) {
@@ -691,27 +690,26 @@ Possible portState->status codes:<br /><pre>100: Waiting for user fax
 600: Porting cancelled
 </pre>
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param userId The unique user identifier
-	@return ApiGetUserNumbersRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param userId The unique user identifier
+ @return ApiGetUserNumbersRequest
 */
 func (a *NumbersAPIService) GetUserNumbers(ctx context.Context, userId string) ApiGetUserNumbersRequest {
 	return ApiGetUserNumbersRequest{
 		ApiService: a,
-		ctx:        ctx,
-		userId:     userId,
+		ctx: ctx,
+		userId: userId,
 	}
 }
 
 // Execute executes the request
-//
-//	@return NumbersResponse
+//  @return NumbersResponse
 func (a *NumbersAPIService) GetUserNumbersExecute(r ApiGetUserNumbersRequest) (*NumbersResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *NumbersResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *NumbersResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NumbersAPIService.GetUserNumbers")
@@ -781,8 +779,8 @@ func (a *NumbersAPIService) GetUserNumbersExecute(r ApiGetUserNumbersRequest) (*
 }
 
 type ApiValidateQuickDialNumberRequest struct {
-	ctx             context.Context
-	ApiService      NumbersAPI
+	ctx context.Context
+	ApiService NumbersAPI
 	quickDialNumber string
 }
 
@@ -793,14 +791,14 @@ func (r ApiValidateQuickDialNumberRequest) Execute() (*http.Response, error) {
 /*
 ValidateQuickDialNumber Check if quick dial number is already taken
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param quickDialNumber The quick dial number
-	@return ApiValidateQuickDialNumberRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param quickDialNumber The quick dial number
+ @return ApiValidateQuickDialNumberRequest
 */
 func (a *NumbersAPIService) ValidateQuickDialNumber(ctx context.Context, quickDialNumber string) ApiValidateQuickDialNumberRequest {
 	return ApiValidateQuickDialNumberRequest{
-		ApiService:      a,
-		ctx:             ctx,
+		ApiService: a,
+		ctx: ctx,
 		quickDialNumber: quickDialNumber,
 	}
 }
@@ -808,9 +806,9 @@ func (a *NumbersAPIService) ValidateQuickDialNumber(ctx context.Context, quickDi
 // Execute executes the request
 func (a *NumbersAPIService) ValidateQuickDialNumberExecute(r ApiValidateQuickDialNumberRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodGet
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NumbersAPIService.ValidateQuickDialNumber")

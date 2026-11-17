@@ -19,17 +19,17 @@ var _ MappedNullable = &RegisterDeviceResponse{}
 
 // RegisterDeviceResponse struct for RegisterDeviceResponse
 type RegisterDeviceResponse struct {
-	ActiveGroups       []ActiveRouting      `json:"activeGroups,omitempty"`
-	ActivePhonelines   []ActiveRouting      `json:"activePhonelines,omitempty"`
-	AddressUrl         *string              `json:"addressUrl,omitempty"`
-	Alias              *string              `json:"alias,omitempty"`
-	Credentials        *CredentialsResponse `json:"credentials,omitempty"`
-	Dnd                *bool                `json:"dnd,omitempty"`
-	EmergencyAddressId *string              `json:"emergencyAddressId,omitempty"`
-	Id                 *string              `json:"id,omitempty"`
-	Online             *bool                `json:"online,omitempty"`
-	Registered         []RegisteredDevice   `json:"registered,omitempty"`
-	Type               *string              `json:"type,omitempty"`
+	ActiveGroups []ActiveRouting `json:"activeGroups,omitempty"`
+	ActivePhonelines []ActiveRouting `json:"activePhonelines,omitempty"`
+	AddressUrl *string `json:"addressUrl,omitempty"`
+	Alias *string `json:"alias,omitempty"`
+	Credentials *CredentialsResponse `json:"credentials,omitempty"`
+	Dnd *bool `json:"dnd,omitempty"`
+	EmergencyAddressId *string `json:"emergencyAddressId,omitempty"`
+	Id *string `json:"id,omitempty"`
+	Online *bool `json:"online,omitempty"`
+	Registered []RegisteredDevice `json:"registered,omitempty"`
+	Type *string `json:"type,omitempty"`
 }
 
 // NewRegisterDeviceResponse instantiates a new RegisterDeviceResponse object
@@ -410,7 +410,7 @@ func (o *RegisterDeviceResponse) SetType(v string) {
 }
 
 func (o RegisterDeviceResponse) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -490,3 +490,5 @@ func (v *NullableRegisterDeviceResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

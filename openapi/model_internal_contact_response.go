@@ -19,14 +19,14 @@ var _ MappedNullable = &InternalContactResponse{}
 
 // InternalContactResponse struct for InternalContactResponse
 type InternalContactResponse struct {
-	ContactId  *string  `json:"contactId,omitempty"`
+	ContactId *string `json:"contactId,omitempty"`
 	Directdial []string `json:"directdial,omitempty"`
-	Emails     []string `json:"emails,omitempty"`
-	Fax        []string `json:"fax,omitempty"`
-	Id         *string  `json:"id,omitempty"`
-	Landline   []string `json:"landline,omitempty"`
-	Mobile     []string `json:"mobile,omitempty"`
-	Name       *string  `json:"name,omitempty"`
+	Emails []string `json:"emails,omitempty"`
+	Fax []string `json:"fax,omitempty"`
+	Id *string `json:"id,omitempty"`
+	Landline []string `json:"landline,omitempty"`
+	Mobile []string `json:"mobile,omitempty"`
+	Name *string `json:"name,omitempty"`
 }
 
 // NewInternalContactResponse instantiates a new InternalContactResponse object
@@ -303,7 +303,7 @@ func (o *InternalContactResponse) SetName(v string) {
 }
 
 func (o InternalContactResponse) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -374,3 +374,5 @@ func (v *NullableInternalContactResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

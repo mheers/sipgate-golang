@@ -19,13 +19,14 @@ import (
 	"strings"
 )
 
+
 type BlacklistAPI interface {
 
 	/*
-		AddIncomingEntry Create a new incoming blacklist entry
+	AddIncomingEntry Create a new incoming blacklist entry
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@return ApiAddIncomingEntryRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiAddIncomingEntryRequest
 	*/
 	AddIncomingEntry(ctx context.Context) ApiAddIncomingEntryRequest
 
@@ -34,10 +35,10 @@ type BlacklistAPI interface {
 	AddIncomingEntryExecute(r ApiAddIncomingEntryRequest) (*IncomingEntry, *http.Response, error)
 
 	/*
-		GetIncomingEntries Get your incoming blacklist entries
+	GetIncomingEntries Get your incoming blacklist entries
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@return ApiGetIncomingEntriesRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiGetIncomingEntriesRequest
 	*/
 	GetIncomingEntries(ctx context.Context) ApiGetIncomingEntriesRequest
 
@@ -46,13 +47,13 @@ type BlacklistAPI interface {
 	GetIncomingEntriesExecute(r ApiGetIncomingEntriesRequest) (*IncomingEntries, *http.Response, error)
 
 	/*
-		RemoveIncomingEntry Delete an incoming blacklist entry
+	RemoveIncomingEntry Delete an incoming blacklist entry
 
-		Recommended request format for phoneNumber is E.164 format without leading +, e.g. 492117654321. Entries are stored with a leading +. Do not use national numbers with leading 0, e.g. use 49151... instead of 0151....
+	Recommended request format for phoneNumber is E.164 format without leading +, e.g. 492117654321. Entries are stored with a leading +. Do not use national numbers with leading 0, e.g. use 49151... instead of 0151....
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param phoneNumber
-		@return ApiRemoveIncomingEntryRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param phoneNumber
+	@return ApiRemoveIncomingEntryRequest
 	*/
 	RemoveIncomingEntry(ctx context.Context, phoneNumber string) ApiRemoveIncomingEntryRequest
 
@@ -64,9 +65,9 @@ type BlacklistAPI interface {
 type BlacklistAPIService service
 
 type ApiAddIncomingEntryRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService BlacklistAPI
-	body       *IncomingEntry
+	body *IncomingEntry
 }
 
 // Incoming blacklist entry. Recommended request format for phoneNumber is E.164 format without leading +. Entries are stored with a leading + and returned that way. Do not use national numbers with leading 0, e.g. use 49151... instead of 0151....
@@ -82,25 +83,24 @@ func (r ApiAddIncomingEntryRequest) Execute() (*IncomingEntry, *http.Response, e
 /*
 AddIncomingEntry Create a new incoming blacklist entry
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiAddIncomingEntryRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiAddIncomingEntryRequest
 */
 func (a *BlacklistAPIService) AddIncomingEntry(ctx context.Context) ApiAddIncomingEntryRequest {
 	return ApiAddIncomingEntryRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//
-//	@return IncomingEntry
+//  @return IncomingEntry
 func (a *BlacklistAPIService) AddIncomingEntryExecute(r ApiAddIncomingEntryRequest) (*IncomingEntry, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodPost
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *IncomingEntry
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *IncomingEntry
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BlacklistAPIService.AddIncomingEntry")
@@ -165,8 +165,8 @@ func (a *BlacklistAPIService) AddIncomingEntryExecute(r ApiAddIncomingEntryReque
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
@@ -176,8 +176,8 @@ func (a *BlacklistAPIService) AddIncomingEntryExecute(r ApiAddIncomingEntryReque
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -195,7 +195,7 @@ func (a *BlacklistAPIService) AddIncomingEntryExecute(r ApiAddIncomingEntryReque
 }
 
 type ApiGetIncomingEntriesRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService BlacklistAPI
 }
 
@@ -206,25 +206,24 @@ func (r ApiGetIncomingEntriesRequest) Execute() (*IncomingEntries, *http.Respons
 /*
 GetIncomingEntries Get your incoming blacklist entries
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiGetIncomingEntriesRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiGetIncomingEntriesRequest
 */
 func (a *BlacklistAPIService) GetIncomingEntries(ctx context.Context) ApiGetIncomingEntriesRequest {
 	return ApiGetIncomingEntriesRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//
-//	@return IncomingEntries
+//  @return IncomingEntries
 func (a *BlacklistAPIService) GetIncomingEntriesExecute(r ApiGetIncomingEntriesRequest) (*IncomingEntries, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *IncomingEntries
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *IncomingEntries
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BlacklistAPIService.GetIncomingEntries")
@@ -293,8 +292,8 @@ func (a *BlacklistAPIService) GetIncomingEntriesExecute(r ApiGetIncomingEntriesR
 }
 
 type ApiRemoveIncomingEntryRequest struct {
-	ctx         context.Context
-	ApiService  BlacklistAPI
+	ctx context.Context
+	ApiService BlacklistAPI
 	phoneNumber string
 }
 
@@ -307,14 +306,14 @@ RemoveIncomingEntry Delete an incoming blacklist entry
 
 Recommended request format for phoneNumber is E.164 format without leading +, e.g. 492117654321. Entries are stored with a leading +. Do not use national numbers with leading 0, e.g. use 49151... instead of 0151....
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param phoneNumber
-	@return ApiRemoveIncomingEntryRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param phoneNumber
+ @return ApiRemoveIncomingEntryRequest
 */
 func (a *BlacklistAPIService) RemoveIncomingEntry(ctx context.Context, phoneNumber string) ApiRemoveIncomingEntryRequest {
 	return ApiRemoveIncomingEntryRequest{
-		ApiService:  a,
-		ctx:         ctx,
+		ApiService: a,
+		ctx: ctx,
 		phoneNumber: phoneNumber,
 	}
 }
@@ -322,9 +321,9 @@ func (a *BlacklistAPIService) RemoveIncomingEntry(ctx context.Context, phoneNumb
 // Execute executes the request
 func (a *BlacklistAPIService) RemoveIncomingEntryExecute(r ApiRemoveIncomingEntryRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodDelete
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BlacklistAPIService.RemoveIncomingEntry")
@@ -385,8 +384,8 @@ func (a *BlacklistAPIService) RemoveIncomingEntryExecute(r ApiRemoveIncomingEntr
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -396,8 +395,8 @@ func (a *BlacklistAPIService) RemoveIncomingEntryExecute(r ApiRemoveIncomingEntr
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}

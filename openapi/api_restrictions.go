@@ -19,15 +19,16 @@ import (
 	"reflect"
 )
 
+
 type RestrictionsAPI interface {
 
 	/*
-		GetRestrictions List all restrictions based on the users product
+	GetRestrictions List all restrictions based on the users product
 
-		Get restrictions for actions the authenticated user can perform for himself or another user.
+	Get restrictions for actions the authenticated user can perform for himself or another user.
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@return ApiGetRestrictionsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiGetRestrictionsRequest
 	*/
 	GetRestrictions(ctx context.Context) ApiGetRestrictionsRequest
 
@@ -40,9 +41,9 @@ type RestrictionsAPI interface {
 type RestrictionsAPIService service
 
 type ApiGetRestrictionsRequest struct {
-	ctx         context.Context
-	ApiService  RestrictionsAPI
-	userId      *string
+	ctx context.Context
+	ApiService RestrictionsAPI
+	userId *string
 	restriction *[]string
 }
 
@@ -67,25 +68,24 @@ GetRestrictions List all restrictions based on the users product
 
 Get restrictions for actions the authenticated user can perform for himself or another user.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiGetRestrictionsRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiGetRestrictionsRequest
 */
 func (a *RestrictionsAPIService) GetRestrictions(ctx context.Context) ApiGetRestrictionsRequest {
 	return ApiGetRestrictionsRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//
-//	@return RestrictionsResponse
+//  @return RestrictionsResponse
 func (a *RestrictionsAPIService) GetRestrictionsExecute(r ApiGetRestrictionsRequest) (*RestrictionsResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *RestrictionsResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *RestrictionsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RestrictionsAPIService.GetRestrictions")

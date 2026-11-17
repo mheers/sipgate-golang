@@ -11,8 +11,8 @@ API version: 2.0.0
 package openapi
 
 import (
-	"bytes"
 	"encoding/json"
+	"bytes"
 	"fmt"
 )
 
@@ -21,10 +21,10 @@ var _ MappedNullable = &SendWebSmsRequest{}
 
 // SendWebSmsRequest struct for SendWebSmsRequest
 type SendWebSmsRequest struct {
-	Message   string `json:"message"`
+	Message string `json:"message"`
 	Recipient string `json:"recipient"`
-	SendAt    *int64 `json:"sendAt,omitempty"`
-	SmsId     string `json:"smsId"`
+	SendAt *int64 `json:"sendAt,omitempty"`
+	SmsId string `json:"smsId"`
 }
 
 type _SendWebSmsRequest SendWebSmsRequest
@@ -154,7 +154,7 @@ func (o *SendWebSmsRequest) SetSmsId(v string) {
 }
 
 func (o SendWebSmsRequest) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -187,10 +187,10 @@ func (o *SendWebSmsRequest) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err
+		return err;
 	}
 
-	for _, requiredProperty := range requiredProperties {
+	for _, requiredProperty := range(requiredProperties) {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -246,3 +246,5 @@ func (v *NullableSendWebSmsRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

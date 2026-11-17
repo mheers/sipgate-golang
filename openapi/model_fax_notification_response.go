@@ -19,11 +19,11 @@ var _ MappedNullable = &FaxNotificationResponse{}
 
 // FaxNotificationResponse struct for FaxNotificationResponse
 type FaxNotificationResponse struct {
-	Emails        []FaxEmailTarget `json:"emails,omitempty"`
-	EndpointAlias *string          `json:"endpointAlias,omitempty"`
-	EndpointId    *string          `json:"endpointId,omitempty"`
-	Reports       []ReportTarget   `json:"reports,omitempty"`
-	Sms           []FaxSmsTarget   `json:"sms,omitempty"`
+	Emails []FaxEmailTarget `json:"emails,omitempty"`
+	EndpointAlias *string `json:"endpointAlias,omitempty"`
+	EndpointId *string `json:"endpointId,omitempty"`
+	Reports []ReportTarget `json:"reports,omitempty"`
+	Sms []FaxSmsTarget `json:"sms,omitempty"`
 }
 
 // NewFaxNotificationResponse instantiates a new FaxNotificationResponse object
@@ -204,7 +204,7 @@ func (o *FaxNotificationResponse) SetSms(v []FaxSmsTarget) {
 }
 
 func (o FaxNotificationResponse) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -266,3 +266,5 @@ func (v *NullableFaxNotificationResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

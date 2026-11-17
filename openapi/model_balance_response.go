@@ -19,7 +19,7 @@ var _ MappedNullable = &BalanceResponse{}
 
 // BalanceResponse struct for BalanceResponse
 type BalanceResponse struct {
-	Amount   *int32  `json:"amount,omitempty"`
+	Amount *int32 `json:"amount,omitempty"`
 	Currency *string `json:"currency,omitempty"`
 }
 
@@ -105,7 +105,7 @@ func (o *BalanceResponse) SetCurrency(v string) {
 }
 
 func (o BalanceResponse) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -158,3 +158,5 @@ func (v *NullableBalanceResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

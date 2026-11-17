@@ -19,13 +19,13 @@ var _ MappedNullable = &PhonelineSipgateIoLogResponse{}
 
 // PhonelineSipgateIoLogResponse struct for PhonelineSipgateIoLogResponse
 type PhonelineSipgateIoLogResponse struct {
-	Created        *string `json:"created,omitempty"`
-	PushApiVersion *int32  `json:"pushApiVersion,omitempty"`
-	Request        *string `json:"request,omitempty"`
-	Response       *string `json:"response,omitempty"`
-	Status         *string `json:"status,omitempty"`
-	Url            *string `json:"url,omitempty"`
-	XmlError       *string `json:"xmlError,omitempty"`
+	Created *string `json:"created,omitempty"`
+	PushApiVersion *int32 `json:"pushApiVersion,omitempty"`
+	Request *string `json:"request,omitempty"`
+	Response *string `json:"response,omitempty"`
+	Status *string `json:"status,omitempty"`
+	Url *string `json:"url,omitempty"`
+	XmlError *string `json:"xmlError,omitempty"`
 }
 
 // NewPhonelineSipgateIoLogResponse instantiates a new PhonelineSipgateIoLogResponse object
@@ -270,7 +270,7 @@ func (o *PhonelineSipgateIoLogResponse) SetXmlError(v string) {
 }
 
 func (o PhonelineSipgateIoLogResponse) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -338,3 +338,5 @@ func (v *NullablePhonelineSipgateIoLogResponse) UnmarshalJSON(src []byte) error 
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

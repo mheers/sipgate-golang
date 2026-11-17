@@ -19,13 +19,13 @@ var _ MappedNullable = &PhonelineSipgateIoResponse{}
 
 // PhonelineSipgateIoResponse struct for PhonelineSipgateIoResponse
 type PhonelineSipgateIoResponse struct {
-	AllowSelfSigned *bool   `json:"allowSelfSigned,omitempty"`
-	Certificate     *string `json:"certificate,omitempty"`
-	IncomingActive  *bool   `json:"incomingActive,omitempty"`
-	IncomingUrl     *string `json:"incomingUrl,omitempty"`
-	Log             *bool   `json:"log,omitempty"`
-	OutgoingActive  *bool   `json:"outgoingActive,omitempty"`
-	OutgoingUrl     *string `json:"outgoingUrl,omitempty"`
+	AllowSelfSigned *bool `json:"allowSelfSigned,omitempty"`
+	Certificate *string `json:"certificate,omitempty"`
+	IncomingActive *bool `json:"incomingActive,omitempty"`
+	IncomingUrl *string `json:"incomingUrl,omitempty"`
+	Log *bool `json:"log,omitempty"`
+	OutgoingActive *bool `json:"outgoingActive,omitempty"`
+	OutgoingUrl *string `json:"outgoingUrl,omitempty"`
 }
 
 // NewPhonelineSipgateIoResponse instantiates a new PhonelineSipgateIoResponse object
@@ -286,7 +286,7 @@ func (o *PhonelineSipgateIoResponse) SetOutgoingUrl(v string) {
 }
 
 func (o PhonelineSipgateIoResponse) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -354,3 +354,5 @@ func (v *NullablePhonelineSipgateIoResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

@@ -19,27 +19,27 @@ var _ MappedNullable = &StructuredVCardItem{}
 
 // StructuredVCardItem struct for StructuredVCardItem
 type StructuredVCardItem struct {
-	City         *string  `json:"city,omitempty"`
-	Country      *string  `json:"country,omitempty"`
-	Extended     *string  `json:"extended,omitempty"`
-	Family       *string  `json:"family,omitempty"`
-	Given        *string  `json:"given,omitempty"`
-	Group        *string  `json:"group,omitempty"`
-	Lat          *string  `json:"lat,omitempty"`
-	Long         *string  `json:"long,omitempty"`
-	Middle       *string  `json:"middle,omitempty"`
-	Name         *string  `json:"name,omitempty"`
-	PoBox        *string  `json:"po_box,omitempty"`
-	PostCode     *string  `json:"post_code,omitempty"`
-	Prefixes     *string  `json:"prefixes,omitempty"`
-	Region       *string  `json:"region,omitempty"`
-	Street       *string  `json:"street,omitempty"`
-	Suffixes     *string  `json:"suffixes,omitempty"`
-	Types        []string `json:"types,omitempty"`
-	Unit         []string `json:"unit,omitempty"`
-	Value        *string  `json:"value,omitempty"`
-	XLocalNumber *string  `json:"x-local-number,omitempty"`
-	XlocalNumber *string  `json:"xlocalNumber,omitempty"`
+	City *string `json:"city,omitempty"`
+	Country *string `json:"country,omitempty"`
+	Extended *string `json:"extended,omitempty"`
+	Family *string `json:"family,omitempty"`
+	Given *string `json:"given,omitempty"`
+	Group *string `json:"group,omitempty"`
+	Lat *string `json:"lat,omitempty"`
+	Long *string `json:"long,omitempty"`
+	Middle *string `json:"middle,omitempty"`
+	Name *string `json:"name,omitempty"`
+	PoBox *string `json:"po_box,omitempty"`
+	PostCode *string `json:"post_code,omitempty"`
+	Prefixes *string `json:"prefixes,omitempty"`
+	Region *string `json:"region,omitempty"`
+	Street *string `json:"street,omitempty"`
+	Suffixes *string `json:"suffixes,omitempty"`
+	Types []string `json:"types,omitempty"`
+	Unit []string `json:"unit,omitempty"`
+	Value *string `json:"value,omitempty"`
+	XLocalNumber *string `json:"x-local-number,omitempty"`
+	XlocalNumber *string `json:"xlocalNumber,omitempty"`
 }
 
 // NewStructuredVCardItem instantiates a new StructuredVCardItem object
@@ -732,7 +732,7 @@ func (o *StructuredVCardItem) SetXlocalNumber(v string) {
 }
 
 func (o StructuredVCardItem) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -842,3 +842,5 @@ func (v *NullableStructuredVCardItem) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

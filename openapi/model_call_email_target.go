@@ -19,10 +19,10 @@ var _ MappedNullable = &CallEmailTarget{}
 
 // CallEmailTarget struct for CallEmailTarget
 type CallEmailTarget struct {
-	Cause     *string `json:"cause,omitempty"`
+	Cause *string `json:"cause,omitempty"`
 	Direction *string `json:"direction,omitempty"`
-	Email     *string `json:"email,omitempty"`
-	Id        *string `json:"id,omitempty"`
+	Email *string `json:"email,omitempty"`
+	Id *string `json:"id,omitempty"`
 }
 
 // NewCallEmailTarget instantiates a new CallEmailTarget object
@@ -171,7 +171,7 @@ func (o *CallEmailTarget) SetId(v string) {
 }
 
 func (o CallEmailTarget) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -230,3 +230,5 @@ func (v *NullableCallEmailTarget) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

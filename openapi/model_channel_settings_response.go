@@ -19,12 +19,12 @@ var _ MappedNullable = &ChannelSettingsResponse{}
 
 // ChannelSettingsResponse struct for ChannelSettingsResponse
 type ChannelSettingsResponse struct {
-	GreetingAudioFileId  *string                       `json:"greetingAudioFileId,omitempty"`
-	Queue                *ChannelQueueSettingsResponse `json:"queue,omitempty"`
-	RingingOrder         *ChannelRingingOrderResponse  `json:"ringingOrder,omitempty"`
-	SmsSim               *string                       `json:"smsSim,omitempty"`
-	Users                *ChannelUserSettingsResponse  `json:"users,omitempty"`
-	VoiceboxAccessNumber *int32                        `json:"voiceboxAccessNumber,omitempty"`
+	GreetingAudioFileId *string `json:"greetingAudioFileId,omitempty"`
+	Queue *ChannelQueueSettingsResponse `json:"queue,omitempty"`
+	RingingOrder *ChannelRingingOrderResponse `json:"ringingOrder,omitempty"`
+	SmsSim *string `json:"smsSim,omitempty"`
+	Users *ChannelUserSettingsResponse `json:"users,omitempty"`
+	VoiceboxAccessNumber *int32 `json:"voiceboxAccessNumber,omitempty"`
 }
 
 // NewChannelSettingsResponse instantiates a new ChannelSettingsResponse object
@@ -237,7 +237,7 @@ func (o *ChannelSettingsResponse) SetVoiceboxAccessNumber(v int32) {
 }
 
 func (o ChannelSettingsResponse) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -302,3 +302,5 @@ func (v *NullableChannelSettingsResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

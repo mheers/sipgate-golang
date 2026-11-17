@@ -11,8 +11,8 @@ API version: 2.0.0
 package openapi
 
 import (
-	"bytes"
 	"encoding/json"
+	"bytes"
 	"fmt"
 )
 
@@ -21,7 +21,7 @@ var _ MappedNullable = &AddVoicemailEmailVoicemailNotificationRequest{}
 
 // AddVoicemailEmailVoicemailNotificationRequest struct for AddVoicemailEmailVoicemailNotificationRequest
 type AddVoicemailEmailVoicemailNotificationRequest struct {
-	Email       string `json:"email"`
+	Email string `json:"email"`
 	VoicemailId string `json:"voicemailId"`
 }
 
@@ -95,7 +95,7 @@ func (o *AddVoicemailEmailVoicemailNotificationRequest) SetVoicemailId(v string)
 }
 
 func (o AddVoicemailEmailVoicemailNotificationRequest) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -123,10 +123,10 @@ func (o *AddVoicemailEmailVoicemailNotificationRequest) UnmarshalJSON(data []byt
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err
+		return err;
 	}
 
-	for _, requiredProperty := range requiredProperties {
+	for _, requiredProperty := range(requiredProperties) {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -182,3 +182,5 @@ func (v *NullableAddVoicemailEmailVoicemailNotificationRequest) UnmarshalJSON(sr
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

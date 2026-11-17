@@ -19,12 +19,12 @@ var _ MappedNullable = &PortingResponse{}
 
 // PortingResponse struct for PortingResponse
 type PortingResponse struct {
-	Id        *string                 `json:"id,omitempty"`
-	Numbers   []PortingNumberResponse `json:"numbers,omitempty"`
-	Pending   *bool                   `json:"pending,omitempty"`
-	PortDate  *string                 `json:"portDate,omitempty"`
-	Revocable *bool                   `json:"revocable,omitempty"`
-	Status    *int32                  `json:"status,omitempty"`
+	Id *string `json:"id,omitempty"`
+	Numbers []PortingNumberResponse `json:"numbers,omitempty"`
+	Pending *bool `json:"pending,omitempty"`
+	PortDate *string `json:"portDate,omitempty"`
+	Revocable *bool `json:"revocable,omitempty"`
+	Status *int32 `json:"status,omitempty"`
 }
 
 // NewPortingResponse instantiates a new PortingResponse object
@@ -245,7 +245,7 @@ func (o *PortingResponse) SetStatus(v int32) {
 }
 
 func (o PortingResponse) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -310,3 +310,5 @@ func (v *NullablePortingResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

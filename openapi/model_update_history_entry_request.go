@@ -19,10 +19,10 @@ var _ MappedNullable = &UpdateHistoryEntryRequest{}
 
 // UpdateHistoryEntryRequest struct for UpdateHistoryEntryRequest
 type UpdateHistoryEntryRequest struct {
-	Archived *bool   `json:"archived,omitempty"`
-	Note     *string `json:"note,omitempty"`
-	Read     *bool   `json:"read,omitempty"`
-	Starred  *bool   `json:"starred,omitempty"`
+	Archived *bool `json:"archived,omitempty"`
+	Note *string `json:"note,omitempty"`
+	Read *bool `json:"read,omitempty"`
+	Starred *bool `json:"starred,omitempty"`
 }
 
 // NewUpdateHistoryEntryRequest instantiates a new UpdateHistoryEntryRequest object
@@ -183,7 +183,7 @@ func (o *UpdateHistoryEntryRequest) SetStarred(v bool) {
 }
 
 func (o UpdateHistoryEntryRequest) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -242,3 +242,5 @@ func (v *NullableUpdateHistoryEntryRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

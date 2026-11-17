@@ -19,13 +19,13 @@ var _ MappedNullable = &ChannelResponse{}
 
 // ChannelResponse struct for ChannelResponse
 type ChannelResponse struct {
-	CreatedAt *string                  `json:"createdAt,omitempty"`
-	Id        *string                  `json:"id,omitempty"`
-	Locale    *string                  `json:"locale,omitempty"`
-	Name      *string                  `json:"name,omitempty"`
-	Owner     *string                  `json:"owner,omitempty"`
-	Settings  *ChannelSettingsResponse `json:"settings,omitempty"`
-	Users     []ChannelUserResponse    `json:"users,omitempty"`
+	CreatedAt *string `json:"createdAt,omitempty"`
+	Id *string `json:"id,omitempty"`
+	Locale *string `json:"locale,omitempty"`
+	Name *string `json:"name,omitempty"`
+	Owner *string `json:"owner,omitempty"`
+	Settings *ChannelSettingsResponse `json:"settings,omitempty"`
+	Users []ChannelUserResponse `json:"users,omitempty"`
 }
 
 // NewChannelResponse instantiates a new ChannelResponse object
@@ -270,7 +270,7 @@ func (o *ChannelResponse) SetUsers(v []ChannelUserResponse) {
 }
 
 func (o ChannelResponse) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -338,3 +338,5 @@ func (v *NullableChannelResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

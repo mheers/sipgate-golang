@@ -19,12 +19,12 @@ var _ MappedNullable = &ContingentResponse{}
 
 // ContingentResponse struct for ContingentResponse
 type ContingentResponse struct {
-	Amount  *int32  `json:"amount,omitempty"`
+	Amount *int32 `json:"amount,omitempty"`
 	Expires *string `json:"expires,omitempty"`
-	Left    *int32  `json:"left,omitempty"`
-	Type    *string `json:"type,omitempty"`
-	Unit    *string `json:"unit,omitempty"`
-	Used    *int32  `json:"used,omitempty"`
+	Left *int32 `json:"left,omitempty"`
+	Type *string `json:"type,omitempty"`
+	Unit *string `json:"unit,omitempty"`
+	Used *int32 `json:"used,omitempty"`
 }
 
 // NewContingentResponse instantiates a new ContingentResponse object
@@ -237,7 +237,7 @@ func (o *ContingentResponse) SetUsed(v int32) {
 }
 
 func (o ContingentResponse) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -302,3 +302,5 @@ func (v *NullableContingentResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

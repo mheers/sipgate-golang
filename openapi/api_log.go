@@ -18,13 +18,14 @@ import (
 	"net/url"
 )
 
+
 type LogAPI interface {
 
 	/*
-		GetWebhooksLog Get your webhooks log
+	GetWebhooksLog Get your webhooks log
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@return ApiGetWebhooksLogRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiGetWebhooksLogRequest
 	*/
 	GetWebhooksLog(ctx context.Context) ApiGetWebhooksLogRequest
 
@@ -37,7 +38,7 @@ type LogAPI interface {
 type LogAPIService service
 
 type ApiGetWebhooksLogRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService LogAPI
 }
 
@@ -48,25 +49,24 @@ func (r ApiGetWebhooksLogRequest) Execute() (*PhonelineSipgateIoLogsResponse, *h
 /*
 GetWebhooksLog Get your webhooks log
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiGetWebhooksLogRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiGetWebhooksLogRequest
 */
 func (a *LogAPIService) GetWebhooksLog(ctx context.Context) ApiGetWebhooksLogRequest {
 	return ApiGetWebhooksLogRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//
-//	@return PhonelineSipgateIoLogsResponse
+//  @return PhonelineSipgateIoLogsResponse
 func (a *LogAPIService) GetWebhooksLogExecute(r ApiGetWebhooksLogRequest) (*PhonelineSipgateIoLogsResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *PhonelineSipgateIoLogsResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *PhonelineSipgateIoLogsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogAPIService.GetWebhooksLog")

@@ -19,19 +19,19 @@ var _ MappedNullable = &ChannelCall{}
 
 // ChannelCall struct for ChannelCall
 type ChannelCall struct {
-	CallSid       *string     `json:"callSid,omitempty"`
-	ChannelId     *string     `json:"channelId,omitempty"`
-	Direction     *string     `json:"direction,omitempty"`
-	EstablishedAt *string     `json:"establishedAt,omitempty"`
-	Forwarding    *Forwarding `json:"forwarding,omitempty"`
+	CallSid *string `json:"callSid,omitempty"`
+	ChannelId *string `json:"channelId,omitempty"`
+	Direction *string `json:"direction,omitempty"`
+	EstablishedAt *string `json:"establishedAt,omitempty"`
+	Forwarding *Forwarding `json:"forwarding,omitempty"`
 	// Phone number of the calling party. For outgoing calls this is the channel's own number, for incoming calls the remote party's number.
 	From *string `json:"from,omitempty"`
 	// User who conducted the call. For outgoing calls the initiating user, for incoming calls the user that accepted the call. Null for missed calls.
-	Owner            NullableString `json:"owner,omitempty"`
-	StartedAt        *string        `json:"startedAt,omitempty"`
-	State            *string        `json:"state,omitempty"`
-	TerminatedAt     *string        `json:"terminatedAt,omitempty"`
-	TerminatedReason *string        `json:"terminatedReason,omitempty"`
+	Owner NullableString `json:"owner,omitempty"`
+	StartedAt *string `json:"startedAt,omitempty"`
+	State *string `json:"state,omitempty"`
+	TerminatedAt *string `json:"terminatedAt,omitempty"`
+	TerminatedReason *string `json:"terminatedReason,omitempty"`
 	// Phone number of the called party. For outgoing calls this is the remote party's number, for incoming calls the channel's own number.
 	To *string `json:"to,omitempty"`
 }
@@ -277,7 +277,6 @@ func (o *ChannelCall) HasOwner() bool {
 func (o *ChannelCall) SetOwner(v string) {
 	o.Owner.Set(&v)
 }
-
 // SetOwnerNil sets the value for Owner to be an explicit nil
 func (o *ChannelCall) SetOwnerNil() {
 	o.Owner.Set(nil)
@@ -449,7 +448,7 @@ func (o *ChannelCall) SetTo(v string) {
 }
 
 func (o ChannelCall) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -532,3 +531,5 @@ func (v *NullableChannelCall) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

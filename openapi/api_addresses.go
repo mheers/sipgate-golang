@@ -19,14 +19,15 @@ import (
 	"strings"
 )
 
+
 type AddressesAPI interface {
 
 	/*
-		GetAddress Get a specific address
+	GetAddress Get a specific address
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param addressId The unique address identifier
-		@return ApiGetAddressRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param addressId The unique address identifier
+	@return ApiGetAddressRequest
 	*/
 	GetAddress(ctx context.Context, addressId int32) ApiGetAddressRequest
 
@@ -35,11 +36,11 @@ type AddressesAPI interface {
 	GetAddressExecute(r ApiGetAddressRequest) (*AddressResponse, *http.Response, error)
 
 	/*
-		GetAddressNumbers List all phone numbers of a specific address
+	GetAddressNumbers List all phone numbers of a specific address
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param addressId The unique address identifier
-		@return ApiGetAddressNumbersRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param addressId The unique address identifier
+	@return ApiGetAddressNumbersRequest
 	*/
 	GetAddressNumbers(ctx context.Context, addressId int32) ApiGetAddressNumbersRequest
 
@@ -48,10 +49,10 @@ type AddressesAPI interface {
 	GetAddressNumbersExecute(r ApiGetAddressNumbersRequest) (*NumbersResponse, *http.Response, error)
 
 	/*
-		GetAddresses List all addresses
+	GetAddresses List all addresses
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@return ApiGetAddressesRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiGetAddressesRequest
 	*/
 	GetAddresses(ctx context.Context) ApiGetAddressesRequest
 
@@ -60,10 +61,10 @@ type AddressesAPI interface {
 	GetAddressesExecute(r ApiGetAddressesRequest) (*AddressesResponse, *http.Response, error)
 
 	/*
-		GetItemCount Get amount of addresses
+	GetItemCount Get amount of addresses
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@return ApiGetItemCountRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiGetItemCountRequest
 	*/
 	GetItemCount(ctx context.Context) ApiGetItemCountRequest
 
@@ -72,13 +73,13 @@ type AddressesAPI interface {
 	GetItemCountExecute(r ApiGetItemCountRequest) (*ItemCountResponse, *http.Response, error)
 
 	/*
-		ModifyAddress Update an existing address
+	ModifyAddress Update an existing address
 
-		<strong>Warning:</strong> Depending on your country of residence, a change of your address may lead to the deactivation of associated telephone numbers.
+	<strong>Warning:</strong> Depending on your country of residence, a change of your address may lead to the deactivation of associated telephone numbers.
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param addressId The unique address identifier
-		@return ApiModifyAddressRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param addressId The unique address identifier
+	@return ApiModifyAddressRequest
 	*/
 	ModifyAddress(ctx context.Context, addressId int32) ApiModifyAddressRequest
 
@@ -90,9 +91,9 @@ type AddressesAPI interface {
 type AddressesAPIService service
 
 type ApiGetAddressRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService AddressesAPI
-	addressId  int32
+	addressId int32
 }
 
 func (r ApiGetAddressRequest) Execute() (*AddressResponse, *http.Response, error) {
@@ -102,27 +103,26 @@ func (r ApiGetAddressRequest) Execute() (*AddressResponse, *http.Response, error
 /*
 GetAddress Get a specific address
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param addressId The unique address identifier
-	@return ApiGetAddressRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param addressId The unique address identifier
+ @return ApiGetAddressRequest
 */
 func (a *AddressesAPIService) GetAddress(ctx context.Context, addressId int32) ApiGetAddressRequest {
 	return ApiGetAddressRequest{
 		ApiService: a,
-		ctx:        ctx,
-		addressId:  addressId,
+		ctx: ctx,
+		addressId: addressId,
 	}
 }
 
 // Execute executes the request
-//
-//	@return AddressResponse
+//  @return AddressResponse
 func (a *AddressesAPIService) GetAddressExecute(r ApiGetAddressRequest) (*AddressResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *AddressResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *AddressResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AddressesAPIService.GetAddress")
@@ -192,9 +192,9 @@ func (a *AddressesAPIService) GetAddressExecute(r ApiGetAddressRequest) (*Addres
 }
 
 type ApiGetAddressNumbersRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService AddressesAPI
-	addressId  int32
+	addressId int32
 }
 
 func (r ApiGetAddressNumbersRequest) Execute() (*NumbersResponse, *http.Response, error) {
@@ -204,27 +204,26 @@ func (r ApiGetAddressNumbersRequest) Execute() (*NumbersResponse, *http.Response
 /*
 GetAddressNumbers List all phone numbers of a specific address
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param addressId The unique address identifier
-	@return ApiGetAddressNumbersRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param addressId The unique address identifier
+ @return ApiGetAddressNumbersRequest
 */
 func (a *AddressesAPIService) GetAddressNumbers(ctx context.Context, addressId int32) ApiGetAddressNumbersRequest {
 	return ApiGetAddressNumbersRequest{
 		ApiService: a,
-		ctx:        ctx,
-		addressId:  addressId,
+		ctx: ctx,
+		addressId: addressId,
 	}
 }
 
 // Execute executes the request
-//
-//	@return NumbersResponse
+//  @return NumbersResponse
 func (a *AddressesAPIService) GetAddressNumbersExecute(r ApiGetAddressNumbersRequest) (*NumbersResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *NumbersResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *NumbersResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AddressesAPIService.GetAddressNumbers")
@@ -294,7 +293,7 @@ func (a *AddressesAPIService) GetAddressNumbersExecute(r ApiGetAddressNumbersReq
 }
 
 type ApiGetAddressesRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService AddressesAPI
 }
 
@@ -305,25 +304,24 @@ func (r ApiGetAddressesRequest) Execute() (*AddressesResponse, *http.Response, e
 /*
 GetAddresses List all addresses
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiGetAddressesRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiGetAddressesRequest
 */
 func (a *AddressesAPIService) GetAddresses(ctx context.Context) ApiGetAddressesRequest {
 	return ApiGetAddressesRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//
-//	@return AddressesResponse
+//  @return AddressesResponse
 func (a *AddressesAPIService) GetAddressesExecute(r ApiGetAddressesRequest) (*AddressesResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *AddressesResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *AddressesResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AddressesAPIService.GetAddresses")
@@ -392,7 +390,7 @@ func (a *AddressesAPIService) GetAddressesExecute(r ApiGetAddressesRequest) (*Ad
 }
 
 type ApiGetItemCountRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService AddressesAPI
 }
 
@@ -403,25 +401,24 @@ func (r ApiGetItemCountRequest) Execute() (*ItemCountResponse, *http.Response, e
 /*
 GetItemCount Get amount of addresses
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiGetItemCountRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiGetItemCountRequest
 */
 func (a *AddressesAPIService) GetItemCount(ctx context.Context) ApiGetItemCountRequest {
 	return ApiGetItemCountRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//
-//	@return ItemCountResponse
+//  @return ItemCountResponse
 func (a *AddressesAPIService) GetItemCountExecute(r ApiGetItemCountRequest) (*ItemCountResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *ItemCountResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ItemCountResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AddressesAPIService.GetItemCount")
@@ -490,10 +487,10 @@ func (a *AddressesAPIService) GetItemCountExecute(r ApiGetItemCountRequest) (*It
 }
 
 type ApiModifyAddressRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService AddressesAPI
-	addressId  int32
-	body       *ModifyAddressRequest
+	addressId int32
+	body *ModifyAddressRequest
 }
 
 func (r ApiModifyAddressRequest) Body(body ModifyAddressRequest) ApiModifyAddressRequest {
@@ -510,24 +507,24 @@ ModifyAddress Update an existing address
 
 <strong>Warning:</strong> Depending on your country of residence, a change of your address may lead to the deactivation of associated telephone numbers.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param addressId The unique address identifier
-	@return ApiModifyAddressRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param addressId The unique address identifier
+ @return ApiModifyAddressRequest
 */
 func (a *AddressesAPIService) ModifyAddress(ctx context.Context, addressId int32) ApiModifyAddressRequest {
 	return ApiModifyAddressRequest{
 		ApiService: a,
-		ctx:        ctx,
-		addressId:  addressId,
+		ctx: ctx,
+		addressId: addressId,
 	}
 }
 
 // Execute executes the request
 func (a *AddressesAPIService) ModifyAddressExecute(r ApiModifyAddressRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodPut
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod   = http.MethodPut
+		localVarPostBody     interface{}
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AddressesAPIService.ModifyAddress")

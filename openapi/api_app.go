@@ -19,14 +19,15 @@ import (
 	"strings"
 )
 
+
 type AppAPI interface {
 
 	/*
-		DeleteEvent Delete a specific event
+	DeleteEvent Delete a specific event
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param id
-		@return ApiDeleteEventRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id
+	@return ApiDeleteEventRequest
 	*/
 	DeleteEvent(ctx context.Context, id int32) ApiDeleteEventRequest
 
@@ -34,12 +35,12 @@ type AppAPI interface {
 	DeleteEventExecute(r ApiDeleteEventRequest) (*http.Response, error)
 
 	/*
-		GetBrandLanguage List sipgate translations of a brand for a specific language
+	GetBrandLanguage List sipgate translations of a brand for a specific language
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param brand The brand
-		@param language The language
-		@return ApiGetBrandLanguageRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param brand The brand
+	@param language The language
+	@return ApiGetBrandLanguageRequest
 	*/
 	GetBrandLanguage(ctx context.Context, brand string, language string) ApiGetBrandLanguageRequest
 
@@ -47,10 +48,10 @@ type AppAPI interface {
 	GetBrandLanguageExecute(r ApiGetBrandLanguageRequest) (*http.Response, error)
 
 	/*
-		GetEvents List all active events for this account
+	GetEvents List all active events for this account
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@return ApiGetEventsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiGetEventsRequest
 	*/
 	GetEvents(ctx context.Context) ApiGetEventsRequest
 
@@ -59,11 +60,11 @@ type AppAPI interface {
 	GetEventsExecute(r ApiGetEventsRequest) (*EventsResponse, *http.Response, error)
 
 	/*
-		GetLanguage List sipgate translations for a specific language
+	GetLanguage List sipgate translations for a specific language
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param language The language
-		@return ApiGetLanguageRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param language The language
+	@return ApiGetLanguageRequest
 	*/
 	GetLanguage(ctx context.Context, language string) ApiGetLanguageRequest
 
@@ -71,10 +72,10 @@ type AppAPI interface {
 	GetLanguageExecute(r ApiGetLanguageRequest) (*http.Response, error)
 
 	/*
-		GetLinks List all external URLs of app.sipgate.com
+	GetLinks List all external URLs of app.sipgate.com
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@return ApiGetLinksRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiGetLinksRequest
 	*/
 	GetLinks(ctx context.Context) ApiGetLinksRequest
 
@@ -83,10 +84,10 @@ type AppAPI interface {
 	GetLinksExecute(r ApiGetLinksRequest) (*LinksResponse, *http.Response, error)
 
 	/*
-		GetProperties List all properties of app.sipgate.com
+	GetProperties List all properties of app.sipgate.com
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@return ApiGetPropertiesRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiGetPropertiesRequest
 	*/
 	GetProperties(ctx context.Context) ApiGetPropertiesRequest
 
@@ -95,10 +96,10 @@ type AppAPI interface {
 	GetPropertiesExecute(r ApiGetPropertiesRequest) (*PropertiesResponse, *http.Response, error)
 
 	/*
-		GetTac Check if terms and conditions have been accepted
+	GetTac Check if terms and conditions have been accepted
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@return ApiGetTacRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiGetTacRequest
 	*/
 	GetTac(ctx context.Context) ApiGetTacRequest
 
@@ -107,10 +108,10 @@ type AppAPI interface {
 	GetTacExecute(r ApiGetTacRequest) (*TacResponse, *http.Response, error)
 
 	/*
-		GetUsers Fetch all users with numbers, addresses and call restrictions
+	GetUsers Fetch all users with numbers, addresses and call restrictions
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@return ApiGetUsersRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiGetUsersRequest
 	*/
 	GetUsers(ctx context.Context) ApiGetUsersRequest
 
@@ -123,9 +124,9 @@ type AppAPI interface {
 type AppAPIService service
 
 type ApiDeleteEventRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService AppAPI
-	id         int32
+	id int32
 }
 
 func (r ApiDeleteEventRequest) Execute() (*http.Response, error) {
@@ -135,24 +136,24 @@ func (r ApiDeleteEventRequest) Execute() (*http.Response, error) {
 /*
 DeleteEvent Delete a specific event
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id
-	@return ApiDeleteEventRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id
+ @return ApiDeleteEventRequest
 */
 func (a *AppAPIService) DeleteEvent(ctx context.Context, id int32) ApiDeleteEventRequest {
 	return ApiDeleteEventRequest{
 		ApiService: a,
-		ctx:        ctx,
-		id:         id,
+		ctx: ctx,
+		id: id,
 	}
 }
 
 // Execute executes the request
 func (a *AppAPIService) DeleteEventExecute(r ApiDeleteEventRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodDelete
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AppAPIService.DeleteEvent")
@@ -213,10 +214,10 @@ func (a *AppAPIService) DeleteEventExecute(r ApiDeleteEventRequest) (*http.Respo
 }
 
 type ApiGetBrandLanguageRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService AppAPI
-	brand      string
-	language   string
+	brand string
+	language string
 }
 
 func (r ApiGetBrandLanguageRequest) Execute() (*http.Response, error) {
@@ -226,26 +227,26 @@ func (r ApiGetBrandLanguageRequest) Execute() (*http.Response, error) {
 /*
 GetBrandLanguage List sipgate translations of a brand for a specific language
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param brand The brand
-	@param language The language
-	@return ApiGetBrandLanguageRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param brand The brand
+ @param language The language
+ @return ApiGetBrandLanguageRequest
 */
 func (a *AppAPIService) GetBrandLanguage(ctx context.Context, brand string, language string) ApiGetBrandLanguageRequest {
 	return ApiGetBrandLanguageRequest{
 		ApiService: a,
-		ctx:        ctx,
-		brand:      brand,
-		language:   language,
+		ctx: ctx,
+		brand: brand,
+		language: language,
 	}
 }
 
 // Execute executes the request
 func (a *AppAPIService) GetBrandLanguageExecute(r ApiGetBrandLanguageRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodGet
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AppAPIService.GetBrandLanguage")
@@ -307,7 +308,7 @@ func (a *AppAPIService) GetBrandLanguageExecute(r ApiGetBrandLanguageRequest) (*
 }
 
 type ApiGetEventsRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService AppAPI
 }
 
@@ -318,25 +319,24 @@ func (r ApiGetEventsRequest) Execute() (*EventsResponse, *http.Response, error) 
 /*
 GetEvents List all active events for this account
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiGetEventsRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiGetEventsRequest
 */
 func (a *AppAPIService) GetEvents(ctx context.Context) ApiGetEventsRequest {
 	return ApiGetEventsRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//
-//	@return EventsResponse
+//  @return EventsResponse
 func (a *AppAPIService) GetEventsExecute(r ApiGetEventsRequest) (*EventsResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *EventsResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *EventsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AppAPIService.GetEvents")
@@ -405,9 +405,9 @@ func (a *AppAPIService) GetEventsExecute(r ApiGetEventsRequest) (*EventsResponse
 }
 
 type ApiGetLanguageRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService AppAPI
-	language   string
+	language string
 }
 
 func (r ApiGetLanguageRequest) Execute() (*http.Response, error) {
@@ -417,24 +417,24 @@ func (r ApiGetLanguageRequest) Execute() (*http.Response, error) {
 /*
 GetLanguage List sipgate translations for a specific language
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param language The language
-	@return ApiGetLanguageRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param language The language
+ @return ApiGetLanguageRequest
 */
 func (a *AppAPIService) GetLanguage(ctx context.Context, language string) ApiGetLanguageRequest {
 	return ApiGetLanguageRequest{
 		ApiService: a,
-		ctx:        ctx,
-		language:   language,
+		ctx: ctx,
+		language: language,
 	}
 }
 
 // Execute executes the request
 func (a *AppAPIService) GetLanguageExecute(r ApiGetLanguageRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodGet
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AppAPIService.GetLanguage")
@@ -495,7 +495,7 @@ func (a *AppAPIService) GetLanguageExecute(r ApiGetLanguageRequest) (*http.Respo
 }
 
 type ApiGetLinksRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService AppAPI
 }
 
@@ -506,25 +506,24 @@ func (r ApiGetLinksRequest) Execute() (*LinksResponse, *http.Response, error) {
 /*
 GetLinks List all external URLs of app.sipgate.com
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiGetLinksRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiGetLinksRequest
 */
 func (a *AppAPIService) GetLinks(ctx context.Context) ApiGetLinksRequest {
 	return ApiGetLinksRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//
-//	@return LinksResponse
+//  @return LinksResponse
 func (a *AppAPIService) GetLinksExecute(r ApiGetLinksRequest) (*LinksResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *LinksResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *LinksResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AppAPIService.GetLinks")
@@ -593,7 +592,7 @@ func (a *AppAPIService) GetLinksExecute(r ApiGetLinksRequest) (*LinksResponse, *
 }
 
 type ApiGetPropertiesRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService AppAPI
 }
 
@@ -604,25 +603,24 @@ func (r ApiGetPropertiesRequest) Execute() (*PropertiesResponse, *http.Response,
 /*
 GetProperties List all properties of app.sipgate.com
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiGetPropertiesRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiGetPropertiesRequest
 */
 func (a *AppAPIService) GetProperties(ctx context.Context) ApiGetPropertiesRequest {
 	return ApiGetPropertiesRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//
-//	@return PropertiesResponse
+//  @return PropertiesResponse
 func (a *AppAPIService) GetPropertiesExecute(r ApiGetPropertiesRequest) (*PropertiesResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *PropertiesResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *PropertiesResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AppAPIService.GetProperties")
@@ -691,7 +689,7 @@ func (a *AppAPIService) GetPropertiesExecute(r ApiGetPropertiesRequest) (*Proper
 }
 
 type ApiGetTacRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService AppAPI
 }
 
@@ -702,25 +700,24 @@ func (r ApiGetTacRequest) Execute() (*TacResponse, *http.Response, error) {
 /*
 GetTac Check if terms and conditions have been accepted
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiGetTacRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiGetTacRequest
 */
 func (a *AppAPIService) GetTac(ctx context.Context) ApiGetTacRequest {
 	return ApiGetTacRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//
-//	@return TacResponse
+//  @return TacResponse
 func (a *AppAPIService) GetTacExecute(r ApiGetTacRequest) (*TacResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *TacResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *TacResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AppAPIService.GetTac")
@@ -789,7 +786,7 @@ func (a *AppAPIService) GetTacExecute(r ApiGetTacRequest) (*TacResponse, *http.R
 }
 
 type ApiGetUsersRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService AppAPI
 }
 
@@ -800,25 +797,24 @@ func (r ApiGetUsersRequest) Execute() (*UsersResponse, *http.Response, error) {
 /*
 GetUsers Fetch all users with numbers, addresses and call restrictions
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiGetUsersRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiGetUsersRequest
 */
 func (a *AppAPIService) GetUsers(ctx context.Context) ApiGetUsersRequest {
 	return ApiGetUsersRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//
-//	@return UsersResponse
+//  @return UsersResponse
 func (a *AppAPIService) GetUsersExecute(r ApiGetUsersRequest) (*UsersResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *UsersResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *UsersResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AppAPIService.GetUsers")

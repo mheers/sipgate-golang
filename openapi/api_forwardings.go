@@ -19,15 +19,16 @@ import (
 	"strings"
 )
 
+
 type ForwardingsAPI interface {
 
 	/*
-		GetPhonelineForwardings1 List all forwarding settings of a specific phone line
+	GetPhonelineForwardings1 List all forwarding settings of a specific phone line
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param userId The unique user identifier
-		@param phonelineId The unique phone line identifier
-		@return ApiGetPhonelineForwardings1Request
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userId The unique user identifier
+	@param phonelineId The unique phone line identifier
+	@return ApiGetPhonelineForwardings1Request
 	*/
 	GetPhonelineForwardings1(ctx context.Context, userId string, phonelineId string) ApiGetPhonelineForwardings1Request
 
@@ -36,12 +37,12 @@ type ForwardingsAPI interface {
 	GetPhonelineForwardings1Execute(r ApiGetPhonelineForwardings1Request) (*LegacyForwardingResponse, *http.Response, error)
 
 	/*
-		SetPhonelineForwardingSettings Update forwarding settings for an existing phone line
+	SetPhonelineForwardingSettings Update forwarding settings for an existing phone line
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param userId The unique user identifier
-		@param phonelineId The unique phone line identifier
-		@return ApiSetPhonelineForwardingSettingsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userId The unique user identifier
+	@param phonelineId The unique phone line identifier
+	@return ApiSetPhonelineForwardingSettingsRequest
 	*/
 	SetPhonelineForwardingSettings(ctx context.Context, userId string, phonelineId string) ApiSetPhonelineForwardingSettingsRequest
 
@@ -54,9 +55,9 @@ type ForwardingsAPI interface {
 type ForwardingsAPIService service
 
 type ApiGetPhonelineForwardings1Request struct {
-	ctx         context.Context
-	ApiService  ForwardingsAPI
-	userId      string
+	ctx context.Context
+	ApiService ForwardingsAPI
+	userId string
 	phonelineId string
 }
 
@@ -67,29 +68,28 @@ func (r ApiGetPhonelineForwardings1Request) Execute() (*LegacyForwardingResponse
 /*
 GetPhonelineForwardings1 List all forwarding settings of a specific phone line
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param userId The unique user identifier
-	@param phonelineId The unique phone line identifier
-	@return ApiGetPhonelineForwardings1Request
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param userId The unique user identifier
+ @param phonelineId The unique phone line identifier
+ @return ApiGetPhonelineForwardings1Request
 */
 func (a *ForwardingsAPIService) GetPhonelineForwardings1(ctx context.Context, userId string, phonelineId string) ApiGetPhonelineForwardings1Request {
 	return ApiGetPhonelineForwardings1Request{
-		ApiService:  a,
-		ctx:         ctx,
-		userId:      userId,
+		ApiService: a,
+		ctx: ctx,
+		userId: userId,
 		phonelineId: phonelineId,
 	}
 }
 
 // Execute executes the request
-//
-//	@return LegacyForwardingResponse
+//  @return LegacyForwardingResponse
 func (a *ForwardingsAPIService) GetPhonelineForwardings1Execute(r ApiGetPhonelineForwardings1Request) (*LegacyForwardingResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *LegacyForwardingResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *LegacyForwardingResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ForwardingsAPIService.GetPhonelineForwardings1")
@@ -160,11 +160,11 @@ func (a *ForwardingsAPIService) GetPhonelineForwardings1Execute(r ApiGetPhonelin
 }
 
 type ApiSetPhonelineForwardingSettingsRequest struct {
-	ctx         context.Context
-	ApiService  ForwardingsAPI
-	userId      string
+	ctx context.Context
+	ApiService ForwardingsAPI
+	userId string
 	phonelineId string
-	body        *LegacyForwardingRequest
+	body *LegacyForwardingRequest
 }
 
 func (r ApiSetPhonelineForwardingSettingsRequest) Body(body LegacyForwardingRequest) ApiSetPhonelineForwardingSettingsRequest {
@@ -179,29 +179,28 @@ func (r ApiSetPhonelineForwardingSettingsRequest) Execute() (*LegacyForwardingSe
 /*
 SetPhonelineForwardingSettings Update forwarding settings for an existing phone line
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param userId The unique user identifier
-	@param phonelineId The unique phone line identifier
-	@return ApiSetPhonelineForwardingSettingsRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param userId The unique user identifier
+ @param phonelineId The unique phone line identifier
+ @return ApiSetPhonelineForwardingSettingsRequest
 */
 func (a *ForwardingsAPIService) SetPhonelineForwardingSettings(ctx context.Context, userId string, phonelineId string) ApiSetPhonelineForwardingSettingsRequest {
 	return ApiSetPhonelineForwardingSettingsRequest{
-		ApiService:  a,
-		ctx:         ctx,
-		userId:      userId,
+		ApiService: a,
+		ctx: ctx,
+		userId: userId,
 		phonelineId: phonelineId,
 	}
 }
 
 // Execute executes the request
-//
-//	@return LegacyForwardingSetResponse
+//  @return LegacyForwardingSetResponse
 func (a *ForwardingsAPIService) SetPhonelineForwardingSettingsExecute(r ApiSetPhonelineForwardingSettingsRequest) (*LegacyForwardingSetResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodPut
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *LegacyForwardingSetResponse
+		localVarHTTPMethod   = http.MethodPut
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *LegacyForwardingSetResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ForwardingsAPIService.SetPhonelineForwardingSettings")

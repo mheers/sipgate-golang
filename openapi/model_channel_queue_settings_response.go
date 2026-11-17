@@ -19,7 +19,7 @@ var _ MappedNullable = &ChannelQueueSettingsResponse{}
 
 // ChannelQueueSettingsResponse struct for ChannelQueueSettingsResponse
 type ChannelQueueSettingsResponse struct {
-	RespectWaitingTime *bool   `json:"respectWaitingTime,omitempty"`
+	RespectWaitingTime *bool `json:"respectWaitingTime,omitempty"`
 	WaitingAudioFileId *string `json:"waitingAudioFileId,omitempty"`
 }
 
@@ -105,7 +105,7 @@ func (o *ChannelQueueSettingsResponse) SetWaitingAudioFileId(v string) {
 }
 
 func (o ChannelQueueSettingsResponse) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -158,3 +158,5 @@ func (v *NullableChannelQueueSettingsResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

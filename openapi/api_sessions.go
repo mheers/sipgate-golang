@@ -18,15 +18,16 @@ import (
 	"net/url"
 )
 
+
 type SessionsAPI interface {
 
 	/*
-		NewCall Initiate a new call
+	NewCall Initiate a new call
 
-		DeviceId is only required if the caller parameter is a phone number and not a deviceId itself.<br>Use callerId to set a custom number that will be displayed to the callee.<br>This route only works for classic pbx accounts. Use the v2/calls route to initiate a call for neo pbx accounts.
+	DeviceId is only required if the caller parameter is a phone number and not a deviceId itself.<br>Use callerId to set a custom number that will be displayed to the callee.<br>This route only works for classic pbx accounts. Use the v2/calls route to initiate a call for neo pbx accounts.
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@return ApiNewCallRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiNewCallRequest
 	*/
 	NewCall(ctx context.Context) ApiNewCallRequest
 
@@ -35,10 +36,10 @@ type SessionsAPI interface {
 	NewCallExecute(r ApiNewCallRequest) (*InitiateNewCallSessionResponse, *http.Response, error)
 
 	/*
-		NewIvrRecording Initiate a new call to record an ivr message
+	NewIvrRecording Initiate a new call to record an ivr message
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@return ApiNewIvrRecordingRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiNewIvrRecordingRequest
 	*/
 	NewIvrRecording(ctx context.Context) ApiNewIvrRecordingRequest
 
@@ -47,10 +48,10 @@ type SessionsAPI interface {
 	NewIvrRecordingExecute(r ApiNewIvrRecordingRequest) (*InitiateNewCallSessionResponse, *http.Response, error)
 
 	/*
-		NewRecording Initiate a new call to record a greeting
+	NewRecording Initiate a new call to record a greeting
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@return ApiNewRecordingRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiNewRecordingRequest
 	*/
 	NewRecording(ctx context.Context) ApiNewRecordingRequest
 
@@ -59,10 +60,10 @@ type SessionsAPI interface {
 	NewRecordingExecute(r ApiNewRecordingRequest) (*InitiateNewCallSessionResponse, *http.Response, error)
 
 	/*
-		PlayRecording Initiate a new call to playback a voicemail
+	PlayRecording Initiate a new call to playback a voicemail
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@return ApiPlayRecordingRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiPlayRecordingRequest
 	*/
 	PlayRecording(ctx context.Context) ApiPlayRecordingRequest
 
@@ -71,10 +72,10 @@ type SessionsAPI interface {
 	PlayRecordingExecute(r ApiPlayRecordingRequest) (*InitiateNewCallSessionResponse, *http.Response, error)
 
 	/*
-		ResendFax Resend a faX
+	ResendFax Resend a faX
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@return ApiResendFaxRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiResendFaxRequest
 	*/
 	ResendFax(ctx context.Context) ApiResendFaxRequest
 
@@ -83,12 +84,12 @@ type SessionsAPI interface {
 	ResendFaxExecute(r ApiResendFaxRequest) (*SendFaxSessionResponse, *http.Response, error)
 
 	/*
-		SendFax Send a fax
+	SendFax Send a fax
 
-		Rate limit: 10 requests per 60 seconds per faxline.
+	Rate limit: 10 requests per 60 seconds per faxline.
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@return ApiSendFaxRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiSendFaxRequest
 	*/
 	SendFax(ctx context.Context) ApiSendFaxRequest
 
@@ -97,10 +98,10 @@ type SessionsAPI interface {
 	SendFaxExecute(r ApiSendFaxRequest) (*SendFaxSessionResponse, *http.Response, error)
 
 	/*
-		SendWebSms Send a text message
+	SendWebSms Send a text message
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@return ApiSendWebSmsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiSendWebSmsRequest
 	*/
 	SendWebSms(ctx context.Context) ApiSendWebSmsRequest
 
@@ -112,9 +113,9 @@ type SessionsAPI interface {
 type SessionsAPIService service
 
 type ApiNewCallRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService SessionsAPI
-	body       *NewCallRequest
+	body *NewCallRequest
 }
 
 func (r ApiNewCallRequest) Body(body NewCallRequest) ApiNewCallRequest {
@@ -131,25 +132,24 @@ NewCall Initiate a new call
 
 DeviceId is only required if the caller parameter is a phone number and not a deviceId itself.<br>Use callerId to set a custom number that will be displayed to the callee.<br>This route only works for classic pbx accounts. Use the v2/calls route to initiate a call for neo pbx accounts.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiNewCallRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiNewCallRequest
 */
 func (a *SessionsAPIService) NewCall(ctx context.Context) ApiNewCallRequest {
 	return ApiNewCallRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//
-//	@return InitiateNewCallSessionResponse
+//  @return InitiateNewCallSessionResponse
 func (a *SessionsAPIService) NewCallExecute(r ApiNewCallRequest) (*InitiateNewCallSessionResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodPost
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *InitiateNewCallSessionResponse
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *InitiateNewCallSessionResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SessionsAPIService.NewCall")
@@ -220,9 +220,9 @@ func (a *SessionsAPIService) NewCallExecute(r ApiNewCallRequest) (*InitiateNewCa
 }
 
 type ApiNewIvrRecordingRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService SessionsAPI
-	body       *NewIvrRecordingRequest
+	body *NewIvrRecordingRequest
 }
 
 func (r ApiNewIvrRecordingRequest) Body(body NewIvrRecordingRequest) ApiNewIvrRecordingRequest {
@@ -237,25 +237,24 @@ func (r ApiNewIvrRecordingRequest) Execute() (*InitiateNewCallSessionResponse, *
 /*
 NewIvrRecording Initiate a new call to record an ivr message
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiNewIvrRecordingRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiNewIvrRecordingRequest
 */
 func (a *SessionsAPIService) NewIvrRecording(ctx context.Context) ApiNewIvrRecordingRequest {
 	return ApiNewIvrRecordingRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//
-//	@return InitiateNewCallSessionResponse
+//  @return InitiateNewCallSessionResponse
 func (a *SessionsAPIService) NewIvrRecordingExecute(r ApiNewIvrRecordingRequest) (*InitiateNewCallSessionResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodPost
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *InitiateNewCallSessionResponse
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *InitiateNewCallSessionResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SessionsAPIService.NewIvrRecording")
@@ -326,9 +325,9 @@ func (a *SessionsAPIService) NewIvrRecordingExecute(r ApiNewIvrRecordingRequest)
 }
 
 type ApiNewRecordingRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService SessionsAPI
-	body       *NewVoicemailRecordingRecordingRequest
+	body *NewVoicemailRecordingRecordingRequest
 }
 
 func (r ApiNewRecordingRequest) Body(body NewVoicemailRecordingRecordingRequest) ApiNewRecordingRequest {
@@ -343,25 +342,24 @@ func (r ApiNewRecordingRequest) Execute() (*InitiateNewCallSessionResponse, *htt
 /*
 NewRecording Initiate a new call to record a greeting
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiNewRecordingRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiNewRecordingRequest
 */
 func (a *SessionsAPIService) NewRecording(ctx context.Context) ApiNewRecordingRequest {
 	return ApiNewRecordingRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//
-//	@return InitiateNewCallSessionResponse
+//  @return InitiateNewCallSessionResponse
 func (a *SessionsAPIService) NewRecordingExecute(r ApiNewRecordingRequest) (*InitiateNewCallSessionResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodPost
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *InitiateNewCallSessionResponse
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *InitiateNewCallSessionResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SessionsAPIService.NewRecording")
@@ -432,9 +430,9 @@ func (a *SessionsAPIService) NewRecordingExecute(r ApiNewRecordingRequest) (*Ini
 }
 
 type ApiPlayRecordingRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService SessionsAPI
-	body       *PlayRecordingRequest
+	body *PlayRecordingRequest
 }
 
 func (r ApiPlayRecordingRequest) Body(body PlayRecordingRequest) ApiPlayRecordingRequest {
@@ -449,25 +447,24 @@ func (r ApiPlayRecordingRequest) Execute() (*InitiateNewCallSessionResponse, *ht
 /*
 PlayRecording Initiate a new call to playback a voicemail
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiPlayRecordingRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiPlayRecordingRequest
 */
 func (a *SessionsAPIService) PlayRecording(ctx context.Context) ApiPlayRecordingRequest {
 	return ApiPlayRecordingRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//
-//	@return InitiateNewCallSessionResponse
+//  @return InitiateNewCallSessionResponse
 func (a *SessionsAPIService) PlayRecordingExecute(r ApiPlayRecordingRequest) (*InitiateNewCallSessionResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodPost
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *InitiateNewCallSessionResponse
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *InitiateNewCallSessionResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SessionsAPIService.PlayRecording")
@@ -538,9 +535,9 @@ func (a *SessionsAPIService) PlayRecordingExecute(r ApiPlayRecordingRequest) (*I
 }
 
 type ApiResendFaxRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService SessionsAPI
-	body       *ResendFaxRequest
+	body *ResendFaxRequest
 }
 
 func (r ApiResendFaxRequest) Body(body ResendFaxRequest) ApiResendFaxRequest {
@@ -555,25 +552,24 @@ func (r ApiResendFaxRequest) Execute() (*SendFaxSessionResponse, *http.Response,
 /*
 ResendFax Resend a faX
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiResendFaxRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiResendFaxRequest
 */
 func (a *SessionsAPIService) ResendFax(ctx context.Context) ApiResendFaxRequest {
 	return ApiResendFaxRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//
-//	@return SendFaxSessionResponse
+//  @return SendFaxSessionResponse
 func (a *SessionsAPIService) ResendFaxExecute(r ApiResendFaxRequest) (*SendFaxSessionResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodPost
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *SendFaxSessionResponse
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *SendFaxSessionResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SessionsAPIService.ResendFax")
@@ -644,9 +640,9 @@ func (a *SessionsAPIService) ResendFaxExecute(r ApiResendFaxRequest) (*SendFaxSe
 }
 
 type ApiSendFaxRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService SessionsAPI
-	body       *SendFaxRequest
+	body *SendFaxRequest
 }
 
 func (r ApiSendFaxRequest) Body(body SendFaxRequest) ApiSendFaxRequest {
@@ -663,25 +659,24 @@ SendFax Send a fax
 
 Rate limit: 10 requests per 60 seconds per faxline.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiSendFaxRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiSendFaxRequest
 */
 func (a *SessionsAPIService) SendFax(ctx context.Context) ApiSendFaxRequest {
 	return ApiSendFaxRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//
-//	@return SendFaxSessionResponse
+//  @return SendFaxSessionResponse
 func (a *SessionsAPIService) SendFaxExecute(r ApiSendFaxRequest) (*SendFaxSessionResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodPost
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *SendFaxSessionResponse
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *SendFaxSessionResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SessionsAPIService.SendFax")
@@ -752,9 +747,9 @@ func (a *SessionsAPIService) SendFaxExecute(r ApiSendFaxRequest) (*SendFaxSessio
 }
 
 type ApiSendWebSmsRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService SessionsAPI
-	body       *SendWebSmsRequest
+	body *SendWebSmsRequest
 }
 
 func (r ApiSendWebSmsRequest) Body(body SendWebSmsRequest) ApiSendWebSmsRequest {
@@ -769,22 +764,22 @@ func (r ApiSendWebSmsRequest) Execute() (*http.Response, error) {
 /*
 SendWebSms Send a text message
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiSendWebSmsRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiSendWebSmsRequest
 */
 func (a *SessionsAPIService) SendWebSms(ctx context.Context) ApiSendWebSmsRequest {
 	return ApiSendWebSmsRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
 // Execute executes the request
 func (a *SessionsAPIService) SendWebSmsExecute(r ApiSendWebSmsRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodPost
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SessionsAPIService.SendWebSms")

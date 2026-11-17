@@ -19,10 +19,10 @@ var _ MappedNullable = &UserinfoResponse{}
 
 // UserinfoResponse struct for UserinfoResponse
 type UserinfoResponse struct {
-	Domain      *string `json:"domain,omitempty"`
-	Locale      *string `json:"locale,omitempty"`
+	Domain *string `json:"domain,omitempty"`
+	Locale *string `json:"locale,omitempty"`
 	MasterSipId *string `json:"masterSipId,omitempty"`
-	Sub         *string `json:"sub,omitempty"`
+	Sub *string `json:"sub,omitempty"`
 }
 
 // NewUserinfoResponse instantiates a new UserinfoResponse object
@@ -171,7 +171,7 @@ func (o *UserinfoResponse) SetSub(v string) {
 }
 
 func (o UserinfoResponse) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -230,3 +230,5 @@ func (v *NullableUserinfoResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

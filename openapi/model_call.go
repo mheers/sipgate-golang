@@ -11,8 +11,8 @@ API version: 2.0.0
 package openapi
 
 import (
-	"bytes"
 	"encoding/json"
+	"bytes"
 	"fmt"
 )
 
@@ -26,7 +26,7 @@ type Call struct {
 	// The call is on hold. Note: for Neo PBX accounts this value is always false.
 	Hold bool `json:"hold"`
 	// The call is muted. Note: for Neo PBX accounts this value is always false.
-	Muted        bool          `json:"muted"`
+	Muted bool `json:"muted"`
 	Participants []Participant `json:"participants"`
 	// The call is being recorded
 	Recording bool `json:"recording"`
@@ -177,7 +177,7 @@ func (o *Call) SetRecording(v bool) {
 }
 
 func (o Call) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -211,10 +211,10 @@ func (o *Call) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err
+		return err;
 	}
 
-	for _, requiredProperty := range requiredProperties {
+	for _, requiredProperty := range(requiredProperties) {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -270,3 +270,5 @@ func (v *NullableCall) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

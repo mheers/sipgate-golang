@@ -19,15 +19,16 @@ import (
 	"strings"
 )
 
+
 type FaxlinesAPI interface {
 
 	/*
-		ChangeFaxlineAlias Update alias for an existing fax line
+	ChangeFaxlineAlias Update alias for an existing fax line
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param userId The unique user identifier
-		@param faxlineId The unique fax line identifier
-		@return ApiChangeFaxlineAliasRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userId The unique user identifier
+	@param faxlineId The unique fax line identifier
+	@return ApiChangeFaxlineAliasRequest
 	*/
 	ChangeFaxlineAlias(ctx context.Context, userId string, faxlineId string) ApiChangeFaxlineAliasRequest
 
@@ -35,12 +36,12 @@ type FaxlinesAPI interface {
 	ChangeFaxlineAliasExecute(r ApiChangeFaxlineAliasRequest) (*http.Response, error)
 
 	/*
-		ChangeFaxlineCallerIdSettings Update the caller ID for an existing fax line
+	ChangeFaxlineCallerIdSettings Update the caller ID for an existing fax line
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param userId The unique user identifier
-		@param faxlineId The unique fax line identifier
-		@return ApiChangeFaxlineCallerIdSettingsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userId The unique user identifier
+	@param faxlineId The unique fax line identifier
+	@return ApiChangeFaxlineCallerIdSettingsRequest
 	*/
 	ChangeFaxlineCallerIdSettings(ctx context.Context, userId string, faxlineId string) ApiChangeFaxlineCallerIdSettingsRequest
 
@@ -48,12 +49,12 @@ type FaxlinesAPI interface {
 	ChangeFaxlineCallerIdSettingsExecute(r ApiChangeFaxlineCallerIdSettingsRequest) (*http.Response, error)
 
 	/*
-		ChangeTagline Update tagline of an existing fax line
+	ChangeTagline Update tagline of an existing fax line
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param userId The unique user identifier
-		@param faxlineId The unique fax line identifier
-		@return ApiChangeTaglineRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userId The unique user identifier
+	@param faxlineId The unique fax line identifier
+	@return ApiChangeTaglineRequest
 	*/
 	ChangeTagline(ctx context.Context, userId string, faxlineId string) ApiChangeTaglineRequest
 
@@ -61,11 +62,11 @@ type FaxlinesAPI interface {
 	ChangeTaglineExecute(r ApiChangeTaglineRequest) (*http.Response, error)
 
 	/*
-		CreateFaxline Create a new fax line
+	CreateFaxline Create a new fax line
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param userId The unique user identifier
-		@return ApiCreateFaxlineRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userId The unique user identifier
+	@return ApiCreateFaxlineRequest
 	*/
 	CreateFaxline(ctx context.Context, userId string) ApiCreateFaxlineRequest
 
@@ -74,12 +75,12 @@ type FaxlinesAPI interface {
 	CreateFaxlineExecute(r ApiCreateFaxlineRequest) (*FaxlineResponse, *http.Response, error)
 
 	/*
-		DeleteFaxline Delete an existing fax line
+	DeleteFaxline Delete an existing fax line
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param userId The unique user identifier
-		@param faxlineId The unique fax line identifier
-		@return ApiDeleteFaxlineRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userId The unique user identifier
+	@param faxlineId The unique fax line identifier
+	@return ApiDeleteFaxlineRequest
 	*/
 	DeleteFaxline(ctx context.Context, userId string, faxlineId string) ApiDeleteFaxlineRequest
 
@@ -87,12 +88,12 @@ type FaxlinesAPI interface {
 	DeleteFaxlineExecute(r ApiDeleteFaxlineRequest) (*http.Response, error)
 
 	/*
-		GetFaxlineCallerId Get the caller ID of a specific fax line
+	GetFaxlineCallerId Get the caller ID of a specific fax line
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param userId The unique user identifier
-		@param faxlineId The unique fax line identifier
-		@return ApiGetFaxlineCallerIdRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userId The unique user identifier
+	@param faxlineId The unique fax line identifier
+	@return ApiGetFaxlineCallerIdRequest
 	*/
 	GetFaxlineCallerId(ctx context.Context, userId string, faxlineId string) ApiGetFaxlineCallerIdRequest
 
@@ -101,12 +102,12 @@ type FaxlinesAPI interface {
 	GetFaxlineCallerIdExecute(r ApiGetFaxlineCallerIdRequest) (*FaxlineCallerIdResponse, *http.Response, error)
 
 	/*
-		GetFaxlineNumbers List all phone numbers routed to fax line
+	GetFaxlineNumbers List all phone numbers routed to fax line
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param userId The unique user identifier
-		@param faxlineId The unique fax line identifier
-		@return ApiGetFaxlineNumbersRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userId The unique user identifier
+	@param faxlineId The unique fax line identifier
+	@return ApiGetFaxlineNumbersRequest
 	*/
 	GetFaxlineNumbers(ctx context.Context, userId string, faxlineId string) ApiGetFaxlineNumbersRequest
 
@@ -115,11 +116,11 @@ type FaxlinesAPI interface {
 	GetFaxlineNumbersExecute(r ApiGetFaxlineNumbersRequest) (*EndpointNumbersResponse, *http.Response, error)
 
 	/*
-		GetUserFaxlines List all fax lines
+	GetUserFaxlines List all fax lines
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param userId The unique user identifier
-		@return ApiGetUserFaxlinesRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userId The unique user identifier
+	@return ApiGetUserFaxlinesRequest
 	*/
 	GetUserFaxlines(ctx context.Context, userId string) ApiGetUserFaxlinesRequest
 
@@ -132,11 +133,11 @@ type FaxlinesAPI interface {
 type FaxlinesAPIService service
 
 type ApiChangeFaxlineAliasRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService FaxlinesAPI
-	userId     string
-	faxlineId  string
-	body       *SetAliasRequest
+	userId string
+	faxlineId string
+	body *SetAliasRequest
 }
 
 func (r ApiChangeFaxlineAliasRequest) Body(body SetAliasRequest) ApiChangeFaxlineAliasRequest {
@@ -151,26 +152,26 @@ func (r ApiChangeFaxlineAliasRequest) Execute() (*http.Response, error) {
 /*
 ChangeFaxlineAlias Update alias for an existing fax line
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param userId The unique user identifier
-	@param faxlineId The unique fax line identifier
-	@return ApiChangeFaxlineAliasRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param userId The unique user identifier
+ @param faxlineId The unique fax line identifier
+ @return ApiChangeFaxlineAliasRequest
 */
 func (a *FaxlinesAPIService) ChangeFaxlineAlias(ctx context.Context, userId string, faxlineId string) ApiChangeFaxlineAliasRequest {
 	return ApiChangeFaxlineAliasRequest{
 		ApiService: a,
-		ctx:        ctx,
-		userId:     userId,
-		faxlineId:  faxlineId,
+		ctx: ctx,
+		userId: userId,
+		faxlineId: faxlineId,
 	}
 }
 
 // Execute executes the request
 func (a *FaxlinesAPIService) ChangeFaxlineAliasExecute(r ApiChangeFaxlineAliasRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodPut
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod   = http.MethodPut
+		localVarPostBody     interface{}
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FaxlinesAPIService.ChangeFaxlineAlias")
@@ -234,11 +235,11 @@ func (a *FaxlinesAPIService) ChangeFaxlineAliasExecute(r ApiChangeFaxlineAliasRe
 }
 
 type ApiChangeFaxlineCallerIdSettingsRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService FaxlinesAPI
-	userId     string
-	faxlineId  string
-	body       *FaxlineCallerIdRequest
+	userId string
+	faxlineId string
+	body *FaxlineCallerIdRequest
 }
 
 func (r ApiChangeFaxlineCallerIdSettingsRequest) Body(body FaxlineCallerIdRequest) ApiChangeFaxlineCallerIdSettingsRequest {
@@ -253,26 +254,26 @@ func (r ApiChangeFaxlineCallerIdSettingsRequest) Execute() (*http.Response, erro
 /*
 ChangeFaxlineCallerIdSettings Update the caller ID for an existing fax line
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param userId The unique user identifier
-	@param faxlineId The unique fax line identifier
-	@return ApiChangeFaxlineCallerIdSettingsRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param userId The unique user identifier
+ @param faxlineId The unique fax line identifier
+ @return ApiChangeFaxlineCallerIdSettingsRequest
 */
 func (a *FaxlinesAPIService) ChangeFaxlineCallerIdSettings(ctx context.Context, userId string, faxlineId string) ApiChangeFaxlineCallerIdSettingsRequest {
 	return ApiChangeFaxlineCallerIdSettingsRequest{
 		ApiService: a,
-		ctx:        ctx,
-		userId:     userId,
-		faxlineId:  faxlineId,
+		ctx: ctx,
+		userId: userId,
+		faxlineId: faxlineId,
 	}
 }
 
 // Execute executes the request
 func (a *FaxlinesAPIService) ChangeFaxlineCallerIdSettingsExecute(r ApiChangeFaxlineCallerIdSettingsRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodPut
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod   = http.MethodPut
+		localVarPostBody     interface{}
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FaxlinesAPIService.ChangeFaxlineCallerIdSettings")
@@ -336,11 +337,11 @@ func (a *FaxlinesAPIService) ChangeFaxlineCallerIdSettingsExecute(r ApiChangeFax
 }
 
 type ApiChangeTaglineRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService FaxlinesAPI
-	userId     string
-	faxlineId  string
-	body       *FaxlineTaglineRequest
+	userId string
+	faxlineId string
+	body *FaxlineTaglineRequest
 }
 
 func (r ApiChangeTaglineRequest) Body(body FaxlineTaglineRequest) ApiChangeTaglineRequest {
@@ -355,26 +356,26 @@ func (r ApiChangeTaglineRequest) Execute() (*http.Response, error) {
 /*
 ChangeTagline Update tagline of an existing fax line
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param userId The unique user identifier
-	@param faxlineId The unique fax line identifier
-	@return ApiChangeTaglineRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param userId The unique user identifier
+ @param faxlineId The unique fax line identifier
+ @return ApiChangeTaglineRequest
 */
 func (a *FaxlinesAPIService) ChangeTagline(ctx context.Context, userId string, faxlineId string) ApiChangeTaglineRequest {
 	return ApiChangeTaglineRequest{
 		ApiService: a,
-		ctx:        ctx,
-		userId:     userId,
-		faxlineId:  faxlineId,
+		ctx: ctx,
+		userId: userId,
+		faxlineId: faxlineId,
 	}
 }
 
 // Execute executes the request
 func (a *FaxlinesAPIService) ChangeTaglineExecute(r ApiChangeTaglineRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodPut
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod   = http.MethodPut
+		localVarPostBody     interface{}
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FaxlinesAPIService.ChangeTagline")
@@ -438,9 +439,9 @@ func (a *FaxlinesAPIService) ChangeTaglineExecute(r ApiChangeTaglineRequest) (*h
 }
 
 type ApiCreateFaxlineRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService FaxlinesAPI
-	userId     string
+	userId string
 }
 
 func (r ApiCreateFaxlineRequest) Execute() (*FaxlineResponse, *http.Response, error) {
@@ -450,27 +451,26 @@ func (r ApiCreateFaxlineRequest) Execute() (*FaxlineResponse, *http.Response, er
 /*
 CreateFaxline Create a new fax line
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param userId The unique user identifier
-	@return ApiCreateFaxlineRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param userId The unique user identifier
+ @return ApiCreateFaxlineRequest
 */
 func (a *FaxlinesAPIService) CreateFaxline(ctx context.Context, userId string) ApiCreateFaxlineRequest {
 	return ApiCreateFaxlineRequest{
 		ApiService: a,
-		ctx:        ctx,
-		userId:     userId,
+		ctx: ctx,
+		userId: userId,
 	}
 }
 
 // Execute executes the request
-//
-//	@return FaxlineResponse
+//  @return FaxlineResponse
 func (a *FaxlinesAPIService) CreateFaxlineExecute(r ApiCreateFaxlineRequest) (*FaxlineResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodPost
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *FaxlineResponse
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *FaxlineResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FaxlinesAPIService.CreateFaxline")
@@ -540,10 +540,10 @@ func (a *FaxlinesAPIService) CreateFaxlineExecute(r ApiCreateFaxlineRequest) (*F
 }
 
 type ApiDeleteFaxlineRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService FaxlinesAPI
-	userId     string
-	faxlineId  string
+	userId string
+	faxlineId string
 }
 
 func (r ApiDeleteFaxlineRequest) Execute() (*http.Response, error) {
@@ -553,26 +553,26 @@ func (r ApiDeleteFaxlineRequest) Execute() (*http.Response, error) {
 /*
 DeleteFaxline Delete an existing fax line
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param userId The unique user identifier
-	@param faxlineId The unique fax line identifier
-	@return ApiDeleteFaxlineRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param userId The unique user identifier
+ @param faxlineId The unique fax line identifier
+ @return ApiDeleteFaxlineRequest
 */
 func (a *FaxlinesAPIService) DeleteFaxline(ctx context.Context, userId string, faxlineId string) ApiDeleteFaxlineRequest {
 	return ApiDeleteFaxlineRequest{
 		ApiService: a,
-		ctx:        ctx,
-		userId:     userId,
-		faxlineId:  faxlineId,
+		ctx: ctx,
+		userId: userId,
+		faxlineId: faxlineId,
 	}
 }
 
 // Execute executes the request
 func (a *FaxlinesAPIService) DeleteFaxlineExecute(r ApiDeleteFaxlineRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodDelete
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FaxlinesAPIService.DeleteFaxline")
@@ -634,10 +634,10 @@ func (a *FaxlinesAPIService) DeleteFaxlineExecute(r ApiDeleteFaxlineRequest) (*h
 }
 
 type ApiGetFaxlineCallerIdRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService FaxlinesAPI
-	userId     string
-	faxlineId  string
+	userId string
+	faxlineId string
 }
 
 func (r ApiGetFaxlineCallerIdRequest) Execute() (*FaxlineCallerIdResponse, *http.Response, error) {
@@ -647,29 +647,28 @@ func (r ApiGetFaxlineCallerIdRequest) Execute() (*FaxlineCallerIdResponse, *http
 /*
 GetFaxlineCallerId Get the caller ID of a specific fax line
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param userId The unique user identifier
-	@param faxlineId The unique fax line identifier
-	@return ApiGetFaxlineCallerIdRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param userId The unique user identifier
+ @param faxlineId The unique fax line identifier
+ @return ApiGetFaxlineCallerIdRequest
 */
 func (a *FaxlinesAPIService) GetFaxlineCallerId(ctx context.Context, userId string, faxlineId string) ApiGetFaxlineCallerIdRequest {
 	return ApiGetFaxlineCallerIdRequest{
 		ApiService: a,
-		ctx:        ctx,
-		userId:     userId,
-		faxlineId:  faxlineId,
+		ctx: ctx,
+		userId: userId,
+		faxlineId: faxlineId,
 	}
 }
 
 // Execute executes the request
-//
-//	@return FaxlineCallerIdResponse
+//  @return FaxlineCallerIdResponse
 func (a *FaxlinesAPIService) GetFaxlineCallerIdExecute(r ApiGetFaxlineCallerIdRequest) (*FaxlineCallerIdResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *FaxlineCallerIdResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *FaxlineCallerIdResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FaxlinesAPIService.GetFaxlineCallerId")
@@ -740,10 +739,10 @@ func (a *FaxlinesAPIService) GetFaxlineCallerIdExecute(r ApiGetFaxlineCallerIdRe
 }
 
 type ApiGetFaxlineNumbersRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService FaxlinesAPI
-	userId     string
-	faxlineId  string
+	userId string
+	faxlineId string
 }
 
 func (r ApiGetFaxlineNumbersRequest) Execute() (*EndpointNumbersResponse, *http.Response, error) {
@@ -753,29 +752,28 @@ func (r ApiGetFaxlineNumbersRequest) Execute() (*EndpointNumbersResponse, *http.
 /*
 GetFaxlineNumbers List all phone numbers routed to fax line
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param userId The unique user identifier
-	@param faxlineId The unique fax line identifier
-	@return ApiGetFaxlineNumbersRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param userId The unique user identifier
+ @param faxlineId The unique fax line identifier
+ @return ApiGetFaxlineNumbersRequest
 */
 func (a *FaxlinesAPIService) GetFaxlineNumbers(ctx context.Context, userId string, faxlineId string) ApiGetFaxlineNumbersRequest {
 	return ApiGetFaxlineNumbersRequest{
 		ApiService: a,
-		ctx:        ctx,
-		userId:     userId,
-		faxlineId:  faxlineId,
+		ctx: ctx,
+		userId: userId,
+		faxlineId: faxlineId,
 	}
 }
 
 // Execute executes the request
-//
-//	@return EndpointNumbersResponse
+//  @return EndpointNumbersResponse
 func (a *FaxlinesAPIService) GetFaxlineNumbersExecute(r ApiGetFaxlineNumbersRequest) (*EndpointNumbersResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *EndpointNumbersResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *EndpointNumbersResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FaxlinesAPIService.GetFaxlineNumbers")
@@ -846,9 +844,9 @@ func (a *FaxlinesAPIService) GetFaxlineNumbersExecute(r ApiGetFaxlineNumbersRequ
 }
 
 type ApiGetUserFaxlinesRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService FaxlinesAPI
-	userId     string
+	userId string
 }
 
 func (r ApiGetUserFaxlinesRequest) Execute() (*FaxlinesResponse, *http.Response, error) {
@@ -858,27 +856,26 @@ func (r ApiGetUserFaxlinesRequest) Execute() (*FaxlinesResponse, *http.Response,
 /*
 GetUserFaxlines List all fax lines
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param userId The unique user identifier
-	@return ApiGetUserFaxlinesRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param userId The unique user identifier
+ @return ApiGetUserFaxlinesRequest
 */
 func (a *FaxlinesAPIService) GetUserFaxlines(ctx context.Context, userId string) ApiGetUserFaxlinesRequest {
 	return ApiGetUserFaxlinesRequest{
 		ApiService: a,
-		ctx:        ctx,
-		userId:     userId,
+		ctx: ctx,
+		userId: userId,
 	}
 }
 
 // Execute executes the request
-//
-//	@return FaxlinesResponse
+//  @return FaxlinesResponse
 func (a *FaxlinesAPIService) GetUserFaxlinesExecute(r ApiGetUserFaxlinesRequest) (*FaxlinesResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *FaxlinesResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *FaxlinesResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FaxlinesAPIService.GetUserFaxlines")

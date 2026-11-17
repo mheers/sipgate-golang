@@ -19,13 +19,14 @@ import (
 	"strings"
 )
 
+
 type RtcmAPI interface {
 
 	/*
-		CreateCall Start a new channel call for sipgate neo accounts
+	CreateCall Start a new channel call for sipgate neo accounts
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@return ApiCreateCallRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiCreateCallRequest
 	*/
 	CreateCall(ctx context.Context) ApiCreateCallRequest
 
@@ -34,12 +35,12 @@ type RtcmAPI interface {
 	CreateCallExecute(r ApiCreateCallRequest) (*CreateCallResponse, *http.Response, error)
 
 	/*
-		GetCalls List all currently established calls. The response does not contain ringing calls or currently running voicemail recordings.
+	GetCalls List all currently established calls. The response does not contain ringing calls or currently running voicemail recordings.
 
-		Note: for Neo PBX accounts the values for muted and hold are always false.
+	Note: for Neo PBX accounts the values for muted and hold are always false.
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@return ApiGetCallsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiGetCallsRequest
 	*/
 	GetCalls(ctx context.Context) ApiGetCallsRequest
 
@@ -48,11 +49,11 @@ type RtcmAPI interface {
 	GetCallsExecute(r ApiGetCallsRequest) (*Calls, *http.Response, error)
 
 	/*
-		HangupCall Hang up call
+	HangupCall Hang up call
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param callId
-		@return ApiHangupCallRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param callId
+	@return ApiHangupCallRequest
 	*/
 	HangupCall(ctx context.Context, callId string) ApiHangupCallRequest
 
@@ -60,11 +61,11 @@ type RtcmAPI interface {
 	HangupCallExecute(r ApiHangupCallRequest) (*http.Response, error)
 
 	/*
-		SendCallDtmf Send DTMF tone sequences to all participants
+	SendCallDtmf Send DTMF tone sequences to all participants
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param callId
-		@return ApiSendCallDtmfRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param callId
+	@return ApiSendCallDtmfRequest
 	*/
 	SendCallDtmf(ctx context.Context, callId string) ApiSendCallDtmfRequest
 
@@ -72,11 +73,11 @@ type RtcmAPI interface {
 	SendCallDtmfExecute(r ApiSendCallDtmfRequest) (*http.Response, error)
 
 	/*
-		SetCallHold Hold/Resume all participants
+	SetCallHold Hold/Resume all participants
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param callId
-		@return ApiSetCallHoldRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param callId
+	@return ApiSetCallHoldRequest
 	*/
 	SetCallHold(ctx context.Context, callId string) ApiSetCallHoldRequest
 
@@ -84,13 +85,13 @@ type RtcmAPI interface {
 	SetCallHoldExecute(r ApiSetCallHoldRequest) (*http.Response, error)
 
 	/*
-		SetCallMuted Mute/Unmute yourself
+	SetCallMuted Mute/Unmute yourself
 
-		Note: This functionality is not available for Neo PBX accounts.
+	Note: This functionality is not available for Neo PBX accounts.
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param callId
-		@return ApiSetCallMutedRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param callId
+	@return ApiSetCallMutedRequest
 	*/
 	SetCallMuted(ctx context.Context, callId string) ApiSetCallMutedRequest
 
@@ -98,13 +99,13 @@ type RtcmAPI interface {
 	SetCallMutedExecute(r ApiSetCallMutedRequest) (*http.Response, error)
 
 	/*
-		SetCallRecording Start or stop a call recording
+	SetCallRecording Start or stop a call recording
 
-		When starting a recording with announcement=false, no announcement will be played to call participants. It is within your responsibility to inform all call participants about the recording. For Neo PBX accounts, the recording will always be stopped with the same announcement setting as it was started with.
+	When starting a recording with announcement=false, no announcement will be played to call participants. It is within your responsibility to inform all call participants about the recording. For Neo PBX accounts, the recording will always be stopped with the same announcement setting as it was started with.
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param callId
-		@return ApiSetCallRecordingRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param callId
+	@return ApiSetCallRecordingRequest
 	*/
 	SetCallRecording(ctx context.Context, callId string) ApiSetCallRecordingRequest
 
@@ -112,13 +113,13 @@ type RtcmAPI interface {
 	SetCallRecordingExecute(r ApiSetCallRecordingRequest) (*http.Response, error)
 
 	/*
-		StartCallAnnouncement Start playing a new announcement to all participants
+	StartCallAnnouncement Start playing a new announcement to all participants
 
-		Note: This functionality is not available for Neo PBX accounts. Currently the sound file needs to be a mono 16bit PCM WAV file with a sampling rate of 8kHz. MP3 conversion example: mpg123 --rate 8000 --mono -w output.wav input.mp3
+	Note: This functionality is not available for Neo PBX accounts. Currently the sound file needs to be a mono 16bit PCM WAV file with a sampling rate of 8kHz. MP3 conversion example: mpg123 --rate 8000 --mono -w output.wav input.mp3
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param callId
-		@return ApiStartCallAnnouncementRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param callId
+	@return ApiStartCallAnnouncementRequest
 	*/
 	StartCallAnnouncement(ctx context.Context, callId string) ApiStartCallAnnouncementRequest
 
@@ -126,11 +127,11 @@ type RtcmAPI interface {
 	StartCallAnnouncementExecute(r ApiStartCallAnnouncementRequest) (*http.Response, error)
 
 	/*
-		TransferCall Transfer call
+	TransferCall Transfer call
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param callId
-		@return ApiTransferCallRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param callId
+	@return ApiTransferCallRequest
 	*/
 	TransferCall(ctx context.Context, callId string) ApiTransferCallRequest
 
@@ -142,9 +143,9 @@ type RtcmAPI interface {
 type RtcmAPIService service
 
 type ApiCreateCallRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService RtcmAPI
-	body       *CreateCallRequest
+	body *CreateCallRequest
 }
 
 // call parameters
@@ -160,25 +161,24 @@ func (r ApiCreateCallRequest) Execute() (*CreateCallResponse, *http.Response, er
 /*
 CreateCall Start a new channel call for sipgate neo accounts
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiCreateCallRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiCreateCallRequest
 */
 func (a *RtcmAPIService) CreateCall(ctx context.Context) ApiCreateCallRequest {
 	return ApiCreateCallRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//
-//	@return CreateCallResponse
+//  @return CreateCallResponse
 func (a *RtcmAPIService) CreateCallExecute(r ApiCreateCallRequest) (*CreateCallResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodPost
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *CreateCallResponse
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *CreateCallResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RtcmAPIService.CreateCall")
@@ -249,7 +249,7 @@ func (a *RtcmAPIService) CreateCallExecute(r ApiCreateCallRequest) (*CreateCallR
 }
 
 type ApiGetCallsRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService RtcmAPI
 }
 
@@ -262,25 +262,24 @@ GetCalls List all currently established calls. The response does not contain rin
 
 Note: for Neo PBX accounts the values for muted and hold are always false.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiGetCallsRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiGetCallsRequest
 */
 func (a *RtcmAPIService) GetCalls(ctx context.Context) ApiGetCallsRequest {
 	return ApiGetCallsRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//
-//	@return Calls
+//  @return Calls
 func (a *RtcmAPIService) GetCallsExecute(r ApiGetCallsRequest) (*Calls, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *Calls
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *Calls
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RtcmAPIService.GetCalls")
@@ -349,9 +348,9 @@ func (a *RtcmAPIService) GetCallsExecute(r ApiGetCallsRequest) (*Calls, *http.Re
 }
 
 type ApiHangupCallRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService RtcmAPI
-	callId     string
+	callId string
 }
 
 func (r ApiHangupCallRequest) Execute() (*http.Response, error) {
@@ -361,24 +360,24 @@ func (r ApiHangupCallRequest) Execute() (*http.Response, error) {
 /*
 HangupCall Hang up call
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param callId
-	@return ApiHangupCallRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param callId
+ @return ApiHangupCallRequest
 */
 func (a *RtcmAPIService) HangupCall(ctx context.Context, callId string) ApiHangupCallRequest {
 	return ApiHangupCallRequest{
 		ApiService: a,
-		ctx:        ctx,
-		callId:     callId,
+		ctx: ctx,
+		callId: callId,
 	}
 }
 
 // Execute executes the request
 func (a *RtcmAPIService) HangupCallExecute(r ApiHangupCallRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodDelete
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RtcmAPIService.HangupCall")
@@ -439,10 +438,10 @@ func (a *RtcmAPIService) HangupCallExecute(r ApiHangupCallRequest) (*http.Respon
 }
 
 type ApiSendCallDtmfRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService RtcmAPI
-	callId     string
-	body       *DtmfRequest
+	callId string
+	body *DtmfRequest
 }
 
 func (r ApiSendCallDtmfRequest) Body(body DtmfRequest) ApiSendCallDtmfRequest {
@@ -457,24 +456,24 @@ func (r ApiSendCallDtmfRequest) Execute() (*http.Response, error) {
 /*
 SendCallDtmf Send DTMF tone sequences to all participants
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param callId
-	@return ApiSendCallDtmfRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param callId
+ @return ApiSendCallDtmfRequest
 */
 func (a *RtcmAPIService) SendCallDtmf(ctx context.Context, callId string) ApiSendCallDtmfRequest {
 	return ApiSendCallDtmfRequest{
 		ApiService: a,
-		ctx:        ctx,
-		callId:     callId,
+		ctx: ctx,
+		callId: callId,
 	}
 }
 
 // Execute executes the request
 func (a *RtcmAPIService) SendCallDtmfExecute(r ApiSendCallDtmfRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodPost
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RtcmAPIService.SendCallDtmf")
@@ -537,10 +536,10 @@ func (a *RtcmAPIService) SendCallDtmfExecute(r ApiSendCallDtmfRequest) (*http.Re
 }
 
 type ApiSetCallHoldRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService RtcmAPI
-	callId     string
-	body       *BooleanRequest
+	callId string
+	body *BooleanRequest
 }
 
 func (r ApiSetCallHoldRequest) Body(body BooleanRequest) ApiSetCallHoldRequest {
@@ -555,24 +554,24 @@ func (r ApiSetCallHoldRequest) Execute() (*http.Response, error) {
 /*
 SetCallHold Hold/Resume all participants
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param callId
-	@return ApiSetCallHoldRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param callId
+ @return ApiSetCallHoldRequest
 */
 func (a *RtcmAPIService) SetCallHold(ctx context.Context, callId string) ApiSetCallHoldRequest {
 	return ApiSetCallHoldRequest{
 		ApiService: a,
-		ctx:        ctx,
-		callId:     callId,
+		ctx: ctx,
+		callId: callId,
 	}
 }
 
 // Execute executes the request
 func (a *RtcmAPIService) SetCallHoldExecute(r ApiSetCallHoldRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodPut
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod   = http.MethodPut
+		localVarPostBody     interface{}
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RtcmAPIService.SetCallHold")
@@ -635,10 +634,10 @@ func (a *RtcmAPIService) SetCallHoldExecute(r ApiSetCallHoldRequest) (*http.Resp
 }
 
 type ApiSetCallMutedRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService RtcmAPI
-	callId     string
-	body       *BooleanRequest
+	callId string
+	body *BooleanRequest
 }
 
 func (r ApiSetCallMutedRequest) Body(body BooleanRequest) ApiSetCallMutedRequest {
@@ -655,24 +654,24 @@ SetCallMuted Mute/Unmute yourself
 
 Note: This functionality is not available for Neo PBX accounts.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param callId
-	@return ApiSetCallMutedRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param callId
+ @return ApiSetCallMutedRequest
 */
 func (a *RtcmAPIService) SetCallMuted(ctx context.Context, callId string) ApiSetCallMutedRequest {
 	return ApiSetCallMutedRequest{
 		ApiService: a,
-		ctx:        ctx,
-		callId:     callId,
+		ctx: ctx,
+		callId: callId,
 	}
 }
 
 // Execute executes the request
 func (a *RtcmAPIService) SetCallMutedExecute(r ApiSetCallMutedRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodPut
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod   = http.MethodPut
+		localVarPostBody     interface{}
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RtcmAPIService.SetCallMuted")
@@ -735,10 +734,10 @@ func (a *RtcmAPIService) SetCallMutedExecute(r ApiSetCallMutedRequest) (*http.Re
 }
 
 type ApiSetCallRecordingRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService RtcmAPI
-	callId     string
-	body       *RecordingRequest
+	callId string
+	body *RecordingRequest
 }
 
 func (r ApiSetCallRecordingRequest) Body(body RecordingRequest) ApiSetCallRecordingRequest {
@@ -755,24 +754,24 @@ SetCallRecording Start or stop a call recording
 
 When starting a recording with announcement=false, no announcement will be played to call participants. It is within your responsibility to inform all call participants about the recording. For Neo PBX accounts, the recording will always be stopped with the same announcement setting as it was started with.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param callId
-	@return ApiSetCallRecordingRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param callId
+ @return ApiSetCallRecordingRequest
 */
 func (a *RtcmAPIService) SetCallRecording(ctx context.Context, callId string) ApiSetCallRecordingRequest {
 	return ApiSetCallRecordingRequest{
 		ApiService: a,
-		ctx:        ctx,
-		callId:     callId,
+		ctx: ctx,
+		callId: callId,
 	}
 }
 
 // Execute executes the request
 func (a *RtcmAPIService) SetCallRecordingExecute(r ApiSetCallRecordingRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodPut
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod   = http.MethodPut
+		localVarPostBody     interface{}
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RtcmAPIService.SetCallRecording")
@@ -835,10 +834,10 @@ func (a *RtcmAPIService) SetCallRecordingExecute(r ApiSetCallRecordingRequest) (
 }
 
 type ApiStartCallAnnouncementRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService RtcmAPI
-	callId     string
-	body       *AnnouncementRequest
+	callId string
+	body *AnnouncementRequest
 }
 
 func (r ApiStartCallAnnouncementRequest) Body(body AnnouncementRequest) ApiStartCallAnnouncementRequest {
@@ -855,24 +854,24 @@ StartCallAnnouncement Start playing a new announcement to all participants
 
 Note: This functionality is not available for Neo PBX accounts. Currently the sound file needs to be a mono 16bit PCM WAV file with a sampling rate of 8kHz. MP3 conversion example: mpg123 --rate 8000 --mono -w output.wav input.mp3
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param callId
-	@return ApiStartCallAnnouncementRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param callId
+ @return ApiStartCallAnnouncementRequest
 */
 func (a *RtcmAPIService) StartCallAnnouncement(ctx context.Context, callId string) ApiStartCallAnnouncementRequest {
 	return ApiStartCallAnnouncementRequest{
 		ApiService: a,
-		ctx:        ctx,
-		callId:     callId,
+		ctx: ctx,
+		callId: callId,
 	}
 }
 
 // Execute executes the request
 func (a *RtcmAPIService) StartCallAnnouncementExecute(r ApiStartCallAnnouncementRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodPost
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RtcmAPIService.StartCallAnnouncement")
@@ -935,10 +934,10 @@ func (a *RtcmAPIService) StartCallAnnouncementExecute(r ApiStartCallAnnouncement
 }
 
 type ApiTransferCallRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService RtcmAPI
-	callId     string
-	body       *TransferRequest
+	callId string
+	body *TransferRequest
 }
 
 func (r ApiTransferCallRequest) Body(body TransferRequest) ApiTransferCallRequest {
@@ -953,24 +952,24 @@ func (r ApiTransferCallRequest) Execute() (*http.Response, error) {
 /*
 TransferCall Transfer call
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param callId
-	@return ApiTransferCallRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param callId
+ @return ApiTransferCallRequest
 */
 func (a *RtcmAPIService) TransferCall(ctx context.Context, callId string) ApiTransferCallRequest {
 	return ApiTransferCallRequest{
 		ApiService: a,
-		ctx:        ctx,
-		callId:     callId,
+		ctx: ctx,
+		callId: callId,
 	}
 }
 
 // Execute executes the request
 func (a *RtcmAPIService) TransferCallExecute(r ApiTransferCallRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodPost
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RtcmAPIService.TransferCall")

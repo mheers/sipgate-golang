@@ -19,18 +19,18 @@ var _ MappedNullable = &AddressResponse{}
 
 // AddressResponse struct for AddressResponse
 type AddressResponse struct {
-	Address1       *string `json:"address1,omitempty"`
-	Address2       *string `json:"address2,omitempty"`
-	AddressId      *string `json:"addressId,omitempty"`
-	City           *string `json:"city,omitempty"`
-	Countrycode    *string `json:"countrycode,omitempty"`
+	Address1 *string `json:"address1,omitempty"`
+	Address2 *string `json:"address2,omitempty"`
+	AddressId *string `json:"addressId,omitempty"`
+	City *string `json:"city,omitempty"`
+	Countrycode *string `json:"countrycode,omitempty"`
 	EmergencyState *string `json:"emergencyState,omitempty"`
-	Number         *string `json:"number,omitempty"`
-	NumbersUrl     *string `json:"numbersUrl,omitempty"`
-	Postcode       *string `json:"postcode,omitempty"`
-	State          *string `json:"state,omitempty"`
-	Street         *string `json:"street,omitempty"`
-	Type           *string `json:"type,omitempty"`
+	Number *string `json:"number,omitempty"`
+	NumbersUrl *string `json:"numbersUrl,omitempty"`
+	Postcode *string `json:"postcode,omitempty"`
+	State *string `json:"state,omitempty"`
+	Street *string `json:"street,omitempty"`
+	Type *string `json:"type,omitempty"`
 }
 
 // NewAddressResponse instantiates a new AddressResponse object
@@ -435,7 +435,7 @@ func (o *AddressResponse) SetType(v string) {
 }
 
 func (o AddressResponse) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -518,3 +518,5 @@ func (v *NullableAddressResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

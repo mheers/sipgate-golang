@@ -20,7 +20,7 @@ var _ MappedNullable = &Forwarding{}
 // Forwarding struct for Forwarding
 type Forwarding struct {
 	Target *string `json:"target,omitempty"`
-	Type   *string `json:"type,omitempty"`
+	Type *string `json:"type,omitempty"`
 }
 
 // NewForwarding instantiates a new Forwarding object
@@ -105,7 +105,7 @@ func (o *Forwarding) SetType(v string) {
 }
 
 func (o Forwarding) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -158,3 +158,5 @@ func (v *NullableForwarding) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

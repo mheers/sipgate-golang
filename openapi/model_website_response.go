@@ -20,7 +20,7 @@ var _ MappedNullable = &WebsiteResponse{}
 // WebsiteResponse struct for WebsiteResponse
 type WebsiteResponse struct {
 	Type []string `json:"type,omitempty"`
-	Url  *string  `json:"url,omitempty"`
+	Url *string `json:"url,omitempty"`
 }
 
 // NewWebsiteResponse instantiates a new WebsiteResponse object
@@ -105,7 +105,7 @@ func (o *WebsiteResponse) SetUrl(v string) {
 }
 
 func (o WebsiteResponse) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -158,3 +158,5 @@ func (v *NullableWebsiteResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

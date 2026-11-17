@@ -19,11 +19,11 @@ var _ MappedNullable = &ChannelEvent{}
 
 // ChannelEvent struct for ChannelEvent
 type ChannelEvent struct {
-	Call       *ChannelCall `json:"call,omitempty"`
-	CreatedAt  *string      `json:"createdAt,omitempty"`
-	EventId    *string      `json:"eventId,omitempty"`
-	Recordings []Recording  `json:"recordings,omitempty"`
-	Type       *string      `json:"type,omitempty"`
+	Call *ChannelCall `json:"call,omitempty"`
+	CreatedAt *string `json:"createdAt,omitempty"`
+	EventId *string `json:"eventId,omitempty"`
+	Recordings []Recording `json:"recordings,omitempty"`
+	Type *string `json:"type,omitempty"`
 }
 
 // NewChannelEvent instantiates a new ChannelEvent object
@@ -204,7 +204,7 @@ func (o *ChannelEvent) SetType(v string) {
 }
 
 func (o ChannelEvent) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -266,3 +266,5 @@ func (v *NullableChannelEvent) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

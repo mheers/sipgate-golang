@@ -19,12 +19,12 @@ var _ MappedNullable = &SipgateIoUrlResponse{}
 
 // SipgateIoUrlResponse struct for SipgateIoUrlResponse
 type SipgateIoUrlResponse struct {
-	IncomingUrl             *string  `json:"incomingUrl,omitempty"`
-	Log                     *bool    `json:"log,omitempty"`
-	OutgoingUrl             *string  `json:"outgoingUrl,omitempty"`
-	PushApiVersion          *int32   `json:"pushApiVersion,omitempty"`
-	PushApiVersionLifecycle *string  `json:"pushApiVersionLifecycle,omitempty"`
-	Whitelist               []string `json:"whitelist,omitempty"`
+	IncomingUrl *string `json:"incomingUrl,omitempty"`
+	Log *bool `json:"log,omitempty"`
+	OutgoingUrl *string `json:"outgoingUrl,omitempty"`
+	PushApiVersion *int32 `json:"pushApiVersion,omitempty"`
+	PushApiVersionLifecycle *string `json:"pushApiVersionLifecycle,omitempty"`
+	Whitelist []string `json:"whitelist,omitempty"`
 }
 
 // NewSipgateIoUrlResponse instantiates a new SipgateIoUrlResponse object
@@ -241,7 +241,7 @@ func (o *SipgateIoUrlResponse) SetWhitelist(v []string) {
 }
 
 func (o SipgateIoUrlResponse) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -306,3 +306,5 @@ func (v *NullableSipgateIoUrlResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

@@ -11,8 +11,8 @@ API version: 2.0.0
 package openapi
 
 import (
-	"bytes"
 	"encoding/json"
+	"bytes"
 	"fmt"
 )
 
@@ -21,13 +21,13 @@ var _ MappedNullable = &SetSipgateIoPhonelineSettingsRequest{}
 
 // SetSipgateIoPhonelineSettingsRequest struct for SetSipgateIoPhonelineSettingsRequest
 type SetSipgateIoPhonelineSettingsRequest struct {
-	AllowSelfSigned *bool   `json:"allowSelfSigned,omitempty"`
-	Certificate     *string `json:"certificate,omitempty"`
-	IncomingActive  *bool   `json:"incomingActive,omitempty"`
-	IncomingUrl     string  `json:"incomingUrl"`
-	Log             *bool   `json:"log,omitempty"`
-	OutgoingActive  *bool   `json:"outgoingActive,omitempty"`
-	OutgoingUrl     string  `json:"outgoingUrl"`
+	AllowSelfSigned *bool `json:"allowSelfSigned,omitempty"`
+	Certificate *string `json:"certificate,omitempty"`
+	IncomingActive *bool `json:"incomingActive,omitempty"`
+	IncomingUrl string `json:"incomingUrl"`
+	Log *bool `json:"log,omitempty"`
+	OutgoingActive *bool `json:"outgoingActive,omitempty"`
+	OutgoingUrl string `json:"outgoingUrl"`
 }
 
 type _SetSipgateIoPhonelineSettingsRequest SetSipgateIoPhonelineSettingsRequest
@@ -276,7 +276,7 @@ func (o *SetSipgateIoPhonelineSettingsRequest) SetOutgoingUrl(v string) {
 }
 
 func (o SetSipgateIoPhonelineSettingsRequest) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -319,10 +319,10 @@ func (o *SetSipgateIoPhonelineSettingsRequest) UnmarshalJSON(data []byte) (err e
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err
+		return err;
 	}
 
-	for _, requiredProperty := range requiredProperties {
+	for _, requiredProperty := range(requiredProperties) {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -378,3 +378,5 @@ func (v *NullableSetSipgateIoPhonelineSettingsRequest) UnmarshalJSON(src []byte)
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

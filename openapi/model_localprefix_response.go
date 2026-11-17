@@ -19,8 +19,8 @@ var _ MappedNullable = &LocalprefixResponse{}
 
 // LocalprefixResponse struct for LocalprefixResponse
 type LocalprefixResponse struct {
-	Active *bool   `json:"active,omitempty"`
-	Value  *string `json:"value,omitempty"`
+	Active *bool `json:"active,omitempty"`
+	Value *string `json:"value,omitempty"`
 }
 
 // NewLocalprefixResponse instantiates a new LocalprefixResponse object
@@ -109,7 +109,7 @@ func (o *LocalprefixResponse) SetValue(v string) {
 }
 
 func (o LocalprefixResponse) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -162,3 +162,5 @@ func (v *NullableLocalprefixResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

@@ -19,18 +19,18 @@ var _ MappedNullable = &ContactResponse{}
 
 // ContactResponse struct for ContactResponse
 type ContactResponse struct {
-	Addresses    []AddressResponse `json:"addresses,omitempty"`
-	Emails       []EMailResponse   `json:"emails,omitempty"`
-	Familyname   *string           `json:"familyname,omitempty"`
-	Givenname    *string           `json:"givenname,omitempty"`
-	Id           *string           `json:"id,omitempty"`
-	Name         *string           `json:"name,omitempty"`
-	Note         *string           `json:"note,omitempty"`
-	Numbers      []NumberResponse  `json:"numbers,omitempty"`
-	Organization [][]string        `json:"organization,omitempty"`
+	Addresses []AddressResponse `json:"addresses,omitempty"`
+	Emails []EMailResponse `json:"emails,omitempty"`
+	Familyname *string `json:"familyname,omitempty"`
+	Givenname *string `json:"givenname,omitempty"`
+	Id *string `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+	Note *string `json:"note,omitempty"`
+	Numbers []NumberResponse `json:"numbers,omitempty"`
+	Organization [][]string `json:"organization,omitempty"`
 	// base64 encoded file content
-	Picture  *string           `json:"picture,omitempty"`
-	Scope    *string           `json:"scope,omitempty"`
+	Picture *string `json:"picture,omitempty"`
+	Scope *string `json:"scope,omitempty"`
 	Websites []WebsiteResponse `json:"websites,omitempty"`
 }
 
@@ -436,7 +436,7 @@ func (o *ContactResponse) SetWebsites(v []WebsiteResponse) {
 }
 
 func (o ContactResponse) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -519,3 +519,5 @@ func (v *NullableContactResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

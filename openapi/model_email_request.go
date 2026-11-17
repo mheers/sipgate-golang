@@ -19,8 +19,8 @@ var _ MappedNullable = &EmailRequest{}
 
 // EmailRequest struct for EmailRequest
 type EmailRequest struct {
-	Email *string  `json:"email,omitempty"`
-	Type  []string `json:"type,omitempty"`
+	Email *string `json:"email,omitempty"`
+	Type []string `json:"type,omitempty"`
 }
 
 // NewEmailRequest instantiates a new EmailRequest object
@@ -105,7 +105,7 @@ func (o *EmailRequest) SetType(v []string) {
 }
 
 func (o EmailRequest) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -158,3 +158,5 @@ func (v *NullableEmailRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

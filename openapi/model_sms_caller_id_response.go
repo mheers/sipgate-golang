@@ -19,10 +19,10 @@ var _ MappedNullable = &SmsCallerIdResponse{}
 
 // SmsCallerIdResponse struct for SmsCallerIdResponse
 type SmsCallerIdResponse struct {
-	DefaultNumber *bool   `json:"defaultNumber,omitempty"`
-	Id            *int32  `json:"id,omitempty"`
-	Phonenumber   *string `json:"phonenumber,omitempty"`
-	Verified      *bool   `json:"verified,omitempty"`
+	DefaultNumber *bool `json:"defaultNumber,omitempty"`
+	Id *int32 `json:"id,omitempty"`
+	Phonenumber *string `json:"phonenumber,omitempty"`
+	Verified *bool `json:"verified,omitempty"`
 }
 
 // NewSmsCallerIdResponse instantiates a new SmsCallerIdResponse object
@@ -179,7 +179,7 @@ func (o *SmsCallerIdResponse) SetVerified(v bool) {
 }
 
 func (o SmsCallerIdResponse) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -238,3 +238,5 @@ func (v *NullableSmsCallerIdResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

@@ -19,8 +19,8 @@ var _ MappedNullable = &SetBlockAnonymousSettingsRequest{}
 
 // SetBlockAnonymousSettingsRequest struct for SetBlockAnonymousSettingsRequest
 type SetBlockAnonymousSettingsRequest struct {
-	Enabled *bool   `json:"enabled,omitempty"`
-	Target  *string `json:"target,omitempty"`
+	Enabled *bool `json:"enabled,omitempty"`
+	Target *string `json:"target,omitempty"`
 }
 
 // NewSetBlockAnonymousSettingsRequest instantiates a new SetBlockAnonymousSettingsRequest object
@@ -109,7 +109,7 @@ func (o *SetBlockAnonymousSettingsRequest) SetTarget(v string) {
 }
 
 func (o SetBlockAnonymousSettingsRequest) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -162,3 +162,5 @@ func (v *NullableSetBlockAnonymousSettingsRequest) UnmarshalJSON(src []byte) err
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

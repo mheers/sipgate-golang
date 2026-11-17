@@ -19,13 +19,14 @@ import (
 	"strings"
 )
 
+
 type AuthorizationAPI interface {
 
 	/*
-		CreateClient Create a new OAuth 2.0 client
+	CreateClient Create a new OAuth 2.0 client
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@return ApiCreateClientRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiCreateClientRequest
 	*/
 	CreateClient(ctx context.Context) ApiCreateClientRequest
 
@@ -34,11 +35,11 @@ type AuthorizationAPI interface {
 	CreateClientExecute(r ApiCreateClientRequest) (*OAuthClient, *http.Response, error)
 
 	/*
-		DeleteClient Delete an existing OAuth 2.0 client
+	DeleteClient Delete an existing OAuth 2.0 client
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param clientId The unique OAuth 2.0 client identifier
-		@return ApiDeleteClientRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param clientId The unique OAuth 2.0 client identifier
+	@return ApiDeleteClientRequest
 	*/
 	DeleteClient(ctx context.Context, clientId string) ApiDeleteClientRequest
 
@@ -46,11 +47,11 @@ type AuthorizationAPI interface {
 	DeleteClientExecute(r ApiDeleteClientRequest) (*http.Response, error)
 
 	/*
-		GetClient Get a specific OAuth 2.0 client
+	GetClient Get a specific OAuth 2.0 client
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param clientId The unique OAuth 2.0 client identifier
-		@return ApiGetClientRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param clientId The unique OAuth 2.0 client identifier
+	@return ApiGetClientRequest
 	*/
 	GetClient(ctx context.Context, clientId string) ApiGetClientRequest
 
@@ -59,10 +60,10 @@ type AuthorizationAPI interface {
 	GetClientExecute(r ApiGetClientRequest) (*OAuthClient, *http.Response, error)
 
 	/*
-		GetClients List all OAuth 2.0 clients
+	GetClients List all OAuth 2.0 clients
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@return ApiGetClientsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiGetClientsRequest
 	*/
 	GetClients(ctx context.Context) ApiGetClientsRequest
 
@@ -71,11 +72,11 @@ type AuthorizationAPI interface {
 	GetClientsExecute(r ApiGetClientsRequest) (*OAuthClients, *http.Response, error)
 
 	/*
-		GetGdprUrls Get GDPR urls for specific OAuth 2.0 client
+	GetGdprUrls Get GDPR urls for specific OAuth 2.0 client
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param clientId The unique OAuth 2.0 client identifier
-		@return ApiGetGdprUrlsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param clientId The unique OAuth 2.0 client identifier
+	@return ApiGetGdprUrlsRequest
 	*/
 	GetGdprUrls(ctx context.Context, clientId string) ApiGetGdprUrlsRequest
 
@@ -84,11 +85,11 @@ type AuthorizationAPI interface {
 	GetGdprUrlsExecute(r ApiGetGdprUrlsRequest) (*GdprUrls, *http.Response, error)
 
 	/*
-		UpdateClient Update an existing OAuth 2.0 client
+	UpdateClient Update an existing OAuth 2.0 client
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param clientId The unique OAuth 2.0 client identifier
-		@return ApiUpdateClientRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param clientId The unique OAuth 2.0 client identifier
+	@return ApiUpdateClientRequest
 	*/
 	UpdateClient(ctx context.Context, clientId string) ApiUpdateClientRequest
 
@@ -97,10 +98,10 @@ type AuthorizationAPI interface {
 	UpdateClientExecute(r ApiUpdateClientRequest) (*OAuthClient, *http.Response, error)
 
 	/*
-		Userinfo Get information about the logged in user
+	Userinfo Get information about the logged in user
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@return ApiUserinfoRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiUserinfoRequest
 	*/
 	Userinfo(ctx context.Context) ApiUserinfoRequest
 
@@ -113,9 +114,9 @@ type AuthorizationAPI interface {
 type AuthorizationAPIService service
 
 type ApiCreateClientRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService AuthorizationAPI
-	client     *CreateClientRequest
+	client *CreateClientRequest
 }
 
 func (r ApiCreateClientRequest) Client(client CreateClientRequest) ApiCreateClientRequest {
@@ -130,25 +131,24 @@ func (r ApiCreateClientRequest) Execute() (*OAuthClient, *http.Response, error) 
 /*
 CreateClient Create a new OAuth 2.0 client
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiCreateClientRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiCreateClientRequest
 */
 func (a *AuthorizationAPIService) CreateClient(ctx context.Context) ApiCreateClientRequest {
 	return ApiCreateClientRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//
-//	@return OAuthClient
+//  @return OAuthClient
 func (a *AuthorizationAPIService) CreateClientExecute(r ApiCreateClientRequest) (*OAuthClient, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodPost
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *OAuthClient
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *OAuthClient
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AuthorizationAPIService.CreateClient")
@@ -222,9 +222,9 @@ func (a *AuthorizationAPIService) CreateClientExecute(r ApiCreateClientRequest) 
 }
 
 type ApiDeleteClientRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService AuthorizationAPI
-	clientId   string
+	clientId string
 }
 
 func (r ApiDeleteClientRequest) Execute() (*http.Response, error) {
@@ -234,24 +234,24 @@ func (r ApiDeleteClientRequest) Execute() (*http.Response, error) {
 /*
 DeleteClient Delete an existing OAuth 2.0 client
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param clientId The unique OAuth 2.0 client identifier
-	@return ApiDeleteClientRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param clientId The unique OAuth 2.0 client identifier
+ @return ApiDeleteClientRequest
 */
 func (a *AuthorizationAPIService) DeleteClient(ctx context.Context, clientId string) ApiDeleteClientRequest {
 	return ApiDeleteClientRequest{
 		ApiService: a,
-		ctx:        ctx,
-		clientId:   clientId,
+		ctx: ctx,
+		clientId: clientId,
 	}
 }
 
 // Execute executes the request
 func (a *AuthorizationAPIService) DeleteClientExecute(r ApiDeleteClientRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodDelete
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AuthorizationAPIService.DeleteClient")
@@ -312,9 +312,9 @@ func (a *AuthorizationAPIService) DeleteClientExecute(r ApiDeleteClientRequest) 
 }
 
 type ApiGetClientRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService AuthorizationAPI
-	clientId   string
+	clientId string
 }
 
 func (r ApiGetClientRequest) Execute() (*OAuthClient, *http.Response, error) {
@@ -324,27 +324,26 @@ func (r ApiGetClientRequest) Execute() (*OAuthClient, *http.Response, error) {
 /*
 GetClient Get a specific OAuth 2.0 client
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param clientId The unique OAuth 2.0 client identifier
-	@return ApiGetClientRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param clientId The unique OAuth 2.0 client identifier
+ @return ApiGetClientRequest
 */
 func (a *AuthorizationAPIService) GetClient(ctx context.Context, clientId string) ApiGetClientRequest {
 	return ApiGetClientRequest{
 		ApiService: a,
-		ctx:        ctx,
-		clientId:   clientId,
+		ctx: ctx,
+		clientId: clientId,
 	}
 }
 
 // Execute executes the request
-//
-//	@return OAuthClient
+//  @return OAuthClient
 func (a *AuthorizationAPIService) GetClientExecute(r ApiGetClientRequest) (*OAuthClient, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *OAuthClient
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *OAuthClient
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AuthorizationAPIService.GetClient")
@@ -414,7 +413,7 @@ func (a *AuthorizationAPIService) GetClientExecute(r ApiGetClientRequest) (*OAut
 }
 
 type ApiGetClientsRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService AuthorizationAPI
 }
 
@@ -425,25 +424,24 @@ func (r ApiGetClientsRequest) Execute() (*OAuthClients, *http.Response, error) {
 /*
 GetClients List all OAuth 2.0 clients
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiGetClientsRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiGetClientsRequest
 */
 func (a *AuthorizationAPIService) GetClients(ctx context.Context) ApiGetClientsRequest {
 	return ApiGetClientsRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//
-//	@return OAuthClients
+//  @return OAuthClients
 func (a *AuthorizationAPIService) GetClientsExecute(r ApiGetClientsRequest) (*OAuthClients, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *OAuthClients
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *OAuthClients
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AuthorizationAPIService.GetClients")
@@ -512,9 +510,9 @@ func (a *AuthorizationAPIService) GetClientsExecute(r ApiGetClientsRequest) (*OA
 }
 
 type ApiGetGdprUrlsRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService AuthorizationAPI
-	clientId   string
+	clientId string
 }
 
 func (r ApiGetGdprUrlsRequest) Execute() (*GdprUrls, *http.Response, error) {
@@ -524,27 +522,26 @@ func (r ApiGetGdprUrlsRequest) Execute() (*GdprUrls, *http.Response, error) {
 /*
 GetGdprUrls Get GDPR urls for specific OAuth 2.0 client
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param clientId The unique OAuth 2.0 client identifier
-	@return ApiGetGdprUrlsRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param clientId The unique OAuth 2.0 client identifier
+ @return ApiGetGdprUrlsRequest
 */
 func (a *AuthorizationAPIService) GetGdprUrls(ctx context.Context, clientId string) ApiGetGdprUrlsRequest {
 	return ApiGetGdprUrlsRequest{
 		ApiService: a,
-		ctx:        ctx,
-		clientId:   clientId,
+		ctx: ctx,
+		clientId: clientId,
 	}
 }
 
 // Execute executes the request
-//
-//	@return GdprUrls
+//  @return GdprUrls
 func (a *AuthorizationAPIService) GetGdprUrlsExecute(r ApiGetGdprUrlsRequest) (*GdprUrls, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *GdprUrls
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *GdprUrls
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AuthorizationAPIService.GetGdprUrls")
@@ -614,10 +611,10 @@ func (a *AuthorizationAPIService) GetGdprUrlsExecute(r ApiGetGdprUrlsRequest) (*
 }
 
 type ApiUpdateClientRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService AuthorizationAPI
-	clientId   string
-	client     *CreateClientRequest
+	clientId string
+	client *CreateClientRequest
 }
 
 func (r ApiUpdateClientRequest) Client(client CreateClientRequest) ApiUpdateClientRequest {
@@ -632,27 +629,26 @@ func (r ApiUpdateClientRequest) Execute() (*OAuthClient, *http.Response, error) 
 /*
 UpdateClient Update an existing OAuth 2.0 client
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param clientId The unique OAuth 2.0 client identifier
-	@return ApiUpdateClientRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param clientId The unique OAuth 2.0 client identifier
+ @return ApiUpdateClientRequest
 */
 func (a *AuthorizationAPIService) UpdateClient(ctx context.Context, clientId string) ApiUpdateClientRequest {
 	return ApiUpdateClientRequest{
 		ApiService: a,
-		ctx:        ctx,
-		clientId:   clientId,
+		ctx: ctx,
+		clientId: clientId,
 	}
 }
 
 // Execute executes the request
-//
-//	@return OAuthClient
+//  @return OAuthClient
 func (a *AuthorizationAPIService) UpdateClientExecute(r ApiUpdateClientRequest) (*OAuthClient, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodPut
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *OAuthClient
+		localVarHTTPMethod   = http.MethodPut
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *OAuthClient
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AuthorizationAPIService.UpdateClient")
@@ -727,8 +723,8 @@ func (a *AuthorizationAPIService) UpdateClientExecute(r ApiUpdateClientRequest) 
 }
 
 type ApiUserinfoRequest struct {
-	ctx           context.Context
-	ApiService    AuthorizationAPI
+	ctx context.Context
+	ApiService AuthorizationAPI
 	authorization *string
 }
 
@@ -745,25 +741,24 @@ func (r ApiUserinfoRequest) Execute() (*UserinfoResponse, *http.Response, error)
 /*
 Userinfo Get information about the logged in user
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiUserinfoRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiUserinfoRequest
 */
 func (a *AuthorizationAPIService) Userinfo(ctx context.Context) ApiUserinfoRequest {
 	return ApiUserinfoRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//
-//	@return UserinfoResponse
+//  @return UserinfoResponse
 func (a *AuthorizationAPIService) UserinfoExecute(r ApiUserinfoRequest) (*UserinfoResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *UserinfoResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *UserinfoResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AuthorizationAPIService.Userinfo")

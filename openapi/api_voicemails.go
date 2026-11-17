@@ -19,14 +19,15 @@ import (
 	"strings"
 )
 
+
 type VoicemailsAPI interface {
 
 	/*
-		GetVoicemail Get a single voicemail
+	GetVoicemail Get a single voicemail
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param voicemailId The unique voicemail identifier
-		@return ApiGetVoicemailRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param voicemailId The unique voicemail identifier
+	@return ApiGetVoicemailRequest
 	*/
 	GetVoicemail(ctx context.Context, voicemailId string) ApiGetVoicemailRequest
 
@@ -35,10 +36,10 @@ type VoicemailsAPI interface {
 	GetVoicemailExecute(r ApiGetVoicemailRequest) (*VoicemailResponse, *http.Response, error)
 
 	/*
-		GetVoicemails List all voicemails
+	GetVoicemails List all voicemails
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@return ApiGetVoicemailsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiGetVoicemailsRequest
 	*/
 	GetVoicemails(ctx context.Context) ApiGetVoicemailsRequest
 
@@ -51,8 +52,8 @@ type VoicemailsAPI interface {
 type VoicemailsAPIService service
 
 type ApiGetVoicemailRequest struct {
-	ctx         context.Context
-	ApiService  VoicemailsAPI
+	ctx context.Context
+	ApiService VoicemailsAPI
 	voicemailId string
 }
 
@@ -63,27 +64,26 @@ func (r ApiGetVoicemailRequest) Execute() (*VoicemailResponse, *http.Response, e
 /*
 GetVoicemail Get a single voicemail
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param voicemailId The unique voicemail identifier
-	@return ApiGetVoicemailRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param voicemailId The unique voicemail identifier
+ @return ApiGetVoicemailRequest
 */
 func (a *VoicemailsAPIService) GetVoicemail(ctx context.Context, voicemailId string) ApiGetVoicemailRequest {
 	return ApiGetVoicemailRequest{
-		ApiService:  a,
-		ctx:         ctx,
+		ApiService: a,
+		ctx: ctx,
 		voicemailId: voicemailId,
 	}
 }
 
 // Execute executes the request
-//
-//	@return VoicemailResponse
+//  @return VoicemailResponse
 func (a *VoicemailsAPIService) GetVoicemailExecute(r ApiGetVoicemailRequest) (*VoicemailResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *VoicemailResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *VoicemailResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VoicemailsAPIService.GetVoicemail")
@@ -153,7 +153,7 @@ func (a *VoicemailsAPIService) GetVoicemailExecute(r ApiGetVoicemailRequest) (*V
 }
 
 type ApiGetVoicemailsRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService VoicemailsAPI
 }
 
@@ -164,25 +164,24 @@ func (r ApiGetVoicemailsRequest) Execute() (*VoicemailsResponse, *http.Response,
 /*
 GetVoicemails List all voicemails
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiGetVoicemailsRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiGetVoicemailsRequest
 */
 func (a *VoicemailsAPIService) GetVoicemails(ctx context.Context) ApiGetVoicemailsRequest {
 	return ApiGetVoicemailsRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//
-//	@return VoicemailsResponse
+//  @return VoicemailsResponse
 func (a *VoicemailsAPIService) GetVoicemailsExecute(r ApiGetVoicemailsRequest) (*VoicemailsResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *VoicemailsResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *VoicemailsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VoicemailsAPIService.GetVoicemails")

@@ -19,8 +19,8 @@ var _ MappedNullable = &GetStructuredVCardsResponse{}
 
 // GetStructuredVCardsResponse struct for GetStructuredVCardsResponse
 type GetStructuredVCardsResponse struct {
-	Contacts       []StructuredVCard `json:"contacts,omitempty"`
-	OverallMatches *int32            `json:"overallMatches,omitempty"`
+	Contacts []StructuredVCard `json:"contacts,omitempty"`
+	OverallMatches *int32 `json:"overallMatches,omitempty"`
 }
 
 // NewGetStructuredVCardsResponse instantiates a new GetStructuredVCardsResponse object
@@ -105,7 +105,7 @@ func (o *GetStructuredVCardsResponse) SetOverallMatches(v int32) {
 }
 
 func (o GetStructuredVCardsResponse) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -158,3 +158,5 @@ func (v *NullableGetStructuredVCardsResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

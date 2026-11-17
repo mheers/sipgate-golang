@@ -19,15 +19,16 @@ import (
 	"strings"
 )
 
+
 type SmsAPI interface {
 
 	/*
-		AddCallerId Create a new caller ID for an existing short message service
+	AddCallerId Create a new caller ID for an existing short message service
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param userId The unique user identifier
-		@param smsId The unique short message service identifier
-		@return ApiAddCallerIdRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userId The unique user identifier
+	@param smsId The unique short message service identifier
+	@return ApiAddCallerIdRequest
 	*/
 	AddCallerId(ctx context.Context, userId string, smsId string) ApiAddCallerIdRequest
 
@@ -35,13 +36,13 @@ type SmsAPI interface {
 	AddCallerIdExecute(r ApiAddCallerIdRequest) (*http.Response, error)
 
 	/*
-		DeleteSmsCallerId Delete an existing caller ID for a specific short message service
+	DeleteSmsCallerId Delete an existing caller ID for a specific short message service
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param userId The unique user identifier
-		@param smsId The unique short message service identifier
-		@param callerId The caller ID
-		@return ApiDeleteSmsCallerIdRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userId The unique user identifier
+	@param smsId The unique short message service identifier
+	@param callerId The caller ID
+	@return ApiDeleteSmsCallerIdRequest
 	*/
 	DeleteSmsCallerId(ctx context.Context, userId string, smsId string, callerId int32) ApiDeleteSmsCallerIdRequest
 
@@ -49,13 +50,13 @@ type SmsAPI interface {
 	DeleteSmsCallerIdExecute(r ApiDeleteSmsCallerIdRequest) (*http.Response, error)
 
 	/*
-		EditCallerId Update the caller ID for an existing short message service
+	EditCallerId Update the caller ID for an existing short message service
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param userId The unique user identifier
-		@param smsId The unique short message service identifier
-		@param callerId The caller ID
-		@return ApiEditCallerIdRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userId The unique user identifier
+	@param smsId The unique short message service identifier
+	@param callerId The caller ID
+	@return ApiEditCallerIdRequest
 	*/
 	EditCallerId(ctx context.Context, userId string, smsId string, callerId int32) ApiEditCallerIdRequest
 
@@ -63,12 +64,12 @@ type SmsAPI interface {
 	EditCallerIdExecute(r ApiEditCallerIdRequest) (*http.Response, error)
 
 	/*
-		GetSmsCallerIds List all caller IDs for a specific short message service
+	GetSmsCallerIds List all caller IDs for a specific short message service
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param userId The unique user identifier
-		@param smsId The unique short message service identifier
-		@return ApiGetSmsCallerIdsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userId The unique user identifier
+	@param smsId The unique short message service identifier
+	@return ApiGetSmsCallerIdsRequest
 	*/
 	GetSmsCallerIds(ctx context.Context, userId string, smsId string) ApiGetSmsCallerIdsRequest
 
@@ -77,11 +78,11 @@ type SmsAPI interface {
 	GetSmsCallerIdsExecute(r ApiGetSmsCallerIdsRequest) (*SmsCallerIdsResponse, *http.Response, error)
 
 	/*
-		GetSmsExtensions List all short message services
+	GetSmsExtensions List all short message services
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param userId The unique user identifier
-		@return ApiGetSmsExtensionsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userId The unique user identifier
+	@return ApiGetSmsExtensionsRequest
 	*/
 	GetSmsExtensions(ctx context.Context, userId string) ApiGetSmsExtensionsRequest
 
@@ -90,12 +91,12 @@ type SmsAPI interface {
 	GetSmsExtensionsExecute(r ApiGetSmsExtensionsRequest) (*SmsExtensionsResponse, *http.Response, error)
 
 	/*
-		SetSmsAlias Update alias for an existing short message service
+	SetSmsAlias Update alias for an existing short message service
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param userId The unique user identifier
-		@param smsId The unique short message service identifier
-		@return ApiSetSmsAliasRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userId The unique user identifier
+	@param smsId The unique short message service identifier
+	@return ApiSetSmsAliasRequest
 	*/
 	SetSmsAlias(ctx context.Context, userId string, smsId string) ApiSetSmsAliasRequest
 
@@ -103,13 +104,13 @@ type SmsAPI interface {
 	SetSmsAliasExecute(r ApiSetSmsAliasRequest) (*http.Response, error)
 
 	/*
-		VerifyCallerId Verify an existing caller ID for a specific short message service
+	VerifyCallerId Verify an existing caller ID for a specific short message service
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param userId The unique user identifier
-		@param smsId The unique short message service identifier
-		@param callerId The caller ID
-		@return ApiVerifyCallerIdRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userId The unique user identifier
+	@param smsId The unique short message service identifier
+	@param callerId The caller ID
+	@return ApiVerifyCallerIdRequest
 	*/
 	VerifyCallerId(ctx context.Context, userId string, smsId string, callerId int32) ApiVerifyCallerIdRequest
 
@@ -122,11 +123,11 @@ type SmsAPI interface {
 type SmsAPIService service
 
 type ApiAddCallerIdRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService SmsAPI
-	userId     string
-	smsId      string
-	body       *SmsCallerIdRequest
+	userId string
+	smsId string
+	body *SmsCallerIdRequest
 }
 
 func (r ApiAddCallerIdRequest) Body(body SmsCallerIdRequest) ApiAddCallerIdRequest {
@@ -141,26 +142,26 @@ func (r ApiAddCallerIdRequest) Execute() (*http.Response, error) {
 /*
 AddCallerId Create a new caller ID for an existing short message service
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param userId The unique user identifier
-	@param smsId The unique short message service identifier
-	@return ApiAddCallerIdRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param userId The unique user identifier
+ @param smsId The unique short message service identifier
+ @return ApiAddCallerIdRequest
 */
 func (a *SmsAPIService) AddCallerId(ctx context.Context, userId string, smsId string) ApiAddCallerIdRequest {
 	return ApiAddCallerIdRequest{
 		ApiService: a,
-		ctx:        ctx,
-		userId:     userId,
-		smsId:      smsId,
+		ctx: ctx,
+		userId: userId,
+		smsId: smsId,
 	}
 }
 
 // Execute executes the request
 func (a *SmsAPIService) AddCallerIdExecute(r ApiAddCallerIdRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodPost
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SmsAPIService.AddCallerId")
@@ -224,11 +225,11 @@ func (a *SmsAPIService) AddCallerIdExecute(r ApiAddCallerIdRequest) (*http.Respo
 }
 
 type ApiDeleteSmsCallerIdRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService SmsAPI
-	userId     string
-	smsId      string
-	callerId   int32
+	userId string
+	smsId string
+	callerId int32
 }
 
 func (r ApiDeleteSmsCallerIdRequest) Execute() (*http.Response, error) {
@@ -238,28 +239,28 @@ func (r ApiDeleteSmsCallerIdRequest) Execute() (*http.Response, error) {
 /*
 DeleteSmsCallerId Delete an existing caller ID for a specific short message service
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param userId The unique user identifier
-	@param smsId The unique short message service identifier
-	@param callerId The caller ID
-	@return ApiDeleteSmsCallerIdRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param userId The unique user identifier
+ @param smsId The unique short message service identifier
+ @param callerId The caller ID
+ @return ApiDeleteSmsCallerIdRequest
 */
 func (a *SmsAPIService) DeleteSmsCallerId(ctx context.Context, userId string, smsId string, callerId int32) ApiDeleteSmsCallerIdRequest {
 	return ApiDeleteSmsCallerIdRequest{
 		ApiService: a,
-		ctx:        ctx,
-		userId:     userId,
-		smsId:      smsId,
-		callerId:   callerId,
+		ctx: ctx,
+		userId: userId,
+		smsId: smsId,
+		callerId: callerId,
 	}
 }
 
 // Execute executes the request
 func (a *SmsAPIService) DeleteSmsCallerIdExecute(r ApiDeleteSmsCallerIdRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodDelete
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SmsAPIService.DeleteSmsCallerId")
@@ -322,12 +323,12 @@ func (a *SmsAPIService) DeleteSmsCallerIdExecute(r ApiDeleteSmsCallerIdRequest) 
 }
 
 type ApiEditCallerIdRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService SmsAPI
-	userId     string
-	smsId      string
-	callerId   int32
-	body       *SetSmsCallerIdRequest
+	userId string
+	smsId string
+	callerId int32
+	body *SetSmsCallerIdRequest
 }
 
 func (r ApiEditCallerIdRequest) Body(body SetSmsCallerIdRequest) ApiEditCallerIdRequest {
@@ -342,28 +343,28 @@ func (r ApiEditCallerIdRequest) Execute() (*http.Response, error) {
 /*
 EditCallerId Update the caller ID for an existing short message service
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param userId The unique user identifier
-	@param smsId The unique short message service identifier
-	@param callerId The caller ID
-	@return ApiEditCallerIdRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param userId The unique user identifier
+ @param smsId The unique short message service identifier
+ @param callerId The caller ID
+ @return ApiEditCallerIdRequest
 */
 func (a *SmsAPIService) EditCallerId(ctx context.Context, userId string, smsId string, callerId int32) ApiEditCallerIdRequest {
 	return ApiEditCallerIdRequest{
 		ApiService: a,
-		ctx:        ctx,
-		userId:     userId,
-		smsId:      smsId,
-		callerId:   callerId,
+		ctx: ctx,
+		userId: userId,
+		smsId: smsId,
+		callerId: callerId,
 	}
 }
 
 // Execute executes the request
 func (a *SmsAPIService) EditCallerIdExecute(r ApiEditCallerIdRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodPut
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod   = http.MethodPut
+		localVarPostBody     interface{}
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SmsAPIService.EditCallerId")
@@ -428,10 +429,10 @@ func (a *SmsAPIService) EditCallerIdExecute(r ApiEditCallerIdRequest) (*http.Res
 }
 
 type ApiGetSmsCallerIdsRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService SmsAPI
-	userId     string
-	smsId      string
+	userId string
+	smsId string
 }
 
 func (r ApiGetSmsCallerIdsRequest) Execute() (*SmsCallerIdsResponse, *http.Response, error) {
@@ -441,29 +442,28 @@ func (r ApiGetSmsCallerIdsRequest) Execute() (*SmsCallerIdsResponse, *http.Respo
 /*
 GetSmsCallerIds List all caller IDs for a specific short message service
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param userId The unique user identifier
-	@param smsId The unique short message service identifier
-	@return ApiGetSmsCallerIdsRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param userId The unique user identifier
+ @param smsId The unique short message service identifier
+ @return ApiGetSmsCallerIdsRequest
 */
 func (a *SmsAPIService) GetSmsCallerIds(ctx context.Context, userId string, smsId string) ApiGetSmsCallerIdsRequest {
 	return ApiGetSmsCallerIdsRequest{
 		ApiService: a,
-		ctx:        ctx,
-		userId:     userId,
-		smsId:      smsId,
+		ctx: ctx,
+		userId: userId,
+		smsId: smsId,
 	}
 }
 
 // Execute executes the request
-//
-//	@return SmsCallerIdsResponse
+//  @return SmsCallerIdsResponse
 func (a *SmsAPIService) GetSmsCallerIdsExecute(r ApiGetSmsCallerIdsRequest) (*SmsCallerIdsResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *SmsCallerIdsResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *SmsCallerIdsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SmsAPIService.GetSmsCallerIds")
@@ -534,9 +534,9 @@ func (a *SmsAPIService) GetSmsCallerIdsExecute(r ApiGetSmsCallerIdsRequest) (*Sm
 }
 
 type ApiGetSmsExtensionsRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService SmsAPI
-	userId     string
+	userId string
 }
 
 func (r ApiGetSmsExtensionsRequest) Execute() (*SmsExtensionsResponse, *http.Response, error) {
@@ -546,27 +546,26 @@ func (r ApiGetSmsExtensionsRequest) Execute() (*SmsExtensionsResponse, *http.Res
 /*
 GetSmsExtensions List all short message services
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param userId The unique user identifier
-	@return ApiGetSmsExtensionsRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param userId The unique user identifier
+ @return ApiGetSmsExtensionsRequest
 */
 func (a *SmsAPIService) GetSmsExtensions(ctx context.Context, userId string) ApiGetSmsExtensionsRequest {
 	return ApiGetSmsExtensionsRequest{
 		ApiService: a,
-		ctx:        ctx,
-		userId:     userId,
+		ctx: ctx,
+		userId: userId,
 	}
 }
 
 // Execute executes the request
-//
-//	@return SmsExtensionsResponse
+//  @return SmsExtensionsResponse
 func (a *SmsAPIService) GetSmsExtensionsExecute(r ApiGetSmsExtensionsRequest) (*SmsExtensionsResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *SmsExtensionsResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *SmsExtensionsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SmsAPIService.GetSmsExtensions")
@@ -636,11 +635,11 @@ func (a *SmsAPIService) GetSmsExtensionsExecute(r ApiGetSmsExtensionsRequest) (*
 }
 
 type ApiSetSmsAliasRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService SmsAPI
-	userId     string
-	smsId      string
-	body       *SetAliasRequest
+	userId string
+	smsId string
+	body *SetAliasRequest
 }
 
 func (r ApiSetSmsAliasRequest) Body(body SetAliasRequest) ApiSetSmsAliasRequest {
@@ -655,26 +654,26 @@ func (r ApiSetSmsAliasRequest) Execute() (*http.Response, error) {
 /*
 SetSmsAlias Update alias for an existing short message service
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param userId The unique user identifier
-	@param smsId The unique short message service identifier
-	@return ApiSetSmsAliasRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param userId The unique user identifier
+ @param smsId The unique short message service identifier
+ @return ApiSetSmsAliasRequest
 */
 func (a *SmsAPIService) SetSmsAlias(ctx context.Context, userId string, smsId string) ApiSetSmsAliasRequest {
 	return ApiSetSmsAliasRequest{
 		ApiService: a,
-		ctx:        ctx,
-		userId:     userId,
-		smsId:      smsId,
+		ctx: ctx,
+		userId: userId,
+		smsId: smsId,
 	}
 }
 
 // Execute executes the request
 func (a *SmsAPIService) SetSmsAliasExecute(r ApiSetSmsAliasRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodPut
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod   = http.MethodPut
+		localVarPostBody     interface{}
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SmsAPIService.SetSmsAlias")
@@ -738,12 +737,12 @@ func (a *SmsAPIService) SetSmsAliasExecute(r ApiSetSmsAliasRequest) (*http.Respo
 }
 
 type ApiVerifyCallerIdRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService SmsAPI
-	userId     string
-	smsId      string
-	callerId   int32
-	body       *VerifySmsCallerIdRequest
+	userId string
+	smsId string
+	callerId int32
+	body *VerifySmsCallerIdRequest
 }
 
 func (r ApiVerifyCallerIdRequest) Body(body VerifySmsCallerIdRequest) ApiVerifyCallerIdRequest {
@@ -758,31 +757,30 @@ func (r ApiVerifyCallerIdRequest) Execute() (*SmsCallerIdVerificationResponse, *
 /*
 VerifyCallerId Verify an existing caller ID for a specific short message service
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param userId The unique user identifier
-	@param smsId The unique short message service identifier
-	@param callerId The caller ID
-	@return ApiVerifyCallerIdRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param userId The unique user identifier
+ @param smsId The unique short message service identifier
+ @param callerId The caller ID
+ @return ApiVerifyCallerIdRequest
 */
 func (a *SmsAPIService) VerifyCallerId(ctx context.Context, userId string, smsId string, callerId int32) ApiVerifyCallerIdRequest {
 	return ApiVerifyCallerIdRequest{
 		ApiService: a,
-		ctx:        ctx,
-		userId:     userId,
-		smsId:      smsId,
-		callerId:   callerId,
+		ctx: ctx,
+		userId: userId,
+		smsId: smsId,
+		callerId: callerId,
 	}
 }
 
 // Execute executes the request
-//
-//	@return SmsCallerIdVerificationResponse
+//  @return SmsCallerIdVerificationResponse
 func (a *SmsAPIService) VerifyCallerIdExecute(r ApiVerifyCallerIdRequest) (*SmsCallerIdVerificationResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodPost
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *SmsCallerIdVerificationResponse
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *SmsCallerIdVerificationResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SmsAPIService.VerifyCallerId")

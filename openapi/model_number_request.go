@@ -19,8 +19,8 @@ var _ MappedNullable = &NumberRequest{}
 
 // NumberRequest struct for NumberRequest
 type NumberRequest struct {
-	Number *string  `json:"number,omitempty"`
-	Type   []string `json:"type,omitempty"`
+	Number *string `json:"number,omitempty"`
+	Type []string `json:"type,omitempty"`
 }
 
 // NewNumberRequest instantiates a new NumberRequest object
@@ -105,7 +105,7 @@ func (o *NumberRequest) SetType(v []string) {
 }
 
 func (o NumberRequest) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -158,3 +158,5 @@ func (v *NullableNumberRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

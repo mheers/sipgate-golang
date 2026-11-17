@@ -19,11 +19,11 @@ var _ MappedNullable = &FaxlineResponse{}
 
 // FaxlineResponse struct for FaxlineResponse
 type FaxlineResponse struct {
-	Alias      *string `json:"alias,omitempty"`
-	CanReceive *bool   `json:"canReceive,omitempty"`
-	CanSend    *bool   `json:"canSend,omitempty"`
-	Id         *string `json:"id,omitempty"`
-	Tagline    *string `json:"tagline,omitempty"`
+	Alias *string `json:"alias,omitempty"`
+	CanReceive *bool `json:"canReceive,omitempty"`
+	CanSend *bool `json:"canSend,omitempty"`
+	Id *string `json:"id,omitempty"`
+	Tagline *string `json:"tagline,omitempty"`
 }
 
 // NewFaxlineResponse instantiates a new FaxlineResponse object
@@ -212,7 +212,7 @@ func (o *FaxlineResponse) SetTagline(v string) {
 }
 
 func (o FaxlineResponse) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -274,3 +274,5 @@ func (v *NullableFaxlineResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

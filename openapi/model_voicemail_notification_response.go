@@ -19,10 +19,10 @@ var _ MappedNullable = &VoicemailNotificationResponse{}
 
 // VoicemailNotificationResponse struct for VoicemailNotificationResponse
 type VoicemailNotificationResponse struct {
-	Emails        []EmailTarget `json:"emails,omitempty"`
-	EndpointAlias *string       `json:"endpointAlias,omitempty"`
-	EndpointId    *string       `json:"endpointId,omitempty"`
-	Sms           []SmsTarget   `json:"sms,omitempty"`
+	Emails []EmailTarget `json:"emails,omitempty"`
+	EndpointAlias *string `json:"endpointAlias,omitempty"`
+	EndpointId *string `json:"endpointId,omitempty"`
+	Sms []SmsTarget `json:"sms,omitempty"`
 }
 
 // NewVoicemailNotificationResponse instantiates a new VoicemailNotificationResponse object
@@ -171,7 +171,7 @@ func (o *VoicemailNotificationResponse) SetSms(v []SmsTarget) {
 }
 
 func (o VoicemailNotificationResponse) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -230,3 +230,5 @@ func (v *NullableVoicemailNotificationResponse) UnmarshalJSON(src []byte) error 
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

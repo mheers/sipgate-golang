@@ -19,14 +19,15 @@ import (
 	"strings"
 )
 
+
 type UsersAPI interface {
 
 	/*
-		DeleteUser Delete a specific user
+	DeleteUser Delete a specific user
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param userId The unique user identifier
-		@return ApiDeleteUserRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userId The unique user identifier
+	@return ApiDeleteUserRequest
 	*/
 	DeleteUser(ctx context.Context, userId string) ApiDeleteUserRequest
 
@@ -34,10 +35,10 @@ type UsersAPI interface {
 	DeleteUserExecute(r ApiDeleteUserRequest) (*http.Response, error)
 
 	/*
-		GetAllUsers List all users
+	GetAllUsers List all users
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@return ApiGetAllUsersRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiGetAllUsersRequest
 	*/
 	GetAllUsers(ctx context.Context) ApiGetAllUsersRequest
 
@@ -46,11 +47,11 @@ type UsersAPI interface {
 	GetAllUsersExecute(r ApiGetAllUsersRequest) (*UsersResponse, *http.Response, error)
 
 	/*
-		GetUser Get a specific user
+	GetUser Get a specific user
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param userId The unique user identifier
-		@return ApiGetUserRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userId The unique user identifier
+	@return ApiGetUserRequest
 	*/
 	GetUser(ctx context.Context, userId string) ApiGetUserRequest
 
@@ -59,11 +60,11 @@ type UsersAPI interface {
 	GetUserExecute(r ApiGetUserRequest) (*UserResponse, *http.Response, error)
 
 	/*
-		SetBusyOnBusySetting Update the busy on busy setting for a user
+	SetBusyOnBusySetting Update the busy on busy setting for a user
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param userId The unique user identifier
-		@return ApiSetBusyOnBusySettingRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userId The unique user identifier
+	@return ApiSetBusyOnBusySettingRequest
 	*/
 	SetBusyOnBusySetting(ctx context.Context, userId string) ApiSetBusyOnBusySettingRequest
 
@@ -71,11 +72,11 @@ type UsersAPI interface {
 	SetBusyOnBusySettingExecute(r ApiSetBusyOnBusySettingRequest) (*http.Response, error)
 
 	/*
-		SetDefaultDevice Update default device for an existing user
+	SetDefaultDevice Update default device for an existing user
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param userId The unique user identifier
-		@return ApiSetDefaultDeviceRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userId The unique user identifier
+	@return ApiSetDefaultDeviceRequest
 	*/
 	SetDefaultDevice(ctx context.Context, userId string) ApiSetDefaultDeviceRequest
 
@@ -83,11 +84,11 @@ type UsersAPI interface {
 	SetDefaultDeviceExecute(r ApiSetDefaultDeviceRequest) (*http.Response, error)
 
 	/*
-		SetLocation Set location for user
+	SetLocation Set location for user
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param userId The unique user identifier
-		@return ApiSetLocationRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userId The unique user identifier
+	@return ApiSetLocationRequest
 	*/
 	SetLocation(ctx context.Context, userId string) ApiSetLocationRequest
 
@@ -99,9 +100,9 @@ type UsersAPI interface {
 type UsersAPIService service
 
 type ApiDeleteUserRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService UsersAPI
-	userId     string
+	userId string
 }
 
 func (r ApiDeleteUserRequest) Execute() (*http.Response, error) {
@@ -111,24 +112,24 @@ func (r ApiDeleteUserRequest) Execute() (*http.Response, error) {
 /*
 DeleteUser Delete a specific user
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param userId The unique user identifier
-	@return ApiDeleteUserRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param userId The unique user identifier
+ @return ApiDeleteUserRequest
 */
 func (a *UsersAPIService) DeleteUser(ctx context.Context, userId string) ApiDeleteUserRequest {
 	return ApiDeleteUserRequest{
 		ApiService: a,
-		ctx:        ctx,
-		userId:     userId,
+		ctx: ctx,
+		userId: userId,
 	}
 }
 
 // Execute executes the request
 func (a *UsersAPIService) DeleteUserExecute(r ApiDeleteUserRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodDelete
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsersAPIService.DeleteUser")
@@ -189,7 +190,7 @@ func (a *UsersAPIService) DeleteUserExecute(r ApiDeleteUserRequest) (*http.Respo
 }
 
 type ApiGetAllUsersRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService UsersAPI
 }
 
@@ -200,25 +201,24 @@ func (r ApiGetAllUsersRequest) Execute() (*UsersResponse, *http.Response, error)
 /*
 GetAllUsers List all users
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiGetAllUsersRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiGetAllUsersRequest
 */
 func (a *UsersAPIService) GetAllUsers(ctx context.Context) ApiGetAllUsersRequest {
 	return ApiGetAllUsersRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//
-//	@return UsersResponse
+//  @return UsersResponse
 func (a *UsersAPIService) GetAllUsersExecute(r ApiGetAllUsersRequest) (*UsersResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *UsersResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *UsersResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsersAPIService.GetAllUsers")
@@ -287,9 +287,9 @@ func (a *UsersAPIService) GetAllUsersExecute(r ApiGetAllUsersRequest) (*UsersRes
 }
 
 type ApiGetUserRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService UsersAPI
-	userId     string
+	userId string
 }
 
 func (r ApiGetUserRequest) Execute() (*UserResponse, *http.Response, error) {
@@ -299,27 +299,26 @@ func (r ApiGetUserRequest) Execute() (*UserResponse, *http.Response, error) {
 /*
 GetUser Get a specific user
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param userId The unique user identifier
-	@return ApiGetUserRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param userId The unique user identifier
+ @return ApiGetUserRequest
 */
 func (a *UsersAPIService) GetUser(ctx context.Context, userId string) ApiGetUserRequest {
 	return ApiGetUserRequest{
 		ApiService: a,
-		ctx:        ctx,
-		userId:     userId,
+		ctx: ctx,
+		userId: userId,
 	}
 }
 
 // Execute executes the request
-//
-//	@return UserResponse
+//  @return UserResponse
 func (a *UsersAPIService) GetUserExecute(r ApiGetUserRequest) (*UserResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *UserResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *UserResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsersAPIService.GetUser")
@@ -389,10 +388,10 @@ func (a *UsersAPIService) GetUserExecute(r ApiGetUserRequest) (*UserResponse, *h
 }
 
 type ApiSetBusyOnBusySettingRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService UsersAPI
-	userId     string
-	body       *SetBusyOnBusySettingsRequest
+	userId string
+	body *SetBusyOnBusySettingsRequest
 }
 
 func (r ApiSetBusyOnBusySettingRequest) Body(body SetBusyOnBusySettingsRequest) ApiSetBusyOnBusySettingRequest {
@@ -407,24 +406,24 @@ func (r ApiSetBusyOnBusySettingRequest) Execute() (*http.Response, error) {
 /*
 SetBusyOnBusySetting Update the busy on busy setting for a user
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param userId The unique user identifier
-	@return ApiSetBusyOnBusySettingRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param userId The unique user identifier
+ @return ApiSetBusyOnBusySettingRequest
 */
 func (a *UsersAPIService) SetBusyOnBusySetting(ctx context.Context, userId string) ApiSetBusyOnBusySettingRequest {
 	return ApiSetBusyOnBusySettingRequest{
 		ApiService: a,
-		ctx:        ctx,
-		userId:     userId,
+		ctx: ctx,
+		userId: userId,
 	}
 }
 
 // Execute executes the request
 func (a *UsersAPIService) SetBusyOnBusySettingExecute(r ApiSetBusyOnBusySettingRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodPut
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod   = http.MethodPut
+		localVarPostBody     interface{}
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsersAPIService.SetBusyOnBusySetting")
@@ -487,10 +486,10 @@ func (a *UsersAPIService) SetBusyOnBusySettingExecute(r ApiSetBusyOnBusySettingR
 }
 
 type ApiSetDefaultDeviceRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService UsersAPI
-	userId     string
-	body       *SetDefaultDeviceRequest
+	userId string
+	body *SetDefaultDeviceRequest
 }
 
 func (r ApiSetDefaultDeviceRequest) Body(body SetDefaultDeviceRequest) ApiSetDefaultDeviceRequest {
@@ -505,24 +504,24 @@ func (r ApiSetDefaultDeviceRequest) Execute() (*http.Response, error) {
 /*
 SetDefaultDevice Update default device for an existing user
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param userId The unique user identifier
-	@return ApiSetDefaultDeviceRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param userId The unique user identifier
+ @return ApiSetDefaultDeviceRequest
 */
 func (a *UsersAPIService) SetDefaultDevice(ctx context.Context, userId string) ApiSetDefaultDeviceRequest {
 	return ApiSetDefaultDeviceRequest{
 		ApiService: a,
-		ctx:        ctx,
-		userId:     userId,
+		ctx: ctx,
+		userId: userId,
 	}
 }
 
 // Execute executes the request
 func (a *UsersAPIService) SetDefaultDeviceExecute(r ApiSetDefaultDeviceRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodPut
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod   = http.MethodPut
+		localVarPostBody     interface{}
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsersAPIService.SetDefaultDevice")
@@ -585,10 +584,10 @@ func (a *UsersAPIService) SetDefaultDeviceExecute(r ApiSetDefaultDeviceRequest) 
 }
 
 type ApiSetLocationRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService UsersAPI
-	userId     string
-	body       *SetLocationRequest
+	userId string
+	body *SetLocationRequest
 }
 
 func (r ApiSetLocationRequest) Body(body SetLocationRequest) ApiSetLocationRequest {
@@ -603,24 +602,24 @@ func (r ApiSetLocationRequest) Execute() (*http.Response, error) {
 /*
 SetLocation Set location for user
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param userId The unique user identifier
-	@return ApiSetLocationRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param userId The unique user identifier
+ @return ApiSetLocationRequest
 */
 func (a *UsersAPIService) SetLocation(ctx context.Context, userId string) ApiSetLocationRequest {
 	return ApiSetLocationRequest{
 		ApiService: a,
-		ctx:        ctx,
-		userId:     userId,
+		ctx: ctx,
+		userId: userId,
 	}
 }
 
 // Execute executes the request
 func (a *UsersAPIService) SetLocationExecute(r ApiSetLocationRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodPut
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod   = http.MethodPut
+		localVarPostBody     interface{}
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsersAPIService.SetLocation")

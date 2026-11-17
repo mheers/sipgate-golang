@@ -19,78 +19,78 @@ var _ MappedNullable = &ApiUrlsResponse{}
 
 // ApiUrlsResponse struct for ApiUrlsResponse
 type ApiUrlsResponse struct {
-	AccountUrl                       *string `json:"accountUrl,omitempty"`
-	AccountVerifiedUrl               *string `json:"accountVerifiedUrl,omitempty"`
-	AddDirectDialUrl                 *string `json:"addDirectDialUrl,omitempty"`
-	AddressNumbersUrl                *string `json:"addressNumbersUrl,omitempty"`
-	AddressUrl                       *string `json:"addressUrl,omitempty"`
-	AddressesUrl                     *string `json:"addressesUrl,omitempty"`
-	AuthorizationOauthClientUrl      *string `json:"authorizationOauthClientUrl,omitempty"`
-	AuthorizationOauthClientsUrl     *string `json:"authorizationOauthClientsUrl,omitempty"`
-	AuthorizationTokenUrl            *string `json:"authorizationTokenUrl,omitempty"`
-	BalanceUrl                       *string `json:"balanceUrl,omitempty"`
-	CallRestrictionsUrl              *string `json:"callRestrictionsUrl,omitempty"`
-	ChangeDirectDialUrl              *string `json:"changeDirectDialUrl,omitempty"`
-	ContactsUrl                      *string `json:"contactsUrl,omitempty"`
-	CrmBridgeUrl                     *string `json:"crmBridgeUrl,omitempty"`
-	DeleteDirectDialUrl              *string `json:"deleteDirectDialUrl,omitempty"`
-	DeviceCallerIdUrl                *string `json:"deviceCallerIdUrl,omitempty"`
-	DeviceSimOrdersUrl               *string `json:"deviceSimOrdersUrl,omitempty"`
-	DeviceUrl                        *string `json:"deviceUrl,omitempty"`
-	DevicesSingleRowDisplayUrl       *string `json:"devicesSingleRowDisplayUrl,omitempty"`
-	DevicesTariffAnnouncementUrl     *string `json:"devicesTariffAnnouncementUrl,omitempty"`
-	FaxlineNumbersUrl                *string `json:"faxlineNumbersUrl,omitempty"`
-	FaxlineUrl                       *string `json:"faxlineUrl,omitempty"`
-	FaxlinesUrl                      *string `json:"faxlinesUrl,omitempty"`
-	CallRestrictionsLookupUrl        *string `json:"getCallRestrictionsUrl,omitempty"`
-	GroupDetailUrl                   *string `json:"groupDetailUrl,omitempty"`
-	GroupDevicesUrl                  *string `json:"groupDevicesUrl,omitempty"`
-	GroupNumbersUrl                  *string `json:"groupNumbersUrl,omitempty"`
-	GroupUserUrl                     *string `json:"groupUserUrl,omitempty"`
-	GroupsUrl                        *string `json:"groupsUrl,omitempty"`
-	HistoryEntryUrl                  *string `json:"historyEntryUrl,omitempty"`
-	HistoryUrl                       *string `json:"historyUrl,omitempty"`
-	InternalContactsUrl              *string `json:"internalContactsUrl,omitempty"`
-	NotificationsUrl                 *string `json:"notificationsUrl,omitempty"`
-	NumberUrl                        *string `json:"numberUrl,omitempty"`
-	NumbersUrl                       *string `json:"numbersUrl,omitempty"`
-	PhonelineBlockAnonymousUrl       *string `json:"phonelineBlockAnonymousUrl,omitempty"`
-	PhonelineDetailUrl               *string `json:"phonelineDetailUrl,omitempty"`
-	PhonelineDevicesUrl              *string `json:"phonelineDevicesUrl,omitempty"`
-	PhonelineForwardingsUrl          *string `json:"phonelineForwardingsUrl,omitempty"`
-	PhonelineNumbersUrl              *string `json:"phonelineNumbersUrl,omitempty"`
-	PhonelineSipgateIoLogUrl         *string `json:"phonelineSipgateIoLogUrl,omitempty"`
-	PhonelineSipgateIoUrl            *string `json:"phonelineSipgateIoUrl,omitempty"`
-	PhonelineUrl                     *string `json:"phonelineUrl,omitempty"`
-	PhonelineVoicemailGreetingUrl    *string `json:"phonelineVoicemailGreetingUrl,omitempty"`
-	PhonelineVoicemailGreetingsUrl   *string `json:"phonelineVoicemailGreetingsUrl,omitempty"`
-	PhonelineVoicemailUrl            *string `json:"phonelineVoicemailUrl,omitempty"`
-	PhonelineVoicemailsUrl           *string `json:"phonelineVoicemailsUrl,omitempty"`
-	PhonelinesParallelForwardingUrl  *string `json:"phonelinesParallelForwardingUrl,omitempty"`
+	AccountUrl *string `json:"accountUrl,omitempty"`
+	AccountVerifiedUrl *string `json:"accountVerifiedUrl,omitempty"`
+	AddDirectDialUrl *string `json:"addDirectDialUrl,omitempty"`
+	AddressNumbersUrl *string `json:"addressNumbersUrl,omitempty"`
+	AddressUrl *string `json:"addressUrl,omitempty"`
+	AddressesUrl *string `json:"addressesUrl,omitempty"`
+	AuthorizationOauthClientUrl *string `json:"authorizationOauthClientUrl,omitempty"`
+	AuthorizationOauthClientsUrl *string `json:"authorizationOauthClientsUrl,omitempty"`
+	AuthorizationTokenUrl *string `json:"authorizationTokenUrl,omitempty"`
+	BalanceUrl *string `json:"balanceUrl,omitempty"`
+	CallRestrictionsUrl *string `json:"callRestrictionsUrl,omitempty"`
+	ChangeDirectDialUrl *string `json:"changeDirectDialUrl,omitempty"`
+	ContactsUrl *string `json:"contactsUrl,omitempty"`
+	CrmBridgeUrl *string `json:"crmBridgeUrl,omitempty"`
+	DeleteDirectDialUrl *string `json:"deleteDirectDialUrl,omitempty"`
+	DeviceCallerIdUrl *string `json:"deviceCallerIdUrl,omitempty"`
+	DeviceSimOrdersUrl *string `json:"deviceSimOrdersUrl,omitempty"`
+	DeviceUrl *string `json:"deviceUrl,omitempty"`
+	DevicesSingleRowDisplayUrl *string `json:"devicesSingleRowDisplayUrl,omitempty"`
+	DevicesTariffAnnouncementUrl *string `json:"devicesTariffAnnouncementUrl,omitempty"`
+	FaxlineNumbersUrl *string `json:"faxlineNumbersUrl,omitempty"`
+	FaxlineUrl *string `json:"faxlineUrl,omitempty"`
+	FaxlinesUrl *string `json:"faxlinesUrl,omitempty"`
+	CallRestrictionsLookupUrl *string `json:"getCallRestrictionsUrl,omitempty"`
+	GroupDetailUrl *string `json:"groupDetailUrl,omitempty"`
+	GroupDevicesUrl *string `json:"groupDevicesUrl,omitempty"`
+	GroupNumbersUrl *string `json:"groupNumbersUrl,omitempty"`
+	GroupUserUrl *string `json:"groupUserUrl,omitempty"`
+	GroupsUrl *string `json:"groupsUrl,omitempty"`
+	HistoryEntryUrl *string `json:"historyEntryUrl,omitempty"`
+	HistoryUrl *string `json:"historyUrl,omitempty"`
+	InternalContactsUrl *string `json:"internalContactsUrl,omitempty"`
+	NotificationsUrl *string `json:"notificationsUrl,omitempty"`
+	NumberUrl *string `json:"numberUrl,omitempty"`
+	NumbersUrl *string `json:"numbersUrl,omitempty"`
+	PhonelineBlockAnonymousUrl *string `json:"phonelineBlockAnonymousUrl,omitempty"`
+	PhonelineDetailUrl *string `json:"phonelineDetailUrl,omitempty"`
+	PhonelineDevicesUrl *string `json:"phonelineDevicesUrl,omitempty"`
+	PhonelineForwardingsUrl *string `json:"phonelineForwardingsUrl,omitempty"`
+	PhonelineNumbersUrl *string `json:"phonelineNumbersUrl,omitempty"`
+	PhonelineSipgateIoLogUrl *string `json:"phonelineSipgateIoLogUrl,omitempty"`
+	PhonelineSipgateIoUrl *string `json:"phonelineSipgateIoUrl,omitempty"`
+	PhonelineUrl *string `json:"phonelineUrl,omitempty"`
+	PhonelineVoicemailGreetingUrl *string `json:"phonelineVoicemailGreetingUrl,omitempty"`
+	PhonelineVoicemailGreetingsUrl *string `json:"phonelineVoicemailGreetingsUrl,omitempty"`
+	PhonelineVoicemailUrl *string `json:"phonelineVoicemailUrl,omitempty"`
+	PhonelineVoicemailsUrl *string `json:"phonelineVoicemailsUrl,omitempty"`
+	PhonelinesParallelForwardingUrl *string `json:"phonelinesParallelForwardingUrl,omitempty"`
 	PhonelinesParallelForwardingsUrl *string `json:"phonelinesParallelForwardingsUrl,omitempty"`
-	PhonelinesUrl                    *string `json:"phonelinesUrl,omitempty"`
-	PortingUrl                       *string `json:"portingUrl,omitempty"`
-	PortingsUrl                      *string `json:"portingsUrl,omitempty"`
-	RestrictionsUrl                  *string `json:"restrictionsUrl,omitempty"`
-	SessionsCallUrl                  *string `json:"sessionsCallUrl,omitempty"`
-	SettingsSipgateioUrl             *string `json:"settingsSipgateioUrl,omitempty"`
-	SmsCallerIdsUrl                  *string `json:"smsCallerIdsUrl,omitempty"`
-	SmsUrl                           *string `json:"smsUrl,omitempty"`
-	TranslationsUrl                  *string `json:"translationsUrl,omitempty"`
-	UserBusyOnBusyUrl                *string `json:"userBusyOnBusyUrl,omitempty"`
-	UserDefaultDeviceUrl             *string `json:"userDefaultDeviceUrl,omitempty"`
-	UserDeviceSimUrl                 *string `json:"userDeviceSimUrl,omitempty"`
-	UserDevicesUrl                   *string `json:"userDevicesUrl,omitempty"`
-	UserExternalDevicesUrl           *string `json:"userExternalDevicesUrl,omitempty"`
-	UserInfoUrl                      *string `json:"userInfoUrl,omitempty"`
-	UserMobileDevicesUrl             *string `json:"userMobileDevicesUrl,omitempty"`
-	UserRegisterDevicesUrl           *string `json:"userRegisterDevicesUrl,omitempty"`
-	UserRoleUrl                      *string `json:"userRoleUrl,omitempty"`
-	UserUrl                          *string `json:"userUrl,omitempty"`
-	UsersUrl                         *string `json:"usersUrl,omitempty"`
-	VoicemailDetailUrl               *string `json:"voicemailDetailUrl,omitempty"`
-	VoicemailsUrl                    *string `json:"voicemailsUrl,omitempty"`
-	WebuserNumbersUrl                *string `json:"webuserNumbersUrl,omitempty"`
+	PhonelinesUrl *string `json:"phonelinesUrl,omitempty"`
+	PortingUrl *string `json:"portingUrl,omitempty"`
+	PortingsUrl *string `json:"portingsUrl,omitempty"`
+	RestrictionsUrl *string `json:"restrictionsUrl,omitempty"`
+	SessionsCallUrl *string `json:"sessionsCallUrl,omitempty"`
+	SettingsSipgateioUrl *string `json:"settingsSipgateioUrl,omitempty"`
+	SmsCallerIdsUrl *string `json:"smsCallerIdsUrl,omitempty"`
+	SmsUrl *string `json:"smsUrl,omitempty"`
+	TranslationsUrl *string `json:"translationsUrl,omitempty"`
+	UserBusyOnBusyUrl *string `json:"userBusyOnBusyUrl,omitempty"`
+	UserDefaultDeviceUrl *string `json:"userDefaultDeviceUrl,omitempty"`
+	UserDeviceSimUrl *string `json:"userDeviceSimUrl,omitempty"`
+	UserDevicesUrl *string `json:"userDevicesUrl,omitempty"`
+	UserExternalDevicesUrl *string `json:"userExternalDevicesUrl,omitempty"`
+	UserInfoUrl *string `json:"userInfoUrl,omitempty"`
+	UserMobileDevicesUrl *string `json:"userMobileDevicesUrl,omitempty"`
+	UserRegisterDevicesUrl *string `json:"userRegisterDevicesUrl,omitempty"`
+	UserRoleUrl *string `json:"userRoleUrl,omitempty"`
+	UserUrl *string `json:"userUrl,omitempty"`
+	UsersUrl *string `json:"usersUrl,omitempty"`
+	VoicemailDetailUrl *string `json:"voicemailDetailUrl,omitempty"`
+	VoicemailsUrl *string `json:"voicemailsUrl,omitempty"`
+	WebuserNumbersUrl *string `json:"webuserNumbersUrl,omitempty"`
 }
 
 // NewApiUrlsResponse instantiates a new ApiUrlsResponse object
@@ -2415,7 +2415,7 @@ func (o *ApiUrlsResponse) SetWebuserNumbersUrl(v string) {
 }
 
 func (o ApiUrlsResponse) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -2678,3 +2678,5 @@ func (v *NullableApiUrlsResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

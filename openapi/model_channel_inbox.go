@@ -19,9 +19,9 @@ var _ MappedNullable = &ChannelInbox{}
 
 // ChannelInbox struct for ChannelInbox
 type ChannelInbox struct {
-	Events   []ChannelEvent `json:"events,omitempty"`
-	Limit    *int32         `json:"limit,omitempty"`
-	Position *string        `json:"position,omitempty"`
+	Events []ChannelEvent `json:"events,omitempty"`
+	Limit *int32 `json:"limit,omitempty"`
+	Position *string `json:"position,omitempty"`
 }
 
 // NewChannelInbox instantiates a new ChannelInbox object
@@ -138,7 +138,7 @@ func (o *ChannelInbox) SetPosition(v string) {
 }
 
 func (o ChannelInbox) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -194,3 +194,5 @@ func (v *NullableChannelInbox) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

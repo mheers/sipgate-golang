@@ -19,14 +19,15 @@ import (
 	"strings"
 )
 
+
 type NotificationsAPI interface {
 
 	/*
-		AddFaxEmailNotification Create a new email notification for faxes
+	AddFaxEmailNotification Create a new email notification for faxes
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param userId The unique user identifier
-		@return ApiAddFaxEmailNotificationRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userId The unique user identifier
+	@return ApiAddFaxEmailNotificationRequest
 	*/
 	AddFaxEmailNotification(ctx context.Context, userId string) ApiAddFaxEmailNotificationRequest
 
@@ -34,11 +35,11 @@ type NotificationsAPI interface {
 	AddFaxEmailNotificationExecute(r ApiAddFaxEmailNotificationRequest) (*http.Response, error)
 
 	/*
-		AddFaxReportEmailNotification Create a new email notification for fax reports
+	AddFaxReportEmailNotification Create a new email notification for fax reports
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param userId The unique user identifier
-		@return ApiAddFaxReportEmailNotificationRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userId The unique user identifier
+	@return ApiAddFaxReportEmailNotificationRequest
 	*/
 	AddFaxReportEmailNotification(ctx context.Context, userId string) ApiAddFaxReportEmailNotificationRequest
 
@@ -46,11 +47,11 @@ type NotificationsAPI interface {
 	AddFaxReportEmailNotificationExecute(r ApiAddFaxReportEmailNotificationRequest) (*http.Response, error)
 
 	/*
-		AddFaxSmsNotification Create a new sms notification for faxes
+	AddFaxSmsNotification Create a new sms notification for faxes
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param userId The unique user identifier
-		@return ApiAddFaxSmsNotificationRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userId The unique user identifier
+	@return ApiAddFaxSmsNotificationRequest
 	*/
 	AddFaxSmsNotification(ctx context.Context, userId string) ApiAddFaxSmsNotificationRequest
 
@@ -58,11 +59,11 @@ type NotificationsAPI interface {
 	AddFaxSmsNotificationExecute(r ApiAddFaxSmsNotificationRequest) (*http.Response, error)
 
 	/*
-		AddSmsEmailNotification Create a new email notification for incoming sms
+	AddSmsEmailNotification Create a new email notification for incoming sms
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param userId The unique user identifier
-		@return ApiAddSmsEmailNotificationRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userId The unique user identifier
+	@return ApiAddSmsEmailNotificationRequest
 	*/
 	AddSmsEmailNotification(ctx context.Context, userId string) ApiAddSmsEmailNotificationRequest
 
@@ -70,11 +71,11 @@ type NotificationsAPI interface {
 	AddSmsEmailNotificationExecute(r ApiAddSmsEmailNotificationRequest) (*http.Response, error)
 
 	/*
-		AddVoicemailEmailNotification Create a new email notification for voicemails
+	AddVoicemailEmailNotification Create a new email notification for voicemails
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param userId The unique user identifier
-		@return ApiAddVoicemailEmailNotificationRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userId The unique user identifier
+	@return ApiAddVoicemailEmailNotificationRequest
 	*/
 	AddVoicemailEmailNotification(ctx context.Context, userId string) ApiAddVoicemailEmailNotificationRequest
 
@@ -82,11 +83,11 @@ type NotificationsAPI interface {
 	AddVoicemailEmailNotificationExecute(r ApiAddVoicemailEmailNotificationRequest) (*http.Response, error)
 
 	/*
-		AddVoicemailSmsNotification Create a new sms notification for voicemails
+	AddVoicemailSmsNotification Create a new sms notification for voicemails
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param userId The unique user identifier
-		@return ApiAddVoicemailSmsNotificationRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userId The unique user identifier
+	@return ApiAddVoicemailSmsNotificationRequest
 	*/
 	AddVoicemailSmsNotification(ctx context.Context, userId string) ApiAddVoicemailSmsNotificationRequest
 
@@ -94,11 +95,11 @@ type NotificationsAPI interface {
 	AddVoicemailSmsNotificationExecute(r ApiAddVoicemailSmsNotificationRequest) (*http.Response, error)
 
 	/*
-		CreateEmailNotificationForCall Create a new email notification for calls
+	CreateEmailNotificationForCall Create a new email notification for calls
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param userId The unique user identifier
-		@return ApiCreateEmailNotificationForCallRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userId The unique user identifier
+	@return ApiCreateEmailNotificationForCallRequest
 	*/
 	CreateEmailNotificationForCall(ctx context.Context, userId string) ApiCreateEmailNotificationForCallRequest
 
@@ -106,11 +107,11 @@ type NotificationsAPI interface {
 	CreateEmailNotificationForCallExecute(r ApiCreateEmailNotificationForCallRequest) (*http.Response, error)
 
 	/*
-		CreateSmsNotificationForCall Create a new sms notification for calls
+	CreateSmsNotificationForCall Create a new sms notification for calls
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param userId The unique user identifier
-		@return ApiCreateSmsNotificationForCallRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userId The unique user identifier
+	@return ApiCreateSmsNotificationForCallRequest
 	*/
 	CreateSmsNotificationForCall(ctx context.Context, userId string) ApiCreateSmsNotificationForCallRequest
 
@@ -118,12 +119,12 @@ type NotificationsAPI interface {
 	CreateSmsNotificationForCallExecute(r ApiCreateSmsNotificationForCallRequest) (*http.Response, error)
 
 	/*
-		DeleteNotification Delete an existing notification
+	DeleteNotification Delete an existing notification
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param userId The unique user identifier
-		@param notificationId The unique notification identifier
-		@return ApiDeleteNotificationRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userId The unique user identifier
+	@param notificationId The unique notification identifier
+	@return ApiDeleteNotificationRequest
 	*/
 	DeleteNotification(ctx context.Context, userId string, notificationId string) ApiDeleteNotificationRequest
 
@@ -131,11 +132,11 @@ type NotificationsAPI interface {
 	DeleteNotificationExecute(r ApiDeleteNotificationRequest) (*http.Response, error)
 
 	/*
-		GetNotifications Get all notifications
+	GetNotifications Get all notifications
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param userId The unique user identifier
-		@return ApiGetNotificationsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userId The unique user identifier
+	@return ApiGetNotificationsRequest
 	*/
 	GetNotifications(ctx context.Context, userId string) ApiGetNotificationsRequest
 
@@ -148,10 +149,10 @@ type NotificationsAPI interface {
 type NotificationsAPIService service
 
 type ApiAddFaxEmailNotificationRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService NotificationsAPI
-	userId     string
-	body       *AddFaxEmailNotificationRequest
+	userId string
+	body *AddFaxEmailNotificationRequest
 }
 
 func (r ApiAddFaxEmailNotificationRequest) Body(body AddFaxEmailNotificationRequest) ApiAddFaxEmailNotificationRequest {
@@ -166,24 +167,24 @@ func (r ApiAddFaxEmailNotificationRequest) Execute() (*http.Response, error) {
 /*
 AddFaxEmailNotification Create a new email notification for faxes
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param userId The unique user identifier
-	@return ApiAddFaxEmailNotificationRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param userId The unique user identifier
+ @return ApiAddFaxEmailNotificationRequest
 */
 func (a *NotificationsAPIService) AddFaxEmailNotification(ctx context.Context, userId string) ApiAddFaxEmailNotificationRequest {
 	return ApiAddFaxEmailNotificationRequest{
 		ApiService: a,
-		ctx:        ctx,
-		userId:     userId,
+		ctx: ctx,
+		userId: userId,
 	}
 }
 
 // Execute executes the request
 func (a *NotificationsAPIService) AddFaxEmailNotificationExecute(r ApiAddFaxEmailNotificationRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodPost
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NotificationsAPIService.AddFaxEmailNotification")
@@ -246,10 +247,10 @@ func (a *NotificationsAPIService) AddFaxEmailNotificationExecute(r ApiAddFaxEmai
 }
 
 type ApiAddFaxReportEmailNotificationRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService NotificationsAPI
-	userId     string
-	body       *AddFaxReportEmailNotificationRequest
+	userId string
+	body *AddFaxReportEmailNotificationRequest
 }
 
 func (r ApiAddFaxReportEmailNotificationRequest) Body(body AddFaxReportEmailNotificationRequest) ApiAddFaxReportEmailNotificationRequest {
@@ -264,24 +265,24 @@ func (r ApiAddFaxReportEmailNotificationRequest) Execute() (*http.Response, erro
 /*
 AddFaxReportEmailNotification Create a new email notification for fax reports
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param userId The unique user identifier
-	@return ApiAddFaxReportEmailNotificationRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param userId The unique user identifier
+ @return ApiAddFaxReportEmailNotificationRequest
 */
 func (a *NotificationsAPIService) AddFaxReportEmailNotification(ctx context.Context, userId string) ApiAddFaxReportEmailNotificationRequest {
 	return ApiAddFaxReportEmailNotificationRequest{
 		ApiService: a,
-		ctx:        ctx,
-		userId:     userId,
+		ctx: ctx,
+		userId: userId,
 	}
 }
 
 // Execute executes the request
 func (a *NotificationsAPIService) AddFaxReportEmailNotificationExecute(r ApiAddFaxReportEmailNotificationRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodPost
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NotificationsAPIService.AddFaxReportEmailNotification")
@@ -344,10 +345,10 @@ func (a *NotificationsAPIService) AddFaxReportEmailNotificationExecute(r ApiAddF
 }
 
 type ApiAddFaxSmsNotificationRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService NotificationsAPI
-	userId     string
-	body       *AddFaxSmsNotificationRequest
+	userId string
+	body *AddFaxSmsNotificationRequest
 }
 
 func (r ApiAddFaxSmsNotificationRequest) Body(body AddFaxSmsNotificationRequest) ApiAddFaxSmsNotificationRequest {
@@ -362,24 +363,24 @@ func (r ApiAddFaxSmsNotificationRequest) Execute() (*http.Response, error) {
 /*
 AddFaxSmsNotification Create a new sms notification for faxes
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param userId The unique user identifier
-	@return ApiAddFaxSmsNotificationRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param userId The unique user identifier
+ @return ApiAddFaxSmsNotificationRequest
 */
 func (a *NotificationsAPIService) AddFaxSmsNotification(ctx context.Context, userId string) ApiAddFaxSmsNotificationRequest {
 	return ApiAddFaxSmsNotificationRequest{
 		ApiService: a,
-		ctx:        ctx,
-		userId:     userId,
+		ctx: ctx,
+		userId: userId,
 	}
 }
 
 // Execute executes the request
 func (a *NotificationsAPIService) AddFaxSmsNotificationExecute(r ApiAddFaxSmsNotificationRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodPost
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NotificationsAPIService.AddFaxSmsNotification")
@@ -442,10 +443,10 @@ func (a *NotificationsAPIService) AddFaxSmsNotificationExecute(r ApiAddFaxSmsNot
 }
 
 type ApiAddSmsEmailNotificationRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService NotificationsAPI
-	userId     string
-	body       *AddSmsEmailNotificationRequest
+	userId string
+	body *AddSmsEmailNotificationRequest
 }
 
 func (r ApiAddSmsEmailNotificationRequest) Body(body AddSmsEmailNotificationRequest) ApiAddSmsEmailNotificationRequest {
@@ -460,24 +461,24 @@ func (r ApiAddSmsEmailNotificationRequest) Execute() (*http.Response, error) {
 /*
 AddSmsEmailNotification Create a new email notification for incoming sms
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param userId The unique user identifier
-	@return ApiAddSmsEmailNotificationRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param userId The unique user identifier
+ @return ApiAddSmsEmailNotificationRequest
 */
 func (a *NotificationsAPIService) AddSmsEmailNotification(ctx context.Context, userId string) ApiAddSmsEmailNotificationRequest {
 	return ApiAddSmsEmailNotificationRequest{
 		ApiService: a,
-		ctx:        ctx,
-		userId:     userId,
+		ctx: ctx,
+		userId: userId,
 	}
 }
 
 // Execute executes the request
 func (a *NotificationsAPIService) AddSmsEmailNotificationExecute(r ApiAddSmsEmailNotificationRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodPost
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NotificationsAPIService.AddSmsEmailNotification")
@@ -540,10 +541,10 @@ func (a *NotificationsAPIService) AddSmsEmailNotificationExecute(r ApiAddSmsEmai
 }
 
 type ApiAddVoicemailEmailNotificationRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService NotificationsAPI
-	userId     string
-	body       *AddVoicemailEmailVoicemailNotificationRequest
+	userId string
+	body *AddVoicemailEmailVoicemailNotificationRequest
 }
 
 func (r ApiAddVoicemailEmailNotificationRequest) Body(body AddVoicemailEmailVoicemailNotificationRequest) ApiAddVoicemailEmailNotificationRequest {
@@ -558,24 +559,24 @@ func (r ApiAddVoicemailEmailNotificationRequest) Execute() (*http.Response, erro
 /*
 AddVoicemailEmailNotification Create a new email notification for voicemails
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param userId The unique user identifier
-	@return ApiAddVoicemailEmailNotificationRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param userId The unique user identifier
+ @return ApiAddVoicemailEmailNotificationRequest
 */
 func (a *NotificationsAPIService) AddVoicemailEmailNotification(ctx context.Context, userId string) ApiAddVoicemailEmailNotificationRequest {
 	return ApiAddVoicemailEmailNotificationRequest{
 		ApiService: a,
-		ctx:        ctx,
-		userId:     userId,
+		ctx: ctx,
+		userId: userId,
 	}
 }
 
 // Execute executes the request
 func (a *NotificationsAPIService) AddVoicemailEmailNotificationExecute(r ApiAddVoicemailEmailNotificationRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodPost
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NotificationsAPIService.AddVoicemailEmailNotification")
@@ -638,10 +639,10 @@ func (a *NotificationsAPIService) AddVoicemailEmailNotificationExecute(r ApiAddV
 }
 
 type ApiAddVoicemailSmsNotificationRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService NotificationsAPI
-	userId     string
-	body       *AddVoicemailSmslVoicemailNotificationRequest
+	userId string
+	body *AddVoicemailSmslVoicemailNotificationRequest
 }
 
 func (r ApiAddVoicemailSmsNotificationRequest) Body(body AddVoicemailSmslVoicemailNotificationRequest) ApiAddVoicemailSmsNotificationRequest {
@@ -656,24 +657,24 @@ func (r ApiAddVoicemailSmsNotificationRequest) Execute() (*http.Response, error)
 /*
 AddVoicemailSmsNotification Create a new sms notification for voicemails
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param userId The unique user identifier
-	@return ApiAddVoicemailSmsNotificationRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param userId The unique user identifier
+ @return ApiAddVoicemailSmsNotificationRequest
 */
 func (a *NotificationsAPIService) AddVoicemailSmsNotification(ctx context.Context, userId string) ApiAddVoicemailSmsNotificationRequest {
 	return ApiAddVoicemailSmsNotificationRequest{
 		ApiService: a,
-		ctx:        ctx,
-		userId:     userId,
+		ctx: ctx,
+		userId: userId,
 	}
 }
 
 // Execute executes the request
 func (a *NotificationsAPIService) AddVoicemailSmsNotificationExecute(r ApiAddVoicemailSmsNotificationRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodPost
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NotificationsAPIService.AddVoicemailSmsNotification")
@@ -736,10 +737,10 @@ func (a *NotificationsAPIService) AddVoicemailSmsNotificationExecute(r ApiAddVoi
 }
 
 type ApiCreateEmailNotificationForCallRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService NotificationsAPI
-	userId     string
-	body       *AddCallEmailNotificationRequest
+	userId string
+	body *AddCallEmailNotificationRequest
 }
 
 func (r ApiCreateEmailNotificationForCallRequest) Body(body AddCallEmailNotificationRequest) ApiCreateEmailNotificationForCallRequest {
@@ -754,24 +755,24 @@ func (r ApiCreateEmailNotificationForCallRequest) Execute() (*http.Response, err
 /*
 CreateEmailNotificationForCall Create a new email notification for calls
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param userId The unique user identifier
-	@return ApiCreateEmailNotificationForCallRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param userId The unique user identifier
+ @return ApiCreateEmailNotificationForCallRequest
 */
 func (a *NotificationsAPIService) CreateEmailNotificationForCall(ctx context.Context, userId string) ApiCreateEmailNotificationForCallRequest {
 	return ApiCreateEmailNotificationForCallRequest{
 		ApiService: a,
-		ctx:        ctx,
-		userId:     userId,
+		ctx: ctx,
+		userId: userId,
 	}
 }
 
 // Execute executes the request
 func (a *NotificationsAPIService) CreateEmailNotificationForCallExecute(r ApiCreateEmailNotificationForCallRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodPost
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NotificationsAPIService.CreateEmailNotificationForCall")
@@ -834,10 +835,10 @@ func (a *NotificationsAPIService) CreateEmailNotificationForCallExecute(r ApiCre
 }
 
 type ApiCreateSmsNotificationForCallRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService NotificationsAPI
-	userId     string
-	body       *AddCallSmsNotificationRequest
+	userId string
+	body *AddCallSmsNotificationRequest
 }
 
 func (r ApiCreateSmsNotificationForCallRequest) Body(body AddCallSmsNotificationRequest) ApiCreateSmsNotificationForCallRequest {
@@ -852,24 +853,24 @@ func (r ApiCreateSmsNotificationForCallRequest) Execute() (*http.Response, error
 /*
 CreateSmsNotificationForCall Create a new sms notification for calls
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param userId The unique user identifier
-	@return ApiCreateSmsNotificationForCallRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param userId The unique user identifier
+ @return ApiCreateSmsNotificationForCallRequest
 */
 func (a *NotificationsAPIService) CreateSmsNotificationForCall(ctx context.Context, userId string) ApiCreateSmsNotificationForCallRequest {
 	return ApiCreateSmsNotificationForCallRequest{
 		ApiService: a,
-		ctx:        ctx,
-		userId:     userId,
+		ctx: ctx,
+		userId: userId,
 	}
 }
 
 // Execute executes the request
 func (a *NotificationsAPIService) CreateSmsNotificationForCallExecute(r ApiCreateSmsNotificationForCallRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodPost
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NotificationsAPIService.CreateSmsNotificationForCall")
@@ -932,9 +933,9 @@ func (a *NotificationsAPIService) CreateSmsNotificationForCallExecute(r ApiCreat
 }
 
 type ApiDeleteNotificationRequest struct {
-	ctx            context.Context
-	ApiService     NotificationsAPI
-	userId         string
+	ctx context.Context
+	ApiService NotificationsAPI
+	userId string
 	notificationId string
 }
 
@@ -945,16 +946,16 @@ func (r ApiDeleteNotificationRequest) Execute() (*http.Response, error) {
 /*
 DeleteNotification Delete an existing notification
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param userId The unique user identifier
-	@param notificationId The unique notification identifier
-	@return ApiDeleteNotificationRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param userId The unique user identifier
+ @param notificationId The unique notification identifier
+ @return ApiDeleteNotificationRequest
 */
 func (a *NotificationsAPIService) DeleteNotification(ctx context.Context, userId string, notificationId string) ApiDeleteNotificationRequest {
 	return ApiDeleteNotificationRequest{
-		ApiService:     a,
-		ctx:            ctx,
-		userId:         userId,
+		ApiService: a,
+		ctx: ctx,
+		userId: userId,
 		notificationId: notificationId,
 	}
 }
@@ -962,9 +963,9 @@ func (a *NotificationsAPIService) DeleteNotification(ctx context.Context, userId
 // Execute executes the request
 func (a *NotificationsAPIService) DeleteNotificationExecute(r ApiDeleteNotificationRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodDelete
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NotificationsAPIService.DeleteNotification")
@@ -1026,9 +1027,9 @@ func (a *NotificationsAPIService) DeleteNotificationExecute(r ApiDeleteNotificat
 }
 
 type ApiGetNotificationsRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService NotificationsAPI
-	userId     string
+	userId string
 }
 
 func (r ApiGetNotificationsRequest) Execute() (*NotificationsResponse, *http.Response, error) {
@@ -1038,27 +1039,26 @@ func (r ApiGetNotificationsRequest) Execute() (*NotificationsResponse, *http.Res
 /*
 GetNotifications Get all notifications
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param userId The unique user identifier
-	@return ApiGetNotificationsRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param userId The unique user identifier
+ @return ApiGetNotificationsRequest
 */
 func (a *NotificationsAPIService) GetNotifications(ctx context.Context, userId string) ApiGetNotificationsRequest {
 	return ApiGetNotificationsRequest{
 		ApiService: a,
-		ctx:        ctx,
-		userId:     userId,
+		ctx: ctx,
+		userId: userId,
 	}
 }
 
 // Execute executes the request
-//
-//	@return NotificationsResponse
+//  @return NotificationsResponse
 func (a *NotificationsAPIService) GetNotificationsExecute(r ApiGetNotificationsRequest) (*NotificationsResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *NotificationsResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *NotificationsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NotificationsAPIService.GetNotifications")

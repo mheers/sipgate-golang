@@ -19,25 +19,25 @@ var _ MappedNullable = &HistoryEntryResponse{}
 
 // HistoryEntryResponse struct for HistoryEntryResponse
 type HistoryEntryResponse struct {
-	Archived      *bool    `json:"archived,omitempty"`
+	Archived *bool `json:"archived,omitempty"`
 	ConnectionIds []string `json:"connectionIds,omitempty"`
-	Created       *string  `json:"created,omitempty"`
-	Direction     *string  `json:"direction,omitempty"`
+	Created *string `json:"created,omitempty"`
+	Direction *string `json:"direction,omitempty"`
 	// An ordered list of endpoints the event moved through
-	Endpoints    []RoutedEndpointResponse `json:"endpoints,omitempty"`
-	Id           *string                  `json:"id,omitempty"`
-	Incoming     *bool                    `json:"incoming,omitempty"`
-	Labels       []string                 `json:"labels,omitempty"`
-	LastModified *string                  `json:"lastModified,omitempty"`
-	Note         *string                  `json:"note,omitempty"`
-	Read         *bool                    `json:"read,omitempty"`
-	Source       *string                  `json:"source,omitempty"`
-	SourceAlias  *string                  `json:"sourceAlias,omitempty"`
-	Starred      *bool                    `json:"starred,omitempty"`
-	Status       *string                  `json:"status,omitempty"`
-	Target       *string                  `json:"target,omitempty"`
-	TargetAlias  *string                  `json:"targetAlias,omitempty"`
-	Type         *string                  `json:"type,omitempty"`
+	Endpoints []RoutedEndpointResponse `json:"endpoints,omitempty"`
+	Id *string `json:"id,omitempty"`
+	Incoming *bool `json:"incoming,omitempty"`
+	Labels []string `json:"labels,omitempty"`
+	LastModified *string `json:"lastModified,omitempty"`
+	Note *string `json:"note,omitempty"`
+	Read *bool `json:"read,omitempty"`
+	Source *string `json:"source,omitempty"`
+	SourceAlias *string `json:"sourceAlias,omitempty"`
+	Starred *bool `json:"starred,omitempty"`
+	Status *string `json:"status,omitempty"`
+	Target *string `json:"target,omitempty"`
+	TargetAlias *string `json:"targetAlias,omitempty"`
+	Type *string `json:"type,omitempty"`
 }
 
 // NewHistoryEntryResponse instantiates a new HistoryEntryResponse object
@@ -650,7 +650,7 @@ func (o *HistoryEntryResponse) SetType(v string) {
 }
 
 func (o HistoryEntryResponse) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -751,3 +751,5 @@ func (v *NullableHistoryEntryResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

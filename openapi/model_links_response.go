@@ -19,55 +19,55 @@ var _ MappedNullable = &LinksResponse{}
 
 // LinksResponse struct for LinksResponse
 type LinksResponse struct {
-	AccountSettingsUrl                 *string `json:"accountSettingsUrl,omitempty"`
-	AccountTopUpUrl                    *string `json:"accountTopUpUrl,omitempty"`
-	AccountsUrl                        *string `json:"accountsUrl,omitempty"`
-	AdminProductSettingsUrl            *string `json:"adminProductSettingsUrl,omitempty"`
-	AffiliateUrl                       *string `json:"affiliateUrl,omitempty"`
-	AiAgentsHelpdeskUrl                *string `json:"aiAgentsHelpdeskUrl,omitempty"`
-	AiAgentsPricingUrl                 *string `json:"aiAgentsPricingUrl,omitempty"`
-	AppleSignInUrl                     *string `json:"appleSignInUrl,omitempty"`
-	BookPhonenumberUrl                 *string `json:"bookPhonenumberUrl,omitempty"`
-	BrandUrl                           *string `json:"brandUrl,omitempty"`
-	CallPackageTacUrl                  *string `json:"callPackageTacUrl,omitempty"`
-	CallRecorderTacUrl                 *string `json:"callRecorderTacUrl,omitempty"`
-	CrmIntegrationsUrl                 *string `json:"crmIntegrationsUrl,omitempty"`
-	DataContingentTacUrl               *string `json:"dataContingentTacUrl,omitempty"`
-	DataProcessingAgreementUrl         *string `json:"dataProcessingAgreementUrl,omitempty"`
-	DevicePoolUrl                      *string `json:"devicePoolUrl,omitempty"`
-	GeneralTacUrl                      *string `json:"generalTacUrl,omitempty"`
-	GoogleSignInUrl                    *string `json:"googleSignInUrl,omitempty"`
-	HelpdeskPhoneConfigurationUrl      *string `json:"helpdeskPhoneConfigurationUrl,omitempty"`
-	HelpdeskUrl                        *string `json:"helpdeskUrl,omitempty"`
-	LegacyTokenAuthenticateUrl         *string `json:"legacyTokenAuthenticateUrl,omitempty"`
-	LoginUrl                           *string `json:"loginUrl,omitempty"`
-	LogoTargetUrl                      *string `json:"logoTargetUrl,omitempty"`
-	LogoutPageUrl                      *string `json:"logoutPageUrl,omitempty"`
-	LogoutUrl                          *string `json:"logoutUrl,omitempty"`
-	MicrosoftPresenceRedirectUrl       *string `json:"microsoftPresenceRedirectUrl,omitempty"`
-	MicrosoftSignInUrl                 *string `json:"microsoftSignInUrl,omitempty"`
-	MicrosoftTeamsUrl                  *string `json:"microsoftTeamsUrl,omitempty"`
-	MobileDataVisualizationUrl         *string `json:"mobileDataVisualizationUrl,omitempty"`
-	NewStarterPriceList121124          *string `json:"newStarterPriceList_121124,omitempty"`
-	NonEWRHelpcenterUrl                *string `json:"nonEWRHelpcenterUrl,omitempty"`
-	NotificationsUrl                   *string `json:"notificationsUrl,omitempty"`
-	PaymentSettingsUrl                 *string `json:"paymentSettingsUrl,omitempty"`
-	PersonalSettingsUrl                *string `json:"personalSettingsUrl,omitempty"`
-	PresenceContainerUrl               *string `json:"presenceContainerUrl,omitempty"`
-	PrivacyPolicyUrl                   *string `json:"privacyPolicyUrl,omitempty"`
-	SendFaxUrl                         *string `json:"sendFaxUrl,omitempty"`
-	ServiceDescriptionUrl              *string `json:"serviceDescriptionUrl,omitempty"`
-	SimquadratUrl                      *string `json:"simquadratUrl,omitempty"`
-	StartUpPageUrl                     *string `json:"startUpPageUrl,omitempty"`
-	SupportUrl                         *string `json:"supportUrl,omitempty"`
-	TestProgrammeUrl                   *string `json:"testProgrammeUrl,omitempty"`
-	TokenAuthenticateUrl               *string `json:"tokenAuthenticateUrl,omitempty"`
-	TrunkContingentTacUrl              *string `json:"trunkContingentTacUrl,omitempty"`
-	TrunkContractTacUrl                *string `json:"trunkContractTacUrl,omitempty"`
+	AccountSettingsUrl *string `json:"accountSettingsUrl,omitempty"`
+	AccountTopUpUrl *string `json:"accountTopUpUrl,omitempty"`
+	AccountsUrl *string `json:"accountsUrl,omitempty"`
+	AdminProductSettingsUrl *string `json:"adminProductSettingsUrl,omitempty"`
+	AffiliateUrl *string `json:"affiliateUrl,omitempty"`
+	AiAgentsHelpdeskUrl *string `json:"aiAgentsHelpdeskUrl,omitempty"`
+	AiAgentsPricingUrl *string `json:"aiAgentsPricingUrl,omitempty"`
+	AppleSignInUrl *string `json:"appleSignInUrl,omitempty"`
+	BookPhonenumberUrl *string `json:"bookPhonenumberUrl,omitempty"`
+	BrandUrl *string `json:"brandUrl,omitempty"`
+	CallPackageTacUrl *string `json:"callPackageTacUrl,omitempty"`
+	CallRecorderTacUrl *string `json:"callRecorderTacUrl,omitempty"`
+	CrmIntegrationsUrl *string `json:"crmIntegrationsUrl,omitempty"`
+	DataContingentTacUrl *string `json:"dataContingentTacUrl,omitempty"`
+	DataProcessingAgreementUrl *string `json:"dataProcessingAgreementUrl,omitempty"`
+	DevicePoolUrl *string `json:"devicePoolUrl,omitempty"`
+	GeneralTacUrl *string `json:"generalTacUrl,omitempty"`
+	GoogleSignInUrl *string `json:"googleSignInUrl,omitempty"`
+	HelpdeskPhoneConfigurationUrl *string `json:"helpdeskPhoneConfigurationUrl,omitempty"`
+	HelpdeskUrl *string `json:"helpdeskUrl,omitempty"`
+	LegacyTokenAuthenticateUrl *string `json:"legacyTokenAuthenticateUrl,omitempty"`
+	LoginUrl *string `json:"loginUrl,omitempty"`
+	LogoTargetUrl *string `json:"logoTargetUrl,omitempty"`
+	LogoutPageUrl *string `json:"logoutPageUrl,omitempty"`
+	LogoutUrl *string `json:"logoutUrl,omitempty"`
+	MicrosoftPresenceRedirectUrl *string `json:"microsoftPresenceRedirectUrl,omitempty"`
+	MicrosoftSignInUrl *string `json:"microsoftSignInUrl,omitempty"`
+	MicrosoftTeamsUrl *string `json:"microsoftTeamsUrl,omitempty"`
+	MobileDataVisualizationUrl *string `json:"mobileDataVisualizationUrl,omitempty"`
+	NewStarterPriceList121124 *string `json:"newStarterPriceList_121124,omitempty"`
+	NonEWRHelpcenterUrl *string `json:"nonEWRHelpcenterUrl,omitempty"`
+	NotificationsUrl *string `json:"notificationsUrl,omitempty"`
+	PaymentSettingsUrl *string `json:"paymentSettingsUrl,omitempty"`
+	PersonalSettingsUrl *string `json:"personalSettingsUrl,omitempty"`
+	PresenceContainerUrl *string `json:"presenceContainerUrl,omitempty"`
+	PrivacyPolicyUrl *string `json:"privacyPolicyUrl,omitempty"`
+	SendFaxUrl *string `json:"sendFaxUrl,omitempty"`
+	ServiceDescriptionUrl *string `json:"serviceDescriptionUrl,omitempty"`
+	SimquadratUrl *string `json:"simquadratUrl,omitempty"`
+	StartUpPageUrl *string `json:"startUpPageUrl,omitempty"`
+	SupportUrl *string `json:"supportUrl,omitempty"`
+	TestProgrammeUrl *string `json:"testProgrammeUrl,omitempty"`
+	TokenAuthenticateUrl *string `json:"tokenAuthenticateUrl,omitempty"`
+	TrunkContingentTacUrl *string `json:"trunkContingentTacUrl,omitempty"`
+	TrunkContractTacUrl *string `json:"trunkContractTacUrl,omitempty"`
 	TrunkingContingentAdvertisementUrl *string `json:"trunkingContingentAdvertisementUrl,omitempty"`
-	UserSettingsUrl                    *string `json:"userSettingsUrl,omitempty"`
-	WbciOptInUrl                       *string `json:"wbciOptInUrl,omitempty"`
-	WhatsNewUrl                        *string `json:"whatsNewUrl,omitempty"`
+	UserSettingsUrl *string `json:"userSettingsUrl,omitempty"`
+	WbciOptInUrl *string `json:"wbciOptInUrl,omitempty"`
+	WhatsNewUrl *string `json:"whatsNewUrl,omitempty"`
 }
 
 // NewLinksResponse instantiates a new LinksResponse object
@@ -1656,7 +1656,7 @@ func (o *LinksResponse) SetWhatsNewUrl(v string) {
 }
 
 func (o LinksResponse) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -1850,3 +1850,5 @@ func (v *NullableLinksResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

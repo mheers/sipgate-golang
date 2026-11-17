@@ -20,7 +20,7 @@ var _ MappedNullable = &ReportTarget{}
 // ReportTarget struct for ReportTarget
 type ReportTarget struct {
 	Email *string `json:"email,omitempty"`
-	Id    *string `json:"id,omitempty"`
+	Id *string `json:"id,omitempty"`
 }
 
 // NewReportTarget instantiates a new ReportTarget object
@@ -105,7 +105,7 @@ func (o *ReportTarget) SetId(v string) {
 }
 
 func (o ReportTarget) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -158,3 +158,5 @@ func (v *NullableReportTarget) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

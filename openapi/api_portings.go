@@ -19,14 +19,15 @@ import (
 	"strings"
 )
 
+
 type PortingsAPI interface {
 
 	/*
-		GetPorting Get an existing porting
+	GetPorting Get an existing porting
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param portingId
-		@return ApiGetPortingRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param portingId
+	@return ApiGetPortingRequest
 	*/
 	GetPorting(ctx context.Context, portingId int32) ApiGetPortingRequest
 
@@ -35,25 +36,25 @@ type PortingsAPI interface {
 	GetPortingExecute(r ApiGetPortingRequest) (*PortingResponse, *http.Response, error)
 
 	/*
-			GetPortings List all phone number portings
+	GetPortings List all phone number portings
 
-			Possible status codes:<br /><pre>100: Waiting for user fax
-		150: WBCI waiting for mail opt-in
-		160: WBCI opt-in hash generated
-		170: WBCI opt-in link clicked
-		200: Waiting for fax from current network operator
-		250: WBCI send
-		251: WBCI network error
-		252: WBCI EKP rejected
-		400: Porting accepted
-		450: Waiting for data exchange
-		451: Data exchange error
-		500: Porting complete
-		600: Porting cancelled
-		</pre>
+	Possible status codes:<br /><pre>100: Waiting for user fax
+150: WBCI waiting for mail opt-in
+160: WBCI opt-in hash generated
+170: WBCI opt-in link clicked
+200: Waiting for fax from current network operator
+250: WBCI send
+251: WBCI network error
+252: WBCI EKP rejected
+400: Porting accepted
+450: Waiting for data exchange
+451: Data exchange error
+500: Porting complete
+600: Porting cancelled
+</pre>
 
-			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-			@return ApiGetPortingsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiGetPortingsRequest
 	*/
 	GetPortings(ctx context.Context) ApiGetPortingsRequest
 
@@ -62,11 +63,11 @@ type PortingsAPI interface {
 	GetPortingsExecute(r ApiGetPortingsRequest) (*PortingsResponse, *http.Response, error)
 
 	/*
-		RevokePorting Delete/revoke an existing porting
+	RevokePorting Delete/revoke an existing porting
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param portingId
-		@return ApiRevokePortingRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param portingId
+	@return ApiRevokePortingRequest
 	*/
 	RevokePorting(ctx context.Context, portingId int32) ApiRevokePortingRequest
 
@@ -78,9 +79,9 @@ type PortingsAPI interface {
 type PortingsAPIService service
 
 type ApiGetPortingRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService PortingsAPI
-	portingId  int32
+	portingId int32
 }
 
 func (r ApiGetPortingRequest) Execute() (*PortingResponse, *http.Response, error) {
@@ -90,27 +91,26 @@ func (r ApiGetPortingRequest) Execute() (*PortingResponse, *http.Response, error
 /*
 GetPorting Get an existing porting
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param portingId
-	@return ApiGetPortingRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param portingId
+ @return ApiGetPortingRequest
 */
 func (a *PortingsAPIService) GetPorting(ctx context.Context, portingId int32) ApiGetPortingRequest {
 	return ApiGetPortingRequest{
 		ApiService: a,
-		ctx:        ctx,
-		portingId:  portingId,
+		ctx: ctx,
+		portingId: portingId,
 	}
 }
 
 // Execute executes the request
-//
-//	@return PortingResponse
+//  @return PortingResponse
 func (a *PortingsAPIService) GetPortingExecute(r ApiGetPortingRequest) (*PortingResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *PortingResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *PortingResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PortingsAPIService.GetPorting")
@@ -180,7 +180,7 @@ func (a *PortingsAPIService) GetPortingExecute(r ApiGetPortingRequest) (*Porting
 }
 
 type ApiGetPortingsRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService PortingsAPI
 }
 
@@ -206,25 +206,24 @@ Possible status codes:<br /><pre>100: Waiting for user fax
 600: Porting cancelled
 </pre>
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiGetPortingsRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiGetPortingsRequest
 */
 func (a *PortingsAPIService) GetPortings(ctx context.Context) ApiGetPortingsRequest {
 	return ApiGetPortingsRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//
-//	@return PortingsResponse
+//  @return PortingsResponse
 func (a *PortingsAPIService) GetPortingsExecute(r ApiGetPortingsRequest) (*PortingsResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *PortingsResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *PortingsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PortingsAPIService.GetPortings")
@@ -293,9 +292,9 @@ func (a *PortingsAPIService) GetPortingsExecute(r ApiGetPortingsRequest) (*Porti
 }
 
 type ApiRevokePortingRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService PortingsAPI
-	portingId  int32
+	portingId int32
 }
 
 func (r ApiRevokePortingRequest) Execute() (*http.Response, error) {
@@ -305,24 +304,24 @@ func (r ApiRevokePortingRequest) Execute() (*http.Response, error) {
 /*
 RevokePorting Delete/revoke an existing porting
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param portingId
-	@return ApiRevokePortingRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param portingId
+ @return ApiRevokePortingRequest
 */
 func (a *PortingsAPIService) RevokePorting(ctx context.Context, portingId int32) ApiRevokePortingRequest {
 	return ApiRevokePortingRequest{
 		ApiService: a,
-		ctx:        ctx,
-		portingId:  portingId,
+		ctx: ctx,
+		portingId: portingId,
 	}
 }
 
 // Execute executes the request
 func (a *PortingsAPIService) RevokePortingExecute(r ApiRevokePortingRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodDelete
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PortingsAPIService.RevokePorting")

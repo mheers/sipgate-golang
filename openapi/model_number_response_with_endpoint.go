@@ -19,16 +19,16 @@ var _ MappedNullable = &NumberResponseWithEndpoint{}
 
 // NumberResponseWithEndpoint struct for NumberResponseWithEndpoint
 type NumberResponseWithEndpoint struct {
-	AddressId      *int32  `json:"addressId,omitempty"`
-	BlockId        *int32  `json:"blockId,omitempty"`
-	EndpointAlias  *string `json:"endpointAlias,omitempty"`
-	EndpointId     *string `json:"endpointId,omitempty"`
-	EndpointUrl    *string `json:"endpointUrl,omitempty"`
-	Id             *string `json:"id,omitempty"`
-	Localized      *string `json:"localized,omitempty"`
-	Number         *string `json:"number,omitempty"`
-	ProlongationId *int64  `json:"prolongationId,omitempty"`
-	Type           *string `json:"type,omitempty"`
+	AddressId *int32 `json:"addressId,omitempty"`
+	BlockId *int32 `json:"blockId,omitempty"`
+	EndpointAlias *string `json:"endpointAlias,omitempty"`
+	EndpointId *string `json:"endpointId,omitempty"`
+	EndpointUrl *string `json:"endpointUrl,omitempty"`
+	Id *string `json:"id,omitempty"`
+	Localized *string `json:"localized,omitempty"`
+	Number *string `json:"number,omitempty"`
+	ProlongationId *int64 `json:"prolongationId,omitempty"`
+	Type *string `json:"type,omitempty"`
 }
 
 // NewNumberResponseWithEndpoint instantiates a new NumberResponseWithEndpoint object
@@ -369,7 +369,7 @@ func (o *NumberResponseWithEndpoint) SetType(v string) {
 }
 
 func (o NumberResponseWithEndpoint) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -446,3 +446,5 @@ func (v *NullableNumberResponseWithEndpoint) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

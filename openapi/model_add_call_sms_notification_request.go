@@ -11,8 +11,8 @@ API version: 2.0.0
 package openapi
 
 import (
-	"bytes"
 	"encoding/json"
+	"bytes"
 	"fmt"
 )
 
@@ -21,10 +21,10 @@ var _ MappedNullable = &AddCallSmsNotificationRequest{}
 
 // AddCallSmsNotificationRequest struct for AddCallSmsNotificationRequest
 type AddCallSmsNotificationRequest struct {
-	Cause      string `json:"cause"`
-	Direction  string `json:"direction"`
+	Cause string `json:"cause"`
+	Direction string `json:"direction"`
 	EndpointId string `json:"endpointId"`
-	Number     string `json:"number"`
+	Number string `json:"number"`
 }
 
 type _AddCallSmsNotificationRequest AddCallSmsNotificationRequest
@@ -147,7 +147,7 @@ func (o *AddCallSmsNotificationRequest) SetNumber(v string) {
 }
 
 func (o AddCallSmsNotificationRequest) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -179,10 +179,10 @@ func (o *AddCallSmsNotificationRequest) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err
+		return err;
 	}
 
-	for _, requiredProperty := range requiredProperties {
+	for _, requiredProperty := range(requiredProperties) {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -238,3 +238,5 @@ func (v *NullableAddCallSmsNotificationRequest) UnmarshalJSON(src []byte) error 
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

@@ -20,7 +20,7 @@ var _ MappedNullable = &ChannelUserResponse{}
 // ChannelUserResponse struct for ChannelUserResponse
 type ChannelUserResponse struct {
 	DeviceIds []string `json:"deviceIds,omitempty"`
-	Id        *string  `json:"id,omitempty"`
+	Id *string `json:"id,omitempty"`
 }
 
 // NewChannelUserResponse instantiates a new ChannelUserResponse object
@@ -105,7 +105,7 @@ func (o *ChannelUserResponse) SetId(v string) {
 }
 
 func (o ChannelUserResponse) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -158,3 +158,5 @@ func (v *NullableChannelUserResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

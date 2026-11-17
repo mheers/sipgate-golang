@@ -19,10 +19,10 @@ var _ MappedNullable = &NumberResponse{}
 
 // NumberResponse struct for NumberResponse
 type NumberResponse struct {
-	Id        *string `json:"id,omitempty"`
+	Id *string `json:"id,omitempty"`
 	Localized *string `json:"localized,omitempty"`
-	Number    *string `json:"number,omitempty"`
-	Type      *string `json:"type,omitempty"`
+	Number *string `json:"number,omitempty"`
+	Type *string `json:"type,omitempty"`
 }
 
 // NewNumberResponse instantiates a new NumberResponse object
@@ -171,7 +171,7 @@ func (o *NumberResponse) SetType(v string) {
 }
 
 func (o NumberResponse) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -230,3 +230,5 @@ func (v *NullableNumberResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

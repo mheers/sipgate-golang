@@ -19,14 +19,14 @@ var _ MappedNullable = &SimplePhonelineResponse{}
 
 // SimplePhonelineResponse struct for SimplePhonelineResponse
 type SimplePhonelineResponse struct {
-	Alias                  *string `json:"alias,omitempty"`
-	BlockAnonymousUrl      *string `json:"blockAnonymousUrl,omitempty"`
-	DevicesUrl             *string `json:"devicesUrl,omitempty"`
-	ForwardingsUrl         *string `json:"forwardingsUrl,omitempty"`
-	Id                     *string `json:"id,omitempty"`
-	NumbersUrl             *string `json:"numbersUrl,omitempty"`
+	Alias *string `json:"alias,omitempty"`
+	BlockAnonymousUrl *string `json:"blockAnonymousUrl,omitempty"`
+	DevicesUrl *string `json:"devicesUrl,omitempty"`
+	ForwardingsUrl *string `json:"forwardingsUrl,omitempty"`
+	Id *string `json:"id,omitempty"`
+	NumbersUrl *string `json:"numbersUrl,omitempty"`
 	ParallelForwardingsUrl *string `json:"parallelForwardingsUrl,omitempty"`
-	VoicemailsUrl          *string `json:"voicemailsUrl,omitempty"`
+	VoicemailsUrl *string `json:"voicemailsUrl,omitempty"`
 }
 
 // NewSimplePhonelineResponse instantiates a new SimplePhonelineResponse object
@@ -303,7 +303,7 @@ func (o *SimplePhonelineResponse) SetVoicemailsUrl(v string) {
 }
 
 func (o SimplePhonelineResponse) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -374,3 +374,5 @@ func (v *NullableSimplePhonelineResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

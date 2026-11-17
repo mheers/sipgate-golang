@@ -19,15 +19,16 @@ import (
 	"strings"
 )
 
+
 type PhonelinesAPI interface {
 
 	/*
-		AddDeviceToPhoneline Add device to phone line
+	AddDeviceToPhoneline Add device to phone line
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param userId The unique user identifier
-		@param phonelineId The unique phone line identifier
-		@return ApiAddDeviceToPhonelineRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userId The unique user identifier
+	@param phonelineId The unique phone line identifier
+	@return ApiAddDeviceToPhonelineRequest
 	*/
 	AddDeviceToPhoneline(ctx context.Context, userId string, phonelineId string) ApiAddDeviceToPhonelineRequest
 
@@ -35,14 +36,14 @@ type PhonelinesAPI interface {
 	AddDeviceToPhonelineExecute(r ApiAddDeviceToPhonelineRequest) (*http.Response, error)
 
 	/*
-		AddParallelForwarding Create parallel forwarding for an existing phone line
+	AddParallelForwarding Create parallel forwarding for an existing phone line
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param userId The unique user identifier
-		@param phonelineId The unique phone line identifier
-		@return ApiAddParallelForwardingRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userId The unique user identifier
+	@param phonelineId The unique phone line identifier
+	@return ApiAddParallelForwardingRequest
 
-		Deprecated
+	Deprecated
 	*/
 	AddParallelForwarding(ctx context.Context, userId string, phonelineId string) ApiAddParallelForwardingRequest
 
@@ -51,13 +52,13 @@ type PhonelinesAPI interface {
 	AddParallelForwardingExecute(r ApiAddParallelForwardingRequest) (*http.Response, error)
 
 	/*
-		AddPhonelineVoicemailGreeting Create a new greeting for a specific phone line voicemail
+	AddPhonelineVoicemailGreeting Create a new greeting for a specific phone line voicemail
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param userId The unique user identifier
-		@param phonelineId The unique phone line identifier
-		@param voicemailId The unique voicemail identifier
-		@return ApiAddPhonelineVoicemailGreetingRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userId The unique user identifier
+	@param phonelineId The unique phone line identifier
+	@param voicemailId The unique voicemail identifier
+	@return ApiAddPhonelineVoicemailGreetingRequest
 	*/
 	AddPhonelineVoicemailGreeting(ctx context.Context, userId string, phonelineId string, voicemailId string) ApiAddPhonelineVoicemailGreetingRequest
 
@@ -65,15 +66,15 @@ type PhonelinesAPI interface {
 	AddPhonelineVoicemailGreetingExecute(r ApiAddPhonelineVoicemailGreetingRequest) (*http.Response, error)
 
 	/*
-		ChangeParallelForwardingSettings Update an existing parallel forwarding
+	ChangeParallelForwardingSettings Update an existing parallel forwarding
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param userId The unique user identifier
-		@param phonelineId The unique phone line identifier
-		@param parallelForwardingId The unique external device identifier
-		@return ApiChangeParallelForwardingSettingsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userId The unique user identifier
+	@param phonelineId The unique phone line identifier
+	@param parallelForwardingId The unique external device identifier
+	@return ApiChangeParallelForwardingSettingsRequest
 
-		Deprecated
+	Deprecated
 	*/
 	ChangeParallelForwardingSettings(ctx context.Context, userId string, phonelineId string, parallelForwardingId string) ApiChangeParallelForwardingSettingsRequest
 
@@ -82,14 +83,14 @@ type PhonelinesAPI interface {
 	ChangeParallelForwardingSettingsExecute(r ApiChangeParallelForwardingSettingsRequest) (*http.Response, error)
 
 	/*
-		ChangePhonelineVoicemailGreeting Update an existing phone line voicemail greeting
+	ChangePhonelineVoicemailGreeting Update an existing phone line voicemail greeting
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param userId The unique user identifier
-		@param phonelineId The unique phone line identifier
-		@param voicemailId The unique voicemail identifier
-		@param greetingId The unique greeting identifier
-		@return ApiChangePhonelineVoicemailGreetingRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userId The unique user identifier
+	@param phonelineId The unique phone line identifier
+	@param voicemailId The unique voicemail identifier
+	@param greetingId The unique greeting identifier
+	@return ApiChangePhonelineVoicemailGreetingRequest
 	*/
 	ChangePhonelineVoicemailGreeting(ctx context.Context, userId string, phonelineId string, voicemailId string, greetingId string) ApiChangePhonelineVoicemailGreetingRequest
 
@@ -97,13 +98,13 @@ type PhonelinesAPI interface {
 	ChangePhonelineVoicemailGreetingExecute(r ApiChangePhonelineVoicemailGreetingRequest) (*http.Response, error)
 
 	/*
-		ChangePhonelineVoicemailTranscriptionSetting Update an existing phone line voicemail transcription setting
+	ChangePhonelineVoicemailTranscriptionSetting Update an existing phone line voicemail transcription setting
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param userId The unique user identifier
-		@param phonelineId The unique phone line identifier
-		@param voicemailId The unique voicemail identifier
-		@return ApiChangePhonelineVoicemailTranscriptionSettingRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userId The unique user identifier
+	@param phonelineId The unique phone line identifier
+	@param voicemailId The unique voicemail identifier
+	@return ApiChangePhonelineVoicemailTranscriptionSettingRequest
 	*/
 	ChangePhonelineVoicemailTranscriptionSetting(ctx context.Context, userId string, phonelineId string, voicemailId string) ApiChangePhonelineVoicemailTranscriptionSettingRequest
 
@@ -111,13 +112,13 @@ type PhonelinesAPI interface {
 	ChangePhonelineVoicemailTranscriptionSettingExecute(r ApiChangePhonelineVoicemailTranscriptionSettingRequest) (*http.Response, error)
 
 	/*
-		ChangeVoicemailSettings Update voicemail settings for a specific phone line
+	ChangeVoicemailSettings Update voicemail settings for a specific phone line
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param userId The unique user identifier
-		@param phonelineId The unique phone line identifier
-		@param voicemailId The unique voicemail identifier
-		@return ApiChangeVoicemailSettingsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userId The unique user identifier
+	@param phonelineId The unique phone line identifier
+	@param voicemailId The unique voicemail identifier
+	@return ApiChangeVoicemailSettingsRequest
 	*/
 	ChangeVoicemailSettings(ctx context.Context, userId string, phonelineId string, voicemailId string) ApiChangeVoicemailSettingsRequest
 
@@ -125,11 +126,11 @@ type PhonelinesAPI interface {
 	ChangeVoicemailSettingsExecute(r ApiChangeVoicemailSettingsRequest) (*http.Response, error)
 
 	/*
-		CreatePhoneline Create a new phone line
+	CreatePhoneline Create a new phone line
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param userId The unique user identifier
-		@return ApiCreatePhonelineRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userId The unique user identifier
+	@return ApiCreatePhonelineRequest
 	*/
 	CreatePhoneline(ctx context.Context, userId string) ApiCreatePhonelineRequest
 
@@ -138,15 +139,15 @@ type PhonelinesAPI interface {
 	CreatePhonelineExecute(r ApiCreatePhonelineRequest) (*SimplePhonelineResponse, *http.Response, error)
 
 	/*
-		DeleteParallelForwardingSettings Delete parallel forwarding
+	DeleteParallelForwardingSettings Delete parallel forwarding
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param userId The unique user identifier
-		@param phonelineId The unique phone line identifier
-		@param parallelForwardingId The unique external device identifier
-		@return ApiDeleteParallelForwardingSettingsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userId The unique user identifier
+	@param phonelineId The unique phone line identifier
+	@param parallelForwardingId The unique external device identifier
+	@return ApiDeleteParallelForwardingSettingsRequest
 
-		Deprecated
+	Deprecated
 	*/
 	DeleteParallelForwardingSettings(ctx context.Context, userId string, phonelineId string, parallelForwardingId string) ApiDeleteParallelForwardingSettingsRequest
 
@@ -155,12 +156,12 @@ type PhonelinesAPI interface {
 	DeleteParallelForwardingSettingsExecute(r ApiDeleteParallelForwardingSettingsRequest) (*http.Response, error)
 
 	/*
-		DeletePhoneline Delete an existing phone line
+	DeletePhoneline Delete an existing phone line
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param userId The unique user identifier
-		@param phonelineId The unique phone line identifier
-		@return ApiDeletePhonelineRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userId The unique user identifier
+	@param phonelineId The unique phone line identifier
+	@return ApiDeletePhonelineRequest
 	*/
 	DeletePhoneline(ctx context.Context, userId string, phonelineId string) ApiDeletePhonelineRequest
 
@@ -168,14 +169,14 @@ type PhonelinesAPI interface {
 	DeletePhonelineExecute(r ApiDeletePhonelineRequest) (*http.Response, error)
 
 	/*
-		DeletePhonlineVoicemailGreeting Delete an existing phone line voicemail greeting
+	DeletePhonlineVoicemailGreeting Delete an existing phone line voicemail greeting
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param userId The unique user identifier
-		@param phonelineId The unique phone line identifier
-		@param voicemailId The unique voicemail identifier
-		@param greetingId The unique greeting identifier
-		@return ApiDeletePhonlineVoicemailGreetingRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userId The unique user identifier
+	@param phonelineId The unique phone line identifier
+	@param voicemailId The unique voicemail identifier
+	@param greetingId The unique greeting identifier
+	@return ApiDeletePhonlineVoicemailGreetingRequest
 	*/
 	DeletePhonlineVoicemailGreeting(ctx context.Context, userId string, phonelineId string, voicemailId string, greetingId string) ApiDeletePhonlineVoicemailGreetingRequest
 
@@ -183,10 +184,10 @@ type PhonelinesAPI interface {
 	DeletePhonlineVoicemailGreetingExecute(r ApiDeletePhonlineVoicemailGreetingRequest) (*http.Response, error)
 
 	/*
-		GetAllPhonelines List all phone lines of the account
+	GetAllPhonelines List all phone lines of the account
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@return ApiGetAllPhonelinesRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiGetAllPhonelinesRequest
 	*/
 	GetAllPhonelines(ctx context.Context) ApiGetAllPhonelinesRequest
 
@@ -195,12 +196,12 @@ type PhonelinesAPI interface {
 	GetAllPhonelinesExecute(r ApiGetAllPhonelinesRequest) (*AccountPhonelinesResponse, *http.Response, error)
 
 	/*
-		GetBlockAnonymousSetting Get the block anonymous setting of a specific phone line
+	GetBlockAnonymousSetting Get the block anonymous setting of a specific phone line
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param userId The unique user identifier
-		@param phonelineId The unique phone line identifier
-		@return ApiGetBlockAnonymousSettingRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userId The unique user identifier
+	@param phonelineId The unique phone line identifier
+	@return ApiGetBlockAnonymousSettingRequest
 	*/
 	GetBlockAnonymousSetting(ctx context.Context, userId string, phonelineId string) ApiGetBlockAnonymousSettingRequest
 
@@ -209,12 +210,12 @@ type PhonelinesAPI interface {
 	GetBlockAnonymousSettingExecute(r ApiGetBlockAnonymousSettingRequest) (*PhonelineBlockAnonymousResponse, *http.Response, error)
 
 	/*
-		GetDevicesForPhoneline List all devices of a specific phone line
+	GetDevicesForPhoneline List all devices of a specific phone line
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param userId The unique user identifier
-		@param phonelineId The unique phone line identifier
-		@return ApiGetDevicesForPhonelineRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userId The unique user identifier
+	@param phonelineId The unique phone line identifier
+	@return ApiGetDevicesForPhonelineRequest
 	*/
 	GetDevicesForPhoneline(ctx context.Context, userId string, phonelineId string) ApiGetDevicesForPhonelineRequest
 
@@ -223,12 +224,12 @@ type PhonelinesAPI interface {
 	GetDevicesForPhonelineExecute(r ApiGetDevicesForPhonelineRequest) (*DevicesResponse, *http.Response, error)
 
 	/*
-		GetPhoneline Get a single phoneline
+	GetPhoneline Get a single phoneline
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param userId The unique user identifier
-		@param phonelineId The unique phone line identifier
-		@return ApiGetPhonelineRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userId The unique user identifier
+	@param phonelineId The unique phone line identifier
+	@return ApiGetPhonelineRequest
 	*/
 	GetPhoneline(ctx context.Context, userId string, phonelineId string) ApiGetPhonelineRequest
 
@@ -237,12 +238,12 @@ type PhonelinesAPI interface {
 	GetPhonelineExecute(r ApiGetPhonelineRequest) (*PhonelineResponse, *http.Response, error)
 
 	/*
-		GetPhonelineNumbers List all phone numbers routed to phone line
+	GetPhonelineNumbers List all phone numbers routed to phone line
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param userId The unique user identifier
-		@param phonelineId The unique phone line identifier
-		@return ApiGetPhonelineNumbersRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userId The unique user identifier
+	@param phonelineId The unique phone line identifier
+	@return ApiGetPhonelineNumbersRequest
 	*/
 	GetPhonelineNumbers(ctx context.Context, userId string, phonelineId string) ApiGetPhonelineNumbersRequest
 
@@ -251,14 +252,14 @@ type PhonelinesAPI interface {
 	GetPhonelineNumbersExecute(r ApiGetPhonelineNumbersRequest) (*EndpointNumbersResponse, *http.Response, error)
 
 	/*
-		GetPhonelineParallelForwardings List all parallel forwardings of a specific phone line
+	GetPhonelineParallelForwardings List all parallel forwardings of a specific phone line
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param userId The unique user identifier
-		@param phonelineId The unique phone line identifier
-		@return ApiGetPhonelineParallelForwardingsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userId The unique user identifier
+	@param phonelineId The unique phone line identifier
+	@return ApiGetPhonelineParallelForwardingsRequest
 
-		Deprecated
+	Deprecated
 	*/
 	GetPhonelineParallelForwardings(ctx context.Context, userId string, phonelineId string) ApiGetPhonelineParallelForwardingsRequest
 
@@ -268,13 +269,13 @@ type PhonelinesAPI interface {
 	GetPhonelineParallelForwardingsExecute(r ApiGetPhonelineParallelForwardingsRequest) (*ParallelForwardingsResponse, *http.Response, error)
 
 	/*
-		GetPhonelineVoicemailGreetings List all greetings for a specific phone line voicemail
+	GetPhonelineVoicemailGreetings List all greetings for a specific phone line voicemail
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param userId The unique user identifier
-		@param phonelineId The unique phone line identifier
-		@param voicemailId The unique voicemail identifier
-		@return ApiGetPhonelineVoicemailGreetingsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userId The unique user identifier
+	@param phonelineId The unique phone line identifier
+	@param voicemailId The unique voicemail identifier
+	@return ApiGetPhonelineVoicemailGreetingsRequest
 	*/
 	GetPhonelineVoicemailGreetings(ctx context.Context, userId string, phonelineId string, voicemailId string) ApiGetPhonelineVoicemailGreetingsRequest
 
@@ -283,14 +284,14 @@ type PhonelinesAPI interface {
 	GetPhonelineVoicemailGreetingsExecute(r ApiGetPhonelineVoicemailGreetingsRequest) (*GreetingsResponse, *http.Response, error)
 
 	/*
-		GetPhonelineVoicemails List all voicemails of a specific phone line
+	GetPhonelineVoicemails List all voicemails of a specific phone line
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param userId The unique user identifier
-		@param phonelineId The unique phone line identifier
-		@return ApiGetPhonelineVoicemailsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userId The unique user identifier
+	@param phonelineId The unique phone line identifier
+	@return ApiGetPhonelineVoicemailsRequest
 
-		Deprecated
+	Deprecated
 	*/
 	GetPhonelineVoicemails(ctx context.Context, userId string, phonelineId string) ApiGetPhonelineVoicemailsRequest
 
@@ -300,11 +301,11 @@ type PhonelinesAPI interface {
 	GetPhonelineVoicemailsExecute(r ApiGetPhonelineVoicemailsRequest) (*PhonelineVoicemailsResponse, *http.Response, error)
 
 	/*
-		GetPhonelines List all phone lines
+	GetPhonelines List all phone lines
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param userId The unique user identifier
-		@return ApiGetPhonelinesRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userId The unique user identifier
+	@return ApiGetPhonelinesRequest
 	*/
 	GetPhonelines(ctx context.Context, userId string) ApiGetPhonelinesRequest
 
@@ -313,12 +314,12 @@ type PhonelinesAPI interface {
 	GetPhonelinesExecute(r ApiGetPhonelinesRequest) (*SimplePhonelinesResponse, *http.Response, error)
 
 	/*
-		GetSipgateIoLogs List sipgate.io debug log for a specific phone line
+	GetSipgateIoLogs List sipgate.io debug log for a specific phone line
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param userId The unique user identifier
-		@param phonelineId The unique phone line identifier
-		@return ApiGetSipgateIoLogsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userId The unique user identifier
+	@param phonelineId The unique phone line identifier
+	@return ApiGetSipgateIoLogsRequest
 	*/
 	GetSipgateIoLogs(ctx context.Context, userId string, phonelineId string) ApiGetSipgateIoLogsRequest
 
@@ -327,12 +328,12 @@ type PhonelinesAPI interface {
 	GetSipgateIoLogsExecute(r ApiGetSipgateIoLogsRequest) (*PhonelineSipgateIoLogsResponse, *http.Response, error)
 
 	/*
-		GetSipgateIoSettings List sipgate.io settings of a specific phone line
+	GetSipgateIoSettings List sipgate.io settings of a specific phone line
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param userId The unique user identifier
-		@param phonelineId The unique phone line identifier
-		@return ApiGetSipgateIoSettingsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userId The unique user identifier
+	@param phonelineId The unique phone line identifier
+	@return ApiGetSipgateIoSettingsRequest
 	*/
 	GetSipgateIoSettings(ctx context.Context, userId string, phonelineId string) ApiGetSipgateIoSettingsRequest
 
@@ -341,13 +342,13 @@ type PhonelinesAPI interface {
 	GetSipgateIoSettingsExecute(r ApiGetSipgateIoSettingsRequest) (*PhonelineSipgateIoResponse, *http.Response, error)
 
 	/*
-		RemoveDeviceFromPhoneline Remove device from phone line
+	RemoveDeviceFromPhoneline Remove device from phone line
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param userId The unique user identifier
-		@param phonelineId The unique phone line identifier
-		@param deviceId The unique device identifier
-		@return ApiRemoveDeviceFromPhonelineRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userId The unique user identifier
+	@param phonelineId The unique phone line identifier
+	@param deviceId The unique device identifier
+	@return ApiRemoveDeviceFromPhonelineRequest
 	*/
 	RemoveDeviceFromPhoneline(ctx context.Context, userId string, phonelineId string, deviceId string) ApiRemoveDeviceFromPhonelineRequest
 
@@ -355,12 +356,12 @@ type PhonelinesAPI interface {
 	RemoveDeviceFromPhonelineExecute(r ApiRemoveDeviceFromPhonelineRequest) (*http.Response, error)
 
 	/*
-		SetBlockAnonymousSetting Update the block anonymous setting for an existing phone line
+	SetBlockAnonymousSetting Update the block anonymous setting for an existing phone line
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param userId The unique user identifier
-		@param phonelineId The unique phone line identifier
-		@return ApiSetBlockAnonymousSettingRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userId The unique user identifier
+	@param phonelineId The unique phone line identifier
+	@return ApiSetBlockAnonymousSettingRequest
 	*/
 	SetBlockAnonymousSetting(ctx context.Context, userId string, phonelineId string) ApiSetBlockAnonymousSettingRequest
 
@@ -368,12 +369,12 @@ type PhonelinesAPI interface {
 	SetBlockAnonymousSettingExecute(r ApiSetBlockAnonymousSettingRequest) (*http.Response, error)
 
 	/*
-		SetPhonelineAlias Update alias for an existing phone line
+	SetPhonelineAlias Update alias for an existing phone line
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param userId The unique user identifier
-		@param phonelineId The unique phone line identifier
-		@return ApiSetPhonelineAliasRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userId The unique user identifier
+	@param phonelineId The unique phone line identifier
+	@return ApiSetPhonelineAliasRequest
 	*/
 	SetPhonelineAlias(ctx context.Context, userId string, phonelineId string) ApiSetPhonelineAliasRequest
 
@@ -381,12 +382,12 @@ type PhonelinesAPI interface {
 	SetPhonelineAliasExecute(r ApiSetPhonelineAliasRequest) (*http.Response, error)
 
 	/*
-		SetSipgateIoSettings Update sipgate.io settings for an existing phone line
+	SetSipgateIoSettings Update sipgate.io settings for an existing phone line
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param userId The unique user identifier
-		@param phonelineId The unique phone line identifier
-		@return ApiSetSipgateIoSettingsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userId The unique user identifier
+	@param phonelineId The unique phone line identifier
+	@return ApiSetSipgateIoSettingsRequest
 	*/
 	SetSipgateIoSettings(ctx context.Context, userId string, phonelineId string) ApiSetSipgateIoSettingsRequest
 
@@ -398,11 +399,11 @@ type PhonelinesAPI interface {
 type PhonelinesAPIService service
 
 type ApiAddDeviceToPhonelineRequest struct {
-	ctx         context.Context
-	ApiService  PhonelinesAPI
-	userId      string
+	ctx context.Context
+	ApiService PhonelinesAPI
+	userId string
 	phonelineId string
-	body        *RouteDeviceRequest
+	body *RouteDeviceRequest
 }
 
 func (r ApiAddDeviceToPhonelineRequest) Body(body RouteDeviceRequest) ApiAddDeviceToPhonelineRequest {
@@ -417,16 +418,16 @@ func (r ApiAddDeviceToPhonelineRequest) Execute() (*http.Response, error) {
 /*
 AddDeviceToPhoneline Add device to phone line
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param userId The unique user identifier
-	@param phonelineId The unique phone line identifier
-	@return ApiAddDeviceToPhonelineRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param userId The unique user identifier
+ @param phonelineId The unique phone line identifier
+ @return ApiAddDeviceToPhonelineRequest
 */
 func (a *PhonelinesAPIService) AddDeviceToPhoneline(ctx context.Context, userId string, phonelineId string) ApiAddDeviceToPhonelineRequest {
 	return ApiAddDeviceToPhonelineRequest{
-		ApiService:  a,
-		ctx:         ctx,
-		userId:      userId,
+		ApiService: a,
+		ctx: ctx,
+		userId: userId,
 		phonelineId: phonelineId,
 	}
 }
@@ -434,9 +435,9 @@ func (a *PhonelinesAPIService) AddDeviceToPhoneline(ctx context.Context, userId 
 // Execute executes the request
 func (a *PhonelinesAPIService) AddDeviceToPhonelineExecute(r ApiAddDeviceToPhonelineRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodPost
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PhonelinesAPIService.AddDeviceToPhoneline")
@@ -500,11 +501,11 @@ func (a *PhonelinesAPIService) AddDeviceToPhonelineExecute(r ApiAddDeviceToPhone
 }
 
 type ApiAddParallelForwardingRequest struct {
-	ctx         context.Context
-	ApiService  PhonelinesAPI
-	userId      string
+	ctx context.Context
+	ApiService PhonelinesAPI
+	userId string
 	phonelineId string
-	body        *SetParallelForwardingRequest
+	body *SetParallelForwardingRequest
 }
 
 func (r ApiAddParallelForwardingRequest) Body(body SetParallelForwardingRequest) ApiAddParallelForwardingRequest {
@@ -519,18 +520,18 @@ func (r ApiAddParallelForwardingRequest) Execute() (*http.Response, error) {
 /*
 AddParallelForwarding Create parallel forwarding for an existing phone line
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param userId The unique user identifier
-	@param phonelineId The unique phone line identifier
-	@return ApiAddParallelForwardingRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param userId The unique user identifier
+ @param phonelineId The unique phone line identifier
+ @return ApiAddParallelForwardingRequest
 
 Deprecated
 */
 func (a *PhonelinesAPIService) AddParallelForwarding(ctx context.Context, userId string, phonelineId string) ApiAddParallelForwardingRequest {
 	return ApiAddParallelForwardingRequest{
-		ApiService:  a,
-		ctx:         ctx,
-		userId:      userId,
+		ApiService: a,
+		ctx: ctx,
+		userId: userId,
 		phonelineId: phonelineId,
 	}
 }
@@ -539,9 +540,9 @@ func (a *PhonelinesAPIService) AddParallelForwarding(ctx context.Context, userId
 // Deprecated
 func (a *PhonelinesAPIService) AddParallelForwardingExecute(r ApiAddParallelForwardingRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodPost
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PhonelinesAPIService.AddParallelForwarding")
@@ -605,12 +606,12 @@ func (a *PhonelinesAPIService) AddParallelForwardingExecute(r ApiAddParallelForw
 }
 
 type ApiAddPhonelineVoicemailGreetingRequest struct {
-	ctx         context.Context
-	ApiService  PhonelinesAPI
-	userId      string
+	ctx context.Context
+	ApiService PhonelinesAPI
+	userId string
 	phonelineId string
 	voicemailId string
-	body        *AddGreetingRequest
+	body *AddGreetingRequest
 }
 
 func (r ApiAddPhonelineVoicemailGreetingRequest) Body(body AddGreetingRequest) ApiAddPhonelineVoicemailGreetingRequest {
@@ -625,17 +626,17 @@ func (r ApiAddPhonelineVoicemailGreetingRequest) Execute() (*http.Response, erro
 /*
 AddPhonelineVoicemailGreeting Create a new greeting for a specific phone line voicemail
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param userId The unique user identifier
-	@param phonelineId The unique phone line identifier
-	@param voicemailId The unique voicemail identifier
-	@return ApiAddPhonelineVoicemailGreetingRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param userId The unique user identifier
+ @param phonelineId The unique phone line identifier
+ @param voicemailId The unique voicemail identifier
+ @return ApiAddPhonelineVoicemailGreetingRequest
 */
 func (a *PhonelinesAPIService) AddPhonelineVoicemailGreeting(ctx context.Context, userId string, phonelineId string, voicemailId string) ApiAddPhonelineVoicemailGreetingRequest {
 	return ApiAddPhonelineVoicemailGreetingRequest{
-		ApiService:  a,
-		ctx:         ctx,
-		userId:      userId,
+		ApiService: a,
+		ctx: ctx,
+		userId: userId,
 		phonelineId: phonelineId,
 		voicemailId: voicemailId,
 	}
@@ -644,9 +645,9 @@ func (a *PhonelinesAPIService) AddPhonelineVoicemailGreeting(ctx context.Context
 // Execute executes the request
 func (a *PhonelinesAPIService) AddPhonelineVoicemailGreetingExecute(r ApiAddPhonelineVoicemailGreetingRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodPost
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PhonelinesAPIService.AddPhonelineVoicemailGreeting")
@@ -711,12 +712,12 @@ func (a *PhonelinesAPIService) AddPhonelineVoicemailGreetingExecute(r ApiAddPhon
 }
 
 type ApiChangeParallelForwardingSettingsRequest struct {
-	ctx                  context.Context
-	ApiService           PhonelinesAPI
-	userId               string
-	phonelineId          string
+	ctx context.Context
+	ApiService PhonelinesAPI
+	userId string
+	phonelineId string
 	parallelForwardingId string
-	body                 *SetParallelForwardingRequest
+	body *SetParallelForwardingRequest
 }
 
 func (r ApiChangeParallelForwardingSettingsRequest) Body(body SetParallelForwardingRequest) ApiChangeParallelForwardingSettingsRequest {
@@ -731,20 +732,20 @@ func (r ApiChangeParallelForwardingSettingsRequest) Execute() (*http.Response, e
 /*
 ChangeParallelForwardingSettings Update an existing parallel forwarding
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param userId The unique user identifier
-	@param phonelineId The unique phone line identifier
-	@param parallelForwardingId The unique external device identifier
-	@return ApiChangeParallelForwardingSettingsRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param userId The unique user identifier
+ @param phonelineId The unique phone line identifier
+ @param parallelForwardingId The unique external device identifier
+ @return ApiChangeParallelForwardingSettingsRequest
 
 Deprecated
 */
 func (a *PhonelinesAPIService) ChangeParallelForwardingSettings(ctx context.Context, userId string, phonelineId string, parallelForwardingId string) ApiChangeParallelForwardingSettingsRequest {
 	return ApiChangeParallelForwardingSettingsRequest{
-		ApiService:           a,
-		ctx:                  ctx,
-		userId:               userId,
-		phonelineId:          phonelineId,
+		ApiService: a,
+		ctx: ctx,
+		userId: userId,
+		phonelineId: phonelineId,
 		parallelForwardingId: parallelForwardingId,
 	}
 }
@@ -753,9 +754,9 @@ func (a *PhonelinesAPIService) ChangeParallelForwardingSettings(ctx context.Cont
 // Deprecated
 func (a *PhonelinesAPIService) ChangeParallelForwardingSettingsExecute(r ApiChangeParallelForwardingSettingsRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodPut
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod   = http.MethodPut
+		localVarPostBody     interface{}
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PhonelinesAPIService.ChangeParallelForwardingSettings")
@@ -820,13 +821,13 @@ func (a *PhonelinesAPIService) ChangeParallelForwardingSettingsExecute(r ApiChan
 }
 
 type ApiChangePhonelineVoicemailGreetingRequest struct {
-	ctx         context.Context
-	ApiService  PhonelinesAPI
-	userId      string
+	ctx context.Context
+	ApiService PhonelinesAPI
+	userId string
 	phonelineId string
 	voicemailId string
-	greetingId  string
-	body        *ChangeVoicemailGreetingRequest
+	greetingId string
+	body *ChangeVoicemailGreetingRequest
 }
 
 func (r ApiChangePhonelineVoicemailGreetingRequest) Body(body ChangeVoicemailGreetingRequest) ApiChangePhonelineVoicemailGreetingRequest {
@@ -841,30 +842,30 @@ func (r ApiChangePhonelineVoicemailGreetingRequest) Execute() (*http.Response, e
 /*
 ChangePhonelineVoicemailGreeting Update an existing phone line voicemail greeting
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param userId The unique user identifier
-	@param phonelineId The unique phone line identifier
-	@param voicemailId The unique voicemail identifier
-	@param greetingId The unique greeting identifier
-	@return ApiChangePhonelineVoicemailGreetingRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param userId The unique user identifier
+ @param phonelineId The unique phone line identifier
+ @param voicemailId The unique voicemail identifier
+ @param greetingId The unique greeting identifier
+ @return ApiChangePhonelineVoicemailGreetingRequest
 */
 func (a *PhonelinesAPIService) ChangePhonelineVoicemailGreeting(ctx context.Context, userId string, phonelineId string, voicemailId string, greetingId string) ApiChangePhonelineVoicemailGreetingRequest {
 	return ApiChangePhonelineVoicemailGreetingRequest{
-		ApiService:  a,
-		ctx:         ctx,
-		userId:      userId,
+		ApiService: a,
+		ctx: ctx,
+		userId: userId,
 		phonelineId: phonelineId,
 		voicemailId: voicemailId,
-		greetingId:  greetingId,
+		greetingId: greetingId,
 	}
 }
 
 // Execute executes the request
 func (a *PhonelinesAPIService) ChangePhonelineVoicemailGreetingExecute(r ApiChangePhonelineVoicemailGreetingRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodPut
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod   = http.MethodPut
+		localVarPostBody     interface{}
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PhonelinesAPIService.ChangePhonelineVoicemailGreeting")
@@ -930,12 +931,12 @@ func (a *PhonelinesAPIService) ChangePhonelineVoicemailGreetingExecute(r ApiChan
 }
 
 type ApiChangePhonelineVoicemailTranscriptionSettingRequest struct {
-	ctx         context.Context
-	ApiService  PhonelinesAPI
-	userId      string
+	ctx context.Context
+	ApiService PhonelinesAPI
+	userId string
 	phonelineId string
 	voicemailId string
-	body        *ChangeVoicemailTranscriptionRequest
+	body *ChangeVoicemailTranscriptionRequest
 }
 
 func (r ApiChangePhonelineVoicemailTranscriptionSettingRequest) Body(body ChangeVoicemailTranscriptionRequest) ApiChangePhonelineVoicemailTranscriptionSettingRequest {
@@ -950,17 +951,17 @@ func (r ApiChangePhonelineVoicemailTranscriptionSettingRequest) Execute() (*http
 /*
 ChangePhonelineVoicemailTranscriptionSetting Update an existing phone line voicemail transcription setting
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param userId The unique user identifier
-	@param phonelineId The unique phone line identifier
-	@param voicemailId The unique voicemail identifier
-	@return ApiChangePhonelineVoicemailTranscriptionSettingRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param userId The unique user identifier
+ @param phonelineId The unique phone line identifier
+ @param voicemailId The unique voicemail identifier
+ @return ApiChangePhonelineVoicemailTranscriptionSettingRequest
 */
 func (a *PhonelinesAPIService) ChangePhonelineVoicemailTranscriptionSetting(ctx context.Context, userId string, phonelineId string, voicemailId string) ApiChangePhonelineVoicemailTranscriptionSettingRequest {
 	return ApiChangePhonelineVoicemailTranscriptionSettingRequest{
-		ApiService:  a,
-		ctx:         ctx,
-		userId:      userId,
+		ApiService: a,
+		ctx: ctx,
+		userId: userId,
 		phonelineId: phonelineId,
 		voicemailId: voicemailId,
 	}
@@ -969,9 +970,9 @@ func (a *PhonelinesAPIService) ChangePhonelineVoicemailTranscriptionSetting(ctx 
 // Execute executes the request
 func (a *PhonelinesAPIService) ChangePhonelineVoicemailTranscriptionSettingExecute(r ApiChangePhonelineVoicemailTranscriptionSettingRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodPut
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod   = http.MethodPut
+		localVarPostBody     interface{}
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PhonelinesAPIService.ChangePhonelineVoicemailTranscriptionSetting")
@@ -1036,12 +1037,12 @@ func (a *PhonelinesAPIService) ChangePhonelineVoicemailTranscriptionSettingExecu
 }
 
 type ApiChangeVoicemailSettingsRequest struct {
-	ctx         context.Context
-	ApiService  PhonelinesAPI
-	userId      string
+	ctx context.Context
+	ApiService PhonelinesAPI
+	userId string
 	phonelineId string
 	voicemailId string
-	body        *ChangeVoicemailRequest
+	body *ChangeVoicemailRequest
 }
 
 func (r ApiChangeVoicemailSettingsRequest) Body(body ChangeVoicemailRequest) ApiChangeVoicemailSettingsRequest {
@@ -1056,17 +1057,17 @@ func (r ApiChangeVoicemailSettingsRequest) Execute() (*http.Response, error) {
 /*
 ChangeVoicemailSettings Update voicemail settings for a specific phone line
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param userId The unique user identifier
-	@param phonelineId The unique phone line identifier
-	@param voicemailId The unique voicemail identifier
-	@return ApiChangeVoicemailSettingsRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param userId The unique user identifier
+ @param phonelineId The unique phone line identifier
+ @param voicemailId The unique voicemail identifier
+ @return ApiChangeVoicemailSettingsRequest
 */
 func (a *PhonelinesAPIService) ChangeVoicemailSettings(ctx context.Context, userId string, phonelineId string, voicemailId string) ApiChangeVoicemailSettingsRequest {
 	return ApiChangeVoicemailSettingsRequest{
-		ApiService:  a,
-		ctx:         ctx,
-		userId:      userId,
+		ApiService: a,
+		ctx: ctx,
+		userId: userId,
 		phonelineId: phonelineId,
 		voicemailId: voicemailId,
 	}
@@ -1075,9 +1076,9 @@ func (a *PhonelinesAPIService) ChangeVoicemailSettings(ctx context.Context, user
 // Execute executes the request
 func (a *PhonelinesAPIService) ChangeVoicemailSettingsExecute(r ApiChangeVoicemailSettingsRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodPut
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod   = http.MethodPut
+		localVarPostBody     interface{}
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PhonelinesAPIService.ChangeVoicemailSettings")
@@ -1142,9 +1143,9 @@ func (a *PhonelinesAPIService) ChangeVoicemailSettingsExecute(r ApiChangeVoicema
 }
 
 type ApiCreatePhonelineRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService PhonelinesAPI
-	userId     string
+	userId string
 }
 
 func (r ApiCreatePhonelineRequest) Execute() (*SimplePhonelineResponse, *http.Response, error) {
@@ -1154,27 +1155,26 @@ func (r ApiCreatePhonelineRequest) Execute() (*SimplePhonelineResponse, *http.Re
 /*
 CreatePhoneline Create a new phone line
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param userId The unique user identifier
-	@return ApiCreatePhonelineRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param userId The unique user identifier
+ @return ApiCreatePhonelineRequest
 */
 func (a *PhonelinesAPIService) CreatePhoneline(ctx context.Context, userId string) ApiCreatePhonelineRequest {
 	return ApiCreatePhonelineRequest{
 		ApiService: a,
-		ctx:        ctx,
-		userId:     userId,
+		ctx: ctx,
+		userId: userId,
 	}
 }
 
 // Execute executes the request
-//
-//	@return SimplePhonelineResponse
+//  @return SimplePhonelineResponse
 func (a *PhonelinesAPIService) CreatePhonelineExecute(r ApiCreatePhonelineRequest) (*SimplePhonelineResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodPost
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *SimplePhonelineResponse
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *SimplePhonelineResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PhonelinesAPIService.CreatePhoneline")
@@ -1244,10 +1244,10 @@ func (a *PhonelinesAPIService) CreatePhonelineExecute(r ApiCreatePhonelineReques
 }
 
 type ApiDeleteParallelForwardingSettingsRequest struct {
-	ctx                  context.Context
-	ApiService           PhonelinesAPI
-	userId               string
-	phonelineId          string
+	ctx context.Context
+	ApiService PhonelinesAPI
+	userId string
+	phonelineId string
 	parallelForwardingId string
 }
 
@@ -1258,20 +1258,20 @@ func (r ApiDeleteParallelForwardingSettingsRequest) Execute() (*http.Response, e
 /*
 DeleteParallelForwardingSettings Delete parallel forwarding
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param userId The unique user identifier
-	@param phonelineId The unique phone line identifier
-	@param parallelForwardingId The unique external device identifier
-	@return ApiDeleteParallelForwardingSettingsRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param userId The unique user identifier
+ @param phonelineId The unique phone line identifier
+ @param parallelForwardingId The unique external device identifier
+ @return ApiDeleteParallelForwardingSettingsRequest
 
 Deprecated
 */
 func (a *PhonelinesAPIService) DeleteParallelForwardingSettings(ctx context.Context, userId string, phonelineId string, parallelForwardingId string) ApiDeleteParallelForwardingSettingsRequest {
 	return ApiDeleteParallelForwardingSettingsRequest{
-		ApiService:           a,
-		ctx:                  ctx,
-		userId:               userId,
-		phonelineId:          phonelineId,
+		ApiService: a,
+		ctx: ctx,
+		userId: userId,
+		phonelineId: phonelineId,
 		parallelForwardingId: parallelForwardingId,
 	}
 }
@@ -1280,9 +1280,9 @@ func (a *PhonelinesAPIService) DeleteParallelForwardingSettings(ctx context.Cont
 // Deprecated
 func (a *PhonelinesAPIService) DeleteParallelForwardingSettingsExecute(r ApiDeleteParallelForwardingSettingsRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodDelete
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PhonelinesAPIService.DeleteParallelForwardingSettings")
@@ -1345,9 +1345,9 @@ func (a *PhonelinesAPIService) DeleteParallelForwardingSettingsExecute(r ApiDele
 }
 
 type ApiDeletePhonelineRequest struct {
-	ctx         context.Context
-	ApiService  PhonelinesAPI
-	userId      string
+	ctx context.Context
+	ApiService PhonelinesAPI
+	userId string
 	phonelineId string
 }
 
@@ -1358,16 +1358,16 @@ func (r ApiDeletePhonelineRequest) Execute() (*http.Response, error) {
 /*
 DeletePhoneline Delete an existing phone line
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param userId The unique user identifier
-	@param phonelineId The unique phone line identifier
-	@return ApiDeletePhonelineRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param userId The unique user identifier
+ @param phonelineId The unique phone line identifier
+ @return ApiDeletePhonelineRequest
 */
 func (a *PhonelinesAPIService) DeletePhoneline(ctx context.Context, userId string, phonelineId string) ApiDeletePhonelineRequest {
 	return ApiDeletePhonelineRequest{
-		ApiService:  a,
-		ctx:         ctx,
-		userId:      userId,
+		ApiService: a,
+		ctx: ctx,
+		userId: userId,
 		phonelineId: phonelineId,
 	}
 }
@@ -1375,9 +1375,9 @@ func (a *PhonelinesAPIService) DeletePhoneline(ctx context.Context, userId strin
 // Execute executes the request
 func (a *PhonelinesAPIService) DeletePhonelineExecute(r ApiDeletePhonelineRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodDelete
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PhonelinesAPIService.DeletePhoneline")
@@ -1439,12 +1439,12 @@ func (a *PhonelinesAPIService) DeletePhonelineExecute(r ApiDeletePhonelineReques
 }
 
 type ApiDeletePhonlineVoicemailGreetingRequest struct {
-	ctx         context.Context
-	ApiService  PhonelinesAPI
-	userId      string
+	ctx context.Context
+	ApiService PhonelinesAPI
+	userId string
 	phonelineId string
 	voicemailId string
-	greetingId  string
+	greetingId string
 }
 
 func (r ApiDeletePhonlineVoicemailGreetingRequest) Execute() (*http.Response, error) {
@@ -1454,30 +1454,30 @@ func (r ApiDeletePhonlineVoicemailGreetingRequest) Execute() (*http.Response, er
 /*
 DeletePhonlineVoicemailGreeting Delete an existing phone line voicemail greeting
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param userId The unique user identifier
-	@param phonelineId The unique phone line identifier
-	@param voicemailId The unique voicemail identifier
-	@param greetingId The unique greeting identifier
-	@return ApiDeletePhonlineVoicemailGreetingRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param userId The unique user identifier
+ @param phonelineId The unique phone line identifier
+ @param voicemailId The unique voicemail identifier
+ @param greetingId The unique greeting identifier
+ @return ApiDeletePhonlineVoicemailGreetingRequest
 */
 func (a *PhonelinesAPIService) DeletePhonlineVoicemailGreeting(ctx context.Context, userId string, phonelineId string, voicemailId string, greetingId string) ApiDeletePhonlineVoicemailGreetingRequest {
 	return ApiDeletePhonlineVoicemailGreetingRequest{
-		ApiService:  a,
-		ctx:         ctx,
-		userId:      userId,
+		ApiService: a,
+		ctx: ctx,
+		userId: userId,
 		phonelineId: phonelineId,
 		voicemailId: voicemailId,
-		greetingId:  greetingId,
+		greetingId: greetingId,
 	}
 }
 
 // Execute executes the request
 func (a *PhonelinesAPIService) DeletePhonlineVoicemailGreetingExecute(r ApiDeletePhonlineVoicemailGreetingRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodDelete
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PhonelinesAPIService.DeletePhonlineVoicemailGreeting")
@@ -1541,7 +1541,7 @@ func (a *PhonelinesAPIService) DeletePhonlineVoicemailGreetingExecute(r ApiDelet
 }
 
 type ApiGetAllPhonelinesRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService PhonelinesAPI
 }
 
@@ -1552,25 +1552,24 @@ func (r ApiGetAllPhonelinesRequest) Execute() (*AccountPhonelinesResponse, *http
 /*
 GetAllPhonelines List all phone lines of the account
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiGetAllPhonelinesRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiGetAllPhonelinesRequest
 */
 func (a *PhonelinesAPIService) GetAllPhonelines(ctx context.Context) ApiGetAllPhonelinesRequest {
 	return ApiGetAllPhonelinesRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//
-//	@return AccountPhonelinesResponse
+//  @return AccountPhonelinesResponse
 func (a *PhonelinesAPIService) GetAllPhonelinesExecute(r ApiGetAllPhonelinesRequest) (*AccountPhonelinesResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *AccountPhonelinesResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *AccountPhonelinesResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PhonelinesAPIService.GetAllPhonelines")
@@ -1639,9 +1638,9 @@ func (a *PhonelinesAPIService) GetAllPhonelinesExecute(r ApiGetAllPhonelinesRequ
 }
 
 type ApiGetBlockAnonymousSettingRequest struct {
-	ctx         context.Context
-	ApiService  PhonelinesAPI
-	userId      string
+	ctx context.Context
+	ApiService PhonelinesAPI
+	userId string
 	phonelineId string
 }
 
@@ -1652,29 +1651,28 @@ func (r ApiGetBlockAnonymousSettingRequest) Execute() (*PhonelineBlockAnonymousR
 /*
 GetBlockAnonymousSetting Get the block anonymous setting of a specific phone line
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param userId The unique user identifier
-	@param phonelineId The unique phone line identifier
-	@return ApiGetBlockAnonymousSettingRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param userId The unique user identifier
+ @param phonelineId The unique phone line identifier
+ @return ApiGetBlockAnonymousSettingRequest
 */
 func (a *PhonelinesAPIService) GetBlockAnonymousSetting(ctx context.Context, userId string, phonelineId string) ApiGetBlockAnonymousSettingRequest {
 	return ApiGetBlockAnonymousSettingRequest{
-		ApiService:  a,
-		ctx:         ctx,
-		userId:      userId,
+		ApiService: a,
+		ctx: ctx,
+		userId: userId,
 		phonelineId: phonelineId,
 	}
 }
 
 // Execute executes the request
-//
-//	@return PhonelineBlockAnonymousResponse
+//  @return PhonelineBlockAnonymousResponse
 func (a *PhonelinesAPIService) GetBlockAnonymousSettingExecute(r ApiGetBlockAnonymousSettingRequest) (*PhonelineBlockAnonymousResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *PhonelineBlockAnonymousResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *PhonelineBlockAnonymousResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PhonelinesAPIService.GetBlockAnonymousSetting")
@@ -1745,9 +1743,9 @@ func (a *PhonelinesAPIService) GetBlockAnonymousSettingExecute(r ApiGetBlockAnon
 }
 
 type ApiGetDevicesForPhonelineRequest struct {
-	ctx         context.Context
-	ApiService  PhonelinesAPI
-	userId      string
+	ctx context.Context
+	ApiService PhonelinesAPI
+	userId string
 	phonelineId string
 }
 
@@ -1758,29 +1756,28 @@ func (r ApiGetDevicesForPhonelineRequest) Execute() (*DevicesResponse, *http.Res
 /*
 GetDevicesForPhoneline List all devices of a specific phone line
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param userId The unique user identifier
-	@param phonelineId The unique phone line identifier
-	@return ApiGetDevicesForPhonelineRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param userId The unique user identifier
+ @param phonelineId The unique phone line identifier
+ @return ApiGetDevicesForPhonelineRequest
 */
 func (a *PhonelinesAPIService) GetDevicesForPhoneline(ctx context.Context, userId string, phonelineId string) ApiGetDevicesForPhonelineRequest {
 	return ApiGetDevicesForPhonelineRequest{
-		ApiService:  a,
-		ctx:         ctx,
-		userId:      userId,
+		ApiService: a,
+		ctx: ctx,
+		userId: userId,
 		phonelineId: phonelineId,
 	}
 }
 
 // Execute executes the request
-//
-//	@return DevicesResponse
+//  @return DevicesResponse
 func (a *PhonelinesAPIService) GetDevicesForPhonelineExecute(r ApiGetDevicesForPhonelineRequest) (*DevicesResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *DevicesResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *DevicesResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PhonelinesAPIService.GetDevicesForPhoneline")
@@ -1851,9 +1848,9 @@ func (a *PhonelinesAPIService) GetDevicesForPhonelineExecute(r ApiGetDevicesForP
 }
 
 type ApiGetPhonelineRequest struct {
-	ctx         context.Context
-	ApiService  PhonelinesAPI
-	userId      string
+	ctx context.Context
+	ApiService PhonelinesAPI
+	userId string
 	phonelineId string
 }
 
@@ -1864,29 +1861,28 @@ func (r ApiGetPhonelineRequest) Execute() (*PhonelineResponse, *http.Response, e
 /*
 GetPhoneline Get a single phoneline
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param userId The unique user identifier
-	@param phonelineId The unique phone line identifier
-	@return ApiGetPhonelineRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param userId The unique user identifier
+ @param phonelineId The unique phone line identifier
+ @return ApiGetPhonelineRequest
 */
 func (a *PhonelinesAPIService) GetPhoneline(ctx context.Context, userId string, phonelineId string) ApiGetPhonelineRequest {
 	return ApiGetPhonelineRequest{
-		ApiService:  a,
-		ctx:         ctx,
-		userId:      userId,
+		ApiService: a,
+		ctx: ctx,
+		userId: userId,
 		phonelineId: phonelineId,
 	}
 }
 
 // Execute executes the request
-//
-//	@return PhonelineResponse
+//  @return PhonelineResponse
 func (a *PhonelinesAPIService) GetPhonelineExecute(r ApiGetPhonelineRequest) (*PhonelineResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *PhonelineResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *PhonelineResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PhonelinesAPIService.GetPhoneline")
@@ -1957,9 +1953,9 @@ func (a *PhonelinesAPIService) GetPhonelineExecute(r ApiGetPhonelineRequest) (*P
 }
 
 type ApiGetPhonelineNumbersRequest struct {
-	ctx         context.Context
-	ApiService  PhonelinesAPI
-	userId      string
+	ctx context.Context
+	ApiService PhonelinesAPI
+	userId string
 	phonelineId string
 }
 
@@ -1970,29 +1966,28 @@ func (r ApiGetPhonelineNumbersRequest) Execute() (*EndpointNumbersResponse, *htt
 /*
 GetPhonelineNumbers List all phone numbers routed to phone line
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param userId The unique user identifier
-	@param phonelineId The unique phone line identifier
-	@return ApiGetPhonelineNumbersRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param userId The unique user identifier
+ @param phonelineId The unique phone line identifier
+ @return ApiGetPhonelineNumbersRequest
 */
 func (a *PhonelinesAPIService) GetPhonelineNumbers(ctx context.Context, userId string, phonelineId string) ApiGetPhonelineNumbersRequest {
 	return ApiGetPhonelineNumbersRequest{
-		ApiService:  a,
-		ctx:         ctx,
-		userId:      userId,
+		ApiService: a,
+		ctx: ctx,
+		userId: userId,
 		phonelineId: phonelineId,
 	}
 }
 
 // Execute executes the request
-//
-//	@return EndpointNumbersResponse
+//  @return EndpointNumbersResponse
 func (a *PhonelinesAPIService) GetPhonelineNumbersExecute(r ApiGetPhonelineNumbersRequest) (*EndpointNumbersResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *EndpointNumbersResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *EndpointNumbersResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PhonelinesAPIService.GetPhonelineNumbers")
@@ -2063,9 +2058,9 @@ func (a *PhonelinesAPIService) GetPhonelineNumbersExecute(r ApiGetPhonelineNumbe
 }
 
 type ApiGetPhonelineParallelForwardingsRequest struct {
-	ctx         context.Context
-	ApiService  PhonelinesAPI
-	userId      string
+	ctx context.Context
+	ApiService PhonelinesAPI
+	userId string
 	phonelineId string
 }
 
@@ -2076,33 +2071,31 @@ func (r ApiGetPhonelineParallelForwardingsRequest) Execute() (*ParallelForwardin
 /*
 GetPhonelineParallelForwardings List all parallel forwardings of a specific phone line
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param userId The unique user identifier
-	@param phonelineId The unique phone line identifier
-	@return ApiGetPhonelineParallelForwardingsRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param userId The unique user identifier
+ @param phonelineId The unique phone line identifier
+ @return ApiGetPhonelineParallelForwardingsRequest
 
 Deprecated
 */
 func (a *PhonelinesAPIService) GetPhonelineParallelForwardings(ctx context.Context, userId string, phonelineId string) ApiGetPhonelineParallelForwardingsRequest {
 	return ApiGetPhonelineParallelForwardingsRequest{
-		ApiService:  a,
-		ctx:         ctx,
-		userId:      userId,
+		ApiService: a,
+		ctx: ctx,
+		userId: userId,
 		phonelineId: phonelineId,
 	}
 }
 
 // Execute executes the request
-//
-//	@return ParallelForwardingsResponse
-//
+//  @return ParallelForwardingsResponse
 // Deprecated
 func (a *PhonelinesAPIService) GetPhonelineParallelForwardingsExecute(r ApiGetPhonelineParallelForwardingsRequest) (*ParallelForwardingsResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *ParallelForwardingsResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ParallelForwardingsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PhonelinesAPIService.GetPhonelineParallelForwardings")
@@ -2173,9 +2166,9 @@ func (a *PhonelinesAPIService) GetPhonelineParallelForwardingsExecute(r ApiGetPh
 }
 
 type ApiGetPhonelineVoicemailGreetingsRequest struct {
-	ctx         context.Context
-	ApiService  PhonelinesAPI
-	userId      string
+	ctx context.Context
+	ApiService PhonelinesAPI
+	userId string
 	phonelineId string
 	voicemailId string
 }
@@ -2187,31 +2180,30 @@ func (r ApiGetPhonelineVoicemailGreetingsRequest) Execute() (*GreetingsResponse,
 /*
 GetPhonelineVoicemailGreetings List all greetings for a specific phone line voicemail
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param userId The unique user identifier
-	@param phonelineId The unique phone line identifier
-	@param voicemailId The unique voicemail identifier
-	@return ApiGetPhonelineVoicemailGreetingsRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param userId The unique user identifier
+ @param phonelineId The unique phone line identifier
+ @param voicemailId The unique voicemail identifier
+ @return ApiGetPhonelineVoicemailGreetingsRequest
 */
 func (a *PhonelinesAPIService) GetPhonelineVoicemailGreetings(ctx context.Context, userId string, phonelineId string, voicemailId string) ApiGetPhonelineVoicemailGreetingsRequest {
 	return ApiGetPhonelineVoicemailGreetingsRequest{
-		ApiService:  a,
-		ctx:         ctx,
-		userId:      userId,
+		ApiService: a,
+		ctx: ctx,
+		userId: userId,
 		phonelineId: phonelineId,
 		voicemailId: voicemailId,
 	}
 }
 
 // Execute executes the request
-//
-//	@return GreetingsResponse
+//  @return GreetingsResponse
 func (a *PhonelinesAPIService) GetPhonelineVoicemailGreetingsExecute(r ApiGetPhonelineVoicemailGreetingsRequest) (*GreetingsResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *GreetingsResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *GreetingsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PhonelinesAPIService.GetPhonelineVoicemailGreetings")
@@ -2283,9 +2275,9 @@ func (a *PhonelinesAPIService) GetPhonelineVoicemailGreetingsExecute(r ApiGetPho
 }
 
 type ApiGetPhonelineVoicemailsRequest struct {
-	ctx         context.Context
-	ApiService  PhonelinesAPI
-	userId      string
+	ctx context.Context
+	ApiService PhonelinesAPI
+	userId string
 	phonelineId string
 }
 
@@ -2296,33 +2288,31 @@ func (r ApiGetPhonelineVoicemailsRequest) Execute() (*PhonelineVoicemailsRespons
 /*
 GetPhonelineVoicemails List all voicemails of a specific phone line
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param userId The unique user identifier
-	@param phonelineId The unique phone line identifier
-	@return ApiGetPhonelineVoicemailsRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param userId The unique user identifier
+ @param phonelineId The unique phone line identifier
+ @return ApiGetPhonelineVoicemailsRequest
 
 Deprecated
 */
 func (a *PhonelinesAPIService) GetPhonelineVoicemails(ctx context.Context, userId string, phonelineId string) ApiGetPhonelineVoicemailsRequest {
 	return ApiGetPhonelineVoicemailsRequest{
-		ApiService:  a,
-		ctx:         ctx,
-		userId:      userId,
+		ApiService: a,
+		ctx: ctx,
+		userId: userId,
 		phonelineId: phonelineId,
 	}
 }
 
 // Execute executes the request
-//
-//	@return PhonelineVoicemailsResponse
-//
+//  @return PhonelineVoicemailsResponse
 // Deprecated
 func (a *PhonelinesAPIService) GetPhonelineVoicemailsExecute(r ApiGetPhonelineVoicemailsRequest) (*PhonelineVoicemailsResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *PhonelineVoicemailsResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *PhonelineVoicemailsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PhonelinesAPIService.GetPhonelineVoicemails")
@@ -2393,9 +2383,9 @@ func (a *PhonelinesAPIService) GetPhonelineVoicemailsExecute(r ApiGetPhonelineVo
 }
 
 type ApiGetPhonelinesRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService PhonelinesAPI
-	userId     string
+	userId string
 }
 
 func (r ApiGetPhonelinesRequest) Execute() (*SimplePhonelinesResponse, *http.Response, error) {
@@ -2405,27 +2395,26 @@ func (r ApiGetPhonelinesRequest) Execute() (*SimplePhonelinesResponse, *http.Res
 /*
 GetPhonelines List all phone lines
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param userId The unique user identifier
-	@return ApiGetPhonelinesRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param userId The unique user identifier
+ @return ApiGetPhonelinesRequest
 */
 func (a *PhonelinesAPIService) GetPhonelines(ctx context.Context, userId string) ApiGetPhonelinesRequest {
 	return ApiGetPhonelinesRequest{
 		ApiService: a,
-		ctx:        ctx,
-		userId:     userId,
+		ctx: ctx,
+		userId: userId,
 	}
 }
 
 // Execute executes the request
-//
-//	@return SimplePhonelinesResponse
+//  @return SimplePhonelinesResponse
 func (a *PhonelinesAPIService) GetPhonelinesExecute(r ApiGetPhonelinesRequest) (*SimplePhonelinesResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *SimplePhonelinesResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *SimplePhonelinesResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PhonelinesAPIService.GetPhonelines")
@@ -2495,9 +2484,9 @@ func (a *PhonelinesAPIService) GetPhonelinesExecute(r ApiGetPhonelinesRequest) (
 }
 
 type ApiGetSipgateIoLogsRequest struct {
-	ctx         context.Context
-	ApiService  PhonelinesAPI
-	userId      string
+	ctx context.Context
+	ApiService PhonelinesAPI
+	userId string
 	phonelineId string
 }
 
@@ -2508,29 +2497,28 @@ func (r ApiGetSipgateIoLogsRequest) Execute() (*PhonelineSipgateIoLogsResponse, 
 /*
 GetSipgateIoLogs List sipgate.io debug log for a specific phone line
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param userId The unique user identifier
-	@param phonelineId The unique phone line identifier
-	@return ApiGetSipgateIoLogsRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param userId The unique user identifier
+ @param phonelineId The unique phone line identifier
+ @return ApiGetSipgateIoLogsRequest
 */
 func (a *PhonelinesAPIService) GetSipgateIoLogs(ctx context.Context, userId string, phonelineId string) ApiGetSipgateIoLogsRequest {
 	return ApiGetSipgateIoLogsRequest{
-		ApiService:  a,
-		ctx:         ctx,
-		userId:      userId,
+		ApiService: a,
+		ctx: ctx,
+		userId: userId,
 		phonelineId: phonelineId,
 	}
 }
 
 // Execute executes the request
-//
-//	@return PhonelineSipgateIoLogsResponse
+//  @return PhonelineSipgateIoLogsResponse
 func (a *PhonelinesAPIService) GetSipgateIoLogsExecute(r ApiGetSipgateIoLogsRequest) (*PhonelineSipgateIoLogsResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *PhonelineSipgateIoLogsResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *PhonelineSipgateIoLogsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PhonelinesAPIService.GetSipgateIoLogs")
@@ -2601,9 +2589,9 @@ func (a *PhonelinesAPIService) GetSipgateIoLogsExecute(r ApiGetSipgateIoLogsRequ
 }
 
 type ApiGetSipgateIoSettingsRequest struct {
-	ctx         context.Context
-	ApiService  PhonelinesAPI
-	userId      string
+	ctx context.Context
+	ApiService PhonelinesAPI
+	userId string
 	phonelineId string
 }
 
@@ -2614,29 +2602,28 @@ func (r ApiGetSipgateIoSettingsRequest) Execute() (*PhonelineSipgateIoResponse, 
 /*
 GetSipgateIoSettings List sipgate.io settings of a specific phone line
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param userId The unique user identifier
-	@param phonelineId The unique phone line identifier
-	@return ApiGetSipgateIoSettingsRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param userId The unique user identifier
+ @param phonelineId The unique phone line identifier
+ @return ApiGetSipgateIoSettingsRequest
 */
 func (a *PhonelinesAPIService) GetSipgateIoSettings(ctx context.Context, userId string, phonelineId string) ApiGetSipgateIoSettingsRequest {
 	return ApiGetSipgateIoSettingsRequest{
-		ApiService:  a,
-		ctx:         ctx,
-		userId:      userId,
+		ApiService: a,
+		ctx: ctx,
+		userId: userId,
 		phonelineId: phonelineId,
 	}
 }
 
 // Execute executes the request
-//
-//	@return PhonelineSipgateIoResponse
+//  @return PhonelineSipgateIoResponse
 func (a *PhonelinesAPIService) GetSipgateIoSettingsExecute(r ApiGetSipgateIoSettingsRequest) (*PhonelineSipgateIoResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *PhonelineSipgateIoResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *PhonelineSipgateIoResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PhonelinesAPIService.GetSipgateIoSettings")
@@ -2707,11 +2694,11 @@ func (a *PhonelinesAPIService) GetSipgateIoSettingsExecute(r ApiGetSipgateIoSett
 }
 
 type ApiRemoveDeviceFromPhonelineRequest struct {
-	ctx         context.Context
-	ApiService  PhonelinesAPI
-	userId      string
+	ctx context.Context
+	ApiService PhonelinesAPI
+	userId string
 	phonelineId string
-	deviceId    string
+	deviceId string
 }
 
 func (r ApiRemoveDeviceFromPhonelineRequest) Execute() (*http.Response, error) {
@@ -2721,28 +2708,28 @@ func (r ApiRemoveDeviceFromPhonelineRequest) Execute() (*http.Response, error) {
 /*
 RemoveDeviceFromPhoneline Remove device from phone line
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param userId The unique user identifier
-	@param phonelineId The unique phone line identifier
-	@param deviceId The unique device identifier
-	@return ApiRemoveDeviceFromPhonelineRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param userId The unique user identifier
+ @param phonelineId The unique phone line identifier
+ @param deviceId The unique device identifier
+ @return ApiRemoveDeviceFromPhonelineRequest
 */
 func (a *PhonelinesAPIService) RemoveDeviceFromPhoneline(ctx context.Context, userId string, phonelineId string, deviceId string) ApiRemoveDeviceFromPhonelineRequest {
 	return ApiRemoveDeviceFromPhonelineRequest{
-		ApiService:  a,
-		ctx:         ctx,
-		userId:      userId,
+		ApiService: a,
+		ctx: ctx,
+		userId: userId,
 		phonelineId: phonelineId,
-		deviceId:    deviceId,
+		deviceId: deviceId,
 	}
 }
 
 // Execute executes the request
 func (a *PhonelinesAPIService) RemoveDeviceFromPhonelineExecute(r ApiRemoveDeviceFromPhonelineRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodDelete
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PhonelinesAPIService.RemoveDeviceFromPhoneline")
@@ -2805,11 +2792,11 @@ func (a *PhonelinesAPIService) RemoveDeviceFromPhonelineExecute(r ApiRemoveDevic
 }
 
 type ApiSetBlockAnonymousSettingRequest struct {
-	ctx         context.Context
-	ApiService  PhonelinesAPI
-	userId      string
+	ctx context.Context
+	ApiService PhonelinesAPI
+	userId string
 	phonelineId string
-	body        *SetBlockAnonymousSettingsRequest
+	body *SetBlockAnonymousSettingsRequest
 }
 
 func (r ApiSetBlockAnonymousSettingRequest) Body(body SetBlockAnonymousSettingsRequest) ApiSetBlockAnonymousSettingRequest {
@@ -2824,16 +2811,16 @@ func (r ApiSetBlockAnonymousSettingRequest) Execute() (*http.Response, error) {
 /*
 SetBlockAnonymousSetting Update the block anonymous setting for an existing phone line
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param userId The unique user identifier
-	@param phonelineId The unique phone line identifier
-	@return ApiSetBlockAnonymousSettingRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param userId The unique user identifier
+ @param phonelineId The unique phone line identifier
+ @return ApiSetBlockAnonymousSettingRequest
 */
 func (a *PhonelinesAPIService) SetBlockAnonymousSetting(ctx context.Context, userId string, phonelineId string) ApiSetBlockAnonymousSettingRequest {
 	return ApiSetBlockAnonymousSettingRequest{
-		ApiService:  a,
-		ctx:         ctx,
-		userId:      userId,
+		ApiService: a,
+		ctx: ctx,
+		userId: userId,
 		phonelineId: phonelineId,
 	}
 }
@@ -2841,9 +2828,9 @@ func (a *PhonelinesAPIService) SetBlockAnonymousSetting(ctx context.Context, use
 // Execute executes the request
 func (a *PhonelinesAPIService) SetBlockAnonymousSettingExecute(r ApiSetBlockAnonymousSettingRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodPut
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod   = http.MethodPut
+		localVarPostBody     interface{}
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PhonelinesAPIService.SetBlockAnonymousSetting")
@@ -2907,11 +2894,11 @@ func (a *PhonelinesAPIService) SetBlockAnonymousSettingExecute(r ApiSetBlockAnon
 }
 
 type ApiSetPhonelineAliasRequest struct {
-	ctx         context.Context
-	ApiService  PhonelinesAPI
-	userId      string
+	ctx context.Context
+	ApiService PhonelinesAPI
+	userId string
 	phonelineId string
-	body        *SetAliasRequest
+	body *SetAliasRequest
 }
 
 func (r ApiSetPhonelineAliasRequest) Body(body SetAliasRequest) ApiSetPhonelineAliasRequest {
@@ -2926,16 +2913,16 @@ func (r ApiSetPhonelineAliasRequest) Execute() (*http.Response, error) {
 /*
 SetPhonelineAlias Update alias for an existing phone line
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param userId The unique user identifier
-	@param phonelineId The unique phone line identifier
-	@return ApiSetPhonelineAliasRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param userId The unique user identifier
+ @param phonelineId The unique phone line identifier
+ @return ApiSetPhonelineAliasRequest
 */
 func (a *PhonelinesAPIService) SetPhonelineAlias(ctx context.Context, userId string, phonelineId string) ApiSetPhonelineAliasRequest {
 	return ApiSetPhonelineAliasRequest{
-		ApiService:  a,
-		ctx:         ctx,
-		userId:      userId,
+		ApiService: a,
+		ctx: ctx,
+		userId: userId,
 		phonelineId: phonelineId,
 	}
 }
@@ -2943,9 +2930,9 @@ func (a *PhonelinesAPIService) SetPhonelineAlias(ctx context.Context, userId str
 // Execute executes the request
 func (a *PhonelinesAPIService) SetPhonelineAliasExecute(r ApiSetPhonelineAliasRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodPut
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod   = http.MethodPut
+		localVarPostBody     interface{}
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PhonelinesAPIService.SetPhonelineAlias")
@@ -3009,11 +2996,11 @@ func (a *PhonelinesAPIService) SetPhonelineAliasExecute(r ApiSetPhonelineAliasRe
 }
 
 type ApiSetSipgateIoSettingsRequest struct {
-	ctx         context.Context
-	ApiService  PhonelinesAPI
-	userId      string
+	ctx context.Context
+	ApiService PhonelinesAPI
+	userId string
 	phonelineId string
-	body        *SetSipgateIoPhonelineSettingsRequest
+	body *SetSipgateIoPhonelineSettingsRequest
 }
 
 func (r ApiSetSipgateIoSettingsRequest) Body(body SetSipgateIoPhonelineSettingsRequest) ApiSetSipgateIoSettingsRequest {
@@ -3028,16 +3015,16 @@ func (r ApiSetSipgateIoSettingsRequest) Execute() (*http.Response, error) {
 /*
 SetSipgateIoSettings Update sipgate.io settings for an existing phone line
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param userId The unique user identifier
-	@param phonelineId The unique phone line identifier
-	@return ApiSetSipgateIoSettingsRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param userId The unique user identifier
+ @param phonelineId The unique phone line identifier
+ @return ApiSetSipgateIoSettingsRequest
 */
 func (a *PhonelinesAPIService) SetSipgateIoSettings(ctx context.Context, userId string, phonelineId string) ApiSetSipgateIoSettingsRequest {
 	return ApiSetSipgateIoSettingsRequest{
-		ApiService:  a,
-		ctx:         ctx,
-		userId:      userId,
+		ApiService: a,
+		ctx: ctx,
+		userId: userId,
 		phonelineId: phonelineId,
 	}
 }
@@ -3045,9 +3032,9 @@ func (a *PhonelinesAPIService) SetSipgateIoSettings(ctx context.Context, userId 
 // Execute executes the request
 func (a *PhonelinesAPIService) SetSipgateIoSettingsExecute(r ApiSetSipgateIoSettingsRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodPut
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod   = http.MethodPut
+		localVarPostBody     interface{}
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PhonelinesAPIService.SetSipgateIoSettings")

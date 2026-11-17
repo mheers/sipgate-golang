@@ -11,8 +11,8 @@ API version: 2.0.0
 package openapi
 
 import (
-	"bytes"
 	"encoding/json"
+	"bytes"
 	"fmt"
 )
 
@@ -21,14 +21,14 @@ var _ MappedNullable = &ModifyAddressRequest{}
 
 // ModifyAddressRequest struct for ModifyAddressRequest
 type ModifyAddressRequest struct {
-	Address1    *string `json:"address1,omitempty"`
-	Address2    *string `json:"address2,omitempty"`
-	City        string  `json:"city"`
-	Countrycode string  `json:"countrycode"`
-	Number      *string `json:"number,omitempty"`
-	Postcode    string  `json:"postcode"`
-	State       *string `json:"state,omitempty"`
-	Street      *string `json:"street,omitempty"`
+	Address1 *string `json:"address1,omitempty"`
+	Address2 *string `json:"address2,omitempty"`
+	City string `json:"city"`
+	Countrycode string `json:"countrycode"`
+	Number *string `json:"number,omitempty"`
+	Postcode string `json:"postcode"`
+	State *string `json:"state,omitempty"`
+	Street *string `json:"street,omitempty"`
 }
 
 type _ModifyAddressRequest ModifyAddressRequest
@@ -286,7 +286,7 @@ func (o *ModifyAddressRequest) SetStreet(v string) {
 }
 
 func (o ModifyAddressRequest) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -331,10 +331,10 @@ func (o *ModifyAddressRequest) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err
+		return err;
 	}
 
-	for _, requiredProperty := range requiredProperties {
+	for _, requiredProperty := range(requiredProperties) {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -390,3 +390,5 @@ func (v *NullableModifyAddressRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

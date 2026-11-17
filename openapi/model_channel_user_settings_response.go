@@ -20,7 +20,7 @@ var _ MappedNullable = &ChannelUserSettingsResponse{}
 // ChannelUserSettingsResponse struct for ChannelUserSettingsResponse
 type ChannelUserSettingsResponse struct {
 	FollowUpTime *int32 `json:"followUpTime,omitempty"`
-	RingTime     *int32 `json:"ringTime,omitempty"`
+	RingTime *int32 `json:"ringTime,omitempty"`
 }
 
 // NewChannelUserSettingsResponse instantiates a new ChannelUserSettingsResponse object
@@ -105,7 +105,7 @@ func (o *ChannelUserSettingsResponse) SetRingTime(v int32) {
 }
 
 func (o ChannelUserSettingsResponse) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -158,3 +158,5 @@ func (v *NullableChannelUserSettingsResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

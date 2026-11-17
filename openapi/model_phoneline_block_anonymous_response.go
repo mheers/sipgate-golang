@@ -19,8 +19,8 @@ var _ MappedNullable = &PhonelineBlockAnonymousResponse{}
 
 // PhonelineBlockAnonymousResponse struct for PhonelineBlockAnonymousResponse
 type PhonelineBlockAnonymousResponse struct {
-	Enabled *bool   `json:"enabled,omitempty"`
-	Target  *string `json:"target,omitempty"`
+	Enabled *bool `json:"enabled,omitempty"`
+	Target *string `json:"target,omitempty"`
 }
 
 // NewPhonelineBlockAnonymousResponse instantiates a new PhonelineBlockAnonymousResponse object
@@ -109,7 +109,7 @@ func (o *PhonelineBlockAnonymousResponse) SetTarget(v string) {
 }
 
 func (o PhonelineBlockAnonymousResponse) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -162,3 +162,5 @@ func (v *NullablePhonelineBlockAnonymousResponse) UnmarshalJSON(src []byte) erro
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

@@ -19,18 +19,18 @@ var _ MappedNullable = &UpdateContactRequest{}
 
 // UpdateContactRequest struct for UpdateContactRequest
 type UpdateContactRequest struct {
-	Addresses    []AddressRequest `json:"addresses,omitempty"`
-	Emails       []EmailRequest   `json:"emails,omitempty"`
-	Family       *string          `json:"family,omitempty"`
-	Given        *string          `json:"given,omitempty"`
-	Id           *string          `json:"id,omitempty"`
-	Name         *string          `json:"name,omitempty"`
-	Note         *string          `json:"note,omitempty"`
-	Numbers      []NumberRequest  `json:"numbers,omitempty"`
-	Organization [][]string       `json:"organization,omitempty"`
-	Picture      *string          `json:"picture,omitempty"`
-	Scope        *string          `json:"scope,omitempty"`
-	Websites     []WebsiteRequest `json:"websites,omitempty"`
+	Addresses []AddressRequest `json:"addresses,omitempty"`
+	Emails []EmailRequest `json:"emails,omitempty"`
+	Family *string `json:"family,omitempty"`
+	Given *string `json:"given,omitempty"`
+	Id *string `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+	Note *string `json:"note,omitempty"`
+	Numbers []NumberRequest `json:"numbers,omitempty"`
+	Organization [][]string `json:"organization,omitempty"`
+	Picture *string `json:"picture,omitempty"`
+	Scope *string `json:"scope,omitempty"`
+	Websites []WebsiteRequest `json:"websites,omitempty"`
 }
 
 // NewUpdateContactRequest instantiates a new UpdateContactRequest object
@@ -435,7 +435,7 @@ func (o *UpdateContactRequest) SetWebsites(v []WebsiteRequest) {
 }
 
 func (o UpdateContactRequest) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -518,3 +518,5 @@ func (v *NullableUpdateContactRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

@@ -19,11 +19,11 @@ var _ MappedNullable = &CallRestrictionResponse{}
 
 // CallRestrictionResponse struct for CallRestrictionResponse
 type CallRestrictionResponse struct {
-	Charged                *bool   `json:"charged,omitempty"`
-	ForeignSpecial         *bool   `json:"foreignSpecial,omitempty"`
-	HighCostForeignNumbers *bool   `json:"highCostForeignNumbers,omitempty"`
-	Roaming                *bool   `json:"roaming,omitempty"`
-	UserId                 *string `json:"userId,omitempty"`
+	Charged *bool `json:"charged,omitempty"`
+	ForeignSpecial *bool `json:"foreignSpecial,omitempty"`
+	HighCostForeignNumbers *bool `json:"highCostForeignNumbers,omitempty"`
+	Roaming *bool `json:"roaming,omitempty"`
+	UserId *string `json:"userId,omitempty"`
 }
 
 // NewCallRestrictionResponse instantiates a new CallRestrictionResponse object
@@ -220,7 +220,7 @@ func (o *CallRestrictionResponse) SetUserId(v string) {
 }
 
 func (o CallRestrictionResponse) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -282,3 +282,5 @@ func (v *NullableCallRestrictionResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

@@ -19,9 +19,9 @@ var _ MappedNullable = &SimpleVoicemailResponse{}
 
 // SimpleVoicemailResponse struct for SimpleVoicemailResponse
 type SimpleVoicemailResponse struct {
-	Alias             *string           `json:"alias,omitempty"`
+	Alias *string `json:"alias,omitempty"`
 	BelongsToEndpoint *EndpointResponse `json:"belongsToEndpoint,omitempty"`
-	Id                *string           `json:"id,omitempty"`
+	Id *string `json:"id,omitempty"`
 }
 
 // NewSimpleVoicemailResponse instantiates a new SimpleVoicemailResponse object
@@ -138,7 +138,7 @@ func (o *SimpleVoicemailResponse) SetId(v string) {
 }
 
 func (o SimpleVoicemailResponse) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -194,3 +194,5 @@ func (v *NullableSimpleVoicemailResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

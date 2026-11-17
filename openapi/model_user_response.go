@@ -19,17 +19,17 @@ var _ MappedNullable = &UserResponse{}
 
 // UserResponse struct for UserResponse
 type UserResponse struct {
-	AddressId      *string  `json:"addressId,omitempty"`
-	Admin          *bool    `json:"admin,omitempty"`
-	AffiliateLogin *bool    `json:"affiliateLogin,omitempty"`
-	BusyOnBusy     *bool    `json:"busyOnBusy,omitempty"`
-	DefaultDevice  *string  `json:"defaultDevice,omitempty"`
-	DirectDialIds  []string `json:"directDialIds,omitempty"`
-	Email          *string  `json:"email,omitempty"`
-	Firstname      *string  `json:"firstname,omitempty"`
-	Id             *string  `json:"id,omitempty"`
-	Lastname       *string  `json:"lastname,omitempty"`
-	Timezone       *string  `json:"timezone,omitempty"`
+	AddressId *string `json:"addressId,omitempty"`
+	Admin *bool `json:"admin,omitempty"`
+	AffiliateLogin *bool `json:"affiliateLogin,omitempty"`
+	BusyOnBusy *bool `json:"busyOnBusy,omitempty"`
+	DefaultDevice *string `json:"defaultDevice,omitempty"`
+	DirectDialIds []string `json:"directDialIds,omitempty"`
+	Email *string `json:"email,omitempty"`
+	Firstname *string `json:"firstname,omitempty"`
+	Id *string `json:"id,omitempty"`
+	Lastname *string `json:"lastname,omitempty"`
+	Timezone *string `json:"timezone,omitempty"`
 }
 
 // NewUserResponse instantiates a new UserResponse object
@@ -414,7 +414,7 @@ func (o *UserResponse) SetTimezone(v string) {
 }
 
 func (o UserResponse) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -494,3 +494,5 @@ func (v *NullableUserResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

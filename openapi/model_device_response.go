@@ -19,13 +19,13 @@ var _ MappedNullable = &DeviceResponse{}
 
 // DeviceResponse struct for DeviceResponse
 type DeviceResponse struct {
-	ActiveGroups     []ActiveRouting `json:"activeGroups,omitempty"`
+	ActiveGroups []ActiveRouting `json:"activeGroups,omitempty"`
 	ActivePhonelines []ActiveRouting `json:"activePhonelines,omitempty"`
-	Alias            *string         `json:"alias,omitempty"`
-	Dnd              *bool           `json:"dnd,omitempty"`
-	Id               *string         `json:"id,omitempty"`
-	Online           *bool           `json:"online,omitempty"`
-	Type             *string         `json:"type,omitempty"`
+	Alias *string `json:"alias,omitempty"`
+	Dnd *bool `json:"dnd,omitempty"`
+	Id *string `json:"id,omitempty"`
+	Online *bool `json:"online,omitempty"`
+	Type *string `json:"type,omitempty"`
 }
 
 // NewDeviceResponse instantiates a new DeviceResponse object
@@ -278,7 +278,7 @@ func (o *DeviceResponse) SetType(v string) {
 }
 
 func (o DeviceResponse) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -346,3 +346,5 @@ func (v *NullableDeviceResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+
