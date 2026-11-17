@@ -97,6 +97,33 @@ func TestAccountGetWithPATFromConfig(t *testing.T) {
 	}
 }
 
+func TestAccountGetWithPATFromConfigWithoutType(t *testing.T) {
+	var gotAuth string
+	srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		gotAuth = r.Header.Get("Authorization")
+		w.Header().Set("Content-Type", "application/json")
+		_, _ = io.WriteString(w, `{"company":"Legacy sipgate"}`)
+	}))
+	defer srv.Close()
+
+	path := filepath.Join(t.TempDir(), "config.yaml")
+	writeConfig(t, path, &Config{
+		Auth: AuthConfig{TokenID: "token-id", Token: "secret"},
+	})
+
+	app, out, _ := testApp(t, path)
+	if err := app.Run(context.Background(), "account", "get", "--base-url", srv.URL); err != nil {
+		t.Fatalf("Run() error = %v", err)
+	}
+	want := "Basic " + base64.StdEncoding.EncodeToString([]byte("token-id:secret"))
+	if gotAuth != want {
+		t.Errorf("Authorization = %q, want %q", gotAuth, want)
+	}
+	if !strings.Contains(out.String(), "Legacy sipgate") {
+		t.Errorf("output = %s", out.String())
+	}
+}
+
 func TestSMSCommandArgumentPrecedence(t *testing.T) {
 	app, _, _ := testApp(t, filepath.Join(t.TempDir(), "config.yaml"))
 	err := app.Run(context.Background(), "sms", "send")
@@ -319,7 +346,7 @@ func TestMissingAuthentication(t *testing.T) {
 
 func TestAuthStatus(t *testing.T) {
 	path := filepath.Join(t.TempDir(), "config.yaml")
-	expiry := time.Date(2026, 11, 17, 13, 0, 0, 0, time.UTC)
+	expiry := time.Now().Add(time.Hour).UTC()
 	writeConfig(t, path, &Config{
 		BaseURL: "https://api.example.test/v2",
 		Auth: AuthConfig{
@@ -696,5 +723,159 @@ func TestAPIErrorIsShown(t *testing.T) {
 	err := app.Run(context.Background(), "account", "get", "--base-url", srv.URL, "--access-token", "bad")
 	if err == nil || !strings.Contains(err.Error(), "401") || !strings.Contains(err.Error(), "You shall not pass") {
 		t.Fatalf("error = %v", err)
+	}
+}
+
+func TestRawAPIRejectsAbsoluteURL(t *testing.T) {
+	app, _, _ := testApp(t, filepath.Join(t.TempDir(), "config.yaml"))
+	err := app.Run(context.Background(),
+		"api", "GET", "https://evil.example/steal",
+		"--access-token", "token",
+	)
+	if err == nil || !strings.Contains(err.Error(), "relative to the API base URL") {
+		t.Fatalf("error = %v, want relative URL error", err)
+	}
+}
+
+func TestHelpDoesNotLeakSecretFlagDefaults(t *testing.T) {
+	app, out, _ := testApp(t, filepath.Join(t.TempDir(), "config.yaml"))
+	app.TokenID = "token-id-secret"
+	app.Token = "token-secret"
+	app.AccessToken = "access-secret"
+	if err := app.Run(context.Background(), "--help"); err != nil {
+		t.Fatal(err)
+	}
+	for _, secret := range []string{"token-id-secret", "token-secret", "access-secret"} {
+		if strings.Contains(out.String(), secret) {
+			t.Errorf("help output leaked %q:\n%s", secret, out.String())
+		}
+	}
+
+	t.Setenv(envClientSecret, "client-secret-value")
+	app, out, _ = testApp(t, filepath.Join(t.TempDir(), "config.yaml"))
+	if err := app.Run(context.Background(), "auth", "login", "--help"); err != nil {
+		t.Fatal(err)
+	}
+	if strings.Contains(out.String(), "client-secret-value") {
+		t.Errorf("auth login help leaked the client secret:\n%s", out.String())
+	}
+}
+
+func TestLoopbackRedirectValidation(t *testing.T) {
+	for _, raw := range []string{
+		"http://127.0.0.1:8080/callback",
+		"http://localhost:8081/callback",
+		"http://[::1]:8082/callback",
+	} {
+		if _, err := loopbackRedirect(raw); err != nil {
+			t.Errorf("loopbackRedirect(%q) error = %v", raw, err)
+		}
+	}
+	for _, raw := range []string{
+		"https://127.0.0.1:8080/callback",
+		"http://example.com:8080/callback",
+		"http://127.0.0.1/callback",
+		"http://127.0.0.1:0/callback",
+		"http://127.0.0.1:8080",
+		"http://127.0.0.1:8080/callback?x=1",
+		"http://user@127.0.0.1:8080/callback",
+	} {
+		if _, err := loopbackRedirect(raw); err == nil {
+			t.Errorf("loopbackRedirect(%q) accepted an invalid URI", raw)
+		}
+	}
+}
+
+func TestCredentialFlagPrecedence(t *testing.T) {
+	var gotAuth string
+	srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		gotAuth = r.Header.Get("Authorization")
+		w.Header().Set("Content-Type", "application/json")
+		_, _ = io.WriteString(w, `{"company":"Flags"}`)
+	}))
+	defer srv.Close()
+
+	patAuth := "Basic " + base64.StdEncoding.EncodeToString([]byte("id:secret"))
+	tests := []struct {
+		name     string
+		setup    func(*App)
+		args     []string
+		wantAuth string
+		wantErr  string
+	}{
+		{
+			name:     "explicit access token beats environment PAT",
+			setup:    func(app *App) { app.TokenID, app.Token = "env-id", "env-secret" },
+			args:     []string{"--access-token", "oauth"},
+			wantAuth: "Bearer oauth",
+		},
+		{
+			name:     "explicit PAT beats environment access token",
+			setup:    func(app *App) { app.AccessToken = "env-access" },
+			args:     []string{"--token-id", "id", "--token", "secret"},
+			wantAuth: patAuth,
+		},
+		{
+			name:    "explicit credentials are mutually exclusive",
+			setup:   func(*App) {},
+			args:    []string{"--access-token", "oauth", "--token-id", "id", "--token", "secret"},
+			wantErr: "not both",
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			gotAuth = ""
+			app, _, _ := testApp(t, filepath.Join(t.TempDir(), "config.yaml"))
+			tt.setup(app)
+			args := append([]string{"account", "get", "--base-url", srv.URL}, tt.args...)
+			err := app.Run(context.Background(), args...)
+			if tt.wantErr != "" {
+				if err == nil || !strings.Contains(err.Error(), tt.wantErr) {
+					t.Fatalf("error = %v, want %q", err, tt.wantErr)
+				}
+				return
+			}
+			if err != nil {
+				t.Fatalf("Run() error = %v", err)
+			}
+			if gotAuth != tt.wantAuth {
+				t.Errorf("Authorization = %q, want %q", gotAuth, tt.wantAuth)
+			}
+		})
+	}
+}
+
+func TestExpiredTokenWithoutRefreshFailsClearly(t *testing.T) {
+	expiry := time.Now().Add(-time.Minute)
+	path := filepath.Join(t.TempDir(), "config.yaml")
+	writeConfig(t, path, &Config{Auth: AuthConfig{
+		Type:        AuthTypeOAuth,
+		AccessToken: "stale",
+		Expiry:      &expiry,
+	}})
+
+	app, _, _ := testApp(t, path)
+	err := app.Run(context.Background(), "account", "get")
+	if err == nil || !strings.Contains(err.Error(), "expired") || !strings.Contains(err.Error(), "auth login") {
+		t.Fatalf("error = %v, want an expired-token hint", err)
+	}
+}
+
+func TestUserScopedCommandExplainsHowToPassUser(t *testing.T) {
+	srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusForbidden)
+		_, _ = io.WriteString(w, `{"title":"Forbidden"}`)
+	}))
+	defer srv.Close()
+
+	app, _, _ := testApp(t, filepath.Join(t.TempDir(), "config.yaml"))
+	err := app.Run(context.Background(),
+		"devices", "list",
+		"--base-url", srv.URL,
+		"--access-token", "token",
+	)
+	if err == nil || !strings.Contains(err.Error(), "use --user") {
+		t.Fatalf("error = %v, want a --user hint", err)
 	}
 }

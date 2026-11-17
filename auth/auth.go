@@ -99,7 +99,8 @@ func (c Config) Exchange(ctx context.Context, code, codeVerifier string) (*oauth
 }
 
 // TokenSource returns a source that refreshes tokens automatically. The source
-// is suitable for sipgate.WithTokenSource.
+// is suitable for sipgate.WithTokenSource. The context is used for refreshes,
+// so pass a long-lived context rather than the context of a single request.
 func (c Config) TokenSource(ctx context.Context, token *oauth2.Token) oauth2.TokenSource {
 	if token == nil {
 		return errorTokenSource{err: errors.New("auth: token must not be nil")}
@@ -199,10 +200,10 @@ func (c Config) validate(requireRedirect bool) error {
 func validateEndpoint(name, raw string) error {
 	u, err := url.Parse(raw)
 	if err != nil {
-		return fmt.Errorf("auth: invalid %s URL %q: %w", name, raw, err)
+		return fmt.Errorf("auth: invalid %s URL", name)
 	}
 	if (u.Scheme != "http" && u.Scheme != "https") || u.Host == "" {
-		return fmt.Errorf("auth: invalid %s URL %q", name, raw)
+		return fmt.Errorf("auth: invalid %s URL %q", name, u.Redacted())
 	}
 	return nil
 }

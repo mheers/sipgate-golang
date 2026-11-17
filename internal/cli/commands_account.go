@@ -23,7 +23,7 @@ func (a *App) accountCommand() *cobra.Command {
 			Use:   "get",
 			Short: "Show account data",
 			RunE: func(cmd *cobra.Command, args []string) error {
-				client, err := a.newClient(cmd.Context())
+				client, err := a.newClient(cmd)
 				if err != nil {
 					return err
 				}
@@ -38,7 +38,7 @@ func (a *App) accountCommand() *cobra.Command {
 			Use:   "balance",
 			Short: "Show the account balance",
 			RunE: func(cmd *cobra.Command, args []string) error {
-				client, err := a.newClient(cmd.Context())
+				client, err := a.newClient(cmd)
 				if err != nil {
 					return err
 				}
@@ -58,7 +58,7 @@ func (a *App) whoamiCommand() *cobra.Command {
 		Use:   "whoami",
 		Short: "Show the authenticated sipgate user",
 		RunE: func(cmd *cobra.Command, args []string) error {
-			client, err := a.newClient(cmd.Context())
+			client, err := a.newClient(cmd)
 			if err != nil {
 				return err
 			}
@@ -82,18 +82,22 @@ func (a *App) smsCommand() *cobra.Command {
 		Use:   "list",
 		Short: "List SMS extensions",
 		RunE: func(cmd *cobra.Command, args []string) error {
-			client, err := a.newClient(cmd.Context())
+			client, err := a.newClient(cmd)
 			if err != nil {
 				return err
 			}
-			extensions, err := result(client.SmsAPI.GetSmsExtensions(cmd.Context(), listUser).Execute())
+			resolvedUserID, err := a.resolveUserID(cmd.Context(), client, listUser)
+			if err != nil {
+				return err
+			}
+			extensions, err := result(client.SmsAPI.GetSmsExtensions(cmd.Context(), resolvedUserID).Execute())
 			if err != nil {
 				return err
 			}
 			return a.print(extensions)
 		},
 	}
-	list.Flags().StringVar(&listUser, "user", "w0", "user ID")
+	list.Flags().StringVar(&listUser, "user", "", "user ID (default: the authenticated user)")
 
 	var (
 		smsID     string
@@ -116,7 +120,7 @@ func (a *App) smsCommand() *cobra.Command {
 				}
 				at = parsed
 			}
-			client, err := a.newClient(cmd.Context())
+			client, err := a.newClient(cmd)
 			if err != nil {
 				return err
 			}
@@ -150,7 +154,7 @@ func (a *App) callsCommand() *cobra.Command {
 		Use:   "list",
 		Short: "List established calls",
 		RunE: func(cmd *cobra.Command, args []string) error {
-			client, err := a.newClient(cmd.Context())
+			client, err := a.newClient(cmd)
 			if err != nil {
 				return err
 			}
@@ -167,7 +171,7 @@ func (a *App) callsCommand() *cobra.Command {
 		Use:   "start",
 		Short: "Start an outgoing call",
 		RunE: func(cmd *cobra.Command, args []string) error {
-			client, err := a.newClient(cmd.Context())
+			client, err := a.newClient(cmd)
 			if err != nil {
 				return err
 			}
@@ -191,7 +195,7 @@ func (a *App) callsCommand() *cobra.Command {
 		Short: "Hang up a call",
 		Args:  cobra.ExactArgs(1),
 		RunE: func(cmd *cobra.Command, args []string) error {
-			client, err := a.newClient(cmd.Context())
+			client, err := a.newClient(cmd)
 			if err != nil {
 				return err
 			}
@@ -211,7 +215,7 @@ func (a *App) callsCommand() *cobra.Command {
 			if sequence == "" {
 				return errors.New("--sequence is required")
 			}
-			client, err := a.newClient(cmd.Context())
+			client, err := a.newClient(cmd)
 			if err != nil {
 				return err
 			}
@@ -248,7 +252,7 @@ func (a *App) historyCommand() *cobra.Command {
 			if limit < 0 || offset < 0 {
 				return errors.New("--limit and --offset must not be negative")
 			}
-			client, err := a.newClient(cmd.Context())
+			client, err := a.newClient(cmd)
 			if err != nil {
 				return err
 			}
@@ -303,7 +307,7 @@ func (a *App) historyCommand() *cobra.Command {
 		Short: "Show a single history entry",
 		Args:  cobra.ExactArgs(1),
 		RunE: func(cmd *cobra.Command, args []string) error {
-			client, err := a.newClient(cmd.Context())
+			client, err := a.newClient(cmd)
 			if err != nil {
 				return err
 			}
@@ -335,7 +339,7 @@ func (a *App) faxCommand() *cobra.Command {
 			if err != nil {
 				return fmt.Errorf("read fax file: %w", err)
 			}
-			client, err := a.newClient(cmd.Context())
+			client, err := a.newClient(cmd)
 			if err != nil {
 				return err
 			}

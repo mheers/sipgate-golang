@@ -17,8 +17,9 @@
 //	}
 //
 // The signature protects the payload but not against replay. When running
-// behind a reverse proxy, IsSipgateOrigin additionally checks that the request
-// was forwarded by one of sipgate's Push API addresses.
+// behind a reverse proxy that overwrites X-Forwarded-For, IsSipgateOrigin can
+// additionally check that the request came from one of sipgate's Push API
+// addresses. It is spoofable otherwise.
 package webhook
 
 import (
@@ -223,6 +224,10 @@ func VerifySignature(signature string, body []byte) bool {
 
 // IsSipgateOrigin reports whether the request was forwarded by one of
 // sipgate's Push API addresses, based on X-Forwarded-For.
+//
+// X-Forwarded-For is client-controlled unless the reverse proxy overwrites it.
+// Treat this as a defense-in-depth signal, not as authentication; always verify
+// the signature.
 func IsSipgateOrigin(r *http.Request) bool {
 	for _, header := range r.Header.Values("X-Forwarded-For") {
 		for _, raw := range strings.Split(header, ",") {

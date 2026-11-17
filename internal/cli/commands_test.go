@@ -11,6 +11,7 @@ import (
 	"strings"
 	"sync"
 	"testing"
+	"time"
 )
 
 type recordedRequest struct {
@@ -142,6 +143,7 @@ func TestCLICommandWiring(t *testing.T) {
 		{name: "account balance", args: []string{"account", "balance"}, method: http.MethodGet, path: "/balance"},
 		{name: "whoami", args: []string{"whoami"}, method: http.MethodGet, path: "/authorization/userinfo"},
 		{name: "sms list", args: []string{"sms", "list", "--user", "w0"}, method: http.MethodGet, path: "/w0/sms"},
+		{name: "sms list current user", args: []string{"sms", "list"}, method: http.MethodGet, path: "/w0/sms"},
 		{name: "calls list", args: []string{"calls", "list"}, method: http.MethodGet, path: "/calls"},
 		{name: "calls dtmf", args: []string{"calls", "dtmf", "call-1", "--sequence", "123#"}, method: http.MethodPost, path: "/calls/call-1/dtmf", bodyPart: `"sequence":"123#"`},
 		{name: "history get", args: []string{"history", "get", "e1"}, method: http.MethodGet, path: "/history/e1"},
@@ -152,12 +154,14 @@ func TestCLICommandWiring(t *testing.T) {
 		{name: "addresses list", args: []string{"addresses", "list"}, method: http.MethodGet, path: "/addresses"},
 		{name: "addresses get", args: []string{"addresses", "get", "1"}, method: http.MethodGet, path: "/addresses/1"},
 		{name: "devices list", args: []string{"devices", "list", "--user", "w0"}, method: http.MethodGet, path: "/w0/devices"},
+		{name: "devices list current user", args: []string{"devices", "list"}, method: http.MethodGet, path: "/w0/devices"},
 		{name: "devices get", args: []string{"devices", "get", "d1"}, method: http.MethodGet, path: "/devices/d1"},
 		{name: "numbers list", args: []string{"numbers", "list"}, method: http.MethodGet, path: "/numbers"},
 		{name: "numbers list user", args: []string{"numbers", "list", "--user", "w0"}, method: http.MethodGet, path: "/w0/numbers"},
 		{name: "phonelines list", args: []string{"phonelines", "list"}, method: http.MethodGet, path: "/phonelines"},
 		{name: "phonelines list user", args: []string{"phonelines", "list", "--user", "w0"}, method: http.MethodGet, path: "/w0/phonelines"},
 		{name: "phonelines get", args: []string{"phonelines", "get", "p1", "--user", "w0"}, method: http.MethodGet, path: "/w0/phonelines/p1"},
+		{name: "phonelines get current user", args: []string{"phonelines", "get", "p1"}, method: http.MethodGet, path: "/w0/phonelines/p1"},
 		{name: "users list", args: []string{"users", "list"}, method: http.MethodGet, path: "/users"},
 		{name: "users get", args: []string{"users", "get", "w0"}, method: http.MethodGet, path: "/users/w0"},
 		{name: "voicemails list", args: []string{"voicemails", "list"}, method: http.MethodGet, path: "/voicemails"},
@@ -188,6 +192,58 @@ func TestCLICommandWiring(t *testing.T) {
 			}
 			if out.Len() == 0 && tt.method != http.MethodDelete {
 				t.Error("command produced no output")
+			}
+		})
+	}
+}
+
+func TestAuthStatusExplicitAccessTokenBeatsEnvironmentPAT(t *testing.T) {
+	app, out, _ := testApp(t, filepath.Join(t.TempDir(), "config.yaml"))
+	app.TokenID, app.Token = "env-id", "env-secret"
+	if err := app.Run(context.Background(), "auth", "status", "--access-token", "oauth"); err != nil {
+		t.Fatal(err)
+	}
+	var status map[string]any
+	if err := json.Unmarshal(out.Bytes(), &status); err != nil {
+		t.Fatal(err)
+	}
+	if status["authenticated"] != true || status["type"] != AuthTypeOAuth {
+		t.Errorf("status = %v", status)
+	}
+}
+
+func TestAuthStatusExpiredToken(t *testing.T) {
+	expiry := time.Now().Add(-time.Minute)
+	for _, tt := range []struct {
+		name         string
+		refreshToken string
+		wantAuth     bool
+	}{
+		{name: "without refresh token", wantAuth: false},
+		{name: "with refresh token", refreshToken: "refresh", wantAuth: true},
+	} {
+		t.Run(tt.name, func(t *testing.T) {
+			path := filepath.Join(t.TempDir(), "config.yaml")
+			writeConfig(t, path, &Config{Auth: AuthConfig{
+				Type:         AuthTypeOAuth,
+				AccessToken:  "stale",
+				RefreshToken: tt.refreshToken,
+				Expiry:       &expiry,
+			}})
+
+			app, out, _ := testApp(t, path)
+			if err := app.Run(context.Background(), "auth", "status"); err != nil {
+				t.Fatal(err)
+			}
+			var status map[string]any
+			if err := json.Unmarshal(out.Bytes(), &status); err != nil {
+				t.Fatal(err)
+			}
+			if status["authenticated"] != tt.wantAuth {
+				t.Errorf("authenticated = %v, want %v", status["authenticated"], tt.wantAuth)
+			}
+			if status["expired"] != true {
+				t.Errorf("expired = %v, want true", status["expired"])
 			}
 		})
 	}

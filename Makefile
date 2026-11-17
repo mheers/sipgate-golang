@@ -29,7 +29,7 @@ race:
 # Read-only smoke test against the live sipgate API. Credentials are read from
 # the untracked .env.dev file.
 e2e:
-	@test -f .env.dev || (echo "missing .env.dev with SIPGATE_TOKEN_ID and SIPGATE_TOKEN"; exit 1)
+	@test -f .env.dev || (echo "missing .env.dev with SIPGATE_TOKEN_ID/SIPGATE_TOKEN or SIPGATE_ACCESS_TOKEN"; exit 1)
 	@set -a; . ./.env.dev; set +a; go test -tags=integration ./internal/cli -run TestLiveReadOnly -v
 
 cover:

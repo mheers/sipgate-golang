@@ -98,7 +98,7 @@ func (a *App) contactsCommand() *cobra.Command {
 			if limit < 0 || offset < 0 {
 				return errors.New("--limit and --offset must not be negative")
 			}
-			client, err := a.newClient(cmd.Context())
+			client, err := a.newClient(cmd)
 			if err != nil {
 				return err
 			}
@@ -128,7 +128,7 @@ func (a *App) contactsCommand() *cobra.Command {
 		Short: "Show a contact",
 		Args:  cobra.ExactArgs(1),
 		RunE: func(cmd *cobra.Command, args []string) error {
-			client, err := a.newClient(cmd.Context())
+			client, err := a.newClient(cmd)
 			if err != nil {
 				return err
 			}
@@ -148,7 +148,7 @@ func (a *App) contactsCommand() *cobra.Command {
 			if createFlags.name == "" && (createFlags.given == "" || createFlags.family == "") {
 				return errors.New("provide --name or both --given and --family")
 			}
-			client, err := a.newClient(cmd.Context())
+			client, err := a.newClient(cmd)
 			if err != nil {
 				return err
 			}
@@ -166,7 +166,7 @@ func (a *App) contactsCommand() *cobra.Command {
 		Short: "Update a contact",
 		Args:  cobra.ExactArgs(1),
 		RunE: func(cmd *cobra.Command, args []string) error {
-			client, err := a.newClient(cmd.Context())
+			client, err := a.newClient(cmd)
 			if err != nil {
 				return err
 			}
@@ -184,7 +184,7 @@ func (a *App) contactsCommand() *cobra.Command {
 		Short: "Delete a contact",
 		Args:  cobra.ExactArgs(1),
 		RunE: func(cmd *cobra.Command, args []string) error {
-			client, err := a.newClient(cmd.Context())
+			client, err := a.newClient(cmd)
 			if err != nil {
 				return err
 			}
@@ -209,7 +209,7 @@ func (a *App) addressesCommand() *cobra.Command {
 		Use:   "list",
 		Short: "List addresses",
 		RunE: func(cmd *cobra.Command, args []string) error {
-			client, err := a.newClient(cmd.Context())
+			client, err := a.newClient(cmd)
 			if err != nil {
 				return err
 			}
@@ -229,7 +229,7 @@ func (a *App) addressesCommand() *cobra.Command {
 			if err != nil {
 				return errors.New("addressId must be a number")
 			}
-			client, err := a.newClient(cmd.Context())
+			client, err := a.newClient(cmd)
 			if err != nil {
 				return err
 			}
@@ -253,11 +253,15 @@ func (a *App) devicesCommand() *cobra.Command {
 		Use:   "list",
 		Short: "List devices of a user",
 		RunE: func(cmd *cobra.Command, args []string) error {
-			client, err := a.newClient(cmd.Context())
+			client, err := a.newClient(cmd)
 			if err != nil {
 				return err
 			}
-			request := client.DevicesAPI.GetDevices(cmd.Context(), userID)
+			resolvedUserID, err := a.resolveUserID(cmd.Context(), client, userID)
+			if err != nil {
+				return err
+			}
+			request := client.DevicesAPI.GetDevices(cmd.Context(), resolvedUserID)
 			if deviceType != "" {
 				request = request.Type_(deviceType)
 			}
@@ -268,7 +272,7 @@ func (a *App) devicesCommand() *cobra.Command {
 			return a.print(devices)
 		},
 	}
-	list.Flags().StringVar(&userID, "user", "w0", "user ID")
+	list.Flags().StringVar(&userID, "user", "", "user ID (default: the authenticated user)")
 	list.Flags().StringVar(&deviceType, "type", "", "filter by device type")
 
 	cmd.AddCommand(list, &cobra.Command{
@@ -276,7 +280,7 @@ func (a *App) devicesCommand() *cobra.Command {
 		Short: "Show a device",
 		Args:  cobra.ExactArgs(1),
 		RunE: func(cmd *cobra.Command, args []string) error {
-			client, err := a.newClient(cmd.Context())
+			client, err := a.newClient(cmd)
 			if err != nil {
 				return err
 			}
@@ -300,7 +304,7 @@ func (a *App) numbersCommand() *cobra.Command {
 		Use:   "list",
 		Short: "List phone numbers",
 		RunE: func(cmd *cobra.Command, args []string) error {
-			client, err := a.newClient(cmd.Context())
+			client, err := a.newClient(cmd)
 			if err != nil {
 				return err
 			}
@@ -336,7 +340,7 @@ func (a *App) phonelinesCommand() *cobra.Command {
 		Use:   "list",
 		Short: "List phone lines",
 		RunE: func(cmd *cobra.Command, args []string) error {
-			client, err := a.newClient(cmd.Context())
+			client, err := a.newClient(cmd)
 			if err != nil {
 				return err
 			}
@@ -362,18 +366,22 @@ func (a *App) phonelinesCommand() *cobra.Command {
 		Short: "Show a phone line",
 		Args:  cobra.ExactArgs(1),
 		RunE: func(cmd *cobra.Command, args []string) error {
-			client, err := a.newClient(cmd.Context())
+			client, err := a.newClient(cmd)
 			if err != nil {
 				return err
 			}
-			phoneline, err := result(client.PhonelinesAPI.GetPhoneline(cmd.Context(), getPhonelineUser, args[0]).Execute())
+			userID, err := a.resolveUserID(cmd.Context(), client, getPhonelineUser)
+			if err != nil {
+				return err
+			}
+			phoneline, err := result(client.PhonelinesAPI.GetPhoneline(cmd.Context(), userID, args[0]).Execute())
 			if err != nil {
 				return err
 			}
 			return a.print(phoneline)
 		},
 	}
-	get.Flags().StringVar(&getPhonelineUser, "user", "w0", "user ID")
+	get.Flags().StringVar(&getPhonelineUser, "user", "", "user ID (default: the authenticated user)")
 	cmd.AddCommand(list, get)
 	return cmd
 }
@@ -387,7 +395,7 @@ func (a *App) usersCommand() *cobra.Command {
 		Use:   "list",
 		Short: "List users",
 		RunE: func(cmd *cobra.Command, args []string) error {
-			client, err := a.newClient(cmd.Context())
+			client, err := a.newClient(cmd)
 			if err != nil {
 				return err
 			}
@@ -403,7 +411,7 @@ func (a *App) usersCommand() *cobra.Command {
 		Short: "Show a user",
 		Args:  cobra.ExactArgs(1),
 		RunE: func(cmd *cobra.Command, args []string) error {
-			client, err := a.newClient(cmd.Context())
+			client, err := a.newClient(cmd)
 			if err != nil {
 				return err
 			}
@@ -426,7 +434,7 @@ func (a *App) voicemailsCommand() *cobra.Command {
 		Use:   "list",
 		Short: "List voicemails",
 		RunE: func(cmd *cobra.Command, args []string) error {
-			client, err := a.newClient(cmd.Context())
+			client, err := a.newClient(cmd)
 			if err != nil {
 				return err
 			}
@@ -442,7 +450,7 @@ func (a *App) voicemailsCommand() *cobra.Command {
 		Short: "Show a voicemail",
 		Args:  cobra.ExactArgs(1),
 		RunE: func(cmd *cobra.Command, args []string) error {
-			client, err := a.newClient(cmd.Context())
+			client, err := a.newClient(cmd)
 			if err != nil {
 				return err
 			}

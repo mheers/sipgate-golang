@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"encoding/json"
 	"errors"
-	"fmt"
 	"io"
 	"net/url"
 	"strconv"
@@ -23,7 +22,7 @@ func (a *App) eventsCommand() *cobra.Command {
 		Use:   "list",
 		Short: "List app events",
 		RunE: func(cmd *cobra.Command, args []string) error {
-			client, err := a.newClient(cmd.Context())
+			client, err := a.newClient(cmd)
 			if err != nil {
 				return err
 			}
@@ -43,7 +42,7 @@ func (a *App) eventsCommand() *cobra.Command {
 			if err != nil {
 				return errors.New("eventId must be a number")
 			}
-			client, err := a.newClient(cmd.Context())
+			client, err := a.newClient(cmd)
 			if err != nil {
 				return err
 			}
@@ -65,7 +64,7 @@ func (a *App) webhooksCommand() *cobra.Command {
 		Use:   "get",
 		Short: "Show the account webhook settings",
 		RunE: func(cmd *cobra.Command, args []string) error {
-			client, err := a.newClient(cmd.Context())
+			client, err := a.newClient(cmd)
 			if err != nil {
 				return err
 			}
@@ -105,7 +104,7 @@ func (a *App) webhooksCommand() *cobra.Command {
 				version := int32(pushAPIVersion)
 				body.PushApiVersion = &version
 			}
-			client, err := a.newClient(cmd.Context())
+			client, err := a.newClient(cmd)
 			if err != nil {
 				return err
 			}
@@ -126,7 +125,7 @@ func (a *App) webhooksCommand() *cobra.Command {
 		Use:   "log",
 		Short: "Show recently sent webhooks",
 		RunE: func(cmd *cobra.Command, args []string) error {
-			client, err := a.newClient(cmd.Context())
+			client, err := a.newClient(cmd)
 			if err != nil {
 				return err
 			}
@@ -158,11 +157,12 @@ func (a *App) apiCommand() *cobra.Command {
 		RunE: func(cmd *cobra.Command, args []string) error {
 			method := strings.ToUpper(args[0])
 			path := args[1]
+			lowerPath := strings.ToLower(path)
+			if strings.HasPrefix(lowerPath, "http://") || strings.HasPrefix(lowerPath, "https://") || strings.HasPrefix(path, "//") {
+				return errors.New("path must be relative to the API base URL")
+			}
 			if !strings.HasPrefix(path, "/") {
 				path = "/" + path
-			}
-			if strings.HasPrefix(path, "http://") || strings.HasPrefix(path, "https://") {
-				return errors.New("path must be relative to the API base URL")
 			}
 
 			if len(query) > 0 {
@@ -170,13 +170,16 @@ func (a *App) apiCommand() *cobra.Command {
 				for _, entry := range query {
 					key, value, ok := strings.Cut(entry, "=")
 					if !ok {
-						return fmt.Errorf("invalid --query %q (use key=value)", entry)
+						return errors.New("invalid --query (use key=value)")
 					}
 					params.Add(key, value)
 				}
 				separator := "?"
 				if strings.Contains(path, "?") {
 					separator = "&"
+					if strings.HasSuffix(path, "?") || strings.HasSuffix(path, "&") {
+						separator = ""
+					}
 				}
 				path += separator + params.Encode()
 			}
@@ -185,7 +188,7 @@ func (a *App) apiCommand() *cobra.Command {
 			if data != "" {
 				body = strings.NewReader(data)
 			}
-			client, err := a.newClient(cmd.Context())
+			client, err := a.newClient(cmd)
 			if err != nil {
 				return err
 			}
@@ -197,7 +200,7 @@ func (a *App) apiCommand() *cobra.Command {
 			for _, header := range headers {
 				key, value, ok := strings.Cut(header, ":")
 				if !ok {
-					return fmt.Errorf("invalid --header %q (use Name: value)", header)
+					return errors.New("invalid --header (use Name: value)")
 				}
 				key = strings.TrimSpace(key)
 				if strings.EqualFold(key, "Content-Type") {

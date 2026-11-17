@@ -63,6 +63,10 @@ cfg := auth.Config{
     Scopes:       []string{"account:read", "sms:write"},
 }
 
+// The token source uses this context for refreshes, so pass a long-lived
+// context rather than a single request's context.
+ctx := context.Background()
+
 verifier, err := auth.GenerateVerifier()
 if err != nil {
     log.Fatal(err)
@@ -253,7 +257,7 @@ func handle(w http.ResponseWriter, r *http.Request) {
 }
 ```
 
-`event.Raw` contains all form values, including fields added by newer Push API versions. `webhook.IsSipgateOrigin` checks `X-Forwarded-For` against sipgate's Push API addresses when the server runs behind a reverse proxy. See `examples/webhook-server` for a runnable server.
+`event.Raw` contains all form values, including fields added by newer Push API versions. `webhook.IsSipgateOrigin` checks `X-Forwarded-For` against sipgate's Push API addresses when the server runs behind a reverse proxy; only trust it if that proxy overwrites `X-Forwarded-For`, because the header is otherwise client-controlled. See `examples/webhook-server` for a runnable server.
 
 ## CLI
 
@@ -269,11 +273,11 @@ All commands print JSON by default; use `-o yaml` for YAML. Errors go to stderr 
 | --- | --- |
 | `sipgate auth login` | OAuth 2.0 login with PKCE and local callback server |
 | `sipgate auth status` | Show the local authentication state |
-| `sipgate auth logout` | Delete stored credentials |
+| `sipgate auth logout` | Delete stored access and refresh tokens (keeps the OAuth client registration) |
 | `sipgate account get` | Account data |
 | `sipgate account balance` | Account balance |
 | `sipgate whoami` | Authenticated user |
-| `sipgate sms list --user w0` | SMS extensions |
+| `sipgate sms list [--user w0]` | SMS extensions (defaults to the authenticated user) |
 | `sipgate sms send --sms-id s0 --to +49... --message "Hi"` | Send an SMS |
 | `sipgate calls list` | Established calls |
 | `sipgate calls start --caller e0 --callee +49...` | Start a call |
@@ -287,16 +291,18 @@ All commands print JSON by default; use `-o yaml` for YAML. Errors go to stderr 
 | `sipgate contacts update <contactId> --note "..."` | Update a contact |
 | `sipgate contacts delete <contactId>` | Delete a contact |
 | `sipgate addresses list`, `addresses get <id>` | Addresses |
-| `sipgate devices list --user w0`, `devices get <id>` | Devices |
+| `sipgate devices list [--user w0]`, `devices get <id>` | Devices (defaults to the authenticated user) |
 | `sipgate numbers list [--user w0]` | Phone numbers |
-| `sipgate phonelines list [--user w0]`, `phonelines get <id>` | Phone lines |
-| `sipgate users list`, `users get <w0>` | Users |
+| `sipgate phonelines list [--user w0]`, `phonelines get <id> [--user w0]` | Phone lines |
+| `sipgate users list`, `users get <userId>` | Users |
 | `sipgate voicemails list`, `voicemails get <id>` | Voicemails |
 | `sipgate fax send --faxline f0 --to +49... --file invoice.pdf` | Send a fax |
 | `sipgate events list`, `events delete <id>` | App events |
 | `sipgate webhooks get`, `webhooks set`, `webhooks log` | Push API settings |
 | `sipgate api <method> <path>` | Arbitrary authenticated API request |
 | `sipgate completion <shell>` | Shell completion (Cobra) |
+
+User-scoped commands (`sms list`, `devices list`, `phonelines get`) default to the authenticated user, which is resolved through `GET /authorization/userinfo`. Pass `--user` to manage another member of the account.
 
 ### Examples
 
@@ -323,7 +329,7 @@ sipgate api GET /history --query limit=5 --query types=SMS --header "X-Debug: 1"
 
 ### Configuration and environment
 
-Precedence: explicit flag, then environment variable, then config file, then default.
+Precedence: explicit flag, then environment variable, then config file, then default. Explicit `--access-token` and `--token-id`/`--token` cannot be combined; a flag of either type also overrides environment credentials of the other type.
 
 | Flag | Environment | Purpose |
 | --- | --- | --- |
@@ -335,7 +341,7 @@ Precedence: explicit flag, then environment variable, then config file, then def
 | `--output`, `-o` | `SIPGATE_OUTPUT` | `json` or `yaml` |
 | `--retries` | | Retries for idempotent requests |
 
-The OAuth login command reads `SIPGATE_CLIENT_ID`, `SIPGATE_CLIENT_SECRET`, `SIPGATE_REDIRECT_URI`, `SIPGATE_AUTH_URL`, `SIPGATE_TOKEN_URL` and `SIPGATE_SCOPES` (comma separated).
+The OAuth login command reads `SIPGATE_CLIENT_ID`, `SIPGATE_CLIENT_SECRET`, `SIPGATE_REDIRECT_URI`, `SIPGATE_AUTH_URL`, `SIPGATE_TOKEN_URL` and `SIPGATE_SCOPES` (comma separated). Prefer environment variables or the config file over `--token`, `--access-token` and `--client-secret`; command-line arguments can be visible to other local users in process listings.
 
 Config file example:
 
@@ -364,7 +370,8 @@ The file is written with mode `0600`. Do not commit it.
 ├── cmd/sipgate/             CLI entry point
 ├── examples/                runnable examples
 ├── spec/sipgate-v2.json     normalized upstream Swagger document
-└── tools/specgen            spec downloader and normalizer
+├── tools/specgen            spec downloader and normalizer
+└── tools/genfix             post-generation identifier fix
 ```
 
 ## Development
@@ -381,7 +388,7 @@ make build         # bin/sipgate with version ldflags
 make e2e           # read-only smoke test against the live API
 ```
 
-`make e2e` reads `SIPGATE_TOKEN_ID` and `SIPGATE_TOKEN` from the untracked `.env.dev` file (mode `0600`) and only performs read-only requests. It never sends messages, starts calls or changes account settings.
+`make e2e` reads `SIPGATE_TOKEN_ID` and `SIPGATE_TOKEN` (or `SIPGATE_ACCESS_TOKEN`) from the untracked `.env.dev` file (mode `0600`) and only performs read-only requests. It never sends messages, starts calls or changes account settings.
 
 ### Regenerating the client
 

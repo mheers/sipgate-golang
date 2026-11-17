@@ -118,6 +118,13 @@ func (a *App) command() *cobra.Command {
 	flags.StringVar(&a.AccessToken, "access-token", a.AccessToken, "OAuth 2.0 access token (env "+envAccessToken+")")
 	flags.StringVarP(&a.Output, "output", "o", a.Output, "output format: json or yaml")
 	flags.IntVar(&a.Retries, "retries", a.Retries, "retries for idempotent requests")
+	// The flag values may come from the environment. Keep them out of --help so
+	// a secret is never printed as a flag default.
+	for _, name := range []string{"token-id", "token", "access-token"} {
+		if flag := flags.Lookup(name); flag != nil {
+			flag.DefValue = ""
+		}
+	}
 
 	cmd.AddCommand(
 		a.authCommand(),
@@ -160,7 +167,8 @@ func (a *App) loadConfig() (*Config, string, error) {
 
 // newClient builds an authenticated SDK client from flags, environment and the
 // config file, in that order of precedence.
-func (a *App) newClient(ctx context.Context) (*sipgate.Client, error) {
+func (a *App) newClient(cmd *cobra.Command) (*sipgate.Client, error) {
+	ctx := cmd.Context()
 	cfg, path, err := a.loadConfig()
 	if err != nil {
 		return nil, err
@@ -173,7 +181,21 @@ func (a *App) newClient(ctx context.Context) (*sipgate.Client, error) {
 		sipgate.WithRetries(a.Retries),
 	}
 
+	flags := cmd.Flags()
 	switch {
+	case flags.Changed("access-token"):
+		if flags.Changed("token-id") || flags.Changed("token") {
+			return nil, errors.New("use either --access-token or --token-id/--token, not both")
+		}
+		if a.AccessToken == "" {
+			return nil, errors.New("--access-token must not be empty")
+		}
+		opts = append(opts, sipgate.WithToken(a.AccessToken))
+	case flags.Changed("token-id") || flags.Changed("token"):
+		if a.TokenID == "" || a.Token == "" {
+			return nil, errors.New("both --token-id and --token (or " + envTokenID + " and " + envToken + ") are required for personal access token authentication")
+		}
+		opts = append(opts, sipgate.WithPersonalAccessToken(a.TokenID, a.Token))
 	case a.TokenID != "" || a.Token != "":
 		if a.TokenID == "" || a.Token == "" {
 			return nil, errors.New("both --token-id and --token (or " + envTokenID + " and " + envToken + ") are required for personal access token authentication")
@@ -195,7 +217,16 @@ func (a *App) newClient(ctx context.Context) (*sipgate.Client, error) {
 // credentialOptionFromConfig returns the authentication option stored in the
 // config file, refreshing an expired OAuth 2.0 access token if necessary.
 func (a *App) credentialOptionFromConfig(ctx context.Context, cfg *Config, path string) (sipgate.Option, error) {
-	switch cfg.Auth.Type {
+	authType := cfg.Auth.Type
+	if authType == "" {
+		switch {
+		case cfg.Auth.TokenID != "" || cfg.Auth.Token != "":
+			authType = AuthTypePAT
+		case cfg.Auth.AccessToken != "":
+			authType = AuthTypeOAuth
+		}
+	}
+	switch authType {
 	case AuthTypePAT:
 		if cfg.Auth.TokenID == "" || cfg.Auth.Token == "" {
 			return nil, errors.New("incomplete personal access token in config; run sipgate auth login or set " + envTokenID + " and " + envToken)
@@ -212,10 +243,13 @@ func (a *App) credentialOptionFromConfig(ctx context.Context, cfg *Config, path 
 		if cfg.Auth.Expiry != nil {
 			token.Expiry = *cfg.Auth.Expiry
 		}
-		if cfg.Auth.Expiry == nil || (token.Valid() && a.now().Add(30*time.Second).Before(token.Expiry)) {
+		if cfg.Auth.Expiry == nil || (token.Valid() && a.nowOrTime().Add(30*time.Second).Before(token.Expiry)) {
 			return sipgate.WithToken(token.AccessToken), nil
 		}
 		if token.RefreshToken == "" {
+			if !token.Valid() {
+				return nil, errors.New("stored access token expired and no refresh token is available; run sipgate auth login")
+			}
 			return sipgate.WithToken(token.AccessToken), nil
 		}
 
@@ -253,15 +287,27 @@ func (a *App) credentialOptionFromConfig(ctx context.Context, cfg *Config, path 
 	}
 }
 
-func (a *App) oauthConfig(cfg *Config) auth.Config {
-	return auth.Config{
-		ClientID:     cfg.OAuth.ClientID,
-		ClientSecret: cfg.OAuth.ClientSecret,
-		AuthURL:      cfg.OAuth.AuthURL,
-		TokenURL:     cfg.OAuth.TokenURL,
-		RedirectURL:  cfg.OAuth.RedirectURL,
-		Scopes:       cfg.OAuth.Scopes,
+// resolveUserID returns explicit when it is set, otherwise the ID of the
+// authenticated user. User-scoped endpoints cannot be called without a user ID.
+func (a *App) resolveUserID(ctx context.Context, client *sipgate.Client, explicit string) (string, error) {
+	if explicit = strings.TrimSpace(explicit); explicit != "" {
+		return explicit, nil
 	}
+	info, err := client.Userinfo(ctx)
+	if err != nil {
+		return "", fmt.Errorf("determine the authenticated user (use --user): %w", err)
+	}
+	if strings.TrimSpace(info.GetSub()) == "" {
+		return "", errors.New("the API did not return a user ID (use --user)")
+	}
+	return info.GetSub(), nil
+}
+
+func (a *App) nowOrTime() time.Time {
+	if a.now != nil {
+		return a.now()
+	}
+	return time.Now()
 }
 
 func firstNonEmpty(values ...string) string {

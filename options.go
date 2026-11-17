@@ -73,6 +73,8 @@ func WithBasicAuth(username, password string) Option {
 }
 
 // WithBaseURL overrides the API base URL. It is useful for tests and proxies.
+// The URL must use http or https and must not contain userinfo, a query or a
+// fragment.
 func WithBaseURL(baseURL string) Option {
 	return func(o *options) error {
 		o.baseURL = strings.TrimRight(strings.TrimSpace(baseURL), "/") + "/"

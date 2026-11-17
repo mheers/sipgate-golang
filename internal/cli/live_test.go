@@ -17,8 +17,10 @@ import (
 //
 // Run it with: make e2e
 func TestLiveReadOnly(t *testing.T) {
-	if os.Getenv(envTokenID) == "" && os.Getenv(envAccessToken) == "" {
-		t.Skip("no sipgate credentials in the environment")
+	hasPAT := os.Getenv(envTokenID) != "" && os.Getenv(envToken) != ""
+	hasOAuth := os.Getenv(envAccessToken) != ""
+	if !hasPAT && !hasOAuth {
+		t.Skip("no complete sipgate credentials in the environment")
 	}
 
 	app := NewApp()
@@ -35,8 +37,8 @@ func TestLiveReadOnly(t *testing.T) {
 		{"users", "list"},
 		{"contacts", "list", "--limit", "1"},
 		{"addresses", "list"},
-		{"devices", "list", "--user", "w0"},
-		{"sms", "list", "--user", "w0"},
+		{"devices", "list"},
+		{"sms", "list"},
 		{"history", "list", "--limit", "1"},
 		{"calls", "list"},
 		{"voicemails", "list"},

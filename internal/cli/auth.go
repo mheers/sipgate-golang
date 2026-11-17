@@ -70,6 +70,10 @@ func (a *App) authLoginCommand() *cobra.Command {
 	flags.StringArrayVar(&settings.scopes, "scope", settings.scopes, "OAuth scopes, repeatable (env "+envScopes+")")
 	flags.BoolVar(&settings.noBrowser, "no-browser", false, "only print the authorization URL")
 	flags.DurationVar(&settings.timeout, "timeout", settings.timeout, "time to wait for the browser callback")
+	// Do not print an environment-provided client secret in --help.
+	if flag := flags.Lookup("client-secret"); flag != nil {
+		flag.DefValue = ""
+	}
 	return cmd
 }
 
@@ -133,7 +137,7 @@ func (a *App) authLogin(ctx context.Context, settings loginSettings) error {
 	}
 
 	fmt.Fprintf(a.Err, "Open this URL in your browser:\n\n%s\n\n", authorizeURL)
-	if !settings.noBrowser {
+	if !settings.noBrowser && a.openBrowser != nil {
 		if err := a.openBrowser(authorizeURL); err != nil {
 			fmt.Fprintf(a.Err, "Could not open a browser: %v\n", err)
 		}
@@ -220,7 +224,11 @@ func (a *App) waitForCode(ctx context.Context, listener net.Listener, path, stat
 			errCh <- err
 		}
 	}()
-	defer server.Close()
+	defer func() {
+		shutdownCtx, cancel := context.WithTimeout(context.Background(), 2*time.Second)
+		defer cancel()
+		_ = server.Shutdown(shutdownCtx)
+	}()
 
 	timer := time.NewTimer(timeout)
 	defer timer.Stop()
@@ -253,7 +261,14 @@ func (a *App) authStatusCommand() *cobra.Command {
 				"config":        path,
 				"base_url":      baseURL,
 			}
+			flags := cmd.Flags()
 			switch {
+			case flags.Changed("access-token"):
+				status["authenticated"] = a.AccessToken != ""
+				status["type"] = AuthTypeOAuth
+			case flags.Changed("token-id") || flags.Changed("token"):
+				status["authenticated"] = a.TokenID != "" && a.Token != ""
+				status["type"] = AuthTypePAT
 			case a.TokenID != "" || a.Token != "":
 				status["authenticated"] = a.TokenID != "" && a.Token != ""
 				status["type"] = AuthTypePAT
@@ -268,6 +283,12 @@ func (a *App) authStatusCommand() *cobra.Command {
 				status["type"] = AuthTypeOAuth
 				if cfg.Auth.Expiry != nil {
 					status["expires_at"] = cfg.Auth.Expiry
+					if cfg.Auth.Expiry.Before(a.nowOrTime()) {
+						status["expired"] = true
+						if cfg.Auth.RefreshToken == "" {
+							status["authenticated"] = false
+						}
+					}
 				}
 				if len(cfg.OAuth.Scopes) > 0 {
 					status["scopes"] = cfg.OAuth.Scopes
@@ -281,7 +302,7 @@ func (a *App) authStatusCommand() *cobra.Command {
 func (a *App) authLogoutCommand() *cobra.Command {
 	return &cobra.Command{
 		Use:   "logout",
-		Short: "Remove stored credentials",
+		Short: "Remove stored access and refresh tokens",
 		RunE: func(cmd *cobra.Command, args []string) error {
 			cfg, path, err := a.loadConfig()
 			if err != nil {
@@ -301,6 +322,9 @@ func loopbackRedirect(raw string) (*url.URL, error) {
 	if err != nil {
 		return nil, fmt.Errorf("invalid redirect URI %q: %w", raw, err)
 	}
+	if u.User != nil {
+		return nil, errors.New("redirect URI must not contain userinfo")
+	}
 	host := u.Hostname()
 	if host != "127.0.0.1" && host != "localhost" && host != "::1" {
 		return nil, fmt.Errorf("redirect URI host must be a loopback address, got %q", host)
@@ -311,8 +335,14 @@ func loopbackRedirect(raw string) (*url.URL, error) {
 	if u.Port() == "" {
 		return nil, errors.New("redirect URI must contain an explicit port")
 	}
+	if u.Port() == "0" {
+		return nil, errors.New("redirect URI must use a non-zero port")
+	}
 	if u.Path == "" || u.Path == "/" {
 		return nil, errors.New("redirect URI must contain a path, for example /callback")
+	}
+	if u.RawQuery != "" || u.ForceQuery || u.Fragment != "" {
+		return nil, errors.New("redirect URI must not contain a query or fragment")
 	}
 	return u, nil
 }

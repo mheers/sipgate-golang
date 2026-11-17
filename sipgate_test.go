@@ -8,6 +8,7 @@ import (
 	"io"
 	"net/http"
 	"net/http/httptest"
+	"runtime/debug"
 	"strings"
 	"sync/atomic"
 	"testing"
@@ -126,6 +127,8 @@ func TestNewValidatesOptions(t *testing.T) {
 		{name: "empty token", opts: []Option{WithPersonalAccessToken("token-id", "")}},
 		{name: "nil token source", opts: []Option{WithTokenSource(nil)}},
 		{name: "invalid base URL", opts: []Option{WithToken("t"), WithBaseURL("://nope")}},
+		{name: "base URL with query", opts: []Option{WithToken("t"), WithBaseURL("https://api.example/v2?x=1")}},
+		{name: "base URL with userinfo", opts: []Option{WithToken("t"), WithBaseURL("https://user:pass@api.example/v2")}},
 		{name: "negative retries", opts: []Option{WithToken("t"), WithRetries(-1)}},
 		{name: "nil HTTP client", opts: []Option{WithToken("t"), WithHTTPClient(nil)}},
 	}
@@ -133,6 +136,58 @@ func TestNewValidatesOptions(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			if _, err := New(tt.opts...); err == nil {
 				t.Fatal("New() returned no error")
+			}
+		})
+	}
+}
+
+func TestVersionFromBuildInfo(t *testing.T) {
+	const modulePath = "github.com/mheers/sipgate-golang"
+	tests := []struct {
+		name string
+		info *debug.BuildInfo
+		want string
+	}{
+		{
+			name: "main module",
+			info: &debug.BuildInfo{Main: debug.Module{Path: modulePath, Version: "v1.2.3"}},
+			want: "v1.2.3",
+		},
+		{
+			name: "dependency",
+			info: &debug.BuildInfo{
+				Main: debug.Module{Path: "example.com/app", Version: "v9.9.9"},
+				Deps: []*debug.Module{{Path: modulePath, Version: "v1.0.0"}},
+			},
+			want: "v1.0.0",
+		},
+		{
+			name: "replaced dependency",
+			info: &debug.BuildInfo{
+				Deps: []*debug.Module{{
+					Path:    modulePath,
+					Version: "v1.0.0",
+					Replace: &debug.Module{Path: "../sipgate-golang", Version: "v2.0.0"},
+				}},
+			},
+			want: "v2.0.0",
+		},
+		{
+			name: "devel",
+			info: &debug.BuildInfo{Main: debug.Module{Path: modulePath, Version: "(devel)"}},
+		},
+		{
+			name: "unrelated module",
+			info: &debug.BuildInfo{Main: debug.Module{Path: "example.com/app", Version: "v9.9.9"}},
+		},
+		{
+			name: "nil",
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := versionFromBuildInfo(tt.info); got != tt.want {
+				t.Errorf("versionFromBuildInfo() = %q, want %q", got, tt.want)
 			}
 		})
 	}
@@ -573,8 +628,14 @@ func TestNewRequestRejectsInvalidPath(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	if _, err := c.NewRequest(context.Background(), http.MethodGet, "http://evil.example", nil); err == nil {
-		t.Error("absolute URL accepted")
+	for _, path := range []string{
+		"http://evil.example",
+		"HTTPS://evil.example",
+		"//evil.example",
+	} {
+		if _, err := c.NewRequest(context.Background(), http.MethodGet, path, nil); err == nil {
+			t.Errorf("absolute URL %q accepted", path)
+		}
 	}
 }
 

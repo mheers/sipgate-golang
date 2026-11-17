@@ -36,6 +36,7 @@ import (
 	"io"
 	"net/http"
 	"net/url"
+	"runtime/debug"
 	"strings"
 	"time"
 
@@ -56,6 +57,52 @@ const (
 //
 //	go build -ldflags "-X github.com/mheers/sipgate-golang.Version=v1.2.3"
 var Version = "dev"
+
+func init() {
+	// `go install` does not apply the Makefile's ldflags. Fall back to the
+	// module version recorded in the build info so an installed CLI does not
+	// report "dev".
+	if Version != "" && Version != "dev" {
+		return
+	}
+	info, ok := debug.ReadBuildInfo()
+	if !ok {
+		return
+	}
+	if version := versionFromBuildInfo(info); version != "" {
+		Version = version
+	}
+}
+
+// versionFromBuildInfo returns this module's version from build info. When the
+// SDK is linked into another program, Main is the consuming application, so the
+// dependency entry has to be used instead.
+func versionFromBuildInfo(info *debug.BuildInfo) string {
+	const modulePath = "github.com/mheers/sipgate-golang"
+	if info == nil {
+		return ""
+	}
+	if info.Main.Path == modulePath {
+		return moduleVersion(info.Main)
+	}
+	for _, dep := range info.Deps {
+		if dep == nil || dep.Path != modulePath {
+			continue
+		}
+		if dep.Replace != nil {
+			dep = dep.Replace
+		}
+		return moduleVersion(*dep)
+	}
+	return ""
+}
+
+func moduleVersion(module debug.Module) string {
+	if module.Version == "" || module.Version == "(devel)" {
+		return ""
+	}
+	return module.Version
+}
 
 // Client is a sipgate API client. It embeds the generated OpenAPI client, so
 // all API services (AccountAPI, SessionsAPI, SmsAPI, ...) are accessible
@@ -93,7 +140,8 @@ func New(opts ...Option) (*Client, error) {
 		return nil, errors.New("sipgate: no credentials configured (use WithToken, WithTokenSource, WithPersonalAccessToken or WithBasicAuth)")
 	}
 
-	if err := validateBaseURL(o.baseURL); err != nil {
+	baseURL, err := validateBaseURL(o.baseURL)
+	if err != nil {
 		return nil, err
 	}
 	if o.retries < 0 {
@@ -120,7 +168,13 @@ func New(opts ...Option) (*Client, error) {
 	}
 
 	httpClient.Transport = &retryTransport{
-		base:     &authTransport{base: baseTransport, credentials: o.credentials, userAgent: o.userAgent},
+		base: &authTransport{
+			base:        baseTransport,
+			credentials: o.credentials,
+			userAgent:   o.userAgent,
+			scheme:      baseURL.Scheme,
+			host:        baseURL.Host,
+		},
 		attempts: o.retries + 1,
 		baseWait: o.retryBase,
 		maxWait:  o.retryMax,
@@ -141,18 +195,25 @@ func New(opts ...Option) (*Client, error) {
 	}, nil
 }
 
-func validateBaseURL(raw string) error {
+func validateBaseURL(raw string) (*url.URL, error) {
 	u, err := url.Parse(raw)
 	if err != nil {
-		return fmt.Errorf("sipgate: invalid base URL %q: %w", raw, err)
+		// Do not echo the raw value: it may contain credentials.
+		return nil, errors.New("sipgate: invalid base URL")
+	}
+	if u.User != nil {
+		return nil, errors.New("sipgate: base URL must not contain userinfo")
 	}
 	if u.Scheme != "http" && u.Scheme != "https" {
-		return fmt.Errorf("sipgate: base URL %q must use http or https", raw)
+		return nil, fmt.Errorf("sipgate: base URL %q must use http or https", u.Redacted())
 	}
 	if u.Host == "" {
-		return fmt.Errorf("sipgate: base URL %q has no host", raw)
+		return nil, fmt.Errorf("sipgate: base URL %q has no host", u.Redacted())
 	}
-	return nil
+	if u.RawQuery != "" || u.ForceQuery || u.Fragment != "" {
+		return nil, errors.New("sipgate: base URL must not contain a query or fragment")
+	}
+	return u, nil
 }
 
 // BaseURL returns the API base URL, including a trailing slash.
@@ -171,8 +232,9 @@ func (c *Client) Retries() int { return c.retries }
 // path must not be an absolute URL. Use it together with Do for endpoints that
 // are not (yet) part of the generated client.
 func (c *Client) NewRequest(ctx context.Context, method, path string, body io.Reader) (*http.Request, error) {
-	if strings.HasPrefix(path, "http://") || strings.HasPrefix(path, "https://") || strings.HasPrefix(path, "//") {
-		return nil, fmt.Errorf("sipgate: path %q must be relative to the API base URL", path)
+	lowerPath := strings.ToLower(path)
+	if strings.HasPrefix(lowerPath, "http://") || strings.HasPrefix(lowerPath, "https://") || strings.HasPrefix(path, "//") {
+		return nil, errors.New("sipgate: path must be relative to the API base URL")
 	}
 	req, err := http.NewRequestWithContext(ctx, method, joinURL(c.baseURL, path), body)
 	if err != nil {
