@@ -25,7 +25,7 @@ jobs:
       - name: Test
         run: go test -race -coverprofile=coverage.out ./...
       - name: Build CLI
-        run: go build -trimpath -o bin/sipgate ./cmd/sipgate
+        run: make build
       - name: Report coverage
         run: go tool cover -func=coverage.out | tail -n 1
 

@@ -14,6 +14,7 @@ OPENAPI_PROPERTIES := packageName=openapi,isGoSubmodule=true,generateInterfaces=
 all: fmt vet test
 
 build:
+	@mkdir -p bin
 	go build -trimpath -ldflags '$(LDFLAGS)' -o bin/$(BIN) ./cmd/sipgate
 
 install:
