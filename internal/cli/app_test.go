@@ -5,6 +5,7 @@ import (
 	"context"
 	"encoding/base64"
 	"encoding/json"
+	"fmt"
 	"io"
 	"net"
 	"net/http"
@@ -474,7 +475,26 @@ func TestAuthLoginFlow(t *testing.T) {
 		_ = write.Close()
 	}()
 
-	authorizeURL := readAuthorizeURL(t, read)
+	type urlResult struct {
+		url string
+		err error
+	}
+	urlCh := make(chan urlResult, 1)
+	go func() {
+		value, err := readAuthorizeURL(read)
+		urlCh <- urlResult{url: value, err: err}
+	}()
+
+	var authorizeURL string
+	select {
+	case result := <-urlCh:
+		if result.err != nil {
+			t.Fatalf("read authorization URL: %v", result.err)
+		}
+		authorizeURL = result.url
+	case <-time.After(10 * time.Second):
+		t.Fatal("timed out waiting for the authorization URL")
+	}
 	u, err := url.Parse(authorizeURL)
 	if err != nil {
 		t.Fatal(err)
@@ -575,8 +595,7 @@ func TestFlagsOverrideEnvironment(t *testing.T) {
 	}
 }
 
-func readAuthorizeURL(t *testing.T, r io.Reader) string {
-	t.Helper()
+func readAuthorizeURL(r io.Reader) (string, error) {
 	buf := make([]byte, 4096)
 	var output strings.Builder
 	for i := 0; i < 100; i++ {
@@ -586,16 +605,15 @@ func readAuthorizeURL(t *testing.T, r io.Reader) string {
 			for _, line := range strings.Split(output.String(), "\n") {
 				line = strings.TrimSpace(line)
 				if strings.HasPrefix(line, "http://") || strings.HasPrefix(line, "https://") {
-					return line
+					return line, nil
 				}
 			}
 		}
 		if err != nil {
-			break
+			return "", fmt.Errorf("authorization URL not printed, got: %s", output.String())
 		}
 	}
-	t.Fatalf("authorization URL not printed, got:\n%s", output.String())
-	return ""
+	return "", fmt.Errorf("authorization URL not printed, got: %s", output.String())
 }
 
 func TestOAuthTokenWithoutExpiryIsUsed(t *testing.T) {

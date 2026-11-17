@@ -242,6 +242,9 @@ var sipgatePushIPs = []string{
 	"212.9.46.32",
 }
 
+// sipgatePublicKeyPEM is the Push API signing key published by sipgate in the
+// official sipgateio-node library. If sipgate rotates the key, update it here
+// and replace the webhook test vector.
 const sipgatePublicKeyPEM = `-----BEGIN PUBLIC KEY-----
 MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAvFdlnqRfO5TmqzjtsFVC
 qPz+oW+poi3lXQFvMJJMEAtlU4MbX+yuIkgnC+Qt3AQWIK+oWSEQiybg+p39wEMl
