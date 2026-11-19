@@ -252,6 +252,9 @@ func (a *App) historyCommand() *cobra.Command {
 			if limit < 0 || offset < 0 {
 				return errors.New("--limit and --offset must not be negative")
 			}
+			if limit > 1000 {
+				return errors.New("--limit must not exceed 1000")
+			}
 			client, err := a.newClient(cmd)
 			if err != nil {
 				return err

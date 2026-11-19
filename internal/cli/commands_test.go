@@ -212,6 +212,26 @@ func TestAuthStatusExplicitAccessTokenBeatsEnvironmentPAT(t *testing.T) {
 	}
 }
 
+func TestAuthStatusRejectsAmbiguousExplicitCredentials(t *testing.T) {
+	app, out, _ := testApp(t, filepath.Join(t.TempDir(), "config.yaml"))
+	err := app.Run(context.Background(),
+		"auth", "status",
+		"--access-token", "oauth",
+		"--token-id", "id",
+		"--token", "secret",
+	)
+	if err != nil {
+		t.Fatalf("Run() error = %v", err)
+	}
+	var status map[string]any
+	if err := json.Unmarshal(out.Bytes(), &status); err != nil {
+		t.Fatal(err)
+	}
+	if status["authenticated"] != false || status["error"] == nil {
+		t.Errorf("status = %v, want an unauthenticated error state", status)
+	}
+}
+
 func TestAuthStatusExpiredToken(t *testing.T) {
 	expiry := time.Now().Add(-time.Minute)
 	for _, tt := range []struct {

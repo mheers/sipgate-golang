@@ -116,6 +116,29 @@ func TestTokenSourceErrorIsReturned(t *testing.T) {
 	}
 }
 
+func TestCredentialsAreTrimmed(t *testing.T) {
+	c := newClient(t, http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		if got := r.Header.Get("Authorization"); got != "Bearer trimmed" {
+			t.Errorf("Authorization = %q", got)
+		}
+		writeJSON(t, w, http.StatusOK, map[string]any{})
+	}), WithToken("  trimmed  "))
+	if _, err := c.Account(context.Background()); err != nil {
+		t.Fatal(err)
+	}
+
+	c = newClient(t, http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		want := "Basic " + base64.StdEncoding.EncodeToString([]byte("id:secret"))
+		if got := r.Header.Get("Authorization"); got != want {
+			t.Errorf("Authorization = %q, want %q", got, want)
+		}
+		writeJSON(t, w, http.StatusOK, map[string]any{})
+	}), WithPersonalAccessToken("  id  ", "  secret  "))
+	if _, err := c.Account(context.Background()); err != nil {
+		t.Fatal(err)
+	}
+}
+
 func TestNewValidatesOptions(t *testing.T) {
 	tests := []struct {
 		name string

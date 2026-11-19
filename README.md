@@ -207,7 +207,7 @@ The SDK retries network errors and selected responses with exponential backoff:
 
 - `GET`, `HEAD`, `OPTIONS`, `PUT` and `DELETE` are retried on network errors, `500`, `502`, `503` and `504`.
 - `POST` is only retried on `429 Too Many Requests`, so an SMS or fax is never sent twice because of a server error.
-- `Retry-After` is honoured.
+- `Retry-After` is honoured, capped at the configured maximum backoff.
 - The default is two retries; configure with `sipgate.WithRetries`, `sipgate.WithRetryBackoff` and `sipgate.WithTimeout`.
 
 ### Raw requests

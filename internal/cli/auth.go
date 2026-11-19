@@ -262,6 +262,10 @@ func (a *App) authStatusCommand() *cobra.Command {
 				"base_url":      baseURL,
 			}
 			flags := cmd.Flags()
+			if flags.Changed("access-token") && (flags.Changed("token-id") || flags.Changed("token")) {
+				status["error"] = "use either --access-token or --token-id/--token, not both"
+				return a.print(status)
+			}
 			switch {
 			case flags.Changed("access-token"):
 				status["authenticated"] = a.AccessToken != ""

@@ -726,6 +726,14 @@ func TestAPIErrorIsShown(t *testing.T) {
 	}
 }
 
+func TestHistoryListRejectsExcessiveLimit(t *testing.T) {
+	app, _, _ := testApp(t, filepath.Join(t.TempDir(), "config.yaml"))
+	err := app.Run(context.Background(), "history", "list", "--limit", "1001")
+	if err == nil || !strings.Contains(err.Error(), "1000") {
+		t.Fatalf("error = %v, want a limit error", err)
+	}
+}
+
 func TestRawAPIRejectsAbsoluteURL(t *testing.T) {
 	app, _, _ := testApp(t, filepath.Join(t.TempDir(), "config.yaml"))
 	err := app.Run(context.Background(),

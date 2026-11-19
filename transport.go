@@ -46,7 +46,20 @@ func sameOrigin(u *url.URL, scheme, host string) bool {
 	if u == nil {
 		return false
 	}
-	return strings.EqualFold(u.Scheme, scheme) && strings.EqualFold(u.Host, host)
+	return canonicalOrigin(u) == canonicalOrigin(&url.URL{Scheme: scheme, Host: host})
+}
+
+func canonicalOrigin(u *url.URL) string {
+	port := u.Port()
+	if port == "" {
+		switch strings.ToLower(u.Scheme) {
+		case "http":
+			port = "80"
+		case "https":
+			port = "443"
+		}
+	}
+	return strings.ToLower(u.Scheme) + "://" + strings.ToLower(u.Hostname()) + ":" + port
 }
 
 type retryTransport struct {
@@ -59,7 +72,8 @@ type retryTransport struct {
 
 func (t *retryTransport) RoundTrip(req *http.Request) (*http.Response, error) {
 	// A body that cannot be replayed (no GetBody) makes retries unsafe.
-	if req.Body != nil && req.GetBody == nil {
+	// http.NoBody is an explicit empty body and is safe to reuse.
+	if req.Body != nil && req.Body != http.NoBody && req.GetBody == nil {
 		return t.base.RoundTrip(req)
 	}
 
@@ -91,6 +105,10 @@ func (t *retryTransport) RoundTrip(req *http.Request) (*http.Response, error) {
 		}
 		if wait <= 0 {
 			wait = t.backoff(attempt)
+		} else if wait > t.maxWait {
+			// A malicious or misconfigured server must not be able to park a
+			// request for an arbitrary amount of time.
+			wait = t.maxWait
 		}
 		if sleepErr := t.sleep(req.Context(), wait); sleepErr != nil {
 			if lastErr != nil {

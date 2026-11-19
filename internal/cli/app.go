@@ -254,10 +254,10 @@ func (a *App) credentialOptionFromConfig(ctx context.Context, cfg *Config, path 
 		}
 
 		oauthCfg := auth.Config{
-			ClientID:     cfg.OAuth.ClientID,
-			ClientSecret: cfg.OAuth.ClientSecret,
-			AuthURL:      cfg.OAuth.AuthURL,
-			TokenURL:     cfg.OAuth.TokenURL,
+			ClientID:     firstNonEmpty(cfg.OAuth.ClientID, os.Getenv(envClientID)),
+			ClientSecret: firstNonEmpty(cfg.OAuth.ClientSecret, os.Getenv(envClientSecret)),
+			AuthURL:      firstNonEmpty(cfg.OAuth.AuthURL, os.Getenv(envAuthURL)),
+			TokenURL:     firstNonEmpty(cfg.OAuth.TokenURL, os.Getenv(envTokenURL)),
 			RedirectURL:  cfg.OAuth.RedirectURL,
 		}
 		if oauthCfg.ClientID == "" {

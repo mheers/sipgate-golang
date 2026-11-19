@@ -27,10 +27,12 @@ type options struct {
 	credentials credentials
 }
 
-// WithToken authenticates with an OAuth 2.0 Bearer token.
+// WithToken authenticates with an OAuth 2.0 Bearer token. Surrounding
+// whitespace is removed.
 func WithToken(token string) Option {
 	return func(o *options) error {
-		if strings.TrimSpace(token) == "" {
+		token = strings.TrimSpace(token)
+		if token == "" {
 			return errors.New("sipgate: token must not be empty")
 		}
 		o.credentials = tokenCredentials{source: oauth2.StaticTokenSource(&oauth2.Token{AccessToken: token})}
@@ -53,15 +55,18 @@ func WithTokenSource(source oauth2.TokenSource) Option {
 
 // WithPersonalAccessToken authenticates with a sipgate personal access token.
 // sipgate expects these tokens as HTTP Basic credentials, where the username is
-// the token ID and the password is the token itself.
+// the token ID and the password is the token itself. Surrounding whitespace is
+// removed from both values.
 func WithPersonalAccessToken(tokenID, token string) Option {
-	return WithBasicAuth(tokenID, token)
+	return WithBasicAuth(strings.TrimSpace(tokenID), strings.TrimSpace(token))
 }
 
-// WithBasicAuth authenticates with HTTP Basic credentials.
+// WithBasicAuth authenticates with HTTP Basic credentials. Surrounding
+// whitespace is removed from the username.
 func WithBasicAuth(username, password string) Option {
 	return func(o *options) error {
-		if strings.TrimSpace(username) == "" {
+		username = strings.TrimSpace(username)
+		if username == "" {
 			return errors.New("sipgate: basic auth username must not be empty")
 		}
 		if password == "" {
@@ -98,7 +103,8 @@ func WithHTTPClient(c *http.Client) Option {
 // WithUserAgent overrides the User-Agent header.
 func WithUserAgent(userAgent string) Option {
 	return func(o *options) error {
-		if strings.TrimSpace(userAgent) == "" {
+		userAgent = strings.TrimSpace(userAgent)
+		if userAgent == "" {
 			return errors.New("sipgate: user agent must not be empty")
 		}
 		o.userAgent = userAgent
@@ -120,7 +126,8 @@ func WithRetries(retries int) Option {
 }
 
 // WithRetryBackoff configures the exponential backoff between retries. The wait
-// starts at base and doubles per attempt, capped at max.
+// starts at base and doubles per attempt, capped at max. The cap also applies to
+// server-provided Retry-After delays.
 func WithRetryBackoff(base, max time.Duration) Option {
 	return func(o *options) error {
 		if base <= 0 {

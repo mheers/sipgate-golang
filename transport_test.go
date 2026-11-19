@@ -34,7 +34,9 @@ func TestAuthTransportOnlyAuthenticatesAPIOrigin(t *testing.T) {
 
 	for _, raw := range []string{
 		"https://api.example/v2/account",
+		"https://api.example:443/v2/account",
 		"https://evil.example/account",
+		"https://api.example:8443/v2/account",
 		"http://api.example/v2/account",
 	} {
 		req, err := http.NewRequest(http.MethodGet, raw, nil)
@@ -61,13 +63,13 @@ func TestAuthTransportOnlyAuthenticatesAPIOrigin(t *testing.T) {
 	}
 	_ = resp.Body.Close()
 
-	if len(headers) != 4 {
-		t.Fatalf("requests = %d, want 4", len(headers))
+	if len(headers) != 6 {
+		t.Fatalf("requests = %d, want 6", len(headers))
 	}
-	if headers[0] != "Bearer secret" {
-		t.Errorf("API origin Authorization = %q, want bearer token", headers[0])
+	if headers[0] != "Bearer secret" || headers[1] != "Bearer secret" {
+		t.Errorf("API origin Authorization = %q, want bearer token for both default and explicit port", headers[:2])
 	}
-	if headers[1] != "" || headers[2] != "" || headers[3] != "" {
+	if headers[2] != "" || headers[3] != "" || headers[4] != "" || headers[5] != "" {
 		t.Errorf("credentials leaked to another origin: %q", headers)
 	}
 }
@@ -144,6 +146,84 @@ func TestRetryTransportClosesOriginalBodyAndReplays(t *testing.T) {
 	}
 	if !original.closed {
 		t.Error("original request body was not closed")
+	}
+}
+
+func TestRetryAfterIsCapped(t *testing.T) {
+	attempts := 0
+	var waited time.Duration
+	base := roundTripFunc(func(r *http.Request) (*http.Response, error) {
+		attempts++
+		status := http.StatusTooManyRequests
+		if attempts == 2 {
+			status = http.StatusOK
+		}
+		return &http.Response{
+			StatusCode: status,
+			Header:     http.Header{"Retry-After": []string{"3600"}},
+			Body:       io.NopCloser(strings.NewReader("")),
+			Request:    r,
+		}, nil
+	})
+	transport := &retryTransport{
+		base:     base,
+		attempts: 2,
+		baseWait: time.Millisecond,
+		maxWait:  50 * time.Millisecond,
+		sleep: func(_ context.Context, d time.Duration) error {
+			waited = d
+			return nil
+		},
+	}
+
+	req, err := http.NewRequest(http.MethodGet, "https://api.example/v2/calls", nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+	resp, err := transport.RoundTrip(req)
+	if err != nil {
+		t.Fatalf("RoundTrip() error = %v", err)
+	}
+	_ = resp.Body.Close()
+	if attempts != 2 {
+		t.Errorf("attempts = %d, want 2", attempts)
+	}
+	if waited != 50*time.Millisecond {
+		t.Errorf("wait = %v, want the 50ms cap", waited)
+	}
+}
+
+func TestRetryTransportTreatsNoBodyAsReplayable(t *testing.T) {
+	attempts := 0
+	base := roundTripFunc(func(r *http.Request) (*http.Response, error) {
+		attempts++
+		status := http.StatusInternalServerError
+		if attempts == 2 {
+			status = http.StatusOK
+		}
+		return &http.Response{
+			StatusCode: status,
+			Header:     http.Header{},
+			Body:       io.NopCloser(strings.NewReader("")),
+			Request:    r,
+		}, nil
+	})
+	transport := &retryTransport{
+		base:     base,
+		attempts: 2,
+		baseWait: time.Millisecond,
+		maxWait:  time.Millisecond,
+		sleep:    func(context.Context, time.Duration) error { return nil },
+	}
+
+	req := httptest.NewRequest(http.MethodGet, "https://api.example/v2/calls", nil)
+	resp, err := transport.RoundTrip(req)
+	if err != nil {
+		t.Fatalf("RoundTrip() error = %v", err)
+	}
+	_ = resp.Body.Close()
+	if attempts != 2 {
+		t.Errorf("attempts = %d, want 2 for http.NoBody", attempts)
 	}
 }
 
